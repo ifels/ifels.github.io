@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ifels</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+    }
+    #lang-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 6px 12px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f6f8fa;
+    }
+    #lang-toggle:hover {
+      background: #e1e4e8;
+    }
+  </style>
+</head>
+<body>
+  <!-- 语言切换按钮 -->
+  <button id="lang-toggle">中文</button>
+
+  <!-- 带有 data-i18n 属性的元素，用于被 JS 替换文字 -->
+  <h1 data-i18n="greeting">Hello, ifels!</h1>
+  <p data-i18n="description">This is the GitHub Pages site for ifels.</p>
+
+  <script>
+    // 1. 定义中英文翻译词典
+    const translations = {
+      en: {
+        greeting: "Hello, ifels!",
+        description: "This is the GitHub Pages site for ifels.",
+        buttonText: "中文"
+      },
+      zh: {
+        greeting: "你好，ifels！",
+        description: "这是 ifels 的 GitHub Pages 站点。",
+        buttonText: "English"
+      }
+    };
+
+    // 2. 获取当前语言（优先读取 localStorage，其次看浏览器语言）
+    let currentLang = localStorage.getItem('preferredLang');
+    if (!currentLang) {
+      currentLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
+    }
+
+    // 3. 渲染页面的函数
+    function setLanguage(lang) {
+      // 切换 HTML 的 lang 属性，利于 SEO 和屏幕阅读器
+      document.documentElement.lang = lang;
+      
+      // 找到所有带有 data-i18n 属性的元素并替换文字
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+
+      // 更新按钮上的文字
+      document.getElementById('lang-toggle').textContent = translations[lang].buttonText;
+      
+      // 保存用户的选择
+      localStorage.setItem('preferredLang', lang);
+      currentLang = lang;
+    }
+
+    // 4. 页面加载时立即执行一次渲染
+    setLanguage(currentLang);
+
+    // 5. 给按钮绑定点击事件，切换语言
+    document.getElementById('lang-toggle').addEventListener('click', () => {
+      const nextLang = currentLang === 'en' ? 'zh' : 'en';
+      setLanguage(nextLang);
+    });
+  </script>
+</body>
+</html>
