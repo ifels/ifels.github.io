@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Features · ControlFlex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <a href="settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></h1>
+  <p class="lead">
+    <span data-lang="zh">按“一条输入链路”的顺序介绍：先看按键被分到哪一层，再看它什么时候触发、能组合出什么，最后是围绕它的菜单、移动、镜头、震动与兼容能力。</span>
+    <span data-lang="en">Following one input path end to end: which layer a button lands on, when it fires, what it can chord into — then the menus, movement, camera, rumble, and compatibility features built on top.</span>
+  </p>
+
+  <h2><span data-lang="zh">1. 七层按键架构</span><span data-lang="en">1. Seven Binding Layers</span></h2>
+  <p>
+    <span data-lang="zh">一个手柄大约只有十几个输入，而一个整合包可能暴露上百个动作。ControlFlex 用七层模型让同一个物理按键在不同场景承担不同职责：</span>
+    <span data-lang="en">A controller has roughly a dozen inputs; a modpack can expose hundreds of actions. The seven-layer model lets one physical button mean different things per context:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">层</span><span data-lang="en">Layer</span></th>
+          <th><span data-lang="zh">何时生效</span><span data-lang="en">Active when</span></th>
+          <th><span data-lang="zh">说明</span><span data-lang="en">Notes</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Main</td>
+          <td><span data-lang="zh">游戏内默认层</span><span data-lang="en">Default in-game</span></td>
+          <td><span data-lang="zh">移动、战斗、快捷栏、常用模组动作</span><span data-lang="en">Movement, combat, hotbar, everyday mod actions</span></td>
+        </tr>
+        <tr>
+          <td>Shift 1–4</td>
+          <td><span data-lang="zh">按住层切换键时</span><span data-lang="en">While a layer switch is held</span></td>
+          <td><span data-lang="zh">修饰层：空槽位自动继承 Main 的同名绑定，只需覆盖要改的项；松开切换键自动回 Main</span><span data-lang="en">Modifier planes: unassigned slots inherit the matching Main binding; releasing the switch returns to Main</span></td>
+        </tr>
+        <tr>
+          <td>Screen</td>
+          <td><span data-lang="zh">任意界面打开时（背包、箱子、模组 UI、设置）</span><span data-lang="en">Whenever a screen is open (inventory, chests, mod UIs, settings)</span></td>
+          <td><span data-lang="zh">确认、返回、切页、滚动、槽位跳转、容器辅助操作</span><span data-lang="en">Confirm, back, tab switching, scrolling, slot navigation, container helpers</span></td>
+        </tr>
+        <tr>
+          <td>Overlay</td>
+          <td><span data-lang="zh">交互式 HUD 打开时（法术轮盘、第三方轮盘、拍照 HUD 等）</span><span data-lang="en">Interactive HUDs (spell wheels, third-party radial menus, photo HUDs)</span></td>
+          <td><span data-lang="zh">显式绑定、不继承 Main：未配置的动作保持静默，避免 HUD 误触发战斗键</span><span data-lang="en">Explicit bindings, no Main inheritance: unconfigured actions stay silent so a HUD cannot misfire combat keys</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">层切换键在 Main 层使用固定 <b>Hold</b> 模式；Shift 层自动派生一个 <b>Release</b> 模式的“返回 Main”绑定。Overlay 打开期间层切换会被抑制；需要跨界面保持按住的按键可以用相位锁定（phase-lock）延续到解锁。</span>
+    <span data-lang="en">Layer switches on Main use fixed <b>Hold</b>; each Shift layer auto-derives a <b>Release</b> “return to Main”. Layer switches are suppressed while an overlay is open; keys that must stay held across an overlay or screen can be <b>phase-locked</b> until you unlock them.</span>
+  </p>
+
+  <h2><span data-lang="zh">2. 十种触发模式</span><span data-lang="en">2. Ten Trigger Modes</span></h2>
+  <p>
+    <span data-lang="zh">每个绑定由「哪个键」和「怎么触发」两部分组成。同一颗按键可以同时承担单击、长按、切换和双击行为：</span>
+    <span data-lang="en">Every binding pairs which button with how it fires. The same face button can tap, hold, toggle, and double-press for different actions:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">模式</span><span data-lang="en">Mode</span></th>
+          <th><span data-lang="zh">触发时机</span><span data-lang="en">When it fires</span></th>
+          <th><span data-lang="zh">典型用途</span><span data-lang="en">Typical use</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Press</td><td><span data-lang="zh">按下瞬间</span><span data-lang="en">On button down</span></td><td><span data-lang="zh">一次性动作、开关类操作</span><span data-lang="en">One-shot actions, opening menus</span></td></tr>
+        <tr><td>Release</td><td><span data-lang="zh">松开瞬间</span><span data-lang="en">On button up</span></td><td><span data-lang="zh">Shift 层返回 Main、“松手生效”的动作</span><span data-lang="en">Layer return, “on let go” actions</span></td></tr>
+        <tr><td>Hold</td><td><span data-lang="zh">按住期间持续</span><span data-lang="en">While held</span></td><td><span data-lang="zh">移动类修饰、持续使用、层切换键</span><span data-lang="en">Movement modifiers, sustained use, layer switches</span></td></tr>
+        <tr><td>Tap</td><td><span data-lang="zh">短于阈值的按下并松开</span><span data-lang="en">Short press under threshold</span></td><td><span data-lang="zh">不误触发长按的快速动作</span><span data-lang="en">Quick actions without accidental holds</span></td></tr>
+        <tr><td>Long Press</td><td><span data-lang="zh">按住超过阈值后</span><span data-lang="en">Held past threshold</span></td><td><span data-lang="zh">同一按键的第二功能</span><span data-lang="en">Secondary function on the same button</span></td></tr>
+        <tr><td>Toggle</td><td><span data-lang="zh">第一次按开、第二次按关</span><span data-lang="en">First press on, second off</span></td><td><span data-lang="zh">持续状态：疾跑、走路模式、视角切换</span><span data-lang="en">Persistent states: sprint, walk mode, POV</span></td></tr>
+        <tr><td>Double Press</td><td><span data-lang="zh">在 Tap 窗口内第二次按下（按下即触发）</span><span data-lang="en">Second press inside the tap window (fires on down)</span></td><td><span data-lang="zh">与 Hold / Press 共用一颗键的额外单击</span><span data-lang="en">An extra one-shot alongside Hold / Press</span></td></tr>
+        <tr><td>Double Tap</td><td><span data-lang="zh">两次短按，第二次松开时触发</span><span data-lang="en">Two short presses; fires on the second release</span></td><td><span data-lang="zh">不抢占第一次点击的确认类动作</span><span data-lang="en">Confirm-style actions without stealing the first tap</span></td></tr>
+        <tr><td>Double Hold</td><td><span data-lang="zh">短按后，在窗口内按住</span><span data-lang="en">Short press, then press-and-hold inside the window</span></td><td><span data-lang="zh">轻点再接长按才触发，例如防误触的疾跑 / 潜行</span><span data-lang="en">Tap-then-hold for sprint or sneak, avoiding misfires</span></td></tr>
+        <tr><td>Double Toggle</td><td><span data-lang="zh">与 Toggle 同锁存，第二次轻按翻转</span><span data-lang="en">Same latch as Toggle; flips on the second tap</span></td><td><span data-lang="zh">与 Hold 版本共用一颗键的锁定切换</span><span data-lang="en">Latch sneak/sprint on the same button as the hold version</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">Tap 与 Long Press 阈值全局可调（100–2000 ms）；Tap 阈值同时也是所有双击模式中两次按键的最大间隔。默认值：Tap 500 ms / Long Press 1000 ms。</span>
+    <span data-lang="en">Tap and Long Press thresholds are globally configurable (100–2000 ms); the Tap threshold is also the max gap between taps in every Double mode. Defaults: Tap 500 ms / Long Press 1000 ms.</span>
+  </p>
+
+  <h2><span data-lang="zh">3. 组合键（Combo Keys）</span><span data-lang="en">3. Combo Keys</span></h2>
+  <p>
+    <span data-lang="zh">一颗不够就按下多颗：把 <span class="kbd">LB</span> + <span class="kbd">Back</span> 或 <span class="kbd">LT</span> + <span class="kbd">A</span> 这样的和弦绑定到一个动作。捕获时先按第一颗键，在 <b>500 ms</b> 内追加其余按键，界面会显示完整和弦。</span>
+    <span data-lang="en">When one button is not enough, bind a chord such as <span class="kbd">LB</span> + <span class="kbd">Back</span> or <span class="kbd">LT</span> + <span class="kbd">A</span> to a single action. During capture, press the first button and add the rest within <b>500 ms</b>; the UI shows the full chord.</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh"><b>全模式通用</b>：和弦同样支持全部十种触发模式，规则与单键绑定一致。</span><span data-lang="en"><b>Works with every mode</b>: combos support all ten trigger modes, same rules as single-key binds.</span></li>
+    <li><span data-lang="zh"><b>升级规则</b>：更大的和弦激活时（如 A+B+Y），其已激活的真子集（A+B）会被清除，行为保持可预测。</span><span data-lang="en"><b>Upgrade rule</b>: activating a larger chord (e.g. A+B+Y) clears smaller active subsets (A+B) so behavior stays predictable.</span></li>
+    <li><span data-lang="zh"><b>按键共享</b>：一颗物理按键可通过引用计数参与多个和弦。</span><span data-lang="en"><b>Button sharing</b>: one button can participate in several combos via reference counting.</span></li>
+    <li><span data-lang="zh"><b>Shift + 和弦</b>：先按住修饰键，再在对应层上按和弦 —— 扩展布局而不占用 Main 层槽位。</span><span data-lang="en"><b>Shift + combo</b>: hold a modifier first, then chord on that layer — extending layouts without spending Main slots.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">4. 径向菜单</span><span data-lang="en">4. Radial Menus</span></h2>
+  <p>
+    <span data-lang="zh">最多 <b>5 个独立轮盘</b>，每个轮盘环绕摇杆至多 <b>8 个槽位</b>：打开轮盘、用摇杆瞄准、按 A 确认。</span>
+    <span data-lang="en">Up to <b>five independent wheels</b>, each with up to <b>eight slots</b> around the stick: open a wheel, aim with the stick, confirm with A.</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">槽位类型</span><span data-lang="en">Slot type</span></th>
+          <th><span data-lang="zh">作用</span><span data-lang="en">What it does</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-lang="zh">按键</span><span data-lang="en">Key binding</span></td><td><span data-lang="zh">触发原版或模组的 KeyMapping</span><span data-lang="en">Fires a vanilla or mod KeyMapping</span></td></tr>
+        <tr><td><span data-lang="zh">命令</span><span data-lang="en">Command</span></td><td><span data-lang="zh">执行聊天命令，如 <code>/home</code>、<code>/warp</code></span><span data-lang="en">Runs a chat command such as <code>/home</code> or <code>/warp</code></span></td></tr>
+        <tr><td><span data-lang="zh">使用物品</span><span data-lang="en">Use item</span></td><td><span data-lang="zh">切换到并快速使用某个快捷栏物品（火把、食物、工具）</span><span data-lang="en">Switches to and uses a hotbar item (torches, food, tools)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><span data-lang="zh"><b>打开方式</b>：每个轮盘有自己的打开绑定 —— <b>Press</b> 为轻按打开（松手不关闭），<b>Hold</b> 为按住保持、松开关闭。</span><span data-lang="en"><b>Opening</b>: each wheel has its own open binding — <b>Press</b> taps to open (release does not close), <b>Hold</b> keeps it open while held.</span></li>
+    <li><span data-lang="zh"><b>选择摇杆</b>：左摇杆、右摇杆或双摇杆。</span><span data-lang="en"><b>Selection stick</b>: left, right, or both.</span></li>
+    <li><span data-lang="zh"><b>图标</b>：自动、随机、默认、物品 ID 或自定义贴图路径。</span><span data-lang="en"><b>Icons</b>: auto, random, default, item ID, or a custom texture path.</span></li>
+    <li><span data-lang="zh"><b>布局</b>：保存在 <code>config/controlflex/radial_menu/radial_menus.json</code>，可在游戏内编辑器中调整图标、顺序与触发方式。菜单 2–5 通常放在 Shift 层上，让 Main 保持干净。</span><span data-lang="en"><b>Layouts</b>: persist in <code>config/controlflex/radial_menu/radial_menus.json</code> and are editable in-game (icons, order, trigger mode). Menus 2–5 usually live on Shift layers to keep Main clean.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">5. 模拟移动（360°）</span><span data-lang="en">5. Analog Movement (360°)</span></h2>
+  <p>
+    <span data-lang="zh">原版 Minecraft 只把 WASD 当作开关，因此“摇杆转按键”只能八方向全速行走。开启模拟移动后，ControlFlex 直接提供连续的 360° 移动向量：任意角度，轻推即慢走。</span>
+    <span data-lang="en">Vanilla Minecraft only sees WASD as on/off, so stick-to-keys walking is limited to eight directions at full speed. With Analog Movement, ControlFlex feeds a continuous 360° vector: any angle, and a light push walks slowly.</span>
+  </p>
+  <p class="small muted"><span data-lang="zh">路径：<b>ControlFlex 设置 → 其他（Other）→ 模拟移动</b>。</span><span data-lang="en">Path: <b>ControlFlex Settings → Other → Analog Movement</b>.</span></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">策略</span><span data-lang="en">Policy</span></th>
+          <th><span data-lang="zh">行为</span><span data-lang="en">Behavior</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Analog Smooth</td><td><span data-lang="zh">方向与推杆幅度原样使用，主机手感</span><span data-lang="en">Direction and magnitude used as-is — the console feel</span></td></tr>
+        <tr><td><span data-lang="zh">键盘式 8 向</span><span data-lang="en">Keyboard-like 8-way</span></td><td><span data-lang="zh">摇杆吸附到八个方向、全速行走，在服务器看来与键盘输入一致</span><span data-lang="en">Stick snapped to eight directions at full speed, which looks like keyboard input on a server</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">默认策略随连接场景变化：单机 / 局域网使用 Analog Smooth；公共服务器与 Realms 使用键盘式 8 向。确需在远程服务器使用 Analog Smooth 时，可在同一页面把服务器（host:port 或 Realm 名）加入白名单。</span>
+    <span data-lang="en">Defaults follow the connection: singleplayer / LAN uses Analog Smooth; public servers and Realms use keyboard-like 8-way. If a remote server should still use Analog Smooth, whitelist it (host:port or Realm name) on the same page.</span>
+  </p>
+
+  <h2><span data-lang="zh">6. 镜头与光标</span><span data-lang="en">6. Camera &amp; Cursor</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>右摇杆视角</b>：可调灵敏度与 Y 轴反转；三种模式 —— Direct Turn（直接转向）、Smooth Turn（平滑转向）、Simulate Mouse（走鼠标管线，兼容 Epic Fight 等战斗模组）。</span><span data-lang="en"><b>Right-stick look</b>: configurable sensitivity, optional Y-invert, and three modes — Direct Turn, Smooth Turn, and Simulate Mouse (routes look through the mouse pipeline for combat mods such as Epic Fight).</span></li>
+    <li><span data-lang="zh"><b>虚拟光标</b>：界面打开时用左摇杆驱动光标。</span><span data-lang="en"><b>Virtual cursor</b>: the left stick drives the cursor while a screen is open.</span></li>
+    <li><span data-lang="zh"><b>D-Pad 槽位跳转</b>：在背包与容器格子间直接跳转（锥形瞄靶，不规则格网同样适用），左摇杆仍可自由移动光标。</span><span data-lang="en"><b>D-Pad slot navigation</b>: jumps the cursor between inventory and container slots (cone targeting, works on irregular grids) while the left stick still moves the cursor freely.</span></li>
+    <li><span data-lang="zh"><b>槽位吸附</b>：可选，摇杆停止时光标自动吸附到最近格子，便于精确操作容器。</span><span data-lang="en"><b>Slot snap</b>: optional; when the stick stops, the cursor snaps to the nearest slot for precise container work.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">7. 震动反馈</span><span data-lang="en">7. Rumble</span></h2>
+  <p>
+    <span data-lang="zh">按事件类型分别配置的震动反馈：</span>
+    <span data-lang="en">Vibration feedback configured per event type:</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh"><b>波形模式</b>：无、脉冲、双脉冲、渐强、持续、衰减、心跳等。</span><span data-lang="en"><b>Waveform modes</b>: none, pulse, double-pulse, crescendo, sustained, fade, heartbeat, and more.</span></li>
+    <li><span data-lang="zh"><b>伤害类型</b>：摔落、火焰、溺水、生物、玩家、爆炸、其他，以及击杀事件。</span><span data-lang="en"><b>Damage types</b>: fall, fire, drown, mob, player, explosion, other — plus entity-kill events.</span></li>
+    <li><span data-lang="zh"><b>强度分级</b>：轻 / 中 / 重三档强度阈值。</span><span data-lang="en"><b>Intensity bands</b>: light / medium / heavy thresholds.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">8. 虚拟键鼠（Virtual KBM）</span><span data-lang="en">8. Virtual Keyboard &amp; Mouse</span></h2>
+  <p>
+    <span data-lang="zh">有些模组从不注册 KeyMapping —— 它们只监听物理键盘或鼠标。虚拟键鼠让手柄直接向游戏注入这些真实按键（Shift、Escape、Page Up/Down、鼠标按键、滚轮），无需先把它们变成 ControlFlex 动作。</span>
+    <span data-lang="en">Some mods never register a KeyMapping — they only watch the physical keyboard or mouse. Virtual KBM lets the gamepad inject those real keys (Shift, Escape, Page Up/Down, mouse buttons, scroll wheel) on any layer, without turning them into ControlFlex actions first.</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh">捕获一个键盘 / 鼠标按键，然后把任意手柄组合绑定到它。</span><span data-lang="en">Capture a keyboard/mouse key, then bind any controller combo to it.</span></li>
+    <li><span data-lang="zh">轻按滚轮滚动一格；按住则连续滚动（默认 100 ms 一次，可配置）。</span><span data-lang="en">Tap scrolls the wheel one notch; hold repeats (default 100 ms, configurable).</span></li>
+    <li><span data-lang="zh">界面返回键（<span class="kbd">B</span>）发送物理 <span class="kbd">Esc</span>，与鼠标点击 Esc 效果一致。</span><span data-lang="en">GUI Back (<span class="kbd">B</span>) sends physical <span class="kbd">Esc</span>, matching a mouse press of Esc.</span></li>
+    <li><span data-lang="zh">注入的按键不会输入到聊天栏或文本框。</span><span data-lang="en">Injected keys never type into chat or text fields.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">9. 分屏双人（Couch Co-op）</span><span data-lang="en">9. Split-Screen Couch Co-op</span></h2>
+  <p>
+    <span data-lang="zh">Java 版不在同一窗口渲染两名玩家，因此本地双人 = 同一台电脑上开两个客户端，通过“对局域网开放”联机。ControlFlex 为此做了准备：</span>
+    <span data-lang="en">Java Edition does not render two players in one window, so couch co-op means two (or more) instances on the same PC joined over Open to LAN. ControlFlex is built for that:</span>
+  </p>
+  <ol>
+    <li><span data-lang="zh">准备两个以上的 Minecraft 账号，以及两把手柄（或一把手柄 + 键鼠）。</span><span data-lang="en">Two or more Minecraft accounts, and two gamepads (or one gamepad plus keyboard &amp; mouse).</span></li>
+    <li><span data-lang="zh">每个需要手柄的客户端都安装 ControlFlex；建议都保持窗口模式（不要全屏）。</span><span data-lang="en">Install ControlFlex in each pad-driven instance; keep both windows windowed (not fullscreen).</span></li>
+    <li><span data-lang="zh">在两个客户端的 <b>手柄选择</b>里分别指定<b>不同</b>的手柄，避免互相抢占；手柄 + 键鼠时只为其中一个实例选手柄。</span><span data-lang="en">In each game's <b>Gamepad Selection</b>, pick a <b>different</b> controller so they do not steal each other; for pad + keyboard, assign the pad only in the gamepad instance.</span></li>
+    <li><span data-lang="zh">每个窗口按 <span class="kbd">F3</span>+<span class="kbd">P</span> 关闭“失去焦点时暂停”（或在视频设置中调整）—— 后台窗口必须继续运行。</span><span data-lang="en">Press <span class="kbd">F3</span>+<span class="kbd">P</span> in each window to disable Pause on Lost Focus (or use video options) — the unfocused window must keep running.</span></li>
+    <li><span data-lang="zh">在其中一个实例上开启“对局域网开放”，其他实例通过局域网列表或 <code>localhost</code> + 端口加入。</span><span data-lang="en">Host a world from one instance (Open to LAN); join from the others via the LAN list or <code>localhost</code> plus the port.</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-lang="zh">可选安装 <a href="https://modrinth.com/mod/splitscreen" target="_blank" rel="noopener">Splitscreen Support</a>（仅做窗口平铺，不处理输入），按 <span class="kbd">F11</span> 循环半屏 / 四分之一屏布局。后台窗口建议使用 Direct Turn 或 Smooth Turn 视角；Simulate Mouse 无法驱动后台窗口的系统光标，会自动回退。</span>
+    <span data-lang="en">Optionally install <a href="https://modrinth.com/mod/splitscreen" target="_blank" rel="noopener">Splitscreen Support</a> (window tiling only, no input handling) and press <span class="kbd">F11</span> to cycle half-/quarter-screen layouts. Use Direct Turn or Smooth Turn in background windows; Simulate Mouse cannot drive the OS cursor there and falls back automatically.</span>
+  </p>
+
+  <h2><span data-lang="zh">10. 模组适配</span><span data-lang="en">10. Mod Adaptation</span></h2>
+  <p>
+    <span data-lang="zh">ControlFlex 为整合包而生。大多数模组无需任何额外文件：启动时会扫描 Minecraft 的 KeyMapping 注册表，把每一个非原版绑定变成可绑定的动作 —— JEI 配方键、战斗模组技能键、地图快捷键，只要模组注册了按键，就会出现在按键映射里。</span>
+    <span data-lang="en">ControlFlex is built for modpacks. Most mods work with no extra files: at startup it scans Minecraft's KeyMapping registry and exposes every non-vanilla binding as a bindable action — JEI recipe keys, combat-mod skills, map hotkeys, whatever the mod registered.</span>
+  </p>
+  <p>
+    <span data-lang="zh">当自动发现不够用时（层级不对、HUD 需要自己的摇杆行为、模组根本不注册按键），0.8.7 提供了递进的四种手段：游戏内 <b>模组适配中心</b> → <b>社区配置库</b> → <b>Compat JSON</b> → <b>桥接模组</b>。</span>
+    <span data-lang="en">When auto-discovery is not enough (wrong layer, a HUD that needs its own stick behavior, or a mod that never registered keys), 0.8.7 gives you four escalating tools: the in-game <b>Mod Adaptation</b> center → the <b>community config repo</b> → <b>compat JSON</b> → <b>bridge mods</b>.</span>
+  </p>
+  <div class="callout tip">
+    <p>
+      <span data-lang="zh">这一部分的完整玩法（Screen / Overlay 规则、摇杆行为、社区配置同步、JSON 字段与排查流程）在 <a href="../modpack/compat.html">模组兼容性</a>页面展开。</span>
+      <span data-lang="en">The full workflow (Screen / Overlay rules, stick behaviors, community config sync, JSON fields, and troubleshooting) lives on the <a href="../modpack/compat.html">Mod Compatibility</a> page.</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

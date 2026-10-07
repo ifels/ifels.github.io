@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting Started · ControlFlex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <a href="settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></h1>
+  <p class="lead">
+    <span data-lang="zh">从下载安装到手柄跑起来，大约需要五分钟。</span>
+    <span data-lang="en">From download to a working controller in about five minutes.</span>
+  </p>
+
+  <h2><span data-lang="zh">前置要求</span><span data-lang="en">Requirements</span></h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">组件</span><span data-lang="en">Component</span></th>
+          <th><span data-lang="zh">要求</span><span data-lang="en">Requirement</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Minecraft</td>
+          <td><span data-lang="zh">1.20.1（Forge / Fabric）；1.21.1、1.21.11、26.x（NeoForge / Fabric）</span><span data-lang="en">1.20.1 (Forge / Fabric); 1.21.1, 1.21.11, 26.x (NeoForge / Fabric)</span></td>
+        </tr>
+        <tr>
+          <td>Java</td>
+          <td><span data-lang="zh">17+（1.20.1）；21+（1.21.x 及以上）</span><span data-lang="en">17+ (1.20.1); 21+ (1.21.x and newer)</span></td>
+        </tr>
+        <tr>
+          <td>Fabric API</td>
+          <td><span data-lang="zh">Fabric 版必需（Forge / NeoForge 版无需额外依赖）</span><span data-lang="en">Required on Fabric (Forge / NeoForge builds have no extra dependencies)</span></td>
+        </tr>
+        <tr>
+          <td>SDL3</td>
+          <td><span data-lang="zh">已内置（Windows / macOS / Linux），无需单独安装</span><span data-lang="en">Bundled for Windows / macOS / Linux — no separate install</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">安装侧</span><span data-lang="en">Side</span></td>
+          <td><span data-lang="zh">仅客户端；服务器无需安装，也不会影响不装本模组的玩家</span><span data-lang="en">Client-side only; servers do not need it and other players are unaffected</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">兼容手柄</span><span data-lang="en">Controllers</span></td>
+          <td><span data-lang="zh">Xbox One / Series X|S、PS4 / PS5（DualShock 4、DualSense）、Switch Pro、Xbox Elite（含背键）、Steam Controller、通用 XInput / DirectInput 手柄</span><span data-lang="en">Xbox One / Series X|S, PS4 / PS5 (DualShock 4, DualSense), Switch Pro, Xbox Elite (paddles), Steam Controller, generic XInput / DirectInput pads</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">下载与安装</span><span data-lang="en">Download &amp; Install</span></h2>
+  <ol>
+    <li>
+      <span data-lang="zh">在 <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge 项目页</a>的 Files 中选择与你的 MC 版本、加载器一致的 JAR。</span>
+      <span data-lang="en">On the <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge project page</a>, pick the file matching your MC version and loader.</span>
+    </li>
+    <li>
+      <span data-lang="zh">把 JAR 放入游戏的 <code>mods/</code> 文件夹（Fabric 版请确认已安装 Fabric API）。</span>
+      <span data-lang="en">Put the JAR into the game's <code>mods/</code> folder (on Fabric, make sure Fabric API is installed too).</span>
+    </li>
+    <li>
+      <span data-lang="zh">启动游戏。控制器的连接状态、名称与类型可在 <b>ControlFlex 设置 → 手柄选择（Gamepad Selection）</b>中查看。</span>
+      <span data-lang="en">Launch the game. Connection status, name, and type of each controller appear under <b>ControlFlex Settings → Gamepad Selection</b>.</span>
+    </li>
+  </ol>
+
+  <div class="callout">
+    <p>
+      <span data-lang="zh">多手柄（热插拔）：ControlFlex 通过 SDL3 热插拔事件自动识别手柄，按手柄身份（名称 / 类型 / 序列号）分别记忆配置；当前手柄断开后会自动切换到下一个可用手柄。</span>
+      <span data-lang="en">Multiple controllers (hotplug): ControlFlex detects pads via SDL3 hotplug events and tracks them by identity (name / type / serial). If the active pad disconnects, the first available one is selected automatically.</span>
+    </p>
+  </div>
+
+  <h2><span data-lang="zh">打开设置</span><span data-lang="en">Opening Settings</span></h2>
+  <p>
+    <span data-lang="zh">默认按键：键盘 <span class="kbd">F9</span>，手柄 <span class="kbd">Back</span> + <span class="kbd">Start</span>。这个按键本身也是一个可改绑的动作，位置在按键映射的 ControlFlex 分类里。</span>
+    <span data-lang="en">Defaults: <span class="kbd">F9</span> on keyboard, <span class="kbd">Back</span> + <span class="kbd">Start</span> on a controller. The open-settings action is itself rebindable and lives in the ControlFlex category of Key Mapping.</span>
+  </p>
+
+  <h2><span data-lang="zh">选择模板</span><span data-lang="en">Pick a Template</span></h2>
+  <p>
+    <span data-lang="zh">首次启动会内置三个模板，可在设置中随时切换：</span>
+    <span data-lang="en">Three templates ship with the mod; switch between them in the settings screen at any time:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th><span data-lang="zh">模板</span><span data-lang="en">Template</span></th><th><span data-lang="zh">定位</span><span data-lang="en">What it is</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Basic</td><td><span data-lang="zh">基础映射：A 跳跃、RT 攻击、LT 使用、左摇杆移动、右摇杆视角</span><span data-lang="en">The foundation: A jump, RT attack, LT use, left stick move, right stick look</span></td></tr>
+        <tr><td>Bedrock</td><td><span data-lang="zh">贴近基岩版手柄布局的手感</span><span data-lang="en">Closer to the Bedrock Edition controller feel</span></td></tr>
+        <tr><td>Recommend</td><td><span data-lang="zh">作者推荐的整合包向布局，预置更多常用动作</span><span data-lang="en">The author's modpack-oriented layout with more actions pre-bound</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">模板就是一套默认键位；你自己的修改会单独保存，不污染模板。详见<a href="settings.html">设置与键位</a>。</span>
+    <span data-lang="en">A template is a set of default bindings; your edits are stored separately and never modify the template. See <a href="settings.html">Settings &amp; Controls</a>.</span>
+  </p>
+
+  <h2><span data-lang="zh">默认键位（Basic 模板）</span><span data-lang="en">Default Bindings (Basic Template)</span></h2>
+
+  <h3>Main <span data-lang="zh">层（游戏内）</span><span data-lang="en">layer (in-game)</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">动作</span><span data-lang="en">Action</span></th>
+          <th><span data-lang="zh">按键</span><span data-lang="en">Button</span></th>
+          <th><span data-lang="zh">模式</span><span data-lang="en">Mode</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-lang="zh">移动</span><span data-lang="en">Move</span></td><td><span data-lang="zh">左摇杆</span><span data-lang="en">Left stick</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">视角</span><span data-lang="en">Look</span></td><td><span data-lang="zh">右摇杆</span><span data-lang="en">Right stick</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">跳跃</span><span data-lang="en">Jump</span></td><td><span class="kbd">A</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">潜行（按住）</span><span data-lang="en">Sneak (hold)</span></td><td><span class="kbd"><span data-lang="zh">右摇杆按下</span><span data-lang="en">R-stick click</span></span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">潜行（锁定切换）</span><span data-lang="en">Sneak (latch)</span></td><td><span class="kbd"><span data-lang="zh">右摇杆按下</span><span data-lang="en">R-stick click</span></span></td><td>Double Toggle</td></tr>
+        <tr><td><span data-lang="zh">疾跑</span><span data-lang="en">Sprint</span></td><td><span class="kbd"><span data-lang="zh">左摇杆按下</span><span data-lang="en">L-stick click</span></span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">攻击</span><span data-lang="en">Attack</span></td><td><span class="kbd">RT</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">使用 / 放置</span><span data-lang="en">Use / Place</span></td><td><span class="kbd">LT</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">丢弃</span><span data-lang="en">Drop</span></td><td><span class="kbd">D-Pad ↓</span></td><td>Press</td></tr>
+        <tr><td><span data-lang="zh">丢弃整组（组合键）</span><span data-lang="en">Drop stack (combo)</span></td><td><span class="kbd"><span data-lang="zh">右摇杆按下</span><span data-lang="en">R-stick click</span></span> + <span class="kbd">D-Pad ↓</span></td><td>Press</td></tr>
+        <tr><td><span data-lang="zh">背包</span><span data-lang="en">Inventory</span></td><td><span class="kbd">D-Pad ↑</span></td><td>Press</td></tr>
+        <tr><td><span data-lang="zh">切换视角</span><span data-lang="en">Perspective</span></td><td><span class="kbd">D-Pad →</span></td><td>Tap</td></tr>
+        <tr><td><span data-lang="zh">快捷栏上一 / 下一</span><span data-lang="en">Hotbar prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Tap</td></tr>
+        <tr><td><span data-lang="zh">暂停菜单</span><span data-lang="en">Pause menu</span></td><td><span class="kbd">Start</span></td><td>Long Press</td></tr>
+        <tr><td><span data-lang="zh">打开设置</span><span data-lang="en">Open settings</span></td><td><span class="kbd">Back</span> + <span class="kbd">Start</span></td><td>Press</td></tr>
+        <tr><td><span data-lang="zh">径向菜单 1–5</span><span data-lang="en">Radial menus 1–5</span></td><td><span class="kbd">Back</span><span data-lang="zh">（Shift 1–4 层上按住 Back 打开菜单 2–5）</span><span data-lang="en"> (on Shift 1–4, hold Back for menus 2–5)</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">Shift 层 1 / 2</span><span data-lang="en">Shift layer 1 / 2</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">游戏内指南</span><span data-lang="en">Open guide</span></td><td><span class="kbd">Guide</span></td><td>Press</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Screen <span data-lang="zh">层（打开任意界面时）</span><span data-lang="en">layer (whenever a screen is open)</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">动作</span><span data-lang="en">Action</span></th>
+          <th><span data-lang="zh">按键</span><span data-lang="en">Button</span></th>
+          <th><span data-lang="zh">模式</span><span data-lang="en">Mode</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-lang="zh">光标移动</span><span data-lang="en">Cursor move</span></td><td><span data-lang="zh">左摇杆</span><span data-lang="en">Left stick</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">槽位跳转</span><span data-lang="en">Slot navigation</span></td><td><span class="kbd">D-Pad</span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">确认 / 点击</span><span data-lang="en">Confirm / click</span></td><td><span class="kbd">A</span></td><td>Press</td></tr>
+        <tr><td><span data-lang="zh">返回 / 关闭</span><span data-lang="en">Back / close</span></td><td><span class="kbd">B</span></td><td>Press</td></tr>
+        <tr><td><span data-lang="zh">标签页上一 / 下一</span><span data-lang="en">Tab prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Press</td></tr>
+        <tr><td><span data-lang="zh">快捷移动（Shift + 点击）</span><span data-lang="en">Quick move (shift-click)</span></td><td><span class="kbd">Y</span></td><td>Tap</td></tr>
+        <tr><td><span data-lang="zh">取一半</span><span data-lang="en">Take half</span></td><td><span class="kbd">X</span></td><td>Press</td></tr>
+        <tr><td><span data-lang="zh">滚动</span><span data-lang="en">Scroll</span></td><td><span class="kbd"><span data-lang="zh">右摇杆 ↑ / ↓</span><span data-lang="en">R-stick ↑ / ↓</span></span></td><td>Hold</td></tr>
+        <tr><td><span data-lang="zh">切换选项</span><span data-lang="en">Cycle options</span></td><td><span class="kbd"><span data-lang="zh">右摇杆 ← / →</span><span data-lang="en">R-stick ← / →</span></span></td><td>Tap</td></tr>
+        <tr><td><span data-lang="zh">JEI 查看配方 / 用途</span><span data-lang="en">JEI recipe / uses</span></td><td><span class="kbd">RT</span> + <span class="kbd">D-Pad ← / →</span></td><td>Press</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Overlay <span data-lang="zh">层（交互式 HUD 打开时）</span><span data-lang="en">layer (interactive HUDs)</span></h3>
+  <p class="small muted">
+    <span data-lang="zh">Overlay 层是显式绑定、不继承 Main：默认保留移动、跳跃、攻击、使用、视角与滚动，<span class="kbd">B</span> 为返回。未配置的动作在 Overlay 相位中保持静默，避免误触发战斗键位。</span>
+    <span data-lang="en">The Overlay layer is explicit (no Main inheritance): movement, jump, attack, use, look, and scrolling stay bound, with <span class="kbd">B</span> as back. Unconfigured actions stay silent during overlays so combat keys cannot misfire.</span>
+  </p>
+
+  <h3><span data-lang="zh">虚拟键鼠与阈值</span><span data-lang="en">Virtual KBM &amp; Thresholds</span></h3>
+  <ul>
+    <li><span data-lang="zh">虚拟键鼠：<span class="kbd">B</span> 在界面中注入物理 <span class="kbd">Esc</span>；<span class="kbd">LT</span> 注入左 Shift（GUI 层）；Page Up / Page Down 已配置为 GUI 层可用。</span><span data-lang="en">Virtual KBM: <span class="kbd">B</span> injects physical <span class="kbd">Esc</span> in screens; <span class="kbd">LT</span> injects Left Shift (GUI layer); Page Up / Page Down are enabled for the GUI layer.</span></li>
+    <li><span data-lang="zh">阈值默认值：Tap 500 ms，Long Press 1000 ms（可在“其他设置”中调整）。</span><span data-lang="en">Default thresholds: Tap 500 ms, Long Press 1000 ms (configurable in Other Settings).</span></li>
+  </ul>
+
+  <div class="callout tip">
+    <p>
+      <span data-lang="zh">以上是 Basic 模板的默认值。Bedrock 与 Recommend 模板略有差异，所有键位都可以在设置里改绑 —— 改键方法与校准请看<a href="settings.html">设置与键位</a>。</span>
+      <span data-lang="en">These are the Basic template defaults. Bedrock and Recommend differ slightly, and every binding can be changed — see <a href="settings.html">Settings &amp; Controls</a> for rebinding and calibration.</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

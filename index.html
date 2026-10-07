@@ -25,6 +25,34 @@
     #lang-toggle:hover {
       background: #e1e4e8;
     }
+    .section-title {
+      margin-top: 40px;
+      font-size: 20px;
+    }
+    .project-card {
+      display: block;
+      margin-top: 10px;
+      padding: 16px 18px;
+      border: 1px solid #d0d7de;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card:hover {
+      border-color: #1f9d55;
+      background: #f6f8fa;
+    }
+    .project-card-title {
+      display: block;
+      font-weight: 600;
+      color: #1f9d55;
+    }
+    .project-card-desc {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      color: #57606a;
+    }
   </style>
 </head>
 <body>
@@ -35,17 +63,30 @@
   <h1 data-i18n="greeting">Hello, ifels!</h1>
   <p data-i18n="description">This is the GitHub Pages site for ifels.</p>
 
+  <!-- 项目入口 -->
+  <h2 class="section-title" data-i18n="projectsTitle">Projects</h2>
+  <a class="project-card" href="control-flex/">
+    <span class="project-card-title" data-i18n="wikiTitle">ControlFlex Wiki</span>
+    <span class="project-card-desc" data-i18n="wikiDesc">Documentation for the ControlFlex controller mod: player guide, modpack compatibility, and developer API.</span>
+  </a>
+
   <script>
     // 1. 定义中英文翻译词典
     const translations = {
       en: {
         greeting: "Hello, ifels!",
         description: "This is the GitHub Pages site for ifels.",
+        projectsTitle: "Projects",
+        wikiTitle: "ControlFlex Wiki",
+        wikiDesc: "Documentation for the ControlFlex controller mod: player guide, modpack compatibility, and developer API.",
         buttonText: "中文"
       },
       zh: {
         greeting: "你好，ifels！",
         description: "这是 ifels 的 GitHub Pages 站点。",
+        projectsTitle: "项目",
+        wikiTitle: "ControlFlex 文档站",
+        wikiDesc: "ControlFlex 手柄模组的文档：玩家指南、整合包与兼容、开发者 API，支持中英文切换。",
         buttonText: "English"
       }
     };

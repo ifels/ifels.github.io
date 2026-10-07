@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings &amp; Controls · ControlFlex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <a href="settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></h1>
+  <p class="lead">
+    <span data-lang="zh">设置界面用 <span class="kbd">F9</span>（键盘）或 <span class="kbd">Back</span> + <span class="kbd">Start</span>（手柄）打开。这一页讲清楚：界面里有什么、怎么改键、怎么校准、配置存在哪、出问题先看什么。</span>
+    <span data-lang="en">Open settings with <span class="kbd">F9</span> (keyboard) or <span class="kbd">Back</span> + <span class="kbd">Start</span> (controller). This page covers what is in the UI, how to rebind, how to calibrate, where configs live, and what to check when something misbehaves.</span>
+  </p>
+
+  <h2><span data-lang="zh">设置界面一览</span><span data-lang="en">Inside the Settings Screen</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">区域</span><span data-lang="en">Area</span></th>
+          <th><span data-lang="zh">用途</span><span data-lang="en">What you do there</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-lang="zh">按键映射</span><span data-lang="en">Key Mapping</span></td>
+          <td><span data-lang="zh">按层（Main / Shift 1–4 / Screen / Overlay）查看与修改全部绑定；支持搜索（含拼音搜索）与筛选</span><span data-lang="en">View and edit every binding per layer (Main / Shift 1–4 / Screen / Overlay); searchable, including pinyin search</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></td>
+          <td><span data-lang="zh">按模组查看发现的按键，添加 Screen / Overlay 规则，同步社区配置 —— 详见<a href="../modpack/compat.html">模组兼容性</a></span><span data-lang="en">Per-mod discovered keys, Screen / Overlay rules, and community config sync — see <a href="../modpack/compat.html">Mod Compatibility</a></span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">校准</span><span data-lang="en">Calibration</span></td>
+          <td><span data-lang="zh">摇杆死区与移动 / 视角响应曲线；自动或逐轴校准</span><span data-lang="en">Stick deadzones and movement / camera response curves; auto or per-axis calibration</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">其他设置</span><span data-lang="en">Other Settings</span></td>
+          <td><span data-lang="zh">Tap / Long Press 阈值、模拟移动（360°）与服务器白名单等全局项</span><span data-lang="en">Tap / Long Press thresholds, Analog Movement (360°) and the server whitelist, and other global options</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">手柄选择</span><span data-lang="en">Gamepad Selection</span></td>
+          <td><span data-lang="zh">查看已识别的手柄（名称 / 类型 / 序列号），多手柄时指定当前使用哪一把</span><span data-lang="en">Detected controllers (name / type / serial); pick which one is active when several are connected</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">改键方法</span><span data-lang="en">Rebinding</span></h2>
+  <ol>
+    <li><span data-lang="zh">在按键映射里找到目标动作所在的层与分类（可以用搜索框直接搜动作名或拼音）。</span><span data-lang="en">Find the action's layer and category in Key Mapping (search by name, or by Chinese pinyin).</span></li>
+    <li><span data-lang="zh">点选该行进入捕获状态，然后按下手柄按键 —— 界面会实时显示解析结果。</span><span data-lang="en">Select the row to start capture, then press a controller button — the resolved input appears live.</span></li>
+    <li><span data-lang="zh">需要和弦时：先按第一颗键，在 <b>500 ms</b> 内继续追加，直到和弦完整。</span><span data-lang="en">For a chord: press the first button, then add the rest within <b>500 ms</b> until the chord is complete.</span></li>
+    <li><span data-lang="zh">部分动作有推荐模式（例如层切换固定为 Hold、Shift 层返回 Main 固定为 Release），界面会限制为可用模式。</span><span data-lang="en">Some actions restrict their mode (layer switches are fixed to Hold; Shift-layer return-to-Main to Release) and the UI only offers valid modes.</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-lang="zh">被修改过的项会标记为“用户修改（User modified）”，与模板默认值区分开；可以按页重置，也可以整体恢复模板默认。</span>
+    <span data-lang="en">Edited entries are marked “User modified”, keeping them distinct from template defaults; reset per page or restore the whole template default.</span>
+  </p>
+
+  <h2><span data-lang="zh">摇杆与扳机校准</span><span data-lang="en">Stick &amp; Trigger Calibration</span></h2>
+  <ul>
+    <li><span data-lang="zh">死区按轴独立配置：左摇杆 X/Y、右摇杆 X/Y、左扳机、右扳机。</span><span data-lang="en">Deadzones are per-axis: left stick X/Y, right stick X/Y, left trigger, right trigger.</span></li>
+    <li><span data-lang="zh">支持一键自动校准（全部轴）与单项校准（只针对某个轴），校准时实时显示轴数值，便于确认摇杆是否漂移。</span><span data-lang="en">Both one-click auto calibration (all axes) and single-axis calibration are available, with live axis readouts so you can spot drift.</span></li>
+    <li><span data-lang="zh">移动与视角的响应曲线也在这页调整；模拟移动策略（360° / 键盘式 8 向）在“其他设置”里。</span><span data-lang="en">Movement and camera response curves live here too; the Analog Movement policy (360° / keyboard-like 8-way) is under Other Settings.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">模板、配置档案与重置</span><span data-lang="en">Templates, Profiles &amp; Reset</span></h2>
+  <ul>
+    <li><span data-lang="zh">模板（Basic / Bedrock / Recommend）是一套完整的默认键位；自定义模板可以作为 JSON 放入 <code>config/controlflex/templates/</code>。</span><span data-lang="en">Templates (Basic / Bedrock / Recommend) are complete default layouts; custom templates can be dropped in as JSON under <code>config/controlflex/templates/</code>.</span></li>
+    <li><span data-lang="zh">你的修改保存在配置档案（profiles）里，与模板分离 —— 切换模板不会丢失，也不会改写模板文件。</span><span data-lang="en">Your edits live in profiles, separate from the template — switching templates neither loses them nor rewrites the template file.</span></li>
+    <li><span data-lang="zh">支持按页重置和整体重置到模板默认。</span><span data-lang="en">Reset per page, or restore everything to template defaults.</span></li>
+    <li><span data-lang="zh">从 0.8.6.x 升级时，配置档案、兼容文件与客户端设置会在首次启动时自动迁移，原文件备份在 <code>config/controlflex/backup/</code> 下。</span><span data-lang="en">Upgrading from 0.8.6.x migrates profiles, compat files, and client settings automatically on first launch; originals are backed up under <code>config/controlflex/backup/</code>.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">按键检测（调试）</span><span data-lang="en">Key Detection (Debug)</span></h2>
+  <p>
+    <span data-lang="zh">排查“为什么这个键没反应”时，可以打开逐 tick 的检测日志面板：它会显示物理按键、虚拟按键、解析出的动作、所在层与时间信息，并提供游戏内 / GUI 两种测试模式以匹配不同输入路径。面板激活期间，手柄输入专用于记录。</span>
+    <span data-lang="en">To debug “why did that button do nothing”, open the tick-by-tick detection log. It shows physical keys, virtual keys, the resolved action, the layer, and timing, with separate In-Game and GUI test modes matching the different input paths. While active, controller input is dedicated to logging.</span>
+  </p>
+
+  <h2><span data-lang="zh">配置文件位置</span><span data-lang="en">Where Configs Live</span></h2>
+  <pre><code>config/controlflex/
+├── templates/      <span data-lang="zh"># 模板 JSON</span><span data-lang="en"># template JSON files</span>
+├── profiles/       <span data-lang="zh"># 你的修改（配置档案）</span><span data-lang="en"># your edits (profiles)</span>
+├── compat/         <span data-lang="zh"># 模组兼容配置（default / mods / user）</span><span data-lang="en"># mod compat configs (default / mods / user)</span>
+├── radial_menu/    <span data-lang="zh"># 径向菜单布局与图标</span><span data-lang="en"># radial menu layouts and icons</span>
+├── backup/         <span data-lang="zh"># 升级迁移时的自动备份</span><span data-lang="en"># automatic backups from migrations</span>
+└── cfx-client.json <span data-lang="zh"># 客户端状态</span><span data-lang="en"># client state</span></code></pre>
+  <p class="small muted">
+    <span data-lang="zh">整合包作者关心的分层与覆盖规则在<a href="../modpack/index.html">配置文件</a>页。</span>
+    <span data-lang="en">Layer priority and override rules for pack authors are on the <a href="../modpack/index.html">Configuration</a> page.</span>
+  </p>
+
+  <h2><span data-lang="zh">常见问题</span><span data-lang="en">Troubleshooting</span></h2>
+
+  <h3><span data-lang="zh">手柄完全没反应</span><span data-lang="en">Controller not detected</span></h3>
+  <p>
+    <span data-lang="zh">先在“手柄选择”里确认是否识别到设备（名称 / 类型）。若列表为空：换一个 USB 口或重新配对蓝牙、确认系统里手柄可用、确认 JAR 与 MC 版本 / 加载器匹配；Fabric 环境请确认 Fabric API 已安装。</span>
+    <span data-lang="en">First check Gamepad Selection for a detected device (name / type). If the list is empty: try another USB port or re-pair Bluetooth, verify the pad works system-wide, and make sure the JAR matches your MC version and loader; on Fabric, confirm Fabric API is installed.</span>
+  </p>
+
+  <h3><span data-lang="zh">某个模组的按键绑了却没反应</span><span data-lang="en">A mod's key is bound but does nothing</span></h3>
+  <p>
+    <span data-lang="zh">按顺序检查：① 这个界面属于哪一层（Screen / Overlay / Main），绑到正确的层；② 在“模组适配”里为该模组的界面添加规则或同步社区配置；③ 若模组只监听物理键，用虚拟键鼠绑定。完整排查流程见<a href="../modpack/compat.html">模组兼容性</a>。</span>
+    <span data-lang="en">Check in order: (1) which layer the screen belongs to (Screen / Overlay / Main) and bind there; (2) add a rule for that mod's screen in Mod Adaptation, or sync a community config; (3) if the mod only listens to physical keys, bind it via Virtual KBM. Full flow on <a href="../modpack/compat.html">Mod Compatibility</a>.</span>
+  </p>
+
+  <h3><span data-lang="zh">服务器上移动看起来“不正常”</span><span data-lang="en">Movement looks abnormal to a server</span></h3>
+  <p>
+    <span data-lang="zh">把模拟移动策略切换为“键盘式 8 向”（公共服务器与 Realms 的默认值）；确需平滑移动时把该服务器加入白名单。见<a href="features.html">功能详解</a>的模拟移动一节。</span>
+    <span data-lang="en">Switch the Analog Movement policy to keyboard-like 8-way (the default for public servers and Realms); whitelist a server if it should still get smooth movement. See the Analog Movement section of <a href="features.html">Features</a>.</span>
+  </p>
+
+  <h3><span data-lang="zh">切到别的窗口后角色不动了</span><span data-lang="en">Character freezes when the window loses focus</span></h3>
+  <p>
+    <span data-lang="zh">这是原版的“失去焦点时暂停”。按 <span class="kbd">F3</span>+<span class="kbd">P</span> 关闭（分屏双人必须关闭，暂停界面也会有提示）。</span>
+    <span data-lang="en">That is vanilla Pause on Lost Focus. Press <span class="kbd">F3</span>+<span class="kbd">P</span> to disable it (required for couch co-op; the pause screen also shows a hint).</span>
+  </p>
+
+  <h3><span data-lang="zh">想彻底重来一遍</span><span data-lang="en">Starting over from scratch</span></h3>
+  <p>
+    <span data-lang="zh">可以先把 <code>config/controlflex/</code> 整个目录备份改名，再让游戏重新生成默认配置；社区配置与模组内的内置配置会在下次启动时重新释放。</span>
+    <span data-lang="en">Back up and rename the whole <code>config/controlflex/</code> directory; the game regenerates defaults on the next launch, and community/packaged configs are re-extracted at startup.</span>
+  </p>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../assets/app.js" defer></script>
+</body>
+</html>

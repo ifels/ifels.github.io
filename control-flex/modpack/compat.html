@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mod Compatibility · ControlFlex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <a href="../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></h1>
+  <p class="lead">
+    <span data-lang="zh">ControlFlex 为整合包而生：先自动发现，再按需逐级加码 —— 游戏内适配中心、社区配置库、Compat JSON、桥接模组。</span>
+    <span data-lang="en">ControlFlex is built for modpacks: auto-discovery first, then four escalating tools — the in-game adaptation center, the community config repo, compat JSON, and bridge mods.</span>
+  </p>
+
+  <h2><span data-lang="zh">第一层：自动发现</span><span data-lang="en">Layer One: Auto-Discovery</span></h2>
+  <p>
+    <span data-lang="zh">启动时 ControlFlex 会扫描 Minecraft 的 KeyMapping 注册表，把每个非原版绑定注册为动态动作。只要模组通过标准方式注册了按键（JEI 配方键、战斗模组技能键、地图快捷键……），就会出现在按键映射中，无需任何配置文件。</span>
+    <span data-lang="en">At startup ControlFlex scans Minecraft's KeyMapping registry and registers every non-vanilla binding as a dynamic action. If a mod registered its keys the standard way (JEI recipe keys, combat-mod skills, map hotkeys…), they show up in Key Mapping with no config file at all.</span>
+  </p>
+  <p class="small muted">
+    <span data-lang="zh">库类模组会被自动豁免（内置清单覆盖 Fabric API、Kotlin 语言支持等家族），不会混进可适配列表。</span>
+    <span data-lang="en">Library mods are exempted automatically (the built-in list covers the Fabric API and Kotlin language-support families), so they never clutter the adaptation lists.</span>
+  </p>
+
+  <h2><span data-lang="zh">内置兼容配置</span><span data-lang="en">Built-in Compat Configs</span></h2>
+  <p>
+    <span data-lang="zh">模组 JAR 内附带一小撮内置兼容配置，每次启动都会释放到 <code>config/controlflex/compat/default/</code>：</span>
+    <span data-lang="en">A small set of built-in compat configs ships inside the JAR and is extracted to <code>config/controlflex/compat/default/</code> on every launch:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">模组</span><span data-lang="en">Mod</span></th>
+          <th><span data-lang="zh">内置了什么</span><span data-lang="en">What it provides</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Just Enough Items (JEI)</td>
+          <td><span data-lang="zh">配方 / 用途查看键位（GUI 层）、一批不需要暴露的内部按键加入忽略清单</span><span data-lang="en">Recipe / uses keys on the GUI layer, plus an ignore list for internal keys that should not be exposed</span></td>
+        </tr>
+        <tr>
+          <td>Epic Fight</td>
+          <td><span data-lang="zh">战斗模式相关的键位与界面规则；指向官方桥接模组 cfx-compat-epicfight</span><span data-lang="en">Battle-mode key and screen rules; points to the official cfx-compat-epicfight bridge</span></td>
+        </tr>
+        <tr>
+          <td>Nightfall</td>
+          <td><span data-lang="zh">该模组的按键与界面适配</span><span data-lang="en">Key and screen adaptation for the mod</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">其余模组靠自动发现或社区配置库补充；内置配置只在其目标模组实际安装并加载时生效。</span>
+    <span data-lang="en">Everything else is covered by auto-discovery or the community repo; built-in configs only activate when their target mod is actually installed and loaded.</span>
+  </p>
+
+  <h2><span data-lang="zh">第二层：游戏内模组适配中心</span><span data-lang="en">Layer Two: In-Game Mod Adaptation</span></h2>
+  <p>
+    <span data-lang="zh">打开 <b>ControlFlex 设置 → 模组适配</b>：每个已安装模组按名称、图标与版本列出。进入某个模组后有三个页签：</span>
+    <span data-lang="en">Open <b>ControlFlex Settings → Mod Adaptation</b>: every installed mod is listed with name, icon, and version. Open a mod to work in three tabs:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">页签</span><span data-lang="en">Tab</span></th>
+          <th><span data-lang="zh">用途</span><span data-lang="en">Purpose</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-lang="zh">按键绑定</span><span data-lang="en">Key Bindings</span></td>
+          <td><span data-lang="zh">该模组被发现的全部动作；分配层级（Main / Screen / Overlay）并绑手柄按键</span><span data-lang="en">The mod's discovered actions; assign layers (Main / Screen / Overlay) and bind controller buttons</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">界面适配</span><span data-lang="en">Screen Adaptation</span></td>
+          <td><span data-lang="zh">该模组界面打开时的摇杆模式、层级映射与光标规则</span><span data-lang="en">Stick mode, layer mapping, and cursor rules while that mod's GUI is open</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">叠层适配</span><span data-lang="en">Overlay Adaptation</span></td>
+          <td><span data-lang="zh">对交互式 HUD（法术轮盘、轮盘菜单、拍照 HUD 等）做同样的事</span><span data-lang="en">The same for interactive HUDs (spell wheels, radial menus, photo HUDs)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <span data-lang="zh">添加界面 / 叠层规则的方法：先在游戏里打开目标界面一次，让 ControlFlex 记录它；然后在模组详情里点 <b>+ 添加界面/叠层适配</b>，从“最近页面”（最多 50 条）中选中即可。无法归属到模组的条目可以自动扫描。</span>
+    <span data-lang="en">To add a Screen or Overlay rule: open the target GUI or HUD once in-game so ControlFlex records it, then use <b>+ Add Screen/Overlay Adaptation</b> in the mod's detail page and pick it from the recent-pages list (up to 50). Entries that could not be matched to a mod can be scanned automatically.</span>
+  </p>
+  <p>
+    <span data-lang="zh">每根摇杆在该页面上可以选用不同的行为：</span>
+    <span data-lang="en">Each stick can use a different behavior for that page:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">行为</span><span data-lang="en">Behavior</span></th>
+          <th><span data-lang="zh">说明</span><span data-lang="en">What it does</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Independent</td>
+          <td><span data-lang="zh">摇杆方向作为独立动作，在“层级映射”中绑定；Overlay 默认，以及 Screen 右摇杆默认</span><span data-lang="en">Stick directions are actions bound on Layer Mapping; the default on Overlay and for the Screen right stick</span></td>
+        </tr>
+        <tr>
+          <td>Radial Path</td>
+          <td><span data-lang="zh">摇杆描出路径 / 角度 —— 法术轮盘、轮盘菜单类界面</span><span data-lang="en">Stick traces a path / angle — spell wheels and radial-menu style UIs</span></td>
+        </tr>
+        <tr>
+          <td>Virtual Mouse</td>
+          <td><span data-lang="zh">摇杆在该界面内移动光标；Screen 左摇杆默认</span><span data-lang="en">Stick moves a cursor inside that UI; the default for the Screen left stick</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">没有规则时：Screen 层左摇杆为 Virtual Mouse、右摇杆为 Independent；Overlay 层两杆保持 Independent（即该层的四向绑定）。光标样式可选系统 / 基岩 / 手型；Virtual Mouse 可调光标速度，Radial Path 可调阈值、半径、角度偏置与是否记忆上一次角度。</span>
+    <span data-lang="en">With no rule: Screen uses Virtual Mouse on the left stick and Independent on the right; Overlay keeps both sticks Independent (the layer's four-way bindings). Cursor style can be system / Bedrock / hand; Virtual Mouse has cursor speed, and Radial Path has threshold, radius, angle bias, and whether the stick restores its last angle.</span>
+  </p>
+  <p class="small muted">
+    <span data-lang="zh">规则编辑是写时复制：内置与社区文件只读，改动落到 <code>config/controlflex/compat/user/</code>；某个模组的 <b>Reset Config</b> 会恢复到内置或已应用的社区默认。</span>
+    <span data-lang="en">Rule edits are copy-on-write: packaged and community files stay read-only and changes land in <code>config/controlflex/compat/user/</code>; a mod's <b>Reset Config</b> restores its packaged or applied community default.</span>
+  </p>
+
+  <h2><span data-lang="zh">第三层：社区配置库</span><span data-lang="en">Layer Three: Community Configs</span></h2>
+  <p>
+    <span data-lang="zh">官方社区源：<a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>。在模组适配里点 <b>Sync Configs</b>，然后浏览变体、预览按键 / 界面 / 叠层内容，确认后 <b>Apply</b> —— 应用前会先备份已有的用户文件。也可以添加自定义远程源，或在模组详情页导入 / 导出本地 JSON。欢迎向该仓库提交新模组的配置 PR。</span>
+    <span data-lang="en">The official community source is <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>. From Mod Adaptation, hit <b>Sync Configs</b>, browse variants, preview Bindings / Screen / Overlay, and <b>Apply</b> — any existing user file is backed up first. Extra sources can be added, and local JSON can be imported/exported from a mod's detail page. PRs for new mod configs are welcome.</span>
+  </p>
+
+  <h2><span data-lang="zh">第四层：Compat JSON（整合包作者与高级用户）</span><span data-lang="en">Layer Four: Compat JSON (pack authors &amp; power users)</span></h2>
+  <p>
+    <span data-lang="zh">JSON 是这套 UI 背后可分享的载体。把文件放到 <code>config/controlflex/compat/user/{mod_id}.json</code>；桥接模组可以把自己的配置打进 <code>compat/mods/</code>（运行时只读）。一份配置可以做到：</span>
+    <span data-lang="en">JSON is the shareable unit behind the UI. Drop files at <code>config/controlflex/compat/user/{mod_id}.json</code>; bridge mods may install theirs into <code>compat/mods/</code> (read-only at runtime). A config can:</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh">把按键分配到 Main / Screen / Overlay（<code>inGameKeys</code> / <code>screenKeys</code> / <code>overlayKeys</code>）。</span><span data-lang="en">Place keys on Main / Screen / Overlay (<code>inGameKeys</code> / <code>screenKeys</code> / <code>overlayKeys</code>).</span></li>
+    <li><span data-lang="zh">为每个按键选择派发通道（KeyMapping、Forge 事件总线、GLFW 兼容轮询、界面输入）。</span><span data-lang="en">Choose a dispatch channel per key (KeyMapping, Forge event bus, GLFW-compat polling, screen input).</span></li>
+    <li><span data-lang="zh">忽略无用按键（<code>ignoreKeys</code>）、持有指定物品时抑制按键（<code>itemSuppressKeys</code>）、附加提示文案。</span><span data-lang="en">Ignore unused keys (<code>ignoreKeys</code>), suppress keys while holding an item (<code>itemSuppressKeys</code>), and attach tips.</span></li>
+    <li><span data-lang="zh">声明界面 / 叠层的摇杆映射（Independent / Radial Path / Virtual Mouse，与 UI 中的选项一致）。</span><span data-lang="en">Declare per-screen / per-overlay stick maps (Independent / Radial Path / Virtual Mouse, same options as the UI).</span></li>
+  </ul>
+  <p>
+    <span data-lang="zh">示例结构（节选字段，展示按键分层与状态联动）：</span>
+    <span data-lang="en">Example shape (excerpted fields showing layer placement and state coupling):</span>
+  </p>
+  <pre><code>{
+  "mod_id": "epicfight",
+  "mod_name": "Epic Fight",
+  "home_page": "https://www.curseforge.com/minecraft/mc-mods/epic-fight-mod",
+  "ignoreKeys": ["key.epicfight.dodge"],
+  "inGameKeys": ["epicfight:key.epicfight.attack"],
+  "screenKeys": [],
+  "overlayKeys": [],
+  "itemSuppressKeys": [{
+    "item": "mymod:special_weapon",
+    "playerState": ["mymod:combat_mode"],
+    "suppressActions": ["attack"]
+  }]
+}</code></pre>
+  <div class="callout">
+    <p>
+      <span data-lang="zh">字段全集与取值请以权威字段参考为准：<a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference_ZH.md" target="_blank" rel="noopener">cfx-compat-configs 字段参考（中文）</a> / <a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference.md" target="_blank" rel="noopener">English</a>。</span>
+      <span data-lang="en">For the full field set and allowed values, see the authoritative reference: <a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference.md" target="_blank" rel="noopener">cfx-compat-configs field reference (English)</a> / <a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference_ZH.md" target="_blank" rel="noopener">中文</a>.</span>
+    </p>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh"><code>playerState</code> 条件配合桥接模组推送的状态生效（<code>IPlayerStateRegistry</code>，键名形如 <code>modId:stateName</code>）—— 桥接写法见<a href="../dev/index.html">开发者文档</a>。</span>
+    <span data-lang="en"><code>playerState</code> conditions work together with states pushed by bridge mods (<code>IPlayerStateRegistry</code>, keys shaped <code>modId:stateName</code>) — see the <a href="../dev/index.html">developer docs</a> for the bridge side.</span>
+  </p>
+
+  <h2><span data-lang="zh">模组有自己的输入系统？用桥接模组</span><span data-lang="en">Custom Input Systems: Bridge Mods</span></h2>
+  <p>
+    <span data-lang="zh">如果目标模组绕开 KeyMapping、有运行时的战斗状态、或直接读取手柄，就需要一个使用 <code>IControlFlexPlugin</code> SPI 的桥接模组：它可以导出 compat JSON、推送玩家状态、响应控制器插拔。官方范例是 <a href="https://github.com/ControlFlexMC/cfx-compat-epicfight" target="_blank" rel="noopener">cfx-compat-epicfight</a>（内置 Epic Fight 配置就指向它）。开发者文档见 <a href="../dev/index.html">API 快速开始</a>。</span>
+    <span data-lang="en">If a mod bypasses KeyMapping, has runtime combat state, or reads the gamepad directly, it needs a bridge mod using the <code>IControlFlexPlugin</code> SPI: export compat JSON, push player states, react to controller lifecycle events. The official example is <a href="https://github.com/ControlFlexMC/cfx-compat-epicfight" target="_blank" rel="noopener">cfx-compat-epicfight</a> (which the built-in Epic Fight file points to). Start at <a href="../dev/index.html">API Quick Start</a>.</span>
+  </p>
+
+  <h2><span data-lang="zh">仍然有问题？按这个顺序排查</span><span data-lang="en">Still Misbehaving? Check in This Order</span></h2>
+  <ol>
+    <li><span data-lang="zh">看按键映射 —— 这个动作绑到正确的层了吗（Screen / Overlay / Main）？</span><span data-lang="en">Check Key Mapping — is the action on the right layer (Screen vs Overlay vs Main)?</span></li>
+    <li><span data-lang="zh">打开该模组的模组适配 —— 添加界面 / 叠层规则，或应用社区配置。</span><span data-lang="en">Open Mod Adaptation for that mod — add a Screen/Overlay rule, or apply a community config.</span></li>
+    <li><span data-lang="zh">如果模组只监听物理键，用虚拟键鼠绑定。</span><span data-lang="en">If the mod only listens for physical keys, bind it with Virtual KBM.</span></li>
+    <li><span data-lang="zh">手写或分享一份 compat JSON；模组完全绕开 KeyMapping 时，写一个桥接模组。</span><span data-lang="en">Hand-edit or share a compat JSON; write a bridge if the mod bypasses KeyMapping entirely.</span></li>
+  </ol>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../assets/app.js" defer></script>
+</body>
+</html>
