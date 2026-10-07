@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seven Layers · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></h1>
+  <p class="lead">
+    <span data-lang="zh">标准手柄只有十几个输入，一个整合包却能暴露上百个动作。七层模型让同一个物理按键在不同场景承担不同职责 —— 这是 Control Flex 所有其他功能的地基。</span>
+    <span data-lang="en">A standard pad has roughly a dozen inputs; a modpack can expose hundreds of actions. The seven-layer model lets one physical button mean different things per context — it is the foundation everything else builds on.</span>
+  </p>
+
+  <h2><span data-lang="zh">七层一览</span><span data-lang="en">The Seven Layers</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">层</span><span data-lang="en">Layer</span></th>
+          <th><span data-lang="zh">何时生效</span><span data-lang="en">Active when</span></th>
+          <th><span data-lang="zh">说明</span><span data-lang="en">Notes</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Main</td>
+          <td><span data-lang="zh">游戏内默认层</span><span data-lang="en">Default in-game</span></td>
+          <td><span data-lang="zh">移动、视角、战斗、快捷栏与日常模组动作</span><span data-lang="en">Movement, look, combat, hotbar, and everyday mod actions</span></td>
+        </tr>
+        <tr>
+          <td>Shift 1–4</td>
+          <td><span data-lang="zh">按住对应的层切换键时</span><span data-lang="en">While the matching layer switch is held</span></td>
+          <td><span data-lang="zh">四个修饰层，各有一整张绑定表；松开切换键自动回到 Main</span><span data-lang="en">Four modifier planes, each with a full binding table; releasing the switch returns to Main</span></td>
+        </tr>
+        <tr>
+          <td>Screen</td>
+          <td><span data-lang="zh">任意界面打开时（背包、箱子、模组 UI、设置）</span><span data-lang="en">Whenever a screen is open (inventory, chests, mod UIs, settings)</span></td>
+          <td><span data-lang="zh">确认、返回、切页、滚动、槽位跳转与容器操作；打开界面不会和游戏内键位打架</span><span data-lang="en">Confirm, back, tab switching, scrolling, slot navigation, container helpers; opening a menu never fights your gameplay bindings</span></td>
+        </tr>
+        <tr>
+          <td>Overlay</td>
+          <td><span data-lang="zh">交互式 HUD 打开时（法术轮盘、第三方轮盘菜单、拍照 HUD 等）</span><span data-lang="en">Interactive HUDs (spell wheels, third-party radial menus, photo HUDs)</span></td>
+          <td><span data-lang="zh">显式绑定、不继承 Main：未配置的动作保持静默，HUD 不会误触发战斗键</span><span data-lang="en">Explicit bindings, no Main inheritance: unconfigured actions stay silent so a HUD cannot misfire combat keys</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">Shift 1–4：完全显式的修饰层</span><span data-lang="en">Shift 1–4: Fully Explicit Planes</span></h2>
+  <p>
+    <span data-lang="zh">Shift 层是四个独立的绑定平面。理解下面四条规则，就理解了这个功能：</span>
+    <span data-lang="en">Shift layers are four independent binding planes. Four rules explain the whole feature:</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh"><b>移动 / 视角键默认沿用 Main 的值</b>（模板生成时就填好了），其余动作默认未绑定 —— 也就是“完全显式”。</span><span data-lang="en"><b>Movement and look keys default to Main's values</b> (pre-filled when the template is created); everything else defaults to unbound — the layers are <b>fully explicit</b>.</span></li>
+    <li><span data-lang="zh"><b>之后修改 Main 不会同步到 Shift 层</b>；反之亦然。每一层自己说了算。</span><span data-lang="en"><b>Editing Main later does not change Shift layers</b>, and vice versa. Each layer owns its table.</span></li>
+    <li><span data-lang="zh"><b>层切换键固定为 HOLD</b>（Main 层的 layer_shift1–4 四项不可改成其他模式）。</span><span data-lang="en"><b>Layer switches are fixed to HOLD</b> (the layer_shift1–4 rows on Main cannot use another mode).</span></li>
+    <li><span data-lang="zh"><b>每个 Shift 层自动派生一个“返回 Main”绑定，模式为 RELEASE</b> —— 松开切换键即回到 Main，无需手动配置。</span><span data-lang="en"><b>Each Shift layer auto-derives a “return to Main” binding with RELEASE mode</b> — releasing the switch returns you, no manual setup.</span></li>
+  </ul>
+  <div class="callout warn">
+    <p>
+      <span data-lang="zh"><b>常见误解</b>：Shift 层不是“空槽位实时继承 Main”。运行时不存在回退 —— 空槽就是未绑定。模板只是把移动 / 视角的默认值预先填成和 Main 一样，方便你上手。</span>
+      <span data-lang="en"><b>Common misconception</b>: Shift layers do not inherit Main at runtime — an empty slot is simply unbound. Templates merely pre-fill movement and look with Main's values so you have a sensible starting point.</span>
+    </p>
+  </div>
+
+  <h2><span data-lang="zh">Screen 层：界面里的那套键位</span><span data-lang="en">Screen: Bindings for Menus</span></h2>
+  <p>
+    <span data-lang="zh">只要有任何界面打开，输入就切换到 Screen 层。默认分成四组：</span>
+    <span data-lang="en">Whenever any screen is open, input switches to the Screen layer. Defaults fall into four groups:</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh"><b>光标</b>：左摇杆驱动虚拟光标（也可用方向绑定做光标导航，两者是独立的绑定项）。</span><span data-lang="en"><b>Cursor</b>: the left stick drives the virtual cursor (direction bindings can navigate it too; the two are separate rows).</span></li>
+    <li><span data-lang="zh"><b>槽位</b>：D-Pad 在格子之间跳转，A 选格，Y 快速移动（Shift+点击），X 取一半。</span><span data-lang="en"><b>Slots</b>: D-Pad jumps between slots, A selects, Y quick-moves (shift-click), X takes half.</span></li>
+    <li><span data-lang="zh"><b>导航</b>：A 确认、B 返回 / 关闭、LB/RB 切页（创造标签页、配方书页、指南列表等）。</span><span data-lang="en"><b>Navigation</b>: A confirm, B back/close, LB/RB switch pages (creative tabs, recipe-book pages, the guide list).</span></li>
+    <li><span data-lang="zh"><b>滚动</b>：右摇杆上/下模拟滚轮，左/右轻按切换选项。</span><span data-lang="en"><b>Scrolling</b>: right stick up/down emulates the wheel; left/right taps cycle options.</span></li>
+  </ul>
+  <p class="small muted">
+    <span data-lang="zh">Screen 层还能模拟滚轮等物理按键（见<a href="virtual-kbm.html">虚拟键鼠</a>）；光标行为细节见<a href="cursor.html">光标与界面操作</a>。</span>
+    <span data-lang="en">The Screen layer can also inject physical keys such as the scroll wheel (see <a href="virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>); cursor details live in <a href="cursor.html">Cursor &amp; GUI</a>.</span>
+  </p>
+
+  <h2><span data-lang="zh">Overlay 层：交互式 HUD</span><span data-lang="en">Overlay: Interactive HUDs</span></h2>
+  <p>
+    <span data-lang="zh">Overlay 层覆盖既不是完整界面、也不是普通游戏画面的交互式 HUD —— 法术轮盘、第三方轮盘菜单、拍照 / 附件类 HUD。它的默认值贴近游戏手感（移动、视角、跳跃、攻击、使用、滚动），并以 <span class="kbd">B</span> 作为返回。两个要点：</span>
+    <span data-lang="en">The Overlay layer covers interactive HUDs that are neither a full screen nor plain gameplay — spell wheels, third-party radial menus, photo/attachment HUDs. Its defaults follow the in-game feel (move, look, jump, attack, use, scroll) with <span class="kbd">B</span> as back. Two things matter:</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh"><b>不继承 Main</b>：没配置的动作在 Overlay 相位保持静默，避免 HUD 打开时误触发战斗键位。HUD 打开期间层切换也会被抑制。</span><span data-lang="en"><b>No Main inheritance</b>: unconfigured actions stay silent during an overlay, so a HUD cannot misfire combat keys. Layer switches are suppressed while an overlay is open.</span></li>
+    <li><span data-lang="zh"><b>需要把 HUD 声明为交互式上下文</b>：游戏内在<a href="mod-adaptation.html">模组适配</a>里为它添加 Overlay 规则；模组作者可以用 Control Flex API 的 <code>IInteractiveContextRegistrar</code> 主动声明（见<a href="../../dev/api-reference.html">API 参考</a>）。需要跨界面保持按住的按键可用相位锁定延续到解锁。</span><span data-lang="en"><b>The HUD must be declared</b>: add an Overlay rule for it in <a href="mod-adaptation.html">Mod Adaptation</a>, or use the Control Flex API's <code>IInteractiveContextRegistrar</code> from a bridge mod (see the <a href="../../dev/api-reference.html">API Reference</a>). Keys that must stay held across an overlay can be phase-locked until you unlock them.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">层归属在哪里改</span><span data-lang="en">Editing Layers</span></h2>
+  <ul>
+    <li><span data-lang="zh">按键映射页按层显示与编辑：切换层标签，或直接改某一层的行。</span><span data-lang="en">Key Mapping shows and edits bindings per layer: switch the layer tab, or edit any layer's rows.</span></li>
+    <li><span data-lang="zh">一个动作出现在哪些层，在动作详情页按动作设置；<b>切换模板会把层归属重置为模板默认</b>，而“重置为模板默认设置”不会改变层归属。</span><span data-lang="en">Which layers an action appears on is configured per action in its detail page. <b>Switching templates resets layer placement to template defaults</b>; “reset to template defaults” does not change layer placement.</span></li>
+    <li><span data-lang="zh">点击手柄按键栏捕获输入；捕获中 <span class="kbd">ESC</span> 取消；右键行可清除、重置或改变层归属。</span><span data-lang="en">Click the controller column to capture input; <span class="kbd">ESC</span> cancels; right-click a row to clear, reset, or change its layer.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">默认值（Basic 模板）</span><span data-lang="en">Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">项</span><span data-lang="en">Item</span></th>
+          <th><span data-lang="zh">默认</span><span data-lang="en">Default</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Shift 1 / 2</td><td><span class="kbd">LB</span> / <span class="kbd">RB</span>（Hold）</td></tr>
+        <tr><td>Shift 3 / 4</td><td><span data-lang="zh">未绑定 —— 需要时自己指定（背键适合放这里）</span><span data-lang="en">Unbound — assign them yourself when needed (paddles are a good fit)</span></td></tr>
+        <tr><td><span data-lang="zh">Overlay 返回</span><span data-lang="en">Overlay back</span></td><td><span class="kbd">B</span>（Press）</td></tr>
+        <tr><td><span data-lang="zh">打开设置</span><span data-lang="en">Open settings</span></td><td><span class="kbd">Back</span> + <span class="kbd">Start</span>（Press）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">想扩展层级之外的能力：<a href="combo-keys.html">组合键</a>给单个层加压，<a href="radial-menus.html">径向菜单</a>把高频动作收进轮盘。</span>
+    <span data-lang="en">To go beyond layers: <a href="combo-keys.html">combo keys</a> add density to a single layer, and <a href="radial-menus.html">radial menus</a> keep frequent actions on a wheel.</span>
+  </p>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="pager-next" href="../../guide/feature/trigger-modes.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

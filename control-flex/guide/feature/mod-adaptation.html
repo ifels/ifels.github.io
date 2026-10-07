@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mod Adaptation · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></h1>
+  <p class="lead">
+    <span data-lang="zh">Control Flex 为整合包而生：大多数模组<b>开箱即用</b>；当某个模组不在正确的位置、或界面里的摇杆行为不对时，用模组适配中心逐级解决 —— 游戏内中心 → 社区配置库 → compat JSON → 桥接模组。</span>
+    <span data-lang="en">Control Flex is built for modpacks: most mods work out of the box. When one sits on the wrong layer or its screen misbehaves, the adaptation chain solves it in escalating steps — in-game center → community repo → compat JSON → bridge mod.</span>
+  </p>
+
+  <h2><span data-lang="zh">第一层：自动发现</span><span data-lang="en">Step One: Auto-Discovery</span></h2>
+  <p>
+    <span data-lang="zh">启动时扫描 Minecraft 的 KeyMapping 注册表，把每个非原版绑定注册为可绑定动作；打开设置时还会再对齐一次（reconcile），因此游戏中途换的模组也不会漏。库类模组（Fabric API、Kotlin 语言支持等家族）会被自动豁免，不混进列表。</span>
+    <span data-lang="en">At startup Control Flex scans Minecraft's KeyMapping registry and registers every non-vanilla binding as a bindable action, then reconciles again when you open settings — so nothing gets missed. Library mods (the Fabric API and Kotlin language-support families) are exempted and never clutter the lists.</span>
+  </p>
+
+  <h2><span data-lang="zh">第二层：游戏内适配中心</span><span data-lang="en">Step Two: The In-Game Center</span></h2>
+  <p>
+    <span data-lang="zh">打开 <b>Control Flex 设置 → 模组适配</b>：每个已安装模组按名称、图标与版本列出。进入某个模组有三个页签：</span>
+    <span data-lang="en">Open <b>Control Flex Settings → Mod Adaptation</b>: every installed mod is listed with name, icon, and version. Each mod has three tabs:</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh"><b>按键绑定</b>：该模组被发现的全部动作，分配层级（Main / Screen / Overlay）并直接绑手柄按键。</span><span data-lang="en"><b>Key Bindings</b>: the mod's discovered actions, assigned to layers (Main / Screen / Overlay) and bound straight to gamepad buttons.</span></li>
+    <li><span data-lang="zh"><b>界面适配</b>：该模组的 GUI 打开时的摇杆模式、层级映射与光标规则。</span><span data-lang="en"><b>Screen Adaptation</b>: stick mode, layer mapping, and cursor rules while that mod's GUI is open.</span></li>
+    <li><span data-lang="zh"><b>叠层适配</b>：同样的事，针对交互式 HUD（法术轮盘、拍照 HUD 等）。</span><span data-lang="en"><b>Overlay Adaptation</b>: the same, for interactive HUDs (spell wheels, photo HUDs, and similar).</span></li>
+  </ul>
+  <p>
+    <span data-lang="zh"><b>添加一条界面 / 叠层规则</b>：先在游戏中把目标界面打开一次让 Control Flex 记录它，然后在模组详情里点 <b>+ 添加界面/叠层适配</b>，从“最近页面”（最多 50 条）里选中即可。偶尔遇到无法归属到模组的条目，可以自动扫描。</span>
+    <span data-lang="en"><b>Adding a rule</b>: open the target GUI or HUD once in-game so Control Flex records it, then use <b>+ Add Screen/Overlay Adaptation</b> in the mod's page and pick it from the recent-pages list (up to 50). Entries that could not be matched to a mod can be scanned automatically.</span>
+  </p>
+
+  <h2><span data-lang="zh">摇杆行为：三选一</span><span data-lang="en">Stick Behavior: Three Choices</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">行为</span><span data-lang="en">Behavior</span></th>
+          <th><span data-lang="zh">说明</span><span data-lang="en">What it does</span></th>
+          <th><span data-lang="zh">默认出现在</span><span data-lang="en">Default for</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Independent</td>
+          <td><span data-lang="zh">摇杆方向当作动作，在层级映射里绑定</span><span data-lang="en">Stick directions act as actions bound on Layer Mapping</span></td>
+          <td><span data-lang="zh">Overlay 双摇杆；Screen 右摇杆</span><span data-lang="en">Both sticks on Overlay; the right stick on Screen</span></td>
+        </tr>
+        <tr>
+          <td>Radial Path</td>
+          <td><span data-lang="zh">摇杆描出路径 / 角度 —— 法术轮盘、圆环菜单类界面</span><span data-lang="en">Stick traces a path or angle — spell wheels and ring menus</span></td>
+          <td><span data-lang="zh">需手动指定</span><span data-lang="en">Assigned manually</span></td>
+        </tr>
+        <tr>
+          <td>Virtual Mouse</td>
+          <td><span data-lang="zh">摇杆在该界面内移动光标</span><span data-lang="en">Stick moves a cursor inside that UI</span></td>
+          <td><span data-lang="zh">Screen 左摇杆</span><span data-lang="en">The left stick on Screen</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">没有规则时：Screen 层左摇杆为虚拟鼠标、右摇杆为 Independent；Overlay 层两杆都保持 Independent。光标样式可选系统 / 基岩 / 手型；Virtual Mouse 可调光标速度，Radial Path 可调阈值、半径、角度偏置与是否记忆上次角度。</span>
+    <span data-lang="en">With no rule: Screen uses Virtual Mouse on the left stick and Independent on the right; Overlay keeps both sticks Independent. Cursor style offers system / Bedrock / hand; Virtual Mouse has a speed setting, and Radial Path has threshold, radius, angle bias, and whether the last angle is restored.</span>
+  </p>
+
+  <h2><span data-lang="zh">第三层：社区配置库</span><span data-lang="en">Step Three: The Community Repo</span></h2>
+  <p>
+    <span data-lang="zh">官方社区源是 <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>。在模组适配里点 <b>Sync Configs</b> → 浏览变体 → 预览按键 / 界面 / 叠层 → <b>Apply</b>；应用前会先备份已有的用户文件。也支持添加自定义远程源，或在模组详情页导入 / 导出本地 JSON。</span>
+    <span data-lang="en">The official community source is <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>. From Mod Adaptation: <b>Sync Configs</b> → browse variants → preview Bindings / Screen / Overlay → <b>Apply</b> (existing user files are backed up first). Extra sources can be added, and local JSON can be imported or exported from a mod's page.</span>
+  </p>
+
+  <h2><span data-lang="zh">你的修改存在哪里</span><span data-lang="en">Where Your Edits Go</span></h2>
+  <p>
+    <span data-lang="zh">所有编辑都是<b>写时复制</b>：内置与社区文件保持只读，你的改动落到 <code>config/controlflex/compat/user/</code>。某个模组的 <b>Reset Config</b> 会把该模组恢复为内置或已应用的社区默认。内置配置藏在每个模组的规则背后 —— 模组 JAR 自带 JEI、Epic Fight、Nightfall 三份，且只在目标模组实际加载时生效。</span>
+    <span data-lang="en">All edits are <b>copy-on-write</b>: packaged and community files stay read-only and your changes land in <code>config/controlflex/compat/user/</code>. A mod's <b>Reset Config</b> restores its packaged or applied community default. Packaged rules sit behind every mod — the JAR ships three (JEI, Epic Fight, Nightfall), and each only activates when its target mod is actually loaded.</span>
+  </p>
+
+  <h2><span data-lang="zh">第四层：仍然不行怎么办</span><span data-lang="en">Step Four: If It Still Misbehaves</span></h2>
+  <ol>
+    <li><span data-lang="zh">检查按键映射 —— 这个动作绑在正确的层了吗？</span><span data-lang="en">Check Key Mapping — is the action on the right layer?</span></li>
+    <li><span data-lang="zh">为它添加界面 / 叠层规则，或应用社区配置。</span><span data-lang="en">Add a Screen/Overlay rule, or apply a community config.</span></li>
+    <li><span data-lang="zh">只认物理键 → <a href="virtual-kbm.html">虚拟键鼠</a>。</span><span data-lang="en">Physical keys only → <a href="virtual-kbm.html">Virtual KBM</a>.</span></li>
+    <li><span data-lang="zh">完全绕开 KeyMapping → 手写 / 分享 compat JSON，或写一个桥接模组。</span><span data-lang="en">Bypasses KeyMapping entirely → hand-write or share compat JSON, or write a bridge mod.</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-lang="zh">compat JSON 的字段、分层优先级与整合包分发方式，见<a href="../../modpack/compat.html">模组兼容性</a>；桥接模组开发见<a href="../../dev/index.html">API 快速开始</a>。</span>
+    <span data-lang="en">For compat JSON fields, layer priority, and pack distribution, see <a href="../../modpack/compat.html">Mod Compatibility</a>; for bridge-mod development, see <a href="../../dev/index.html">API Quick Start</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/splitscreen.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></span></a>
+  <a class="pager-next" href="../../guide/feature/guide-hud.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

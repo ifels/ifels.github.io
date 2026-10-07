@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analog Movement · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">模拟移动（360°）</span><span data-lang="en">Analog Movement (360°)</span></h1>
+  <p class="lead">
+    <span data-lang="zh">原版 Minecraft 只把 WASD 当作开关，所以“摇杆转按键”只能八方向全速行走。开启模拟移动后，Control Flex 直接提供连续的 360° 移动向量：任意角度，轻推即慢走。</span>
+    <span data-lang="en">Vanilla Minecraft only sees WASD as on/off, so stick-to-keys walking is limited to eight directions at full speed. With Analog Movement, Control Flex feeds a continuous 360° vector: any angle, and a light push walks slowly.</span>
+  </p>
+
+  <h2><span data-lang="zh">两种策略</span><span data-lang="en">Two Policies</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">策略</span><span data-lang="en">Policy</span></th>
+          <th><span data-lang="zh">行为</span><span data-lang="en">Behavior</span></th>
+          <th><span data-lang="zh">适合</span><span data-lang="en">Best for</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Analog Smooth</td>
+          <td><span data-lang="zh">方向与推杆幅度原样使用 —— 主机式手感</span><span data-lang="en">Direction and magnitude used as-is — the console feel</span></td>
+          <td><span data-lang="zh">单机、局域网、允许平滑移动的服务器</span><span data-lang="en">Singleplayer, LAN, and servers that tolerate smooth movement</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">键盘式 8 向</span><span data-lang="en">Keyboard-like 8-way</span></td>
+          <td><span data-lang="zh">摇杆吸附到八个方向、全速行走，在服务器看来与键盘输入一致</span><span data-lang="en">Stick snapped to eight directions at full speed, which looks like keyboard input to a server</span></td>
+          <td><span data-lang="zh">公共服务器与 Realms</span><span data-lang="en">Public servers and Realms</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">默认怎么选</span><span data-lang="en">How the Default Is Chosen</span></h2>
+  <p>
+    <span data-lang="zh">默认策略随连接场景自动变化：</span>
+    <span data-lang="en">The default follows the connection:</span>
+  </p>
+  <ul>
+    <li><span data-lang="zh"><b>单机 / 局域网</b> → Analog Smooth</span><span data-lang="en"><b>Singleplayer / LAN</b> → Analog Smooth</span></li>
+    <li><span data-lang="zh"><b>公共服务器与 Realms</b> → 键盘式 8 向，避免“摇杆幅度”被服务端反作弊视为异常输入</span><span data-lang="en"><b>Public servers and Realms</b> → keyboard-like 8-way, so analog walk is less likely to look like abnormal input to server-side anti-cheat</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">在哪里设置</span><span data-lang="en">Where to Configure</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>Control Flex 设置 → 其他 → 模拟移动</b>：总开关 + 策略选择。</span><span data-lang="en"><b>Control Flex Settings → Other → Analog Movement</b>: master switch plus policy.</span></li>
+    <li><span data-lang="zh"><b>服务器白名单</b>：确需在某个远程服务器使用 Analog Smooth 时，在同一页把它加入白名单（<code>host:port</code> 或 Realm 名称）。</span><span data-lang="en"><b>Server whitelist</b>: if a specific remote server should still get Analog Smooth, add it (host:port or Realm name) on the same page.</span></li>
+    <li><span data-lang="zh"><b>关闭总开关</b>后回到数字 WASD 绑定；策略选项随之失效。</span><span data-lang="en"><b>Turning the master switch off</b> restores digital WASD bindings; the policy then does nothing.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">与校准的关系</span><span data-lang="en">Relation to Calibration</span></h2>
+  <p>
+    <span data-lang="zh">移动手感的另外两个旋钮在<b>校准</b>页：摇杆死区（每根摇杆一个值，按手柄分别保存）与移动响应曲线。死区没调好时，轻推可能不动或漂移 —— 先跑一次自动校准，再微调死区，最后再调响应曲线。</span>
+    <span data-lang="en">Two more knobs live on the <b>Calibration</b> page: stick deadzones (one value per stick, saved per controller) and the movement response curve. If a light push does nothing or drifts, run auto calibration first, then fine-tune the deadzone, and only then adjust the response curve.</span>
+  </p>
+
+  <div class="callout tip">
+    <p>
+      <span data-lang="zh">在服务器上“看起来像键盘”只影响移动向量的形态，不影响你按下的任何动作键 —— 战斗、交互等绑定照常工作。</span>
+      <span data-lang="en">Looking keyboard-like on a server only changes the shape of the movement vector; every action key you press behaves exactly the same.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span data-lang="zh">相关：<a href="camera.html">相机与瞄准</a>（视角的响应曲线同样在校准页）、<a href="../../guide/settings.html">设置与键位</a>（校准操作步骤）。</span>
+    <span data-lang="en">Related: <a href="camera.html">Camera &amp; Aim</a> (the look curve also lives under Calibration) and <a href="../../guide/settings.html">Settings &amp; Controls</a> (calibration steps).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/radial-menus.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></span></a>
+  <a class="pager-next" href="../../guide/feature/camera.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

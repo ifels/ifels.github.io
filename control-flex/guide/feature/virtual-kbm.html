@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Keyboard & Mouse · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></h1>
+  <p class="lead">
+    <span data-lang="zh">有些模组从不注册 KeyMapping —— 它们只监听物理键盘或鼠标。虚拟键鼠让手柄直接向游戏<b>注入真实的按键事件</b>（Shift、Escape、Page Up/Down、鼠标按键、滚轮），无需先把它变成 Control Flex 动作。</span>
+    <span data-lang="en">Some mods never register a KeyMapping — they only watch the physical keyboard or mouse. Virtual KBM lets the gamepad <b>inject real key events</b> (Shift, Escape, Page Up/Down, mouse buttons, the scroll wheel) without turning them into Control Flex actions first.</span>
+  </p>
+
+  <h2><span data-lang="zh">怎么用</span><span data-lang="en">How to Use It</span></h2>
+  <ol>
+    <li><span data-lang="zh">在按键映射里找到虚拟键鼠区域，点“添加”，<b>先按下一个键盘 / 鼠标按键</b>作为目标（例如 <span class="kbd">Escape</span> 或滚轮）。</span><span data-lang="en">In Key Mapping, find the Virtual KBM section and add an entry: <b>press the keyboard/mouse key you want to inject</b> (e.g. <span class="kbd">Escape</span> or the wheel).</span></li>
+    <li><span data-lang="zh">然后在<b>任意层</b>上给这个键绑定手柄组合（可以是单键，也可以是和弦）并启用该层。</span><span data-lang="en">Then bind a controller combo to it <b>on any layer</b> (a single button or a chord) and enable that layer.</span></li>
+    <li><span data-lang="zh">虚拟键鼠条目按层分别启用：同一个物理键可以只在 Main 层生效、或只在 GUI 层生效 —— 默认这套配置就是按层写的（见下面的默认表）。</span><span data-lang="en">Entries enable per layer: the same physical key can fire only on Main, only in GUI, or both — the shipped defaults are written that way (see the table below).</span></li>
+  </ol>
+
+  <h2><span data-lang="zh">特殊行为</span><span data-lang="en">Special Behaviors</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>滚轮</b>：轻按滚动一格；按住则连续滚动，默认每 100 ms 一格（可配置）。</span><span data-lang="en"><b>Scroll wheel</b>: a tap scrolls one notch; holding repeats — one notch per 100 ms by default, configurable.</span></li>
+    <li><span data-lang="zh"><b>GUI 返回即物理 Esc</b>：界面里的 <span class="kbd">B</span> 发送真实的 <span class="kbd">Esc</span>，效果与鼠标点击 Esc 完全一致 —— 这让拒绝手柄输入的模组界面也能正常退出。</span><span data-lang="en"><b>GUI back is a real Esc</b>: <span class="kbd">B</span> in a screen sends a physical <span class="kbd">Esc</span>, identical to clicking Esc with a mouse — mod screens that reject gamepad input still close properly.</span></li>
+    <li><span data-lang="zh"><b>不污染聊天栏</b>：注入的按键不会输入到聊天或文本框中。</span><span data-lang="en"><b>Never types into chat</b>: injected keys do not enter chat or text fields.</span></li>
+  </ul>
+
+  <div class="callout warn">
+    <p>
+      <span data-lang="zh"><b>注意</b>：注入的按键可能与已有的动作绑定<b>同时触发</b>（例如同一个 <span class="kbd">LT</span> 既有 Control Flex 动作、又注入了左 Shift）。配置时留意重叠，必要时把两者分配到不同层。</span>
+      <span data-lang="en"><b>Careful</b>: an injected key can fire <b>alongside</b> an existing action binding (e.g. <span class="kbd">LT</span> both runs a Control Flex action and injects Left Shift). Watch for overlaps and put them on different layers when needed.</span>
+    </p>
+  </div>
+
+  <h2><span data-lang="zh">默认值（Basic 模板）</span><span data-lang="en">Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">物理键</span><span data-lang="en">Physical key</span></th>
+          <th><span data-lang="zh">生效层</span><span data-lang="en">Layers</span></th>
+          <th><span data-lang="zh">说明</span><span data-lang="en">Notes</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="kbd">Escape</span></td>
+          <td><span data-lang="zh">界面（随 GUI 返回键）</span><span data-lang="en">GUI (via the back binding)</span></td>
+          <td><span data-lang="zh">让只认 Esc 的界面可以退出</span><span data-lang="en">Lets Esc-only screens close</span></td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Left Shift</span></td>
+          <td>Main · Overlay · GUI</td>
+          <td><span data-lang="zh">GUI 层绑定在 <span class="kbd">LT</span>（快捷移动 / 快速堆叠）</span><span data-lang="en">Bound to <span class="kbd">LT</span> on the GUI layer (quick move / stacking)</span></td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Page Up</span> / <span class="kbd">Page Down</span></td>
+          <td><span data-lang="zh">界面</span><span data-lang="en">GUI</span></td>
+          <td><span data-lang="zh">翻页类模组界面</span><span data-lang="en">Paged mod screens</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">什么时候该用它</span><span data-lang="en">When to Reach for It</span></h2>
+  <p>
+    <span data-lang="zh">按这个顺序判断：① 模组键已注册在 KeyMapping 里 → 直接用（自动发现）；② 界面 / 摇杆行为不对 → 去<a href="mod-adaptation.html">模组适配</a>加规则；③ 只监听物理键 → 虚拟键鼠；④ 模组完全绕开 KeyMapping（自定义输入系统）→ 需要桥接模组（见<a href="../../dev/index.html">开发者文档</a>）。</span>
+    <span data-lang="en">Work down this list: (1) the mod's keys are in KeyMapping → just use them (auto-discovery); (2) wrong layer or stick behavior → add a rule in <a href="mod-adaptation.html">Mod Adaptation</a>; (3) only physical keys are read → Virtual KBM; (4) the mod bypasses KeyMapping entirely → it needs a bridge mod (see the <a href="../../dev/index.html">developer docs</a>).</span>
+  </p>
+
+  <p class="small muted">
+    <span data-lang="zh">相关：<a href="cursor.html">光标与界面操作</a>、<a href="../../modpack/compat.html">模组兼容性</a>（完整排查清单）。</span>
+    <span data-lang="en">Related: <a href="cursor.html">Cursor &amp; GUI</a> and <a href="../../modpack/compat.html">Mod Compatibility</a> (the full troubleshooting checklist).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/rumble.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></span></a>
+  <a class="pager-next" href="../../guide/feature/splitscreen.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

@@ -293,6 +293,54 @@ html[lang="zh"] [data-lang]:not([data-lang="zh"]) { display: none !important; }
   background: var(--accent);
 }
 
+/* indented sub-list (feature pages) */
+.nav-sub { margin: 1px 0 6px; }
+.nav-sub a {
+  padding-left: 26px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.nav-sub a:hover { color: var(--ink); }
+.nav-sub a.active { font-size: 13px; }
+.nav-sub a.active::before { left: 13px; top: 8px; bottom: 8px; }
+
+/* breadcrumb + prev/next pager on content pages */
+.crumbs {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+.crumbs a { color: var(--muted); }
+.crumbs a:hover { color: var(--accent-ink); text-decoration: none; }
+
+.pager {
+  display: flex;
+  gap: 14px;
+  margin: 48px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.pager a {
+  flex: 1 1 0;
+  display: block;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  transition: border-color .12s, box-shadow .12s;
+}
+.pager a:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-lift);
+  text-decoration: none;
+}
+.pager .dir { display: block; font-size: 12px; color: var(--muted); }
+.pager .name { display: block; font-weight: 650; color: var(--ink); margin-top: 2px; }
+.pager .pager-next { text-align: right; }
+.pager .spacer { flex: 1 1 0; }
+
 .backdrop {
   display: none;
   position: fixed;

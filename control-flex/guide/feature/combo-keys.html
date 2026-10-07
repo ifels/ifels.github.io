@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combo Keys · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></h1>
+  <p class="lead">
+    <span data-lang="zh">一颗按键不够时，按下多颗：把 <span class="kbd">LB</span> + <span class="kbd">Back</span> 或 <span class="kbd">LT</span> + <span class="kbd">A</span> 这样的和弦绑定到一个动作。低频但重要的动作不必占用面键。</span>
+    <span data-lang="en">When one button is not enough, press several: bind a chord such as <span class="kbd">LB</span> + <span class="kbd">Back</span> or <span class="kbd">LT</span> + <span class="kbd">A</span> to a single action. Rare-but-important actions no longer need a dedicated face button.</span>
+  </p>
+
+  <h2><span data-lang="zh">怎么捕获一个和弦</span><span data-lang="en">Capturing a Chord</span></h2>
+  <ol>
+    <li><span data-lang="zh">在按键映射里点选目标行，进入捕获状态。</span><span data-lang="en">Select the target row in Key Mapping to start capture.</span></li>
+    <li><span data-lang="zh">先按第一颗键，然后在 <b>500 ms</b> 内追加其余按键；界面上会显示已捕获的完整和弦。</span><span data-lang="en">Press the first button, then add the rest within <b>500 ms</b>; the UI shows the full chord as it builds.</span></li>
+    <li><span data-lang="zh">和弦完成后，<b>所有按键同时按下</b>才会触发该动作 —— 单独按其中一颗仍然执行它原本的绑定。</span><span data-lang="en">Once complete, <b>all buttons must be down together</b> for the action to fire — pressing one of them alone still performs its own binding.</span></li>
+    <li><span data-lang="zh">按 <span class="kbd">ESC</span> 取消捕获；右键行可以清除、重置或改层。</span><span data-lang="en"><span class="kbd">ESC</span> cancels capture; right-click a row to clear, reset, or move it to another layer.</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-lang="zh">捕获窗口固定为 500 ms，不随 Tap 阈值变化。</span>
+    <span data-lang="en">The capture window is fixed at 500 ms; it does not follow the Tap threshold.</span>
+  </p>
+
+  <h2><span data-lang="zh">组合键引擎的三条规则</span><span data-lang="en">Three Engine Rules</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>升级规则</b>：较大的和弦激活时（如 A+B+Y），已经激活的、按键集合是它真子集的较小和弦（A+B）会被销毁。这让组合行为保持可预测。</span><span data-lang="en"><b>Upgrade rule</b>: when a larger chord activates (say A+B+Y), any active smaller chord whose buttons are a proper subset of it (A+B) is destroyed. Behavior stays predictable.</span></li>
+    <li><span data-lang="zh"><b>按键共享（引用计数）</b>：一颗物理按键可以同时参与多个和弦，引擎按引用计数管理，互不干扰。</span><span data-lang="en"><b>Button sharing (reference counting)</b>: one physical button can take part in several chords; the engine tracks references so they do not interfere.</span></li>
+    <li><span data-lang="zh"><b>支持全部触发模式</b>：和弦可以使用与单键相同的 10 种模式，包括各种双击变体。</span><span data-lang="en"><b>Every trigger mode works</b>: chords support the same ten modes as single-key bindings, including all the Double variants.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">三种常见用法</span><span data-lang="en">Three Common Patterns</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">模式</span><span data-lang="en">Pattern</span></th>
+          <th><span data-lang="zh">例子</span><span data-lang="en">Example</span></th>
+          <th><span data-lang="zh">说明</span><span data-lang="en">Why</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-lang="zh">给常用键加“第二功能”</span><span data-lang="en">Second function on a common key</span></td>
+          <td><span data-lang="zh">Basic 模板：<span class="kbd">右摇杆按下</span> + <span class="kbd">D-Pad ↓</span> = 丢弃整组</span><span data-lang="en">Basic template: <span class="kbd">R-stick click</span> + <span class="kbd">D-Pad ↓</span> = drop stack</span></td>
+          <td><span data-lang="zh">“丢弃”已有单个绑定，整组丢弃很少用，收进和弦</span><span data-lang="en">Plain “drop” already has a button; the rarer stack-drop rides on a chord</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">触发器的第二功能</span><span data-lang="en">Variants on the trigger</span></td>
+          <td><span class="kbd">RT</span> + <span class="kbd">D-Pad ←</span> / <span class="kbd">→</span> = JEI 查看配方 / 用途</td>
+          <td><span data-lang="zh">攻击键上加方向，成对记忆，也不挤占 GUI 之外的键位</span><span data-lang="en">Direction chords on the attack trigger are easy to remember as a pair</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">Shift + 和弦</span><span data-lang="en">Shift + chord</span></td>
+          <td><span data-lang="zh">先按住层切换键，再在该层上按和弦</span><span data-lang="en">Hold a layer switch, then press a chord on that layer</span></td>
+          <td><span data-lang="zh">在不占用 Main 层槽位的前提下继续扩展布局</span><span data-lang="en">Extends layouts further without spending Main-layer slots</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">注意事项</span><span data-lang="en">Things to Watch</span></h2>
+  <ul>
+    <li><span data-lang="zh">和弦的前提是“所有键同时处于按下状态”；如果一颗键被常用的 Hold 绑定长期占用（例如 <span class="kbd">LT</span> 的“使用”），和弦里带上它会更容易误触，慎重选择。</span><span data-lang="en">A chord requires every button to be held at once; if one of them is heavily used as a Hold binding (say <span class="kbd">LT</span> for “use”), including it makes accidental chords more likely — choose deliberately.</span></li>
+    <li><span data-lang="zh">和弦同样受全局 Tap / Long Press 阈值影响（双击类模式以 Tap 阈值作为两次间隔）。</span><span data-lang="en">Chords respect the global Tap / Long Press thresholds too (Double modes use the Tap threshold as their gap).</span></li>
+    <li><span data-lang="zh">模板 JSON 中和弦写作按键名用 <code>+</code> 连接：<code>"drop_stack": "rightStickClick+dpadDown|PRESS"</code>。</span><span data-lang="en">In template JSON a chord joins button names with <code>+</code>: <code>"drop_stack": "rightStickClick+dpadDown|PRESS"</code>.</span></li>
+  </ul>
+
+  <p class="small muted">
+    <span data-lang="zh">相关：<a href="layers.html">七层按键架构</a>（每个层都有自己的和弦空间）、<a href="trigger-modes.html">触发模式</a>（和弦可用的模式集合）。</span>
+    <span data-lang="en">Related: <a href="layers.html">Seven Layers</a> (each layer has its own chord space) and <a href="trigger-modes.html">Trigger Modes</a> (the mode set chords can use).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/trigger-modes.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></span></a>
+  <a class="pager-next" href="../../guide/feature/radial-menus.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

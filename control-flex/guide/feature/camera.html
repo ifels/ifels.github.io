@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camera & Aim · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></h1>
+  <p class="lead">
+    <span data-lang="zh">右摇杆控制视角，按渲染帧驱动偏航 / 俯仰以保证平滑；三种模式覆盖从单机到战斗模组的不同需求。</span>
+    <span data-lang="en">The right stick drives the camera, updating yaw and pitch at render frame rate for smoothness. Three modes cover everything from vanilla play to combat mods.</span>
+  </p>
+
+  <h2><span data-lang="zh">三种视角模式</span><span data-lang="en">Three Look Modes</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">模式</span><span data-lang="en">Mode</span></th>
+          <th><span data-lang="zh">说明</span><span data-lang="en">What it does</span></th>
+          <th><span data-lang="zh">适合</span><span data-lang="en">Best for</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Direct Turn</td>
+          <td><span data-lang="zh">摇杆直接改变视角，响应最快</span><span data-lang="en">Stick moves the camera directly; the most responsive</span></td>
+          <td><span data-lang="zh">快速转身、后台窗口（分屏）</span><span data-lang="en">Fast turns and background windows (split-screen)</span></td>
+        </tr>
+        <tr>
+          <td>Smooth Turn</td>
+          <td><span data-lang="zh">带平滑过渡的转向，观感更接近主机游戏</span><span data-lang="en">Turns with smoothing, closer to a console feel</span></td>
+          <td><span data-lang="zh">日常游玩、需要“跟随感”的场合</span><span data-lang="en">Everyday play where a follow-through feel is wanted</span></td>
+        </tr>
+        <tr>
+          <td>Simulate Mouse</td>
+          <td><span data-lang="zh">视角经鼠标管线（MouseHandler）输出 —— 让拦截鼠标的模组也能收到准星移动</span><span data-lang="en">Look is routed through the mouse pipeline (MouseHandler), so mods that intercept the mouse still see crosshair movement</span></td>
+          <td><span data-lang="zh">Epic Fight 等自定义瞄准的战斗模组（新安装默认开启）</span><span data-lang="en">Combat mods with custom aiming such as Epic Fight (on by default for new installs)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">灵敏度与响应</span><span data-lang="en">Sensitivity &amp; Response</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>灵敏度</b>：1–100 档；另有 1.0–10.0 的倍数项（默认 1.0）。</span><span data-lang="en"><b>Sensitivity</b>: a 1–100 slider plus a 1.0–10.0 multiplier (default 1.0).</span></li>
+    <li><span data-lang="zh"><b>响应曲线</b>：二次曲线，让小幅推杆更精细；在<b>相机设置</b>里调节，曲线数据与摇杆死区同在<b>校准</b>体系内。</span><span data-lang="en"><b>Response curve</b>: a quadratic curve that gives finer control at small deflections, tuned in <b>Camera Settings</b>; it belongs to the same <b>Calibration</b> family as stick deadzones.</span></li>
+    <li><span data-lang="zh"><b>Y 轴反转</b>：可选项，在相机设置里切换。</span><span data-lang="en"><b>Y-axis invert</b>: optional, toggled in Camera Settings.</span></li>
+    <li><span data-lang="zh"><b>帧率无关</b>：视角更新使用帧增量，高刷新率下不会变快、低帧率下不会变迟钝。</span><span data-lang="en"><b>Frame-rate independent</b>: look uses the frame delta, so it neither speeds up at high refresh rates nor lags at low ones.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">望远镜（Zoom）</span><span data-lang="en">Zoom</span></h2>
+  <p>
+    <span data-lang="zh">望远镜降速（缩小视角时的灵敏度补偿）<b>仅在模拟鼠标模式下生效</b>；这与原版望远镜的行为保持一致，也是其他模式需要的取舍。望远镜动作本身是一个可绑定项（Basic 模板默认未绑）。</span>
+    <span data-lang="en">Zoom slowdown (sensitivity compensation while scoping) <b>only applies in Simulate Mouse mode</b>, matching what mods expect from the mouse pipeline. Zoom itself is a bindable action (unbound in the Basic template).</span>
+  </p>
+
+  <h2><span data-lang="zh">分屏场景的注意点</span><span data-lang="en">Split-Screen Caveat</span></h2>
+  <p>
+    <span data-lang="zh">Simulate Mouse 无法驱动后台窗口的系统光标，因此在失焦窗口里会自动回退为 Direct Turn。同机双人建议直接使用 Direct Turn 或 Smooth Turn（见<a href="splitscreen.html">分屏双人</a>）。</span>
+    <span data-lang="en">Simulate Mouse cannot drive the OS cursor in a background window, so it automatically falls back to Direct Turn there. For couch co-op, use Direct Turn or Smooth Turn (see <a href="splitscreen.html">Split-Screen Co-op</a>).</span>
+  </p>
+
+  <p class="small muted">
+    <span data-lang="zh">相关：<a href="cursor.html">光标与界面操作</a>（界面里的“瞄准”）、<a href="analog-movement.html">模拟移动</a>（移动响应曲线）。</span>
+    <span data-lang="en">Related: <a href="cursor.html">Cursor &amp; GUI</a> (aiming inside menus) and <a href="analog-movement.html">Analog Movement</a> (movement response curves).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/analog-movement.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></span></a>
+  <a class="pager-next" href="../../guide/feature/cursor.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

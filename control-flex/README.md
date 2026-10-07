@@ -21,7 +21,8 @@ control-flex/
 ├── index.html               # Landing page (hero, three audiences, versions, quick start)
 ├── guide/                   # Player Guide
 │   ├── getting-started.html #   Install, first launch, templates, default bindings
-│   ├── features.html        #   Layers, trigger modes, combos, radial menus, analog, rumble…
+│   ├── features.html        #   Feature overview (cards linking to feature/*)
+│   ├── feature/             #   One page per feature (12 pages, breadcrumb + prev/next)
 │   └── settings.html        #   Settings UI, rebinding, calibration, config paths, FAQ
 ├── modpack/                 # Modpacks & Compatibility
 │   ├── index.html           #   Config layout, override rules, template JSON format

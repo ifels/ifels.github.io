@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cursor & GUI · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></h1>
+  <p class="lead">
+    <span data-lang="zh">打开背包或箱子后，手柄要能像鼠标一样指、点、拖。Control Flex 的 Screen 层用三套机制覆盖这件事：虚拟光标、格子吸附与 D-Pad 跳格。</span>
+    <span data-lang="en">Once a chest or inventory is open, a pad has to point, click, and drag like a mouse. The Screen layer covers this with three mechanisms: a virtual cursor, slot snapping, and D-Pad slot jumps.</span>
+  </p>
+
+  <h2><span data-lang="zh">虚拟光标</span><span data-lang="en">Virtual Cursor</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>驱动方式</b>：使用左摇杆的原始轴值，经 Minecraft 的鼠标事件管线移动光标 —— 与方向绑定（cursor_navi_*）是两套独立机制。</span><span data-lang="en"><b>How it moves</b>: the left stick's raw axis values are routed through Minecraft's mouse event pipeline — a separate mechanism from the direction bindings (cursor_navi_*).</span></li>
+    <li><span data-lang="zh"><b>光标速度</b>：2–20 像素 / tick，在<b>光标设置</b>中调节。</span><span data-lang="en"><b>Cursor speed</b>: 2–20 pixels per tick, tuned in <b>Cursor Settings</b>.</span></li>
+    <li><span data-lang="zh"><b>光标样式</b>：系统光标、基岩版样式或手型样式（随光标样式包提供纹理）。</span><span data-lang="en"><b>Cursor style</b>: the system cursor, a Bedrock-style set, or a hand style (textures ship with the cursor style packs).</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">格子吸附</span><span data-lang="en">Slot Snapping</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>默认开启</b>，可在光标设置中关闭。</span><span data-lang="en"><b>On by default</b>, switchable in Cursor Settings.</span></li>
+    <li><span data-lang="zh"><b>摇杆停止时</b>，光标吸附到最近的容器格；吸附距离 1–80 像素可调。</span><span data-lang="en"><b>When the stick stops</b>, the cursor snaps to the nearest container slot; the snap distance is adjustable from 1–80 pixels.</span></li>
+    <li><span data-lang="zh"><b>仅在手持物品时生效</b> —— 空手移动光标时不会“粘住”，定位更自由。</span><span data-lang="en"><b>Only active while holding an item</b> — an empty hand moves the cursor freely without sticking.</span></li>
+    <li><span data-lang="zh"><b>悬停减速</b>：启用吸附后，光标悬停在格子上会减速，便于精确选取。</span><span data-lang="en"><b>Hover slowdown</b>: with snapping on, the cursor slows while hovering a slot for precise selection.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">D-Pad 槽位跳转</span><span data-lang="en">D-Pad Slot Navigation</span></h2>
+  <p>
+    <span data-lang="zh">不需要精确移动光标时，用 D-Pad 在格子之间直接跳转：采用扇形 / 锥形瞄靶，横向长条与不规则格网（如自定义容器）也能可靠跳格。跳格与虚拟光标并存 —— 左摇杆随时可以接管自由移动。</span>
+    <span data-lang="en">When precision is not needed, the D-Pad jumps between slots directly. It uses cone-shaped targeting, so long horizontal rows and irregular grids (custom containers) still jump reliably. Slot jumps coexist with the virtual cursor — the left stick takes over free movement at any time.</span>
+  </p>
+
+  <h2><span data-lang="zh">界面默认键位（Basic 模板）</span><span data-lang="en">GUI Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">动作</span><span data-lang="en">Action</span></th>
+          <th><span data-lang="zh">默认</span><span data-lang="en">Default</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-lang="zh">光标导航</span><span data-lang="en">Cursor navigation</span></td><td><span data-lang="zh">左摇杆方向</span><span data-lang="en">Left stick directions</span>（Hold）</td></tr>
+        <tr><td><span data-lang="zh">槽位跳转</span><span data-lang="en">Slot navigation</span></td><td><span class="kbd">D-Pad</span>（Hold）</td></tr>
+        <tr><td><span data-lang="zh">确认 / 点击 / 选格</span><span data-lang="en">Confirm / click / select</span></td><td><span class="kbd">A</span>（Press）</td></tr>
+        <tr><td><span data-lang="zh">返回 / 关闭</span><span data-lang="en">Back / close</span></td><td><span class="kbd">B</span>（Press）</td></tr>
+        <tr><td><span data-lang="zh">标签页上一 / 下一</span><span data-lang="en">Tab prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span>（Press）</td></tr>
+        <tr><td><span data-lang="zh">快捷移动（Shift+点击）</span><span data-lang="en">Quick move (shift-click)</span></td><td><span class="kbd">Y</span>（Tap）</td></tr>
+        <tr><td><span data-lang="zh">取一半</span><span data-lang="en">Take half</span></td><td><span class="kbd">X</span>（Press）</td></tr>
+        <tr><td><span data-lang="zh">滚动</span><span data-lang="en">Scroll</span></td><td><span class="kbd"><span data-lang="zh">右摇杆 ↑ / ↓</span><span data-lang="en">R-stick ↑ / ↓</span></span>（Hold）</td></tr>
+        <tr><td><span data-lang="zh">切换选项</span><span data-lang="en">Cycle options</span></td><td><span class="kbd"><span data-lang="zh">右摇杆 ← / →</span><span data-lang="en">R-stick ← / →</span></span>（Tap）</td></tr>
+        <tr><td><span data-lang="zh">JEI 配方 / 用途</span><span data-lang="en">JEI recipe / uses</span></td><td><span class="kbd">RT</span> + <span class="kbd">D-Pad ← / →</span>（Press）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">这些都在按键映射的 Screen 层里，逐项可改；LB/RB 切页对创造标签页、配方书页与指南列表同样有效。</span>
+    <span data-lang="en">All of these live on the Screen layer of Key Mapping and can be changed row by row; LB/RB tab switching also works for creative tabs, recipe-book pages, and the guide list.</span>
+  </p>
+
+  <h2><span data-lang="zh">延伸：只认物理键的界面</span><span data-lang="en">Beyond: Screens That Only Read Physical Keys</span></h2>
+  <p>
+    <span data-lang="zh">有些模组界面不理会虚拟光标，只响应键盘 / 鼠标事件 —— 这时用<a href="virtual-kbm.html">虚拟键鼠</a>注入真实按键（例如把 <span class="kbd">B</span> 映射为物理 <span class="kbd">Esc</span>）。为特定界面定制摇杆行为（独立方向 / 轮盘路径 / 虚拟鼠标）则在<a href="mod-adaptation.html">模组适配</a>的界面规则里设置。</span>
+    <span data-lang="en">Some mod screens ignore the virtual cursor and only react to keyboard/mouse events — use <a href="virtual-kbm.html">Virtual Keyboard &amp; Mouse</a> to inject real keys there (e.g. map <span class="kbd">B</span> to physical <span class="kbd">Esc</span>). To customize stick behavior per screen (Independent / Radial Path / Virtual Mouse), add a Screen rule in <a href="mod-adaptation.html">Mod Adaptation</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/camera.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></span></a>
+  <a class="pager-next" href="../../guide/feature/rumble.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

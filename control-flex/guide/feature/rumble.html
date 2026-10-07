@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rumble · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></h1>
+  <p class="lead">
+    <span data-lang="zh">把 Minecraft 的事件翻译成手柄震动：7 种波形，按事件类型分别配置，再配一组轻 / 中 / 重的强度阈值 —— 挨打和击杀的手感可以完全不同。</span>
+    <span data-lang="en">Minecraft events translated into controller vibration: seven waveforms, configured per event type, with light / medium / heavy intensity bands — taking a hit and scoring a kill can feel completely different.</span>
+  </p>
+
+  <h2><span data-lang="zh">7 种波形</span><span data-lang="en">Seven Waveforms</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">波形</span><span data-lang="en">Waveform</span></th>
+          <th><span data-lang="zh">手感</span><span data-lang="en">Feel</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-lang="zh">关闭</span><span data-lang="en">None</span></td><td><span data-lang="zh">该类型不震动</span><span data-lang="en">No vibration for that type</span></td></tr>
+        <tr><td><span data-lang="zh">脉冲</span><span data-lang="en">Pulse</span></td><td><span data-lang="zh">短促的一下，适合轻伤害</span><span data-lang="en">A short jolt, good for light hits</span></td></tr>
+        <tr><td><span data-lang="zh">双脉冲</span><span data-lang="en">Double Pulse</span></td><td><span data-lang="zh">两连击的手感</span><span data-lang="en">Two quick pulses</span></td></tr>
+        <tr><td><span data-lang="zh">渐强</span><span data-lang="en">Crescendo</span></td><td><span data-lang="zh">由弱渐强的推进感</span><span data-lang="en">Ramps up from light to strong</span></td></tr>
+        <tr><td><span data-lang="zh">长震</span><span data-lang="en">Sustained</span></td><td><span data-lang="zh">持续震动，适合爆炸等大事件</span><span data-lang="en">Continuous buzz for big events like explosions</span></td></tr>
+        <tr><td><span data-lang="zh">渐弱</span><span data-lang="en">Fade</span></td><td><span data-lang="zh">由强渐弱，收尾感</span><span data-lang="en">Strong then fading out</span></td></tr>
+        <tr><td><span data-lang="zh">心跳</span><span data-lang="en">Heartbeat</span></td><td><span data-lang="zh">两下轻一重的节律，适合低血量 / 紧张场景</span><span data-lang="en">A lub-dub rhythm, good for tension or low-health moments</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">按事件类型配置</span><span data-lang="en">Configured per Event Type</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>伤害类型</b>：摔落、火焰、溺水、生物、玩家、爆炸、其他 —— 每类单独选波形（含“关闭”）。</span><span data-lang="en"><b>Damage types</b>: fall, fire, drown, mob, player, explosion, other — each picks its own waveform (including “none”).</span></li>
+    <li><span data-lang="zh"><b>击杀事件</b>：击杀实体也可以有自己的反馈。</span><span data-lang="en"><b>Entity kills</b>: kills can have their own feedback.</span></li>
+    <li><span data-lang="zh"><b>强度分级</b>：全局的轻 / 中 / 重伤害阈值，让同一种伤害按轻重给出不同强度。</span><span data-lang="en"><b>Intensity bands</b>: global light / medium / heavy thresholds, so the same damage type can hit differently depending on severity.</span></li>
+    <li><span data-lang="zh"><b>总开关</b>：不想震的时候一键关闭全部反馈。</span><span data-lang="en"><b>Master switch</b>: turn everything off in one place.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">怎么调</span><span data-lang="en">Tuning It</span></h2>
+  <ol>
+    <li><span data-lang="zh">打开 <b>Control Flex 设置 → 震动</b>，先确认当前手柄被识别为支持震动（不支持震动的手柄该页无效果）。</span><span data-lang="en">Open <b>Control Flex Settings → Rumble</b> and confirm the current pad reports rumble support (pads without it simply do nothing here).</span></li>
+    <li><span data-lang="zh">用页面上的<b>强度档位测试</b>逐档试听轻 / 中 / 重的手感，再决定阈值。</span><span data-lang="en">Use the built-in <b>intensity tests</b> to feel light / medium / heavy, then set thresholds.</span></li>
+    <li><span data-lang="zh">按事件类型挑波形：摔落之类的小事件用脉冲，爆炸用长震，被玩家击杀可以留给“玩家伤害”单独配置。</span><span data-lang="en">Pick waveforms per type: a pulse for falls, a sustained buzz for explosions, and a distinct feel for player damage.</span></li>
+  </ol>
+
+  <div class="callout tip">
+    <p>
+      <span data-lang="zh">联机时自己的震动只受自己的设置影响；多人战斗里的反馈事件（打出伤害 / 被谁打）由游戏事件驱动，因此在服务器与单机中的表现一致。</span>
+      <span data-lang="en">In multiplayer your rumble follows your own settings; the events that drive it come from the game itself, so singleplayer and server play behave the same.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span data-lang="zh">相关：<a href="mod-adaptation.html">模组适配</a>（把模组事件接进 Control Flex 的动作体系）、<a href="../../dev/api-reference.html">API 参考</a>（<code>IControllerCapabilities.hasRumble()</code> 供桥接模组查询）。</span>
+    <span data-lang="en">Related: <a href="mod-adaptation.html">Mod Adaptation</a> (bringing mod events into Control Flex actions) and the <a href="../../dev/api-reference.html">API Reference</a> (<code>IControllerCapabilities.hasRumble()</code> for bridge mods).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/cursor.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></span></a>
+  <a class="pager-next" href="../../guide/feature/virtual-kbm.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

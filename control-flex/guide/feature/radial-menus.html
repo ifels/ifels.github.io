@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radial Menus · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></h1>
+  <p class="lead">
+    <span data-lang="zh">最多 5 个独立轮盘，每个环绕摇杆至多 8 个槽位：打开轮盘、用摇杆瞄准、按 A 确认。食物、火把、<code>/home</code> 这类高频但不值得占用面键的操作，都适合放进轮盘。</span>
+    <span data-lang="en">Up to five independent wheels, each with as many as eight slots around the stick: open a wheel, aim with the stick, confirm with A. Food, torches, <code>/home</code> — frequent actions that do not deserve a dedicated face button belong on a wheel.</span>
+  </p>
+
+  <h2><span data-lang="zh">槽位能做什么</span><span data-lang="en">What a Slot Can Do</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">类型</span><span data-lang="en">Type</span></th>
+          <th><span data-lang="zh">作用</span><span data-lang="en">Effect</span></th>
+          <th><span data-lang="zh">示例</span><span data-lang="en">Examples</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-lang="zh">按键绑定</span><span data-lang="en">Key binding</span></td>
+          <td><span data-lang="zh">触发原版或模组的 KeyMapping</span><span data-lang="en">Fires a vanilla or mod KeyMapping</span></td>
+          <td><span data-lang="zh">切换视角、模组技能键</span><span data-lang="en">Perspective toggle, mod skill keys</span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">聊天指令</span><span data-lang="en">Chat command</span></td>
+          <td><span data-lang="zh">执行以 <code>/</code> 开头的命令</span><span data-lang="en">Runs a <code>/</code> command</span></td>
+          <td><code>/home</code> · <code>/spawn</code> · <code>/warp</code></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">使用物品</span><span data-lang="en">Use item</span></td>
+          <td><span data-lang="zh">切换到对应的快捷栏格并直接使用</span><span data-lang="en">Switches to the hotbar slot and uses it</span></td>
+          <td><span data-lang="zh">火把、食物、药水、工具</span><span data-lang="en">Torches, food, potions, tools</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">打开与选择</span><span data-lang="en">Opening &amp; Selecting</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>打开方式跟随菜单绑定</b>：<code>Press</code> 为轻按打开（松手不关闭，再点确认或返回），<code>Hold</code> 为按住保持打开、松开关闭。</span><span data-lang="en"><b>Opening follows the menu's binding</b>: <code>Press</code> taps to open (release does not close it), <code>Hold</code> keeps it open while held and closes on release.</span></li>
+    <li><span data-lang="zh"><b>选择摇杆</b>：左摇杆、右摇杆或双摇杆（默认双摇杆）。</span><span data-lang="en"><b>Selection stick</b>: left, right, or both (both by default).</span></li>
+    <li><span data-lang="zh"><b>菜单与层绑定</b>：每个菜单有一个所属层。默认布局是：菜单 1 在 Main，菜单 2–5 分别在 Shift 1–4 —— 所以 Shift 层除了扩展按键，也是轮盘的入口层。</span><span data-lang="en"><b>Menus are assigned to layers</b>: by default Menu 1 lives on Main and Menus 2–5 on Shift 1–4 — Shift layers serve as wheel entry points as well as binding planes.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">图标与外观</span><span data-lang="en">Icons &amp; Appearance</span></h2>
+  <ul>
+    <li><span data-lang="zh">图标模式：<b>自动</b>（按槽位内容推断，如物品图标）、<b>随机</b>、<b>默认</b>、<b>物品 ID</b>、或自定义纹理路径。</span><span data-lang="en">Icon modes: <b>auto</b> (inferred from the slot's content, e.g. item icons), <b>random</b>, <b>default</b>, <b>item ID</b>, or a custom texture path.</span></li>
+    <li><span data-lang="zh">游戏内编辑器可以调整图标、槽位顺序，以及每个菜单自己的触发方式。</span><span data-lang="en">The in-game editor lets you pick icons, reorder slots, and set the trigger mode per menu.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">配置文件</span><span data-lang="en">Config Files</span></h2>
+  <p>
+    <span data-lang="zh">轮盘布局保存在 <code>config/controlflex/radial_menu/radial_menus.json</code>，图标资源放在同目录下。整合包可以把这个文件随包分发，让玩家开箱即用；文件结构（节选）：</span>
+    <span data-lang="en">Wheel layouts persist in <code>config/controlflex/radial_menu/radial_menus.json</code> with icons alongside. Packs can ship this file so players start with working wheels. Structure (excerpt):</span>
+  </p>
+  <pre><code>{
+  "version": 1,
+  "selectionStick": "BOTH",
+  "menus": [
+    { "id": 1, "name": "Menu 1", "mode": "HOLD",  "assignedLayer": "main",   "slots": [ 8 × slot ] },
+    { "id": 2, "name": "Menu 2", "mode": "HOLD",  "assignedLayer": "shift1", "slots": [ … ] },
+    { "id": 5, "name": "Menu 5", "mode": "PRESS", "assignedLayer": "shift4", "slots": [ … ] }
+  ]
+}</code></pre>
+
+  <h2><span data-lang="zh">默认值（Basic 模板）</span><span data-lang="en">Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th><span data-lang="zh">菜单</span><span data-lang="en">Menu</span></th>
+          <th><span data-lang="zh">默认打开键</span><span data-lang="en">Default open binding</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Main</td><td><span data-lang="zh">菜单 1</span><span data-lang="en">Menu 1</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 1</td><td><span data-lang="zh">菜单 2</span><span data-lang="en">Menu 2</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 2</td><td><span data-lang="zh">菜单 3</span><span data-lang="en">Menu 3</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 3</td><td><span data-lang="zh">菜单 4</span><span data-lang="en">Menu 4</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 4</td><td><span data-lang="zh">菜单 5</span><span data-lang="en">Menu 5</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p>
+      <span data-lang="zh">所有槽位出厂时都是空的 —— 轮盘是一个容器，内容由你（或整合包作者）填充。同一颗 <span class="kbd">Back</span> 因为分属不同层，可以分别打开 5 个不同的轮盘。</span>
+      <span data-lang="en">All slots ship empty — a wheel is a container you (or a pack author) fill. The same <span class="kbd">Back</span> button opens five different wheels because each menu belongs to a different layer.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span data-lang="zh">相关：<a href="layers.html">七层按键架构</a>（轮盘挂在层上）、<a href="../../modpack/index.html">配置文件</a>（随整合包分发轮盘布局）。</span>
+    <span data-lang="en">Related: <a href="layers.html">Seven Layers</a> (wheels hang off layers) and <a href="../../modpack/index.html">Configuration</a> (shipping wheel layouts in a pack).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/combo-keys.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></span></a>
+  <a class="pager-next" href="../../guide/feature/analog-movement.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trigger Modes · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></h1>
+  <p class="lead">
+    <span data-lang="zh">每个绑定由“哪个键”和“怎么触发”两部分组成。Control Flex 提供 10 种触发模式，同一颗按键可以同时承担轻按、长按、按住、切换与双击行为。</span>
+    <span data-lang="en">Every binding pairs which button with how it fires. Control Flex offers ten trigger modes, so one button can tap, hold, latch, and double-press for different actions.</span>
+  </p>
+
+  <h2><span data-lang="zh">十种模式</span><span data-lang="en">The Ten Modes</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">模式</span><span data-lang="en">Mode</span></th>
+          <th><span data-lang="zh">触发时机</span><span data-lang="en">When it fires</span></th>
+          <th><span data-lang="zh">典型用途</span><span data-lang="en">Typical use</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Press</td><td><span data-lang="zh">按下瞬间触发一次</span><span data-lang="en">Once, on button down</span></td><td><span data-lang="zh">一次性动作、开关类操作</span><span data-lang="en">One-shots and menu opens</span></td></tr>
+        <tr><td>Release</td><td><span data-lang="zh">松开瞬间触发一次</span><span data-lang="en">Once, on button up</span></td><td><span data-lang="zh">Shift 层返回 Main、“松手生效”的动作</span><span data-lang="en">Layer return, “on let go” actions</span></td></tr>
+        <tr><td>Hold</td><td><span data-lang="zh">按住期间持续激活</span><span data-lang="en">Active the whole time held</span></td><td><span data-lang="zh">移动 / 视角、持续使用、层切换键</span><span data-lang="en">Movement, look, sustained use, layer switches</span></td></tr>
+        <tr><td>Tap</td><td><span data-lang="zh">短于 Tap 阈值的按下并松开时触发一次；<b>按住超过阈值则松开时不触发</b></span><span data-lang="en">Once, on release after a short press; <b>if held past the threshold, nothing fires on release</b></span></td><td><span data-lang="zh">不误触发长按的快速动作</span><span data-lang="en">Quick actions that must not fire on a hold</span></td></tr>
+        <tr><td>Long Press</td><td><span data-lang="zh">按住超过 Long Press 阈值后触发一次</span><span data-lang="en">Once, after being held past the long-press threshold</span></td><td><span data-lang="zh">同一按键的第二功能（如暂停菜单）</span><span data-lang="en">A second function on the same button (e.g. pause menu)</span></td></tr>
+        <tr><td>Toggle</td><td><span data-lang="zh">第一次按下激活并保持，第二次按下释放；<b>与按键是否按住无关</b>（RELEASE 事件被忽略）</span><span data-lang="en">First press activates and holds, second press releases; <b>independent of button hold</b> (RELEASE events are ignored)</span></td><td><span data-lang="zh">疾跑、走路模式、视角等持续状态</span><span data-lang="en">Persistent states: sprint, walk mode, POV</span></td></tr>
+        <tr><td>Double Press</td><td><span data-lang="zh">在 Tap 窗口内第二次按下，<b>按下即触发一次</b>（不锁存）</span><span data-lang="en">A second press inside the tap window fires once <b>immediately on down</b> (not latched)</span></td><td><span data-lang="zh">与 Hold / Press 共用一颗键的额外单击</span><span data-lang="en">An extra one-shot alongside Hold / Press</span></td></tr>
+        <tr><td>Double Tap</td><td><span data-lang="zh">两次短按，在第二次松开时触发一次</span><span data-lang="en">Two short presses; fires once on the second release</span></td><td><span data-lang="zh">不抢占第一次点击的确认类动作</span><span data-lang="en">Confirm-style actions that must not steal the first tap</span></td></tr>
+        <tr><td>Double Hold</td><td><span data-lang="zh">先短按，再在 Tap 窗口内按住；按住期间保持激活</span><span data-lang="en">Short press, then press-and-hold inside the tap window; stays active until release</span></td><td><span data-lang="zh">“轻点再接长按”才触发，防误触</span><span data-lang="en">Tap-then-hold for deliberate triggers that resist misfires</span></td></tr>
+        <tr><td>Double Toggle</td><td><span data-lang="zh">与 Toggle 相同的锁存，第二次轻按（松开时）翻转</span><span data-lang="en">Same latch as Toggle; flips on the second short-press release</span></td><td><span data-lang="zh">和 Hold 版本共用一颗键的锁定切换（Basic 模板的潜行就是这种搭配）</span><span data-lang="en">A latch sharing one button with its Hold variant (Basic does this for sneak)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-lang="zh">阈值与时间窗口</span><span data-lang="en">Thresholds &amp; Time Windows</span></h2>
+  <ul>
+    <li><span data-lang="zh"><b>Tap 与 Long Press 阈值</b>：全局设置，范围 100–2000 ms，位置在<b>其他设置</b>。它们同时作用于所有绑定与模板。</span><span data-lang="en"><b>Tap and Long Press thresholds</b> are global, 100–2000 ms, configured in <b>Other Settings</b>. They apply to every binding and template.</span></li>
+    <li><span data-lang="zh"><b>Tap 阈值也是所有双击模式的间隔上限</b>：连按、连点、连按住、连点切换都用它作为两次按键之间的最大间隔。</span><span data-lang="en"><b>The Tap threshold doubles as the gap limit for every Double mode</b>: Double Press / Tap / Hold / Toggle all use it as the maximum interval between the two presses.</span></li>
+    <li><span data-lang="zh"><b>默认值</b>：Tap 500 ms、Long Press 1000 ms（来自 Basic 模板）。</span><span data-lang="en"><b>Defaults</b>: Tap 500 ms, Long Press 1000 ms (from the Basic template).</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">怎么改模式</span><span data-lang="en">Changing a Mode</span></h2>
+  <ul>
+    <li><span data-lang="zh">在按键映射里，模式列可以循环切换常用模式（Press / Hold / Tap / Long Press）。</span><span data-lang="en">In Key Mapping, the Mode column cycles through the common modes (Press / Hold / Tap / Long Press).</span></li>
+    <li><span data-lang="zh">模板与 compat JSON 支持全部 10 种，写法为 <code>button|MODE</code>，例如 <code>buttonA|HOLD</code>、<code>rightStickClick|DOUBLE_TOGGLE</code>；模式 token 为 <code>PRESS / RELEASE / HOLD / TAP / LONG_PRESS / TOGGLE / DOUBLE_PRESS / DOUBLE_TAP / DOUBLE_HOLD / DOUBLE_TOGGLE</code>。</span><span data-lang="en">Templates and compat JSON support all ten, written as <code>button|MODE</code> — for example <code>buttonA|HOLD</code> or <code>rightStickClick|DOUBLE_TOGGLE</code>. Mode tokens: <code>PRESS / RELEASE / HOLD / TAP / LONG_PRESS / TOGGLE / DOUBLE_PRESS / DOUBLE_TAP / DOUBLE_HOLD / DOUBLE_TOGGLE</code>.</span></li>
+    <li><span data-lang="zh">部分动作限定模式：层切换键固定 HOLD，Shift 层返回 Main 固定 RELEASE，径向菜单的打开绑定支持 PRESS 与 HOLD。</span><span data-lang="en">Some actions restrict their mode: layer switches are fixed to HOLD, Shift-layer return-to-Main to RELEASE, and radial-menu opens support PRESS and HOLD.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">搭配实例</span><span data-lang="en">Worked Examples</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-lang="zh">按键</span><span data-lang="en">Button</span></th>
+          <th><span data-lang="zh">绑定</span><span data-lang="en">Binding</span></th>
+          <th><span data-lang="zh">效果</span><span data-lang="en">Effect</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-lang="zh">右摇杆按下</span><span data-lang="en">R-stick click</span></td>
+          <td><code>HOLD</code> + <code>DOUBLE_TOGGLE</code></td>
+          <td><span data-lang="zh">按住潜行，双击锁定潜行（Basic 模板默认）</span><span data-lang="en">Hold to sneak, double-tap to latch sneak (Basic default)</span></td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Start</span></td>
+          <td><code>LONG_PRESS</code></td>
+          <td><span data-lang="zh">长按打开暂停菜单，短按不触发</span><span data-lang="en">Long press opens the pause menu; short presses do nothing</span></td>
+        </tr>
+        <tr>
+          <td><span class="kbd">D-Pad →</span></td>
+          <td><code>TAP</code></td>
+          <td><span data-lang="zh">轻按切换视角；意外长按不会切</span><span data-lang="en">Tap to change perspective; an accidental hold does nothing</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-lang="zh">把多个按键合成一个动作，见<a href="combo-keys.html">组合键</a>；把切换状态固化进模板，见<a href="../../modpack/index.html">配置文件</a>。</span>
+    <span data-lang="en">To combine buttons into one action, see <a href="combo-keys.html">Combo Keys</a>; to bake toggles into a template, see <a href="../../modpack/index.html">Configuration</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/layers.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></span></a>
+  <a class="pager-next" href="../../guide/feature/combo-keys.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

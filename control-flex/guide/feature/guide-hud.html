@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In-Game Guide · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></h1>
+  <p class="lead">
+    <span data-lang="zh">不用切出去查文档：Control Flex 把按键提示做进了游戏里 —— 情境 HUD 会按当前动作、手持物品、打开的界面或手柄按键显示对应提示，指南列表则汇总所有可用指南。</span>
+    <span data-lang="en">No need to alt-tab to a document: Control Flex brings the reference into the game. Context HUD tips appear for the current action, held item, open screen, or controller button, and the guide list gathers everything available.</span>
+  </p>
+
+  <h2><span data-lang="zh">情境 HUD 提示</span><span data-lang="en">Context HUD Tips</span></h2>
+  <p>
+    <span data-lang="zh">指南条目可以标记为 HUD 显示：这类提示会根据情境出现在屏幕上 —— 例如进入世界时的移动 / 交互基础提示、手持特定物品时该物品的操作提示、打开某个界面时该界面的按键提示。条目针对的“动作”直接使用 Control Flex 的动作体系，因此你改过的键位会如实反映在提示里。</span>
+    <span data-lang="en">Guide entries can be marked for HUD display: those tips appear on screen in context — the movement and interaction basics when you first join, tips for a specific held item, or the key hints for a screen you just opened. Entries reference Control Flex actions directly, so your own rebinds are reflected in the tips.</span>
+  </p>
+
+  <h2><span data-lang="zh">指南列表</span><span data-lang="en">The Guide List</span></h2>
+  <ul>
+    <li><span data-lang="zh">按 <b>Guide</b> 键打开指南列表（<code>open_guide</code> 动作，Basic 模板默认绑在 <span class="kbd">Guide</span>），界面里可用 <span class="kbd">LB</span> / <span class="kbd">RB</span> 切换标签。</span><span data-lang="en">Press the <b>Guide</b> button to open the list (<code>open_guide</code>, bound to <span class="kbd">Guide</span> in the Basic template); <span class="kbd">LB</span> / <span class="kbd">RB</span> switch tabs inside.</span></li>
+    <li><span data-lang="zh">列表按分类组织，指南带有触发条件（例如“首次进入世界”）与若干条目，条目由“动作 + 标签 + 显示方式”组成。</span><span data-lang="en">The list is organized by category; each guide has a trigger (such as “first join”) plus entries made of an action, a label, and a display mode.</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">按钮图标随平台变化</span><span data-lang="en">Button Glyphs Follow the Platform</span></h2>
+  <p>
+    <span data-lang="zh">提示里的按钮图标按当前手柄类型切换（Xbox / PlayStation / Switch 布局各有映射，任天堂布局还会处理 A/B 互换），因此同一句提示在 DualSense 与 Xbox 手柄上显示的图标都是对的。</span>
+    <span data-lang="en">Glyphs in the tips follow the connected controller: Xbox, PlayStation, and Switch layouts each have their own mappings, and the Nintendo layout handles the A/B swap — so the same tip shows the right icons on a DualSense and an Xbox pad alike.</span>
+  </p>
+
+  <h2><span data-lang="zh">配置文件</span><span data-lang="en">Config Files</span></h2>
+  <p>
+    <span data-lang="zh">指南 JSON 位于 <code>config/controlflex/guides/</code>（分层：<code>default/</code> 内置、<code>mods/</code> 桥接模组安装、<code>user/</code> 你的修改）；首次运行会把内置默认复制出来。结构（节选）：</span>
+    <span data-lang="en">Guide JSON lives in <code>config/controlflex/guides/</code> (layered: <code>default/</code> packaged, <code>mods/</code> installed by bridge mods, <code>user/</code> your edits); the packaged defaults are copied out on first run. Structure (excerpt):</span>
+  </p>
+  <pre><code>{
+  "mod_id": "controlflex",
+  "categories": [
+    {
+      "id": "basic",
+      "guides": [
+        {
+          "id": "movement",
+          "title": "controlflex.guide.basic.movement",
+          "trigger": { "type": "first_join" },
+          "entries": [
+            { "action": "move_forward", "label": "controlflex.guide.entry.move", "display": "auto_move", "hud": true },
+            { "action": "jump",         "label": "controlflex.guide.entry.jump",  "hud": true }
+          ]
+        }
+      ]
+    }
+  ]
+}</code></pre>
+
+  <h2><span data-lang="zh">什么时候用得上</span><span data-lang="en">When It Helps</span></h2>
+  <ul>
+    <li><span data-lang="zh">整合包作者：把“这包怎么玩手柄”做成指南文件随包分发，新玩家进世界就看到该按什么。</span><span data-lang="en">Pack authors: ship a guide describing your pack's controller layout so new players see it the moment they join.</span></li>
+    <li><span data-lang="zh">桥接模组：可以在安装 compat 配置的同时安装 guide 资源（见 <code>onInstallGuideAssets</code>，<a href="../../dev/examples.html">插件与示例</a>），给模组的关键操作加提示。</span><span data-lang="en">Bridge mods: install guide assets alongside compat configs (<code>onInstallGuideAssets</code>, see <a href="../../dev/examples.html">Plugin &amp; Examples</a>) to add tips for key actions.</span></li>
+  </ul>
+
+  <p class="small muted">
+    <span data-lang="zh">相关：<a href="../../guide/settings.html">设置与键位</a>（按键检测面板，排查提示为何不出现）、<a href="../../dev/api-reference.html">API 参考</a>（<code>reloadGuides()</code> 与 <code>IControllerCapabilities</code>）。</span>
+    <span data-lang="en">Related: <a href="../../guide/settings.html">Settings &amp; Controls</a> (the key-detection panel for debugging missing tips) and the <a href="../../dev/api-reference.html">API Reference</a> (<code>reloadGuides()</code> and <code>IControllerCapabilities</code>).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/mod-adaptation.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></span></a>
+  <span class="spacer"></span>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

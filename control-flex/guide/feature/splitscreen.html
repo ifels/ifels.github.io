@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split-Screen Co-op · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>/* supported languages: keep in sync with LANGS in assets/app.js */
+(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <select id="lang-select" class="lang-select" aria-label="Language">
+    <option value="en">English</option>
+    <option value="zh">中文</option>
+  </select>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="../../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
+      <a href="../../guide/getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
+      <a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
+      <div class="nav-sub">
+        <a href="../../guide/feature/layers.html"><span data-lang="zh">七层按键架构</span><span data-lang="en">Seven Layers</span></a>
+        <a href="../../guide/feature/trigger-modes.html"><span data-lang="zh">触发模式</span><span data-lang="en">Trigger Modes</span></a>
+        <a href="../../guide/feature/combo-keys.html"><span data-lang="zh">组合键</span><span data-lang="en">Combo Keys</span></a>
+        <a href="../../guide/feature/radial-menus.html"><span data-lang="zh">径向菜单</span><span data-lang="en">Radial Menus</span></a>
+        <a href="../../guide/feature/analog-movement.html"><span data-lang="zh">模拟移动</span><span data-lang="en">Analog Movement</span></a>
+        <a href="../../guide/feature/camera.html"><span data-lang="zh">相机与瞄准</span><span data-lang="en">Camera &amp; Aim</span></a>
+        <a href="../../guide/feature/cursor.html"><span data-lang="zh">光标与界面操作</span><span data-lang="en">Cursor &amp; GUI</span></a>
+        <a href="../../guide/feature/rumble.html"><span data-lang="zh">震动反馈</span><span data-lang="en">Rumble</span></a>
+        <a href="../../guide/feature/virtual-kbm.html"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></a>
+        <a href="../../guide/feature/splitscreen.html"><span data-lang="zh">分屏双人</span><span data-lang="en">Split-Screen Co-op</span></a>
+        <a href="../../guide/feature/mod-adaptation.html"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></a>
+        <a href="../../guide/feature/guide-hud.html"><span data-lang="zh">游戏内指南</span><span data-lang="en">In-Game Guide</span></a>
+      </div>
+      <a href="../../guide/settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
+      <a href="../../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
+      <a href="../../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
+      <a href="../../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
+      <a href="../../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
+      <a href="../../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a></p>
+
+<h1><span data-lang="zh">分屏双人（同机合作）</span><span data-lang="en">Split-Screen Co-op</span></h1>
+  <p class="lead">
+    <span data-lang="zh">Java 版不在同一个窗口里渲染两名玩家，所以“同机双人”的形态是：<b>同一台电脑上开两个客户端</b>，通过“对局域网开放”联机，各自用自己的手柄。Control Flex 为这个用法做了两处专门支持：手柄归属与失焦窗口继续运行。</span>
+    <span data-lang="en">Java Edition does not render two players in one window, so couch co-op means <b>two clients on one PC</b> joined over Open to LAN, each with its own controller. Control Flex supports that setup in two specific ways: controller ownership and unfocused windows that keep playing.</span>
+  </p>
+
+  <h2><span data-lang="zh">你需要准备</span><span data-lang="en">What You Need</span></h2>
+  <ul>
+    <li><span data-lang="zh">两个以上的 Minecraft 账号。</span><span data-lang="en">Two or more Minecraft accounts.</span></li>
+    <li><span data-lang="zh">两把手柄，<b>或者</b>一把手柄 + 一套键鼠。</span><span data-lang="en">Two gamepads, <b>or</b> one gamepad plus keyboard and mouse.</span></li>
+    <li><span data-lang="zh">一个能同时开两个实例的启动器。</span><span data-lang="en">A launcher that can run two instances at once.</span></li>
+    <li><span data-lang="zh">每一个“用手柄”的实例都安装 Control Flex。</span><span data-lang="en">Control Flex installed in <b>each</b> instance that uses a gamepad.</span></li>
+    <li><span data-lang="zh">可选：<a href="https://modrinth.com/mod/splitscreen" target="_blank" rel="noopener">Splitscreen Support</a>（只做窗口平铺，不处理输入）。</span><span data-lang="en">Optional: <a href="https://modrinth.com/mod/splitscreen" target="_blank" rel="noopener">Splitscreen Support</a> (window tiling only, no input handling).</span></li>
+  </ul>
+
+  <h2><span data-lang="zh">步骤</span><span data-lang="en">Steps</span></h2>
+  <ol>
+    <li><span data-lang="zh">为每个账号各建一个启动器实例，两边都保持<b>窗口模式</b>（不要全屏）。</span><span data-lang="en">Create one launcher instance per account; keep both <b>windowed</b> (not fullscreen).</span></li>
+    <li><span data-lang="zh">安装模组：手柄实例装 Control Flex（可选再装 Splitscreen Support）。</span><span data-lang="en">Install the mods: Control Flex in the gamepad instances, optionally Splitscreen Support too.</span></li>
+    <li><span data-lang="zh">启动两个客户端。双柄场景：在两边的 <b>手柄选择</b>里分别指定<b>不同</b>的手柄；手柄 + 键鼠场景：只给那个手柄实例指定手柄，另一位用键鼠。</span><span data-lang="en">Launch both. Two pads: pick a <b>different</b> controller in each game's <b>Gamepad Selection</b>. Pad + keyboard: assign the pad in the gamepad instance only.</span></li>
+    <li><span data-lang="zh">每个窗口按 <span class="kbd">F3</span>+<span class="kbd">P</span> 关闭“失去焦点时暂停”（或在视频设置里改）—— 后台窗口必须继续运行；暂停界面也会有提示。</span><span data-lang="en">Press <span class="kbd">F3</span>+<span class="kbd">P</span> in each window to disable Pause on Lost Focus (or change it in video options) — the unfocused window must keep running; the pause screen also shows a hint.</span></li>
+    <li><span data-lang="zh">装了 Splitscreen Support 的话，按 <span class="kbd">F11</span> 循环半屏 / 四分之一屏布局，它会记住上次的位置。</span><span data-lang="en">With Splitscreen Support, press <span class="kbd">F11</span> to cycle half- and quarter-screen layouts; the last position is remembered.</span></li>
+    <li><span data-lang="zh">在其中一个实例上<b>对局域网开放</b>，其他实例从多人游戏列表里加入，或用 <code>localhost</code> + 开放时的端口连接。</span><span data-lang="en">Host on one instance (<b>Open to LAN</b>); join from the others from the multiplayer list, or via <code>localhost</code> plus the port shown.</span></li>
+  </ol>
+
+  <h2><span data-lang="zh">视角模式的选择</span><span data-lang="en">Picking a Look Mode</span></h2>
+  <ul>
+    <li><span data-lang="zh">后台窗口用 <b>Direct Turn</b> 或 <b>Smooth Turn</b>。</span><span data-lang="en">Use <b>Direct Turn</b> or <b>Smooth Turn</b> in background windows.</span></li>
+    <li><span data-lang="zh"><b>Simulate Mouse</b> 无法驱动后台窗口的系统光标，会自动回退到 Direct Turn —— 想避开这种切换就统一用 Direct / Smooth。</span><span data-lang="en"><b>Simulate Mouse</b> cannot drive the OS cursor in a background window and falls back to Direct Turn automatically — use Direct or Smooth everywhere to avoid the switch.</span></li>
+  </ul>
+
+  <div class="callout tip">
+    <p>
+      <span data-lang="zh">手柄“抢输入”是多手柄场景最常见的问题：SDL3 会如实报告设备，但两个客户端各自选了同一把。只要在<b>手柄选择</b>里分配不同的设备即可；手柄断开时 Control Flex 会自动切到第一把可用手柄，所以尽量使用各自固定的那一把。</span>
+      <span data-lang="en">“Input stealing” is the classic two-pad problem: SDL3 reports devices honestly, but both clients might pick the same one. Just assign different devices in <b>Gamepad Selection</b>. When a pad disconnects, Control Flex auto-selects the first available one, so keep each player on their own device.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span data-lang="zh">相关：<a href="camera.html">相机与瞄准</a>（视角模式细节）、<a href="layers.html">七层按键架构</a>（每人一套自己的模板与配置）。</span>
+    <span data-lang="en">Related: <a href="camera.html">Camera &amp; Aim</a> (look mode details) and <a href="layers.html">Seven Layers</a> (each player keeps their own template and config).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/virtual-kbm.html"><span class="dir"><span data-lang="zh">← 上一个功能</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">虚拟键鼠</span><span data-lang="en">Virtual Keyboard &amp; Mouse</span></span></a>
+  <a class="pager-next" href="../../guide/feature/mod-adaptation.html"><span class="dir"><span data-lang="zh">下一个功能 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">模组适配</span><span data-lang="en">Mod Adaptation</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>
