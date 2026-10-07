@@ -1,11 +1,18 @@
-# ControlFlex Wiki
+# Control Flex Wiki
 
-Static documentation site for the [ControlFlex](https://www.curseforge.com/minecraft/mc-mods/control-flex)
+Static documentation site for the [Control Flex](https://www.curseforge.com/minecraft/mc-mods/control-flex)
 Minecraft mod. Served from GitHub Pages at:
 
 **https://ifels.github.io/control-flex/**
 
 No build step: plain HTML + CSS + a small JS file. Push to `main` and GitHub Pages serves it.
+
+## Naming
+
+Display text uses **Control Flex** (with a space), matching the CurseForge listing and the
+in-game key-binding category. Identifiers stay joined: the mod id `controlflex`, config paths
+such as `config/controlflex/`, class names such as `ControlFlexApi` / `IControlFlexPlugin`, and
+repository names (`ControlFlexMC/...`).
 
 ## Structure
 

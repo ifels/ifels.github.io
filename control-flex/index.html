@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ControlFlex Wiki</title>
+<title>Control Flex Wiki</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
 <script>/* supported languages: keep in sync with LANGS in assets/app.js */
 (function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
@@ -12,7 +12,7 @@
 <body>
 <header class="topbar">
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
-  <a class="brand" href="index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <a class="brand" href="index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
   <nav class="topnav">
     <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
@@ -58,7 +58,7 @@
 <main class="content">
 
   <div class="hero">
-    <h1>Control<span style="color:#5fd897">Flex</span></h1>
+    <h1>Control <span style="color:#5fd897">Flex</span></h1>
     <p class="tagline">
       <span data-lang="zh">面向整合包的灵活手柄映射模组 —— 把一个手柄，变成整包的操作台。</span>
       <span data-lang="en">Flexible controller mapping for Minecraft Java Edition, built for modpacks.</span>
@@ -77,10 +77,10 @@
   </div>
 
   <div data-lang="zh">
-    <p class="lead">ControlFlex（Control + Flex）通过 7 层按键架构、10 种触发模式、组合键、径向菜单和跨层映射，把有限的按键变成对模组内容的广泛覆盖。它的模组适配系统可以自动发现模组按键、按界面（Screen / Overlay）定制摇杆行为，并支持社区配置库与桥接模组 API。</p>
+    <p class="lead">Control Flex 的名字取自 Control + Flex：通过 7 层按键架构、10 种触发模式、组合键、径向菜单和跨层映射，把有限的按键变成对模组内容的广泛覆盖。它的模组适配系统可以自动发现模组按键、按界面（Screen / Overlay）定制摇杆行为，并支持社区配置库与桥接模组 API。</p>
   </div>
   <div data-lang="en">
-    <p class="lead">ControlFlex turns a limited set of buttons into broad coverage of modded content through a seven-layer binding architecture, ten trigger modes, combo keys, radial menus, and cross-layer mappings. Its mod adaptation system auto-discovers mod keys, adapts stick behavior per screen or overlay, and supports a community config repo plus a bridge-mod API.</p>
+    <p class="lead">Control Flex turns a limited set of buttons into broad coverage of modded content through a seven-layer binding architecture, ten trigger modes, combo keys, radial menus, and cross-layer mappings. Its mod adaptation system auto-discovers mod keys, adapts stick behavior per screen or overlay, and supports a community config repo plus a bridge-mod API.</p>
   </div>
 
   <h2><span data-lang="zh">从这里开始</span><span data-lang="en">Start Here</span></h2>
@@ -98,7 +98,7 @@
     </a>
     <a class="card" href="dev/index.html">
       <h3><span data-lang="zh">🔧 模组开发者</span><span data-lang="en">🔧 Mod Developers</span></h3>
-      <p><span data-lang="zh">用 ControlFlex API 写桥接模组：读取手柄输入、查询动作、推送模组状态。</span><span data-lang="en">Build bridge mods with the ControlFlex API: read input, query actions, push states.</span></p>
+      <p><span data-lang="zh">用 Control Flex API 写桥接模组：读取手柄输入、查询动作、推送模组状态。</span><span data-lang="en">Build bridge mods with the Control Flex API: read input, query actions, push states.</span></p>
       <p class="card-arrow"><span data-lang="zh">API 文档 →</span><span data-lang="en">API docs →</span></p>
     </a>
   </div>
@@ -155,7 +155,7 @@
   <h2><span data-lang="zh">三步上手</span><span data-lang="en">Up and Running in Three Steps</span></h2>
   <ol>
     <li><span data-lang="zh">在 <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge</a> 下载对应 MC 版本与加载器的 JAR，放进 <code>mods/</code> 文件夹。</span><span data-lang="en">Download the JAR for your MC version and loader from <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge</a> and drop it into <code>mods/</code>.</span></li>
-    <li><span data-lang="zh">启动游戏，连接手柄 —— ControlFlex 通过 SDL3 自动识别（支持热插拔）。</span><span data-lang="en">Launch the game and connect a controller — ControlFlex detects it via SDL3 (hotplug supported).</span></li>
+    <li><span data-lang="zh">启动游戏，连接手柄 —— Control Flex 通过 SDL3 自动识别（支持热插拔）。</span><span data-lang="en">Launch the game and connect a controller — Control Flex detects it via SDL3 (hotplug supported).</span></li>
     <li><span data-lang="zh">按 <span class="kbd">F9</span>（键盘）或 <span class="kbd">Back</span> + <span class="kbd">Start</span>（手柄）打开设置，选择模板并开始调整。</span><span data-lang="en">Press <span class="kbd">F9</span> (keyboard) or <span class="kbd">Back</span> + <span class="kbd">Start</span> (controller) to open settings, pick a template, and start tuning.</span></li>
   </ol>
 
@@ -164,7 +164,7 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
     <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
     <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>

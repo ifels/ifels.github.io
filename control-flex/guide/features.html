@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Features · ControlFlex Wiki</title>
+<title>Features · Control Flex Wiki</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
 <script>/* supported languages: keep in sync with LANGS in assets/app.js */
 (function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
@@ -12,7 +12,7 @@
 <body>
 <header class="topbar">
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
-  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
   <nav class="topnav">
     <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
@@ -65,7 +65,7 @@
 
   <h2><span data-lang="zh">1. 七层按键架构</span><span data-lang="en">1. Seven Binding Layers</span></h2>
   <p>
-    <span data-lang="zh">一个手柄大约只有十几个输入，而一个整合包可能暴露上百个动作。ControlFlex 用七层模型让同一个物理按键在不同场景承担不同职责：</span>
+    <span data-lang="zh">一个手柄大约只有十几个输入，而一个整合包可能暴露上百个动作。Control Flex 用七层模型让同一个物理按键在不同场景承担不同职责：</span>
     <span data-lang="en">A controller has roughly a dozen inputs; a modpack can expose hundreds of actions. The seven-layer model lets one physical button mean different things per context:</span>
   </p>
   <div class="table-wrap">
@@ -180,10 +180,10 @@
 
   <h2><span data-lang="zh">5. 模拟移动（360°）</span><span data-lang="en">5. Analog Movement (360°)</span></h2>
   <p>
-    <span data-lang="zh">原版 Minecraft 只把 WASD 当作开关，因此“摇杆转按键”只能八方向全速行走。开启模拟移动后，ControlFlex 直接提供连续的 360° 移动向量：任意角度，轻推即慢走。</span>
-    <span data-lang="en">Vanilla Minecraft only sees WASD as on/off, so stick-to-keys walking is limited to eight directions at full speed. With Analog Movement, ControlFlex feeds a continuous 360° vector: any angle, and a light push walks slowly.</span>
+    <span data-lang="zh">原版 Minecraft 只把 WASD 当作开关，因此“摇杆转按键”只能八方向全速行走。开启模拟移动后，Control Flex 直接提供连续的 360° 移动向量：任意角度，轻推即慢走。</span>
+    <span data-lang="en">Vanilla Minecraft only sees WASD as on/off, so stick-to-keys walking is limited to eight directions at full speed. With Analog Movement, Control Flex feeds a continuous 360° vector: any angle, and a light push walks slowly.</span>
   </p>
-  <p class="small muted"><span data-lang="zh">路径：<b>ControlFlex 设置 → 其他（Other）→ 模拟移动</b>。</span><span data-lang="en">Path: <b>ControlFlex Settings → Other → Analog Movement</b>.</span></p>
+  <p class="small muted"><span data-lang="zh">路径：<b>Control Flex 设置 → 其他（Other）→ 模拟移动</b>。</span><span data-lang="en">Path: <b>Control Flex Settings → Other → Analog Movement</b>.</span></p>
   <div class="table-wrap">
     <table>
       <thead>
@@ -224,8 +224,8 @@
 
   <h2><span data-lang="zh">8. 虚拟键鼠（Virtual KBM）</span><span data-lang="en">8. Virtual Keyboard &amp; Mouse</span></h2>
   <p>
-    <span data-lang="zh">有些模组从不注册 KeyMapping —— 它们只监听物理键盘或鼠标。虚拟键鼠让手柄直接向游戏注入这些真实按键（Shift、Escape、Page Up/Down、鼠标按键、滚轮），无需先把它们变成 ControlFlex 动作。</span>
-    <span data-lang="en">Some mods never register a KeyMapping — they only watch the physical keyboard or mouse. Virtual KBM lets the gamepad inject those real keys (Shift, Escape, Page Up/Down, mouse buttons, scroll wheel) on any layer, without turning them into ControlFlex actions first.</span>
+    <span data-lang="zh">有些模组从不注册 KeyMapping —— 它们只监听物理键盘或鼠标。虚拟键鼠让手柄直接向游戏注入这些真实按键（Shift、Escape、Page Up/Down、鼠标按键、滚轮），无需先把它们变成 Control Flex 动作。</span>
+    <span data-lang="en">Some mods never register a KeyMapping — they only watch the physical keyboard or mouse. Virtual KBM lets the gamepad inject those real keys (Shift, Escape, Page Up/Down, mouse buttons, scroll wheel) on any layer, without turning them into Control Flex actions first.</span>
   </p>
   <ul>
     <li><span data-lang="zh">捕获一个键盘 / 鼠标按键，然后把任意手柄组合绑定到它。</span><span data-lang="en">Capture a keyboard/mouse key, then bind any controller combo to it.</span></li>
@@ -236,12 +236,12 @@
 
   <h2><span data-lang="zh">9. 分屏双人（Couch Co-op）</span><span data-lang="en">9. Split-Screen Couch Co-op</span></h2>
   <p>
-    <span data-lang="zh">Java 版不在同一窗口渲染两名玩家，因此本地双人 = 同一台电脑上开两个客户端，通过“对局域网开放”联机。ControlFlex 为此做了准备：</span>
-    <span data-lang="en">Java Edition does not render two players in one window, so couch co-op means two (or more) instances on the same PC joined over Open to LAN. ControlFlex is built for that:</span>
+    <span data-lang="zh">Java 版不在同一窗口渲染两名玩家，因此本地双人 = 同一台电脑上开两个客户端，通过“对局域网开放”联机。Control Flex 为此做了准备：</span>
+    <span data-lang="en">Java Edition does not render two players in one window, so couch co-op means two (or more) instances on the same PC joined over Open to LAN. Control Flex is built for that:</span>
   </p>
   <ol>
     <li><span data-lang="zh">准备两个以上的 Minecraft 账号，以及两把手柄（或一把手柄 + 键鼠）。</span><span data-lang="en">Two or more Minecraft accounts, and two gamepads (or one gamepad plus keyboard &amp; mouse).</span></li>
-    <li><span data-lang="zh">每个需要手柄的客户端都安装 ControlFlex；建议都保持窗口模式（不要全屏）。</span><span data-lang="en">Install ControlFlex in each pad-driven instance; keep both windows windowed (not fullscreen).</span></li>
+    <li><span data-lang="zh">每个需要手柄的客户端都安装 Control Flex；建议都保持窗口模式（不要全屏）。</span><span data-lang="en">Install Control Flex in each pad-driven instance; keep both windows windowed (not fullscreen).</span></li>
     <li><span data-lang="zh">在两个客户端的 <b>手柄选择</b>里分别指定<b>不同</b>的手柄，避免互相抢占；手柄 + 键鼠时只为其中一个实例选手柄。</span><span data-lang="en">In each game's <b>Gamepad Selection</b>, pick a <b>different</b> controller so they do not steal each other; for pad + keyboard, assign the pad only in the gamepad instance.</span></li>
     <li><span data-lang="zh">每个窗口按 <span class="kbd">F3</span>+<span class="kbd">P</span> 关闭“失去焦点时暂停”（或在视频设置中调整）—— 后台窗口必须继续运行。</span><span data-lang="en">Press <span class="kbd">F3</span>+<span class="kbd">P</span> in each window to disable Pause on Lost Focus (or use video options) — the unfocused window must keep running.</span></li>
     <li><span data-lang="zh">在其中一个实例上开启“对局域网开放”，其他实例通过局域网列表或 <code>localhost</code> + 端口加入。</span><span data-lang="en">Host a world from one instance (Open to LAN); join from the others via the LAN list or <code>localhost</code> plus the port.</span></li>
@@ -253,8 +253,8 @@
 
   <h2><span data-lang="zh">10. 模组适配</span><span data-lang="en">10. Mod Adaptation</span></h2>
   <p>
-    <span data-lang="zh">ControlFlex 为整合包而生。大多数模组无需任何额外文件：启动时会扫描 Minecraft 的 KeyMapping 注册表，把每一个非原版绑定变成可绑定的动作 —— JEI 配方键、战斗模组技能键、地图快捷键，只要模组注册了按键，就会出现在按键映射里。</span>
-    <span data-lang="en">ControlFlex is built for modpacks. Most mods work with no extra files: at startup it scans Minecraft's KeyMapping registry and exposes every non-vanilla binding as a bindable action — JEI recipe keys, combat-mod skills, map hotkeys, whatever the mod registered.</span>
+    <span data-lang="zh">Control Flex 为整合包而生。大多数模组无需任何额外文件：启动时会扫描 Minecraft 的 KeyMapping 注册表，把每一个非原版绑定变成可绑定的动作 —— JEI 配方键、战斗模组技能键、地图快捷键，只要模组注册了按键，就会出现在按键映射里。</span>
+    <span data-lang="en">Control Flex is built for modpacks. Most mods work with no extra files: at startup it scans Minecraft's KeyMapping registry and exposes every non-vanilla binding as a bindable action — JEI recipe keys, combat-mod skills, map hotkeys, whatever the mod registered.</span>
   </p>
   <p>
     <span data-lang="zh">当自动发现不够用时（层级不对、HUD 需要自己的摇杆行为、模组根本不注册按键），0.8.7 提供了递进的四种手段：游戏内 <b>模组适配中心</b> → <b>社区配置库</b> → <b>Compat JSON</b> → <b>桥接模组</b>。</span>
@@ -272,7 +272,7 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
     <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
     <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>

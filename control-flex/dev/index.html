@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>API Quick Start · ControlFlex Wiki</title>
+<title>API Quick Start · Control Flex Wiki</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
 <script>/* supported languages: keep in sync with LANGS in assets/app.js */
 (function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
@@ -12,7 +12,7 @@
 <body>
 <header class="topbar">
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
-  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
   <nav class="topnav">
     <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
@@ -59,8 +59,8 @@
 
   <h1><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></h1>
   <p class="lead">
-    <span data-lang="zh">ControlFlex API（当前 0.8.9）面向<b>桥接模组</b>开发者：读取手柄输入、查询动作状态、推送模组状态、导出兼容配置。仓库：<a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>。</span>
-    <span data-lang="en">The ControlFlex API (currently 0.8.9) is for <b>bridge mod</b> developers: read controller input, query action states, push mod states, and export compat configs. Repository: <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>.</span>
+    <span data-lang="zh">Control Flex API（当前 0.8.9）面向<b>桥接模组</b>开发者：读取手柄输入、查询动作状态、推送模组状态、导出兼容配置。仓库：<a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>。</span>
+    <span data-lang="en">The Control Flex API (currently 0.8.9) is for <b>bridge mod</b> developers: read controller input, query action states, push mod states, and export compat configs. Repository: <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>.</span>
   </p>
 
   <h2><span data-lang="zh">1. 项目配置</span><span data-lang="en">1. Project Setup</span></h2>
@@ -70,13 +70,13 @@ repositories {
 }
 
 dependencies {
-    // compileOnly — provided by the ControlFlex mod at runtime
+    // compileOnly — provided by the Control Flex mod at runtime
     compileOnly 'com.github.ControlFlexMC:control-flex-api:0.8.9'
     compileOnly 'org.jetbrains:annotations:24.0.1'
 }</code></pre>
   <p>
-    <span data-lang="zh">声明对 ControlFlex 的依赖，让加载器保证加载顺序：</span>
-    <span data-lang="en">Declare the ControlFlex dependency so the loader orders things correctly:</span>
+    <span data-lang="zh">声明对 Control Flex 的依赖，让加载器保证加载顺序：</span>
+    <span data-lang="en">Declare the Control Flex dependency so the loader orders things correctly:</span>
   </p>
   <pre><code># mods.toml (Forge / NeoForge)
 [[dependencies.your_mod_id]]
@@ -100,8 +100,8 @@ dependencies {
 
   <h2><span data-lang="zh">2. 始终先检查可用性</span><span data-lang="en">2. Always Check Availability First</span></h2>
   <p>
-    <span data-lang="zh">ControlFlex 可能未安装，或 SDL3 初始化失败。因此第一件事永远是：</span>
-    <span data-lang="en">ControlFlex may not be installed, or SDL3 may fail to initialize. So the first check is always:</span>
+    <span data-lang="zh">Control Flex 可能未安装，或 SDL3 初始化失败。因此第一件事永远是：</span>
+    <span data-lang="en">Control Flex may not be installed, or SDL3 may fail to initialize. So the first check is always:</span>
   </p>
   <pre><code>if (!ControlFlexApi.isAvailable()) {
     // fall back: skip all controller-related handling
@@ -180,8 +180,8 @@ public class MyPlugin implements IControlFlexPlugin {
     }
 }</code></pre>
   <p>
-    <span data-lang="zh">通过 SPI 声明文件注册（无需任何手动注册，ControlFlex 自动发现）：</span>
-    <span data-lang="en">Register it through the SPI services file — ControlFlex discovers plugins automatically:</span>
+    <span data-lang="zh">通过 SPI 声明文件注册（无需任何手动注册，Control Flex 自动发现）：</span>
+    <span data-lang="en">Register it through the SPI services file — Control Flex discovers plugins automatically:</span>
   </p>
   <pre><code>src/main/resources/META-INF/services/com.ifels.controlflex.api.IControlFlexPlugin
 
@@ -206,7 +206,7 @@ com.example.mymod.MyPlugin</code></pre>
 
 <footer class="footer">
   <div class="footer-inner">
-    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
     <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
     <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>API Reference · ControlFlex Wiki</title>
+<title>API Reference · Control Flex Wiki</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
 <script>/* supported languages: keep in sync with LANGS in assets/app.js */
 (function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
@@ -12,7 +12,7 @@
 <body>
 <header class="topbar">
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
-  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
   <nav class="topnav">
     <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
@@ -92,8 +92,8 @@
 
   <h2>ControlFlexApi</h2>
   <p>
-    <span data-lang="zh">桥接模组的唯一入口。ControlFlex 未安装或未初始化时，所有方法返回安全默认值。</span>
-    <span data-lang="en">The single entry point for bridge mods. Every method returns safe defaults when ControlFlex is absent or not initialized.</span>
+    <span data-lang="zh">桥接模组的唯一入口。Control Flex 未安装或未初始化时，所有方法返回安全默认值。</span>
+    <span data-lang="en">The single entry point for bridge mods. Every method returns safe defaults when Control Flex is absent or not initialized.</span>
   </p>
   <pre><code>public final class ControlFlexApi
 
@@ -146,13 +146,13 @@ ButtonName.AXIS_LEFT_TRIGGER, ButtonName.AXIS_RIGHT_TRIGGER</code></pre>
 // Lifecycle callbacks (in call order):
 void onInstallCompatConfigs(ICompatAssetInstaller installer)   // export compat JSON
 void onInstallGuideAssets(ICompatAssetInstaller installer)     // export guide JSON
-void onControlFlexReady()                                       // ControlFlex is ready
+void onControlFlexReady()                                       // Control Flex is ready
 void onControllerConnectionChanged(boolean connected)           // controller plug/unplug
 
 // Utility:
 boolean requireApiVersion(String minVersion)  // false when the version is not met</code></pre>
   <h3><span data-lang="zh">生命周期时序</span><span data-lang="en">Lifecycle Timing</span></h3>
-  <pre><code>ControlFlex startup
+  <pre><code>Control Flex startup
   └── initializeClient()
         → API providers injected (isAvailable() = true)
         → built-in configs extracted to default/
@@ -170,8 +170,8 @@ boolean requireApiVersion(String minVersion)  // false when the version is not m
 
   <h2>ICompatAssetInstaller</h2>
   <p>
-    <span data-lang="zh">资源安装器。ControlFlex 创建实例并注入插件的 ClassLoader 与目标目录。</span>
-    <span data-lang="en">Asset installer. ControlFlex creates the instance and injects the plugin's ClassLoader and target directory.</span>
+    <span data-lang="zh">资源安装器。Control Flex 创建实例并注入插件的 ClassLoader 与目标目录。</span>
+    <span data-lang="en">Asset installer. Control Flex creates the instance and injects the plugin's ClassLoader and target directory.</span>
   </p>
   <pre><code>boolean install(String resourcePath, String fileName)
 // resourcePath: classpath path, e.g. "/assets/mymod/compat/epicfight_keys.json"
@@ -189,8 +189,8 @@ public void onInstallGuideAssets(ICompatAssetInstaller installer) {
 
   <h2>IActionStateProvider</h2>
   <p>
-    <span data-lang="zh">查询 ControlFlex 当前激活的动作。</span>
-    <span data-lang="en">Query which actions ControlFlex currently has active.</span>
+    <span data-lang="zh">查询 Control Flex 当前激活的动作。</span>
+    <span data-lang="en">Query which actions Control Flex currently has active.</span>
   </p>
   <pre><code>boolean isGameActionActive(String actionId)   // game-layer action active
 boolean isGuiActionActive(String actionId)    // GUI-layer action active
@@ -267,8 +267,8 @@ MIXED            // a controller is connected</code></pre>
 
   <h2>IPlayerStateRegistry</h2>
   <p>
-    <span data-lang="zh">桥接模组向 ControlFlex 推送状态，供 compat JSON 中的 <code>playerState</code> 条件使用。</span>
-    <span data-lang="en">Bridge mods push states to ControlFlex for use by <code>playerState</code> conditions in compat JSON.</span>
+    <span data-lang="zh">桥接模组向 Control Flex 推送状态，供 compat JSON 中的 <code>playerState</code> 条件使用。</span>
+    <span data-lang="en">Bridge mods push states to Control Flex for use by <code>playerState</code> conditions in compat JSON.</span>
   </p>
   <pre><code>void setState(String stateKey, boolean active)  // thread-safe
 boolean getState(String stateKey)               // client thread
@@ -293,15 +293,15 @@ void clearAll()                                       // release all buttons, ze
 
   <h2>IInteractiveContextRegistrar</h2>
   <p>
-    <span data-lang="zh">声明交互式 Overlay：<b>前台</b>表示交互式 Overlay 打开，<b>后台</b>表示其关闭。ControlFlex 据此将该类名记为当前活跃 Overlay，并在 OVERLAY 相位期间切换摇杆行为；场景退出时也会自动清除作为兜底。</span>
-    <span data-lang="en">Declare interactive overlays: <b>foreground</b> means the overlay is open, <b>background</b> means it closed. ControlFlex records the class name as the active overlay, switches stick behavior during the OVERLAY phase, and clears it automatically when the scene unloads as a fallback.</span>
+    <span data-lang="zh">声明交互式 Overlay：<b>前台</b>表示交互式 Overlay 打开，<b>后台</b>表示其关闭。Control Flex 据此将该类名记为当前活跃 Overlay，并在 OVERLAY 相位期间切换摇杆行为；场景退出时也会自动清除作为兜底。</span>
+    <span data-lang="en">Declare interactive overlays: <b>foreground</b> means the overlay is open, <b>background</b> means it closed. Control Flex records the class name as the active overlay, switches stick behavior during the OVERLAY phase, and clears it automatically when the scene unloads as a fallback.</span>
   </p>
   <pre><code>void notifyOverlayForeground(String className)   // overlay enters foreground
 void notifyOverlayBackground(String className)   // returns to background (pairs with foreground)
 void clearAll()                                   // fallback for mod unload / leaving the world</code></pre>
   <p class="small muted">
-    <span data-lang="zh"><b>className</b> 为交互式 Overlay 的全限定类名 —— 该类名的摇杆行为由 ControlFlex 的 compat 配置解析。仅限客户端线程；<code>getInteractiveContextRegistrar()</code> 可能为 null，调用前需判空。</span>
-    <span data-lang="en"><b>className</b> is the fully qualified class name of the interactive overlay — its stick behavior is resolved by ControlFlex's compat configs. Client thread only; <code>getInteractiveContextRegistrar()</code> may be null, so null-check before calling.</span>
+    <span data-lang="zh"><b>className</b> 为交互式 Overlay 的全限定类名 —— 该类名的摇杆行为由 Control Flex 的 compat 配置解析。仅限客户端线程；<code>getInteractiveContextRegistrar()</code> 可能为 null，调用前需判空。</span>
+    <span data-lang="en"><b>className</b> is the fully qualified class name of the interactive overlay — its stick behavior is resolved by Control Flex's compat configs. Client thread only; <code>getInteractiveContextRegistrar()</code> may be null, so null-check before calling.</span>
   </p>
   <div class="callout warn">
     <p>
@@ -337,7 +337,7 @@ void clearAll()                                   // fallback for mod unload / l
 
 <footer class="footer">
   <div class="footer-inner">
-    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
     <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
     <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>

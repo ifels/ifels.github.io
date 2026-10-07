@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mod Compatibility · ControlFlex Wiki</title>
+<title>Mod Compatibility · Control Flex Wiki</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
 <script>/* supported languages: keep in sync with LANGS in assets/app.js */
 (function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
@@ -12,7 +12,7 @@
 <body>
 <header class="topbar">
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
-  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">ControlFlex&nbsp;Wiki</span></a>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
   <nav class="topnav">
     <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
@@ -59,14 +59,14 @@
 
   <h1><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></h1>
   <p class="lead">
-    <span data-lang="zh">ControlFlex 为整合包而生：先自动发现，再按需逐级加码 —— 游戏内适配中心、社区配置库、Compat JSON、桥接模组。</span>
-    <span data-lang="en">ControlFlex is built for modpacks: auto-discovery first, then four escalating tools — the in-game adaptation center, the community config repo, compat JSON, and bridge mods.</span>
+    <span data-lang="zh">Control Flex 为整合包而生：先自动发现，再按需逐级加码 —— 游戏内适配中心、社区配置库、Compat JSON、桥接模组。</span>
+    <span data-lang="en">Control Flex is built for modpacks: auto-discovery first, then four escalating tools — the in-game adaptation center, the community config repo, compat JSON, and bridge mods.</span>
   </p>
 
   <h2><span data-lang="zh">第一层：自动发现</span><span data-lang="en">Layer One: Auto-Discovery</span></h2>
   <p>
-    <span data-lang="zh">启动时 ControlFlex 会扫描 Minecraft 的 KeyMapping 注册表，把每个非原版绑定注册为动态动作。只要模组通过标准方式注册了按键（JEI 配方键、战斗模组技能键、地图快捷键……），就会出现在按键映射中，无需任何配置文件。</span>
-    <span data-lang="en">At startup ControlFlex scans Minecraft's KeyMapping registry and registers every non-vanilla binding as a dynamic action. If a mod registered its keys the standard way (JEI recipe keys, combat-mod skills, map hotkeys…), they show up in Key Mapping with no config file at all.</span>
+    <span data-lang="zh">启动时 Control Flex 会扫描 Minecraft 的 KeyMapping 注册表，把每个非原版绑定注册为动态动作。只要模组通过标准方式注册了按键（JEI 配方键、战斗模组技能键、地图快捷键……），就会出现在按键映射中，无需任何配置文件。</span>
+    <span data-lang="en">At startup Control Flex scans Minecraft's KeyMapping registry and registers every non-vanilla binding as a dynamic action. If a mod registered its keys the standard way (JEI recipe keys, combat-mod skills, map hotkeys…), they show up in Key Mapping with no config file at all.</span>
   </p>
   <p class="small muted">
     <span data-lang="zh">库类模组会被自动豁免（内置清单覆盖 Fabric API、Kotlin 语言支持等家族），不会混进可适配列表。</span>
@@ -109,8 +109,8 @@
 
   <h2><span data-lang="zh">第二层：游戏内模组适配中心</span><span data-lang="en">Layer Two: In-Game Mod Adaptation</span></h2>
   <p>
-    <span data-lang="zh">打开 <b>ControlFlex 设置 → 模组适配</b>：每个已安装模组按名称、图标与版本列出。进入某个模组后有三个页签：</span>
-    <span data-lang="en">Open <b>ControlFlex Settings → Mod Adaptation</b>: every installed mod is listed with name, icon, and version. Open a mod to work in three tabs:</span>
+    <span data-lang="zh">打开 <b>Control Flex 设置 → 模组适配</b>：每个已安装模组按名称、图标与版本列出。进入某个模组后有三个页签：</span>
+    <span data-lang="en">Open <b>Control Flex Settings → Mod Adaptation</b>: every installed mod is listed with name, icon, and version. Open a mod to work in three tabs:</span>
   </p>
   <div class="table-wrap">
     <table>
@@ -137,8 +137,8 @@
     </table>
   </div>
   <p>
-    <span data-lang="zh">添加界面 / 叠层规则的方法：先在游戏里打开目标界面一次，让 ControlFlex 记录它；然后在模组详情里点 <b>+ 添加界面/叠层适配</b>，从“最近页面”（最多 50 条）中选中即可。无法归属到模组的条目可以自动扫描。</span>
-    <span data-lang="en">To add a Screen or Overlay rule: open the target GUI or HUD once in-game so ControlFlex records it, then use <b>+ Add Screen/Overlay Adaptation</b> in the mod's detail page and pick it from the recent-pages list (up to 50). Entries that could not be matched to a mod can be scanned automatically.</span>
+    <span data-lang="zh">添加界面 / 叠层规则的方法：先在游戏里打开目标界面一次，让 Control Flex 记录它；然后在模组详情里点 <b>+ 添加界面/叠层适配</b>，从“最近页面”（最多 50 条）中选中即可。无法归属到模组的条目可以自动扫描。</span>
+    <span data-lang="en">To add a Screen or Overlay rule: open the target GUI or HUD once in-game so Control Flex records it, then use <b>+ Add Screen/Overlay Adaptation</b> in the mod's detail page and pick it from the recent-pages list (up to 50). Entries that could not be matched to a mod can be scanned automatically.</span>
   </p>
   <p>
     <span data-lang="zh">每根摇杆在该页面上可以选用不同的行为：</span>
@@ -242,7 +242,7 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <span>ControlFlex — MIT License · SDL3 (zlib)</span>
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
     <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
     <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>

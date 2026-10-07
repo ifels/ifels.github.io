@@ -1,4 +1,4 @@
-/* ControlFlex Wiki — language toggle, sidebar, active nav, copy buttons.
+/* Control Flex Wiki — language toggle, sidebar, active nav, copy buttons.
    Loaded with `defer`, so the DOM is parsed by the time this runs. */
 (function () {
   var LANG_KEY = 'preferredLang';
