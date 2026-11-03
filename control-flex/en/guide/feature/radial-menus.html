@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radial Menus · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/feature/radial-menus.html", "zh": "/control-flex/zh/guide/feature/radial-menus.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="en")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/guide/feature/radial-menus.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/feature/radial-menus.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/feature/radial-menus.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/feature/radial-menus.html">
+<meta property="og:title" content="Radial Menus · Control Flex Wiki">
+<meta property="og:locale" content="en">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current" aria-current="true">English</span><a href="/control-flex/zh/guide/feature/radial-menus.html" hreflang="zh" lang="zh" data-set-lang="zh">中文</a></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/en/index.html">Home</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Player Guide</div>
+      <a href="/control-flex/en/guide/getting-started.html">Getting Started</a>
+      <a href="/control-flex/en/guide/features.html">Features</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/guide/feature/layers.html">Seven Layers</a>
+        <a href="/control-flex/en/guide/feature/trigger-modes.html">Trigger Modes</a>
+        <a href="/control-flex/en/guide/feature/combo-keys.html">Combo Keys</a>
+        <a href="/control-flex/en/guide/feature/radial-menus.html">Radial Menus</a>
+        <a href="/control-flex/en/guide/feature/analog-movement.html">Analog Movement</a>
+        <a href="/control-flex/en/guide/feature/camera.html">Camera &amp; Aim</a>
+        <a href="/control-flex/en/guide/feature/cursor.html">Cursor &amp; GUI</a>
+        <a href="/control-flex/en/guide/feature/rumble.html">Rumble</a>
+        <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
+        <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
+        <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
+      </div>
+      <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Platforms &amp; Versions</div>
+      <a href="/control-flex/en/guide/platforms.html">Platform Support</a>
+      <a href="/control-flex/en/guide/versions.html">Minecraft Versions</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Modpacks &amp; Compat</div>
+      <a href="/control-flex/en/modpack/index.html">Configuration</a>
+      <a href="/control-flex/en/modpack/compat.html">Mod Compatibility</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Developers</div>
+      <a href="/control-flex/en/dev/index.html">API Quick Start</a>
+      <a href="/control-flex/en/dev/api-reference.html">API Reference</a>
+      <a href="/control-flex/en/dev/examples.html">Plugin &amp; Examples</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Links</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span>Features</span></a></p>
+
+<h1><span>Radial Menus</span></h1>
+  <p class="lead">
+    <span>Up to five independent wheels, each with as many as eight slots around the stick: open a wheel, aim with the stick, confirm with A. Food, torches, <code>/home</code> — frequent actions that do not deserve a dedicated face button belong on a wheel.</span>
+  </p>
+
+  <h2><span>What a Slot Can Do</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Type</span></th>
+          <th><span>Effect</span></th>
+          <th><span>Examples</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>Key binding</span></td>
+          <td><span>Fires a vanilla or mod KeyMapping</span></td>
+          <td><span>Perspective toggle, mod skill keys</span></td>
+        </tr>
+        <tr>
+          <td><span>Chat command</span></td>
+          <td><span>Runs a <code>/</code> command</span></td>
+          <td><code>/home</code> · <code>/spawn</code> · <code>/warp</code></td>
+        </tr>
+        <tr>
+          <td><span>Use item</span></td>
+          <td><span>Switches to the hotbar slot and uses it</span></td>
+          <td><span>Torches, food, potions, tools</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span>Opening &amp; Selecting</span></h2>
+  <ul>
+    <li><span><b>Opening follows the menu's binding</b>: <code>Press</code> taps to open (release does not close it), <code>Hold</code> keeps it open while held and closes on release.</span></li>
+    <li><span><b>Selection stick</b>: left, right, or both (both by default).</span></li>
+    <li><span><b>Menus are assigned to layers</b>: by default Menu 1 lives on Main and Menus 2–5 on Shift 1–4 — Shift layers serve as wheel entry points as well as binding planes.</span></li>
+  </ul>
+
+  <h2><span>Icons &amp; Appearance</span></h2>
+  <ul>
+    <li><span>Icon modes: <b>auto</b> (inferred from the slot's content, e.g. item icons), <b>random</b>, <b>default</b>, <b>item ID</b>, or a custom texture path.</span></li>
+    <li><span>The in-game editor lets you pick icons, reorder slots, and set the trigger mode per menu.</span></li>
+  </ul>
+
+  <h2><span>Config Files</span></h2>
+  <p>
+    <span>Wheel layouts persist in <code>config/controlflex/radial_menu/radial_menus.json</code> with icons alongside. Packs can ship this file so players start with working wheels. Structure (excerpt):</span>
+  </p>
+  <pre><code>{
+  "version": 1,
+  "selectionStick": "BOTH",
+  "menus": [
+    { "id": 1, "name": "Menu 1", "mode": "HOLD",  "assignedLayer": "main",   "slots": [ 8 × slot ] },
+    { "id": 2, "name": "Menu 2", "mode": "HOLD",  "assignedLayer": "shift1", "slots": [ … ] },
+    { "id": 5, "name": "Menu 5", "mode": "PRESS", "assignedLayer": "shift4", "slots": [ … ] }
+  ]
+}</code></pre>
+
+  <h2><span>Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th><span>Menu</span></th>
+          <th><span>Default open binding</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Main</td><td><span>Menu 1</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 1</td><td><span>Menu 2</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 2</td><td><span>Menu 3</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 3</td><td><span>Menu 4</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 4</td><td><span>Menu 5</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p>
+      <span>All slots ship empty — a wheel is a container you (or a pack author) fill. The same <span class="kbd">Back</span> button opens five different wheels because each menu belongs to a different layer.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span>Related: <a href="layers.html">Seven Layers</a> (wheels hang off layers) and <a href="../../modpack/index.html">Configuration</a> (shipping wheel layouts in a pack).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/combo-keys.html"><span class="dir"><span>← Previous</span></span><span class="name"><span>Combo Keys</span></span></a>
+  <a class="pager-next" href="../../guide/feature/analog-movement.html"><span class="dir"><span>Next →</span></span><span class="name"><span>Analog Movement</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">Report issues ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community configs ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

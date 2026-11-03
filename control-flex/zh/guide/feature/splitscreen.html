@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分屏双人（同机合作） · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/feature/splitscreen.html", "zh": "/control-flex/zh/guide/feature/splitscreen.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/feature/splitscreen.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/feature/splitscreen.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/feature/splitscreen.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/feature/splitscreen.html">
+<meta property="og:title" content="分屏双人（同机合作） · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/feature/splitscreen.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span>功能详解</span></a></p>
+
+<h1><span>分屏双人（同机合作）</span></h1>
+  <p class="lead">
+    <span>Java 版不在同一个窗口里渲染两名玩家，所以“同机双人”的形态是：<b>同一台电脑上开两个客户端</b>，通过“对局域网开放”联机，各自用自己的手柄。Control Flex 为这个用法做了两处专门支持：手柄归属与失焦窗口继续运行。</span>
+  </p>
+
+  <h2><span>你需要准备</span></h2>
+  <ul>
+    <li><span>两个以上的 Minecraft 账号。</span></li>
+    <li><span>两把手柄，<b>或者</b>一把手柄 + 一套键鼠。</span></li>
+    <li><span>一个能同时开两个实例的启动器。</span></li>
+    <li><span>每一个“用手柄”的实例都安装 Control Flex。</span></li>
+    <li><span>可选：<a href="https://modrinth.com/mod/splitscreen" target="_blank" rel="noopener">Splitscreen Support</a>（只做窗口平铺，不处理输入）。</span></li>
+  </ul>
+
+  <h2><span>步骤</span></h2>
+  <ol>
+    <li><span>为每个账号各建一个启动器实例，两边都保持<b>窗口模式</b>（不要全屏）。</span></li>
+    <li><span>安装模组：手柄实例装 Control Flex（可选再装 Splitscreen Support）。</span></li>
+    <li><span>启动两个客户端。双柄场景：在两边的 <b>手柄选择</b>里分别指定<b>不同</b>的手柄；手柄 + 键鼠场景：只给那个手柄实例指定手柄，另一位用键鼠。</span></li>
+    <li><span>每个窗口按 <span class="kbd">F3</span>+<span class="kbd">P</span> 关闭“失去焦点时暂停”（或在视频设置里改）—— 后台窗口必须继续运行；暂停界面也会有提示。</span></li>
+    <li><span>装了 Splitscreen Support 的话，按 <span class="kbd">F11</span> 循环半屏 / 四分之一屏布局，它会记住上次的位置。</span></li>
+    <li><span>在其中一个实例上<b>对局域网开放</b>，其他实例从多人游戏列表里加入，或用 <code>localhost</code> + 开放时的端口连接。</span></li>
+  </ol>
+
+  <h2><span>视角模式的选择</span></h2>
+  <ul>
+    <li><span>后台窗口用 <b>Direct Turn</b> 或 <b>Smooth Turn</b>。</span></li>
+    <li><span><b>Simulate Mouse</b> 无法驱动后台窗口的系统光标，会自动回退到 Direct Turn —— 想避开这种切换就统一用 Direct / Smooth。</span></li>
+  </ul>
+
+  <div class="callout tip">
+    <p>
+      <span>手柄“抢输入”是多手柄场景最常见的问题：SDL3 会如实报告设备，但两个客户端各自选了同一把。只要在<b>手柄选择</b>里分配不同的设备即可；手柄断开时 Control Flex 会自动切到第一把可用手柄，所以尽量使用各自固定的那一把。</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span>相关：<a href="camera.html">相机与瞄准</a>（视角模式细节）、<a href="layers.html">七层按键架构</a>（每人一套自己的模板与配置）。</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/virtual-kbm.html"><span class="dir"><span>← 上一个功能</span></span><span class="name"><span>虚拟键鼠</span></span></a>
+  <a class="pager-next" href="../../guide/feature/mod-adaptation.html"><span class="dir"><span>下一个功能 →</span></span><span class="name"><span>模组适配</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

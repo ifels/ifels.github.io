@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API 参考 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/dev/api-reference.html", "zh": "/control-flex/zh/dev/api-reference.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/dev/api-reference.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/dev/api-reference.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/dev/api-reference.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/dev/api-reference.html">
+<meta property="og:title" content="API 参考 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/dev/api-reference.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span>API 参考</span></h1>
+  <p class="lead">
+    <span>包路径 <code>com.ifels.controlflex.api</code> · 版本 0.8.9 · 除特别标注外，所有方法必须在客户端主线程调用。</span>
+  </p>
+
+  <h2><span>类型清单</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>类型</span></th>
+          <th><span>说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>ControlFlexApi</code></td><td><span>静态入口，获取所有 provider</span></td></tr>
+        <tr><td><code>ButtonName</code></td><td><span>按钮 / 轴名称常量</span></td></tr>
+        <tr><td><code>IControlFlexPlugin</code></td><td><span>SPI 插件接口</span></td></tr>
+        <tr><td><code>ICompatAssetInstaller</code></td><td><span>资源安装器（SPI 回调参数）</span></td></tr>
+        <tr><td><code>IActionStateProvider</code></td><td><span>动作状态查询</span></td></tr>
+        <tr><td><code>IInputProvider</code></td><td><span>控制器输入查询</span></td></tr>
+        <tr><td><code>IControllerState</code></td><td><span>控制器硬件状态（实时视图）</span></td></tr>
+        <tr><td><code>IControllerCapabilities</code></td><td><span>控制器硬件能力</span></td></tr>
+        <tr><td><code>IPlayerStateRegistry</code></td><td><span>第三方模组状态推送</span></td></tr>
+        <tr><td><code>IInputInjector</code></td><td><span>虚拟手柄输入注入（测试工具）</span></td></tr>
+        <tr><td><code>IInteractiveContextRegistrar</code></td><td><span>交互式 Overlay 前后台声明</span></td></tr>
+        <tr><td><code>InputMode</code></td><td><span>输入模式（KEYBOARD_MOUSE / MIXED）</span></td></tr>
+        <tr><td><code>ControllerType</code></td><td><span>控制器类型枚举</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>ControlFlexApi</h2>
+  <p>
+    <span>桥接模组的唯一入口。Control Flex 未安装或未初始化时，所有方法返回安全默认值。</span>
+  </p>
+  <pre><code>public final class ControlFlexApi
+
+// Availability
+boolean isAvailable()               // installed and fully initialized
+boolean isControllerConnected()     // a controller is connected
+
+// Providers (null = not available)
+IActionStateProvider getActionStateProvider()
+IInputProvider getInputProvider()
+IPlayerStateRegistry getPlayerStateRegistry()
+IInputInjector getInputInjector()
+IInteractiveContextRegistrar getInteractiveContextRegistrar()
+
+// Utilities
+String getApiVersion()              // e.g. "0.8.9"
+void reloadGuides()                 // reload guide configs</code></pre>
+
+  <h2>ButtonName</h2>
+  <p>
+    <span>按钮与轴的名称常量，配合 <code>isButtonPressed(String)</code> 与 <code>getAxisValue(String)</code> 使用。</span>
+  </p>
+  <pre><code>// Buttons
+ButtonName.A, ButtonName.B, ButtonName.X, ButtonName.Y
+ButtonName.DPAD_UP, ButtonName.DPAD_DOWN, ButtonName.DPAD_LEFT, ButtonName.DPAD_RIGHT
+ButtonName.LEFT_BUMPER, ButtonName.RIGHT_BUMPER
+ButtonName.LEFT_TRIGGER, ButtonName.RIGHT_TRIGGER
+ButtonName.LEFT_STICK_CLICK, ButtonName.RIGHT_STICK_CLICK
+ButtonName.BACK, ButtonName.START, ButtonName.GUIDE
+ButtonName.PADDLE_1 ~ ButtonName.PADDLE_4
+ButtonName.TOUCHPAD
+
+// Stick directions (for isButtonPressed / IInputInjector.pressButton)
+ButtonName.LEFT_STICK_UP / DOWN / LEFT / RIGHT
+ButtonName.RIGHT_STICK_UP / DOWN / LEFT / RIGHT
+
+// Axes (for getAxisValue)
+ButtonName.AXIS_LEFT_X, ButtonName.AXIS_LEFT_Y
+ButtonName.AXIS_RIGHT_X, ButtonName.AXIS_RIGHT_Y
+ButtonName.AXIS_LEFT_TRIGGER, ButtonName.AXIS_RIGHT_TRIGGER</code></pre>
+
+  <h2>IControlFlexPlugin</h2>
+  <p>
+    <span>桥接模组的 SPI 接口，通过 <code>META-INF/services/</code> 注册。</span>
+  </p>
+  <pre><code>String getModId()
+
+// Lifecycle callbacks (in call order):
+void onInstallCompatConfigs(ICompatAssetInstaller installer)   // export compat JSON
+void onInstallGuideAssets(ICompatAssetInstaller installer)     // export guide JSON
+void onControlFlexReady()                                       // Control Flex is ready
+void onControllerConnectionChanged(boolean connected)           // controller plug/unplug
+
+// Utility:
+boolean requireApiVersion(String minVersion)  // false when the version is not met</code></pre>
+  <h3><span>生命周期时序</span></h3>
+  <pre><code>Control Flex startup
+  └── initializeClient()
+        → API providers injected (isAvailable() = true)
+        → built-in configs extracted to default/
+
+  └── onKeyMappingsReady()
+        └── discover SPI plugins
+              ├── new CompatAssetInstaller(plugin.class, compatDir)
+              ├── plugin.onInstallCompatConfigs(installer)
+              ├── new CompatAssetInstaller(plugin.class, guideDir)
+              ├── plugin.onInstallGuideAssets(installer)
+              └── plugin.onControlFlexReady()
+
+  Runtime:
+        └── plugin.onControllerConnectionChanged(connected)</code></pre>
+
+  <h2>ICompatAssetInstaller</h2>
+  <p>
+    <span>资源安装器。Control Flex 创建实例并注入插件的 ClassLoader 与目标目录。</span>
+  </p>
+  <pre><code>boolean install(String resourcePath, String fileName)
+// resourcePath: classpath path, e.g. "/../../assets/mymod/compat/epicfight_keys.json"
+// fileName:      target filename in the mods/ config directory
+// returns:       true if installed successfully</code></pre>
+  <pre><code>@Override
+public void onInstallCompatConfigs(ICompatAssetInstaller installer) {
+    installer.install("/../../assets/mymod/compat/epicfight_keys.json", "epicfight_keys.json");
+}
+
+@Override
+public void onInstallGuideAssets(ICompatAssetInstaller installer) {
+    installer.install("/../../assets/mymod/guides/epicfight_guid.json", "epicfight_guid.json");
+}</code></pre>
+
+  <h2>IActionStateProvider</h2>
+  <p>
+    <span>查询 Control Flex 当前激活的动作。</span>
+  </p>
+  <pre><code>boolean isGameActionActive(String actionId)   // game-layer action active
+boolean isGuiActionActive(String actionId)    // GUI-layer action active
+Set&lt;String&gt; getActiveGameActions()             // all active game actions (live view, do not cache)
+Set&lt;String&gt; getActiveGuiActions()              // all active GUI actions (live view, do not cache)</code></pre>
+  <p><span><b>动作 ID 格式：</b></span></p>
+  <ul>
+    <li><span>内置动作：<code>"attack"</code>、<code>"use"</code>、<code>"jump"</code></span></li>
+    <li><span>原版按键：<code>"key.jump"</code>、<code>"key.sneak"</code></span></li>
+    <li><span>模组按键：<code>"epicfight:key.epicfight.attack"</code>（<code>modId:keyName</code>）</span></li>
+  </ul>
+
+  <h2>IInputProvider</h2>
+  <p>
+    <span>控制器硬件状态查询。</span>
+  </p>
+  <pre><code>boolean isConnected()
+IControllerState getControllerState()          // null when disconnected (live view, do not cache)
+String getGamepadName()                         // null when disconnected
+int getGamepadIndex()                           // -1 when disconnected
+IControllerCapabilities getCapabilities()       // null when disconnected</code></pre>
+
+  <h2>IControllerState</h2>
+  <p>
+    <span>控制器硬件状态实时视图。摇杆 −1.0 ~ 1.0，扳机 0.0 ~ 1.0；Y 轴正值向下。</span>
+  </p>
+  <pre><code>boolean isConnected()
+
+// Sticks
+float getLeftStickX() / getLeftStickY()
+float getRightStickX() / getRightStickY()
+
+// Triggers
+float getLeftTrigger() / getRightTrigger()
+boolean isLeftTriggerPressed() / isRightTriggerPressed()   // threshold 0.5
+
+// Buttons (camelCase)
+boolean isButtonAPressed() / isButtonBPressed() / isButtonXPressed() / isButtonYPressed()
+boolean isButtonBackPressed() / isButtonStartPressed() / isButtonGuidePressed()
+boolean isLeftBumperPressed() / isRightBumperPressed()
+boolean isLeftStickClicked() / isRightStickClicked()
+boolean isDpadUpPressed() / isDpadDownPressed() / isDpadLeftPressed() / isDpadRightPressed()
+boolean isPaddle1Pressed() ~ isPaddle4Pressed()
+boolean isTouchpadPressed()
+boolean isShiftLayerActive()
+
+// String queries (prefer the ButtonName constants)
+boolean isButtonPressed(String buttonName)
+float getAxisValue(String axisName)</code></pre>
+
+  <h2>IControllerCapabilities</h2>
+  <pre><code>ControllerType getControllerType()   // XBOX / PLAYSTATION / NINTENDO_SWITCH / ...
+boolean hasPaddles()                  // back buttons
+int getPaddleCount()
+boolean hasTouchpad()
+boolean hasGyro()
+boolean hasRumble()
+boolean hasAnalogTriggers()           // analog vs digital
+boolean isNintendoLayout()            // Nintendo A/B swap</code></pre>
+
+  <h2>ControllerType</h2>
+  <p>
+    <span>由 <code>IControllerCapabilities.getControllerType()</code> 返回。用于按平台选择按钮图标与布局。</span>
+  </p>
+  <pre><code>UNKNOWN, XBOX, PLAYSTATION, NINTENDO_SWITCH, NINTENDO_WII_U,
+GENERIC, STEAM_DECK, GOOGLE_STADIA</code></pre>
+
+  <h2>InputMode</h2>
+  <pre><code>KEYBOARD_MOUSE   // keyboard and mouse only
+MIXED            // a controller is connected</code></pre>
+
+  <h2>IPlayerStateRegistry</h2>
+  <p>
+    <span>桥接模组向 Control Flex 推送状态，供 compat JSON 中的 <code>playerState</code> 条件使用。</span>
+  </p>
+  <pre><code>void setState(String stateKey, boolean active)  // thread-safe
+boolean getState(String stateKey)               // client thread
+void clearState(String stateKey)                // remove the registration</code></pre>
+  <p class="small muted">
+    <span><b>stateKey 格式</b>：<code>"modId:stateName"</code>，例如 <code>"epicfight:battle_mode"</code>。</span>
+  </p>
+
+  <h2>IInputInjector</h2>
+  <p>
+    <span>虚拟手柄输入注入，供测试工具与桥接模组使用。注入状态是<b>粘性</b>的（按钮按下后保持，直到释放或清除），并与真实手柄输入一样走正常的按键绑定流水线。</span>
+  </p>
+  <pre><code>void pressButton(String buttonName, boolean pressed)  // ButtonName constants; stick directions map to axes
+void setAxis(String axisName, float value)            // -1.0..1.0; 0 clears the override
+void clearAll()                                       // release all buttons, zero all axes</code></pre>
+  <p class="small muted">
+    <span><b>线程安全</b>：实现必须可跨线程调用；状态在客户端 tick 上原子应用。</span>
+  </p>
+
+  <h2>IInteractiveContextRegistrar</h2>
+  <p>
+    <span>声明交互式 Overlay：<b>前台</b>表示交互式 Overlay 打开，<b>后台</b>表示其关闭。Control Flex 据此将该类名记为当前活跃 Overlay，并在 OVERLAY 相位期间切换摇杆行为；场景退出时也会自动清除作为兜底。</span>
+  </p>
+  <pre><code>void notifyOverlayForeground(String className)   // overlay enters foreground
+void notifyOverlayBackground(String className)   // returns to background (pairs with foreground)
+void clearAll()                                   // fallback for mod unload / leaving the world</code></pre>
+  <p class="small muted">
+    <span><b>className</b> 为交互式 Overlay 的全限定类名 —— 该类名的摇杆行为由 Control Flex 的 compat 配置解析。仅限客户端线程；<code>getInteractiveContextRegistrar()</code> 可能为 null，调用前需判空。</span>
+  </p>
+  <div class="callout warn">
+    <p>
+      <span><b>0.8.7 破坏性变更</b>：这两个方法由 0.8.6 的 <code>notifyForeground</code> / <code>notifyBackground</code> 改名而来；按 0.8.6 名称编译的模组需要针对新版本重新编译。</span>
+    </p>
+  </div>
+
+  <h2><span>线程模型</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>接口</span></th>
+          <th><span>约束</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>ControlFlexApi</code></td><td><span>客户端主线程</span></td></tr>
+        <tr><td><code>IActionStateProvider</code></td><td><span>客户端主线程</span></td></tr>
+        <tr><td><code>IInputProvider</code> / <code>IControllerState</code></td><td><span>客户端主线程（底层 volatile 保证可见性）</span></td></tr>
+        <tr><td><code>IControllerCapabilities</code></td><td><span>客户端主线程</span></td></tr>
+        <tr><td><code>IPlayerStateRegistry.setState()</code></td><td><span><b>任意线程</b></span></td></tr>
+        <tr><td><code>IPlayerStateRegistry.getState()</code></td><td><span>客户端主线程</span></td></tr>
+        <tr><td><code>IInputInjector</code></td><td><span><b>任意线程</b>（在客户端 tick 上原子应用）</span></td></tr>
+        <tr><td><code>IInteractiveContextRegistrar</code></td><td><span>客户端主线程</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>功能详解 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/features.html", "zh": "/control-flex/zh/guide/features.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/features.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/features.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/features.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/features.html">
+<meta property="og:title" content="功能详解 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/features.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+  <h1><span>功能详解</span></h1>
+  <p class="lead">
+    <span>Control Flex 的每一项能力都有独立一页：先看它是怎么工作的，再看怎么设置、默认值是什么、有哪些要注意的地方。</span>
+  </p>
+
+  <div class="cards">
+    <a class="card" href="feature/layers.html">
+      <h3><span>七层按键架构</span></h3>
+      <p><span>Main / Shift 1–4 / Screen / Overlay 如何分工，继承与显式规则怎么算。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/trigger-modes.html">
+      <h3><span>触发模式</span></h3>
+      <p><span>Press 到 Double Toggle 共 10 种触发方式，一个按键承担多种行为。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/combo-keys.html">
+      <h3><span>组合键</span></h3>
+      <p><span>多个按键组成和弦触发一个动作，含升级规则与按键共享。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/radial-menus.html">
+      <h3><span>径向菜单</span></h3>
+      <p><span>5 个轮盘 × 8 个槽位：按键、聊天指令与快捷用物品。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/analog-movement.html">
+      <h3><span>模拟移动</span></h3>
+      <p><span>360° 摇杆移动，服务器上可切换键盘式 8 向。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/camera.html">
+      <h3><span>相机与瞄准</span></h3>
+      <p><span>右摇杆视角的三种模式、灵敏度曲线与模拟鼠标兼容。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/cursor.html">
+      <h3><span>光标与界面操作</span></h3>
+      <p><span>虚拟光标、格子吸附、D-Pad 跳格与容器操作。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/rumble.html">
+      <h3><span>震动反馈</span></h3>
+      <p><span>7 种波形、按伤害类型配置，轻中重三档强度。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/virtual-kbm.html">
+      <h3><span>虚拟键鼠</span></h3>
+      <p><span>让手柄注入真实的键盘 / 鼠标按键，适配只认物理键的模组。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/splitscreen.html">
+      <h3><span>分屏双人</span></h3>
+      <p><span>同机双人：两个实例、两把手柄，互不抢输入。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/mod-adaptation.html">
+      <h3><span>模组适配</span></h3>
+      <p><span>自动发现模组按键、按界面配置摇杆行为、同步社区配置。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+    <a class="card" href="feature/guide-hud.html">
+      <h3><span>游戏内指南</span></h3>
+      <p><span>情境 HUD 提示与指南列表，按钮图标随手柄类型变化。</span></p>
+      <p class="card-arrow"><span>查看详解 →</span></p>
+    </a>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span>想先把手柄跑起来？从<a href="getting-started.html">快速上手</a>开始。改键与校准的操作方式在<a href="settings.html">设置与键位</a>；多模组兼容的完整手段在<a href="../modpack/compat.html">模组兼容性</a>。</span>
+    </p>
+  </div>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

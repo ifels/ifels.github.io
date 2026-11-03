@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.trigger-modes.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.trigger-modes.31">Trigger Modes</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.trigger-modes.32">Every binding pairs which button with how it fires. Control Flex offers ten trigger modes, so one button can tap, hold, latch, and double-press for different actions.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.trigger-modes.33">The Ten Modes</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.trigger-modes.34">Mode</span></th>
+          <th><span data-i18n="guide.feature.trigger-modes.35">When it fires</span></th>
+          <th><span data-i18n="guide.feature.trigger-modes.36">Typical use</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Press</td><td><span data-i18n="guide.feature.trigger-modes.37">Once, on button down</span></td><td><span data-i18n="guide.feature.trigger-modes.38">One-shots and menu opens</span></td></tr>
+        <tr><td>Release</td><td><span data-i18n="guide.feature.trigger-modes.39">Once, on button up</span></td><td><span data-i18n="guide.feature.trigger-modes.40">Layer return, “on let go” actions</span></td></tr>
+        <tr><td>Hold</td><td><span data-i18n="guide.feature.trigger-modes.41">Active the whole time held</span></td><td><span data-i18n="guide.feature.trigger-modes.42">Movement, look, sustained use, layer switches</span></td></tr>
+        <tr><td>Tap</td><td><span data-i18n="guide.feature.trigger-modes.43">Once, on release after a short press; <b>if held past the threshold, nothing fires on release</b></span></td><td><span data-i18n="guide.feature.trigger-modes.44">Quick actions that must not fire on a hold</span></td></tr>
+        <tr><td>Long Press</td><td><span data-i18n="guide.feature.trigger-modes.45">Once, after being held past the long-press threshold</span></td><td><span data-i18n="guide.feature.trigger-modes.46">A second function on the same button (e.g. pause menu)</span></td></tr>
+        <tr><td>Toggle</td><td><span data-i18n="guide.feature.trigger-modes.47">First press activates and holds, second press releases; <b>independent of button hold</b> (RELEASE events are ignored)</span></td><td><span data-i18n="guide.feature.trigger-modes.48">Persistent states: sprint, walk mode, POV</span></td></tr>
+        <tr><td>Double Press</td><td><span data-i18n="guide.feature.trigger-modes.49">A second press inside the tap window fires once <b>immediately on down</b> (not latched)</span></td><td><span data-i18n="guide.feature.trigger-modes.50">An extra one-shot alongside Hold / Press</span></td></tr>
+        <tr><td>Double Tap</td><td><span data-i18n="guide.feature.trigger-modes.51">Two short presses; fires once on the second release</span></td><td><span data-i18n="guide.feature.trigger-modes.52">Confirm-style actions that must not steal the first tap</span></td></tr>
+        <tr><td>Double Hold</td><td><span data-i18n="guide.feature.trigger-modes.53">Short press, then press-and-hold inside the tap window; stays active until release</span></td><td><span data-i18n="guide.feature.trigger-modes.54">Tap-then-hold for deliberate triggers that resist misfires</span></td></tr>
+        <tr><td>Double Toggle</td><td><span data-i18n="guide.feature.trigger-modes.55">Same latch as Toggle; flips on the second short-press release</span></td><td><span data-i18n="guide.feature.trigger-modes.56">A latch sharing one button with its Hold variant (Basic does this for sneak)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.feature.trigger-modes.57">Thresholds &amp; Time Windows</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.trigger-modes.58"><b>Tap and Long Press thresholds</b> are global, 100–2000 ms, configured in <b>Other Settings</b>. They apply to every binding and template.</span></li>
+    <li><span data-i18n="guide.feature.trigger-modes.59"><b>The Tap threshold doubles as the gap limit for every Double mode</b>: Double Press / Tap / Hold / Toggle all use it as the maximum interval between the two presses.</span></li>
+    <li><span data-i18n="guide.feature.trigger-modes.60"><b>Defaults</b>: Tap 500 ms, Long Press 1000 ms (from the Basic template).</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.trigger-modes.61">Changing a Mode</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.trigger-modes.62">In Key Mapping, the Mode column cycles through the common modes (Press / Hold / Tap / Long Press).</span></li>
+    <li><span data-i18n="guide.feature.trigger-modes.63">Templates and compat JSON support all ten, written as <code>button|MODE</code> — for example <code>buttonA|HOLD</code> or <code>rightStickClick|DOUBLE_TOGGLE</code>. Mode tokens: <code>PRESS / RELEASE / HOLD / TAP / LONG_PRESS / TOGGLE / DOUBLE_PRESS / DOUBLE_TAP / DOUBLE_HOLD / DOUBLE_TOGGLE</code>.</span></li>
+    <li><span data-i18n="guide.feature.trigger-modes.64">Some actions restrict their mode: layer switches are fixed to HOLD, Shift-layer return-to-Main to RELEASE, and radial-menu opens support PRESS and HOLD.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.trigger-modes.65">Worked Examples</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.trigger-modes.66">Button</span></th>
+          <th><span data-i18n="guide.feature.trigger-modes.67">Binding</span></th>
+          <th><span data-i18n="guide.feature.trigger-modes.68">Effect</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="guide.feature.trigger-modes.69">R-stick click</span></td>
+          <td><code>HOLD</code> + <code>DOUBLE_TOGGLE</code></td>
+          <td><span data-i18n="guide.feature.trigger-modes.70">Hold to sneak, double-tap to latch sneak (Basic default)</span></td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Start</span></td>
+          <td><code>LONG_PRESS</code></td>
+          <td><span data-i18n="guide.feature.trigger-modes.71">Long press opens the pause menu; short presses do nothing</span></td>
+        </tr>
+        <tr>
+          <td><span class="kbd">D-Pad →</span></td>
+          <td><code>TAP</code></td>
+          <td><span data-i18n="guide.feature.trigger-modes.72">Tap to change perspective; an accidental hold does nothing</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.feature.trigger-modes.73">To combine buttons into one action, see <a href="combo-keys.html">Combo Keys</a>; to bake toggles into a template, see <a href="../../modpack/index.html">Configuration</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/layers.html"><span class="dir"><span data-i18n="guide.feature.trigger-modes.74">← Previous</span></span><span class="name"><span data-i18n="guide.feature.trigger-modes.75">Seven Layers</span></span></a>
+  <a class="pager-next" href="../../guide/feature/combo-keys.html"><span class="dir"><span data-i18n="guide.feature.trigger-modes.76">Next →</span></span><span class="name"><span data-i18n="guide.feature.trigger-modes.77">Combo Keys</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

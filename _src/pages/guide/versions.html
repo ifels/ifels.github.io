@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="guide.versions.18">Minecraft Versions</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.versions.19">From 1.7.10 to 26.3, Control Flex covers 13 Minecraft versions. Features are the same across every line; what differs is the <b>loader</b>, the <b>Java version</b>, and the <b>dependencies</b> — get any of those wrong and the mod simply will not load.</span>
+  </p>
+
+  <h2><span data-i18n="guide.versions.20">Supported Versions</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Minecraft</th>
+          <th><span data-i18n="guide.versions.21">Loaders</span></th>
+          <th>Java</th>
+          <th><span data-i18n="guide.versions.22">Dependencies</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>26.3</td><td>Fabric · NeoForge</td><td>25</td><td><span data-i18n="guide.versions.23">Fabric API 0.153.2+26.3 on Fabric</span></td></tr>
+        <tr><td>26.2</td><td>Fabric · NeoForge</td><td>25</td><td><span data-i18n="guide.versions.24">Fabric API 0.145.6+26.2 on Fabric</span></td></tr>
+        <tr><td>26.1.2</td><td>Fabric · NeoForge</td><td>25</td><td><span data-i18n="guide.versions.25">Fabric API 0.146.0+26.1.2 on Fabric</span></td></tr>
+        <tr><td>1.21.11</td><td>Fabric · NeoForge</td><td>21</td><td><span data-i18n="guide.versions.26">Fabric API 0.135.1+1.21.11 on Fabric</span></td></tr>
+        <tr><td>1.21.1</td><td>Fabric · NeoForge</td><td>21</td><td><span data-i18n="guide.versions.27">Fabric API 0.101.2+1.21.1 on Fabric</span></td></tr>
+        <tr><td>1.20.1</td><td>Forge · Fabric</td><td>17</td><td><span data-i18n="guide.versions.28">Fabric API 0.83.0+1.20.1 on Fabric</span></td></tr>
+        <tr><td>1.19.2</td><td>Forge · Fabric</td><td>17</td><td><span data-i18n="guide.versions.29">Fabric API 0.58.6+1.19.2 on Fabric</span></td></tr>
+        <tr><td>1.18.2</td><td>Forge · Fabric</td><td>17</td><td><span data-i18n="guide.versions.30">Fabric API 0.47.8+1.18.2 on Fabric</span></td></tr>
+        <tr><td>1.16.5</td><td>Forge · Fabric</td><td>8</td><td><span data-i18n="guide.versions.31">Fabric API 0.30.0+1.16 on Fabric</span></td></tr>
+        <tr><td>1.12.2</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.32">None (no Fabric build)</span></td></tr>
+        <tr><td>1.10.2</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.33">None (no Fabric build)</span></td></tr>
+        <tr><td>1.8.9</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.34">None (no Fabric build)</span></td></tr>
+        <tr><td>1.7.10</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.35">None (no Fabric build)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.versions.36">Every line ships the same mod version (0.8.9) and the same bundled controller bridge, <code>cfx-gamepadjni 0.9.6.1</code>. The Java version is dictated by that Minecraft version, not by your OS.</span>
+  </p>
+
+  <h2><span data-i18n="guide.versions.37">Three Generations</span></h2>
+
+  <h3><span data-i18n="guide.versions.38">Forge era: 1.7.10 – 1.12.2</span></h3>
+  <ul>
+    <li><span data-i18n="guide.versions.39"><b>Forge only.</b> These four predate Fabric's adoption, so no Fabric build exists.</span></li>
+    <li><span data-i18n="guide.versions.40">Runs on Java 8; the mod bytecode targets Java 8 as well.</span></li>
+    <li><span data-i18n="guide.versions.41">Metadata uses the legacy <code>mcmod.info</code>; Mixin configs differ from newer versions, but bindings, layers, radial menus, and the rest behave the same.</span></li>
+  </ul>
+
+  <h3><span data-i18n="guide.versions.42">Dual-loader era: 1.16.5 – 1.20.1</span></h3>
+  <ul>
+    <li><span data-i18n="guide.versions.43">One JAR per loader (Forge and Fabric) — pick the file for your loader.</span></li>
+    <li><span data-i18n="guide.versions.44">Java jumps here: 1.16.5 is still Java 8, and Java 17 starts at 1.18.2. <b>1.16.5 does not need Java 17.</b></span></li>
+    <li><span data-i18n="guide.versions.45">Fabric builds require Fabric API at or above the version in the table; Forge builds have no extra dependencies.</span></li>
+  </ul>
+
+  <h3><span data-i18n="guide.versions.46">NeoForge era: 1.21.1 and newer</span></h3>
+  <ul>
+    <li><span data-i18n="guide.versions.47">Loaders become <b>NeoForge</b> + Fabric: there is no Forge build past 1.20.1, and a Forge build will simply fail to load.</span></li>
+    <li><span data-i18n="guide.versions.48">Java 21 and up; the 26.x series requires <b>Java 25</b>.</span></li>
+    <li><span data-i18n="guide.versions.49">26.1.2 / 26.2 / 26.3 share one line (stonecutter multi-target); the Fabric API floor is set by Fabric API itself.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.versions.50">Loader Versions</span></h2>
+  <p class="small muted">
+    <span data-i18n="guide.versions.51">These are the loader versions each line was built against — treat them as “this version or newer”.</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Minecraft</th>
+          <th>Forge</th>
+          <th>NeoForge</th>
+          <th>Fabric API</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>26.3</td><td>—</td><td>26.3.0.0-beta</td><td>0.153.2+26.3</td></tr>
+        <tr><td>26.2</td><td>—</td><td>26.2.0.0-beta</td><td>0.145.6+26.2</td></tr>
+        <tr><td>26.1.2</td><td>—</td><td>26.1.2.71</td><td>0.146.0+26.1.2</td></tr>
+        <tr><td>1.21.11</td><td>—</td><td>21.11.45</td><td>0.135.1+1.21.11</td></tr>
+        <tr><td>1.21.1</td><td>—</td><td>21.1.249</td><td>0.101.2+1.21.1</td></tr>
+        <tr><td>1.20.1</td><td>47.4.4</td><td>—</td><td>0.83.0+1.20.1</td></tr>
+        <tr><td>1.19.2</td><td>43.5.2</td><td>—</td><td>0.58.6+1.19.2</td></tr>
+        <tr><td>1.18.2</td><td>40.3.12</td><td>—</td><td>0.47.8+1.18.2</td></tr>
+        <tr><td>1.16.5</td><td>36.2.42</td><td>—</td><td>0.30.0+1.16</td></tr>
+        <tr><td>1.12.2</td><td>14.23.5.2859</td><td>—</td><td>—</td></tr>
+        <tr><td>1.10.2</td><td>12.18.3.2511</td><td>—</td><td>—</td></tr>
+        <tr><td>1.8.9</td><td>11.15.1.2318</td><td>—</td><td>—</td></tr>
+        <tr><td>1.7.10</td><td>10.13.4.1614</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.versions.52">What to Install per Line</span></h2>
+  <ol>
+    <li><span data-i18n="guide.versions.53">Pin down three things first: MC version → loader (Forge / NeoForge / Fabric) → matching Java version.</span></li>
+    <li><span data-i18n="guide.versions.54">In <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge Files</a>, choose the file matching both (filenames carry the MC version and the loader).</span></li>
+    <li><span data-i18n="guide.versions.55">On Fabric lines, add Fabric API; on Forge / NeoForge lines, do not.</span></li>
+    <li><span data-i18n="guide.versions.56">Drop the JAR into <code>mods/</code> and launch; SDL3 needs no separate install (see <a href="platforms.html">Platform Support</a>).</span></li>
+  </ol>
+
+  <div class="callout">
+    <p>
+      <span data-i18n="guide.versions.57">All lines compile from the same codebase: layers, trigger modes, combo keys, radial menus, mod adaptation, rumble, and split-screen on 1.7.10 behave the same as on 26.3. If a feature “looks different” on an older line, suspect UI adaptation differences rather than a missing feature.</span>
+    </p>
+  </div>
+
+  <h2><span data-i18n="guide.versions.58">Reusing Configs Across Lines</span></h2>
+  <ul>
+    <li><span data-i18n="guide.versions.59">Every line uses <code>config/controlflex/</code> as its config root (<code>templates/</code>, <code>profiles/</code>, <code>compat/</code>, <code>radial_menu/</code>, <code>guides/</code>, <code>keyboard/</code>, <code>backup/</code>) with the same layout.</span></li>
+    <li><span data-i18n="guide.versions.60">Copying configs between lines usually works, but fields grow over time; back up first, and let the game regenerate defaults if parsing fails.</span></li>
+    <li><span data-i18n="guide.versions.61">Upgrades from 0.8.6.x migrate automatically, with originals kept under <code>config/controlflex/backup/</code>.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.versions.62">Common Mistakes</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.versions.63">Situation</span></th>
+          <th><span data-i18n="guide.versions.64">Result and fix</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="guide.versions.65">Forge build on 1.21+</span></td>
+          <td><span data-i18n="guide.versions.66">Fails to load — only NeoForge builds exist from 1.21; switch files</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.versions.67">Looking for a Fabric build on 1.12.2</span></td>
+          <td><span data-i18n="guide.versions.68">It does not exist; 1.7.10–1.12.2 are Forge only</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.versions.69">Fabric build without Fabric API</span></td>
+          <td><span data-i18n="guide.versions.70">Startup reports a missing dependency; install the version from the table</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.versions.71">Java 17 on 26.x</span></td>
+          <td><span data-i18n="guide.versions.72">26.x needs Java 25; conversely 1.16.5 needs Java 8, not 17</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.versions.73">JAR missing on the server</span></td>
+          <td><span data-i18n="guide.versions.74">No problem — it is client-side only and the server does not need it</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav class="pager">
+    <a class="pager-prev" href="platforms.html"><span class="dir"><span data-i18n="guide.versions.75">← Previous</span></span><span class="name"><span data-i18n="guide.versions.76">Platform Support</span></span></a>
+    <span class="spacer"></span>
+    <a class="pager-next" href="getting-started.html"><span class="dir"><span data-i18n="guide.versions.77">Next →</span></span><span class="name"><span data-i18n="guide.versions.78">Getting Started</span></span></a>
+  </nav>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

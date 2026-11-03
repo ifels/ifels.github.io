@@ -1,41 +1,18 @@
-/* Control Flex Wiki — language toggle, sidebar, active nav, copy buttons.
-   Loaded with `defer`, so the DOM is parsed by the time this runs. */
+/* Control Flex Wiki — sidebar, active nav, copy buttons, language preference.
+   Loaded with `defer`, so the DOM is parsed by the time this runs.
+
+   Each language is a separate static tree (/en/..., /zh/...). Switching
+   languages is a normal navigation, so there is nothing to swap at runtime;
+   this file only remembers the visitor's choice so the redirect stubs that
+   catch legacy URLs can honour it. */
 (function () {
   var LANG_KEY = 'preferredLang';
 
-  /* ---------- languages ----------
-     To add a language: add its code to LANGS here, add a matching <option> to
-     the language <select> in every page header, and wrap the new translations
-     in [data-lang="xx"] blocks. Visibility rules are injected below for every
-     entry, so the CSS in style.css never has to be edited for new languages
-     (it only carries static fallback rules for no-JS visitors). */
-  var LANGS = ['en', 'zh'];
-
-  (function injectLangCss() {
-    var css = LANGS.map(function (l) {
-      return 'html[lang="' + l + '"] [data-lang]:not([data-lang="' + l + '"]) { display: none !important; }';
-    }).join('\n');
-    var style = document.createElement('style');
-    style.textContent = css;
-    document.head.appendChild(style);
-  })();
-
-  /* Fall back to the first supported language when the stored or
-     auto-detected language has no content yet. */
-  if (LANGS.indexOf(document.documentElement.lang) === -1) {
-    document.documentElement.lang = LANGS[0];
-  }
-
-  var langSelect = document.getElementById('lang-select');
-  if (langSelect) {
-    langSelect.value = document.documentElement.lang;
-    langSelect.addEventListener('change', function () {
-      var next = langSelect.value;
-      if (LANGS.indexOf(next) === -1) next = LANGS[0];
-      document.documentElement.lang = next;
-      try { localStorage.setItem(LANG_KEY, next); } catch (e) { /* private mode */ }
+  document.querySelectorAll('a[data-set-lang]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      try { localStorage.setItem(LANG_KEY, a.getAttribute('data-set-lang')); } catch (e) { /* private mode */ }
     });
-  }
+  });
 
   /* ---------- mobile sidebar ---------- */
   var sidebar = document.getElementById('sidebar');

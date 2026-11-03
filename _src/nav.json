@@ -1,0 +1,139 @@
+[
+  {
+    "label": null,
+    "items": [
+      {
+        "href": "index.html",
+        "key": "nav.home"
+      }
+    ]
+  },
+  {
+    "label": "nav.player-guide",
+    "items": [
+      {
+        "href": "guide/getting-started.html",
+        "key": "nav.getting-started"
+      },
+      {
+        "href": "guide/features.html",
+        "key": "nav.features"
+      },
+      {
+        "type": "sub",
+        "items": [
+          {
+            "href": "guide/feature/layers.html",
+            "key": "nav.seven-layers"
+          },
+          {
+            "href": "guide/feature/trigger-modes.html",
+            "key": "nav.trigger-modes"
+          },
+          {
+            "href": "guide/feature/combo-keys.html",
+            "key": "nav.combo-keys"
+          },
+          {
+            "href": "guide/feature/radial-menus.html",
+            "key": "nav.radial-menus"
+          },
+          {
+            "href": "guide/feature/analog-movement.html",
+            "key": "nav.analog-movement"
+          },
+          {
+            "href": "guide/feature/camera.html",
+            "key": "nav.camera-and-aim"
+          },
+          {
+            "href": "guide/feature/cursor.html",
+            "key": "nav.cursor-and-gui"
+          },
+          {
+            "href": "guide/feature/rumble.html",
+            "key": "nav.rumble"
+          },
+          {
+            "href": "guide/feature/virtual-kbm.html",
+            "key": "nav.virtual-keyboard-and-mouse"
+          },
+          {
+            "href": "guide/feature/splitscreen.html",
+            "key": "nav.split-screen-co-op"
+          },
+          {
+            "href": "guide/feature/mod-adaptation.html",
+            "key": "nav.mod-adaptation"
+          },
+          {
+            "href": "guide/feature/guide-hud.html",
+            "key": "nav.in-game-guide"
+          }
+        ]
+      },
+      {
+        "href": "guide/settings.html",
+        "key": "nav.settings-and-controls"
+      }
+    ]
+  },
+  {
+    "label": "nav.platforms-and-versions",
+    "items": [
+      {
+        "href": "guide/platforms.html",
+        "key": "nav.platform-support"
+      },
+      {
+        "href": "guide/versions.html",
+        "key": "nav.minecraft-versions"
+      }
+    ]
+  },
+  {
+    "label": "nav.modpacks-and-compat",
+    "items": [
+      {
+        "href": "modpack/index.html",
+        "key": "nav.configuration"
+      },
+      {
+        "href": "modpack/compat.html",
+        "key": "nav.mod-compatibility"
+      }
+    ]
+  },
+  {
+    "label": "nav.developers",
+    "items": [
+      {
+        "href": "dev/index.html",
+        "key": "nav.api-quick-start"
+      },
+      {
+        "href": "dev/api-reference.html",
+        "key": "nav.api-reference"
+      },
+      {
+        "href": "dev/examples.html",
+        "key": "nav.plugin-and-examples"
+      }
+    ]
+  },
+  {
+    "label": "nav.links",
+    "items": [
+      {
+        "href": "https://github.com/ControlFlexMC/cfx-compat-configs",
+        "key": "nav.community-configs",
+        "blank": true
+      },
+      {
+        "href": "https://github.com/ControlFlexMC/control-flex-api",
+        "literal": "control-flex-api ↗",
+        "blank": true
+      }
+    ]
+  }
+]

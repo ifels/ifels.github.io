@@ -3,234 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minecraft Versions · Control Flex Wiki</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
-<script>/* supported languages: keep in sync with LANGS in assets/app.js */
-(function(){var S=['en','zh'];var l=localStorage.getItem('preferredLang')||((navigator.language||'en').toLowerCase().slice(0,2));if(S.indexOf(l)<0)l=S[0];document.documentElement.lang=l;})();</script>
-<link rel="stylesheet" href="../assets/style.css">
+<title>Control Flex Wiki</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/guide/versions.html">
+<script>
+(function () {
+  var path = "guide/versions.html";
+  var supported = ["en", "zh"];
+  var lang = null;
+  var q = new URLSearchParams(location.search).get('lang');
+  if (q && supported.indexOf(q) >= 0) {
+    lang = q;
+    try { localStorage.setItem('preferredLang', q); } catch (e) {}
+  } else {
+    try { lang = localStorage.getItem('preferredLang'); } catch (e) {}
+    if (!lang) {
+      var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+      lang = String(nav).toLowerCase().split('-')[0];
+    }
+  }
+  if (supported.indexOf(lang) < 0) lang = "en";
+  location.replace("../" + lang + '/' + path);
+})();
+</script>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+max-width:36rem;margin:18vh auto;padding:0 1.5rem;color:#333;line-height:1.6}
+a{color:#1f9d55}
+</style>
 </head>
 <body>
-<header class="topbar">
-  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
-  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
-  <nav class="topnav">
-    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
-    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
-    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
-  </nav>
-  <select id="lang-select" class="lang-select" aria-label="Language">
-    <option value="en">English</option>
-    <option value="zh">中文</option>
-  </select>
-</header>
-
-<div class="layout">
-<aside class="sidebar" id="sidebar">
-  <nav>
-    <div class="nav-group">
-      <a href="../index.html"><span data-lang="zh">首页</span><span data-lang="en">Home</span></a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-label"><span data-lang="zh">玩家指南</span><span data-lang="en">Player Guide</span></div>
-      <a href="getting-started.html"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></a>
-      <a href="features.html"><span data-lang="zh">功能详解</span><span data-lang="en">Features</span></a>
-      <a href="settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-label"><span data-lang="zh">平台与版本</span><span data-lang="en">Platforms &amp; Versions</span></div>
-      <a href="platforms.html"><span data-lang="zh">平台支持</span><span data-lang="en">Platform Support</span></a>
-      <a href="versions.html"><span data-lang="zh">MC 版本支持</span><span data-lang="en">Minecraft Versions</span></a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
-      <a href="../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
-      <a href="../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-label"><span data-lang="zh">开发者</span><span data-lang="en">Developers</span></div>
-      <a href="../dev/index.html"><span data-lang="zh">API 快速开始</span><span data-lang="en">API Quick Start</span></a>
-      <a href="../dev/api-reference.html"><span data-lang="zh">API 参考</span><span data-lang="en">API Reference</span></a>
-      <a href="../dev/examples.html"><span data-lang="zh">插件与示例</span><span data-lang="en">Plugin &amp; Examples</span></a>
-    </div>
-    <div class="nav-group">
-      <div class="nav-label"><span data-lang="zh">链接</span><span data-lang="en">Links</span></div>
-      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置库</span><span data-lang="en">Community Configs</span> ↗</a>
-      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
-    </div>
-  </nav>
-</aside>
-
-<main class="content">
-
-  <h1><span data-lang="zh">MC 版本支持</span><span data-lang="en">Minecraft Versions</span></h1>
-  <p class="lead">
-    <span data-lang="zh">从 1.7.10 到 26.3，Control Flex 覆盖 13 个 MC 版本。功能在各版本线上保持一致，差别在<b>加载器</b>、<b>Java 版本</b>与<b>前置依赖</b> —— 装错这三样里的任何一样，模组都不会被加载。</span>
-    <span data-lang="en">From 1.7.10 to 26.3, Control Flex covers 13 Minecraft versions. Features are the same across every line; what differs is the <b>loader</b>, the <b>Java version</b>, and the <b>dependencies</b> — get any of those wrong and the mod simply will not load.</span>
-  </p>
-
-  <h2><span data-lang="zh">版本总表</span><span data-lang="en">Supported Versions</span></h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Minecraft</th>
-          <th><span data-lang="zh">加载器</span><span data-lang="en">Loaders</span></th>
-          <th>Java</th>
-          <th><span data-lang="zh">前置依赖</span><span data-lang="en">Dependencies</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>26.3</td><td>Fabric · NeoForge</td><td>25</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.153.2+26.3</span><span data-lang="en">Fabric API 0.153.2+26.3 on Fabric</span></td></tr>
-        <tr><td>26.2</td><td>Fabric · NeoForge</td><td>25</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.145.6+26.2</span><span data-lang="en">Fabric API 0.145.6+26.2 on Fabric</span></td></tr>
-        <tr><td>26.1.2</td><td>Fabric · NeoForge</td><td>25</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.146.0+26.1.2</span><span data-lang="en">Fabric API 0.146.0+26.1.2 on Fabric</span></td></tr>
-        <tr><td>1.21.11</td><td>Fabric · NeoForge</td><td>21</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.135.1+1.21.11</span><span data-lang="en">Fabric API 0.135.1+1.21.11 on Fabric</span></td></tr>
-        <tr><td>1.21.1</td><td>Fabric · NeoForge</td><td>21</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.101.2+1.21.1</span><span data-lang="en">Fabric API 0.101.2+1.21.1 on Fabric</span></td></tr>
-        <tr><td>1.20.1</td><td>Forge · Fabric</td><td>17</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.83.0+1.20.1</span><span data-lang="en">Fabric API 0.83.0+1.20.1 on Fabric</span></td></tr>
-        <tr><td>1.19.2</td><td>Forge · Fabric</td><td>17</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.58.6+1.19.2</span><span data-lang="en">Fabric API 0.58.6+1.19.2 on Fabric</span></td></tr>
-        <tr><td>1.18.2</td><td>Forge · Fabric</td><td>17</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.47.8+1.18.2</span><span data-lang="en">Fabric API 0.47.8+1.18.2 on Fabric</span></td></tr>
-        <tr><td>1.16.5</td><td>Forge · Fabric</td><td>8</td><td><span data-lang="zh">Fabric 版需 Fabric API 0.30.0+1.16</span><span data-lang="en">Fabric API 0.30.0+1.16 on Fabric</span></td></tr>
-        <tr><td>1.12.2</td><td>Forge</td><td>8</td><td><span data-lang="zh">无（无 Fabric 版）</span><span data-lang="en">None (no Fabric build)</span></td></tr>
-        <tr><td>1.10.2</td><td>Forge</td><td>8</td><td><span data-lang="zh">无（无 Fabric 版）</span><span data-lang="en">None (no Fabric build)</span></td></tr>
-        <tr><td>1.8.9</td><td>Forge</td><td>8</td><td><span data-lang="zh">无（无 Fabric 版）</span><span data-lang="en">None (no Fabric build)</span></td></tr>
-        <tr><td>1.7.10</td><td>Forge</td><td>8</td><td><span data-lang="zh">无（无 Fabric 版）</span><span data-lang="en">None (no Fabric build)</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="small muted">
-    <span data-lang="zh">所有版本线使用同一个模组版本号（0.8.9），并内置同一份手柄桥 <code>cfx-gamepadjni 0.9.6.1</code>。Java 版本由该 MC 版本本身决定，不是由平台决定。</span>
-    <span data-lang="en">Every line ships the same mod version (0.8.9) and the same bundled controller bridge, <code>cfx-gamepadjni 0.9.6.1</code>. The Java version is dictated by that Minecraft version, not by your OS.</span>
-  </p>
-
-  <h2><span data-lang="zh">三代的差别</span><span data-lang="en">Three Generations</span></h2>
-
-  <h3><span data-lang="zh">Forge 时代：1.7.10 – 1.12.2</span><span data-lang="en">Forge era: 1.7.10 – 1.12.2</span></h3>
-  <ul>
-    <li><span data-lang="zh">只有 <b>Forge</b> 版。这四个版本的年代早于 Fabric 的普及，不存在 Fabric 构建。</span><span data-lang="en"><b>Forge only.</b> These four predate Fabric's adoption, so no Fabric build exists.</span></li>
-    <li><span data-lang="zh">Java 8 运行；模组字节码同样针对 Java 8。</span><span data-lang="en">Runs on Java 8; the mod bytecode targets Java 8 as well.</span></li>
-    <li><span data-lang="zh">元数据走旧式 <code>mcmod.info</code>；Mixin 配置与新版不同，但键位、层、径向菜单等行为与新版一致。</span><span data-lang="en">Metadata uses the legacy <code>mcmod.info</code>; Mixin configs differ from newer versions, but bindings, layers, radial menus, and the rest behave the same.</span></li>
-  </ul>
-
-  <h3><span data-lang="zh">双加载器时代：1.16.5 – 1.20.1</span><span data-lang="en">Dual-loader era: 1.16.5 – 1.20.1</span></h3>
-  <ul>
-    <li><span data-lang="zh">Forge 与 Fabric 各出一份 JAR，按加载器选文件。</span><span data-lang="en">One JAR per loader (Forge and Fabric) — pick the file for your loader.</span></li>
-    <li><span data-lang="zh">Java 版本在这里跳了一档：1.16.5 仍是 Java 8，1.18.2 起是 Java 17。<b>1.16.5 不需要 Java 17</b>。</span><span data-lang="en">Java jumps here: 1.16.5 is still Java 8, and Java 17 starts at 1.18.2. <b>1.16.5 does not need Java 17.</b></span></li>
-    <li><span data-lang="zh">Fabric 版必须另装 Fabric API，且版本要跟上表对上；Forge 版无需额外前置。</span><span data-lang="en">Fabric builds require Fabric API at or above the version in the table; Forge builds have no extra dependencies.</span></li>
-  </ul>
-
-  <h3><span data-lang="zh">NeoForge 时代：1.21.1 起</span><span data-lang="en">NeoForge era: 1.21.1 and newer</span></h3>
-  <ul>
-    <li><span data-lang="zh">加载器换成 <b>NeoForge</b> + Fabric：1.21 之后不再有 Forge 版，拿 Forge 版去装会直接加载失败。</span><span data-lang="en">Loaders become <b>NeoForge</b> + Fabric: there is no Forge build past 1.20.1, and a Forge build will simply fail to load.</span></li>
-    <li><span data-lang="zh">Java 21 起步；26.x 系列要求 <b>Java 25</b>。</span><span data-lang="en">Java 21 and up; the 26.x series requires <b>Java 25</b>.</span></li>
-    <li><span data-lang="zh">26.1.2 / 26.2 / 26.3 共用一条版本线（stonecutter 多目标），Fabric API 的下限由 Fabric API 自身决定。</span><span data-lang="en">26.1.2 / 26.2 / 26.3 share one line (stonecutter multi-target); the Fabric API floor is set by Fabric API itself.</span></li>
-  </ul>
-
-  <h2><span data-lang="zh">加载器版本对照</span><span data-lang="en">Loader Versions</span></h2>
-  <p class="small muted">
-    <span data-lang="zh">下表是各版本线构建时使用的加载器版本，可视为“不低于此版本”的参考值。</span>
-    <span data-lang="en">These are the loader versions each line was built against — treat them as “this version or newer”.</span>
-  </p>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Minecraft</th>
-          <th>Forge</th>
-          <th>NeoForge</th>
-          <th>Fabric API</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>26.3</td><td>—</td><td>26.3.0.0-beta</td><td>0.153.2+26.3</td></tr>
-        <tr><td>26.2</td><td>—</td><td>26.2.0.0-beta</td><td>0.145.6+26.2</td></tr>
-        <tr><td>26.1.2</td><td>—</td><td>26.1.2.71</td><td>0.146.0+26.1.2</td></tr>
-        <tr><td>1.21.11</td><td>—</td><td>21.11.45</td><td>0.135.1+1.21.11</td></tr>
-        <tr><td>1.21.1</td><td>—</td><td>21.1.249</td><td>0.101.2+1.21.1</td></tr>
-        <tr><td>1.20.1</td><td>47.4.4</td><td>—</td><td>0.83.0+1.20.1</td></tr>
-        <tr><td>1.19.2</td><td>43.5.2</td><td>—</td><td>0.58.6+1.19.2</td></tr>
-        <tr><td>1.18.2</td><td>40.3.12</td><td>—</td><td>0.47.8+1.18.2</td></tr>
-        <tr><td>1.16.5</td><td>36.2.42</td><td>—</td><td>0.30.0+1.16</td></tr>
-        <tr><td>1.12.2</td><td>14.23.5.2859</td><td>—</td><td>—</td></tr>
-        <tr><td>1.10.2</td><td>12.18.3.2511</td><td>—</td><td>—</td></tr>
-        <tr><td>1.8.9</td><td>11.15.1.2318</td><td>—</td><td>—</td></tr>
-        <tr><td>1.7.10</td><td>10.13.4.1614</td><td>—</td><td>—</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2><span data-lang="zh">每个版本线要装什么</span><span data-lang="en">What to Install per Line</span></h2>
-  <ol>
-    <li><span data-lang="zh">先确定三件事：MC 版本 → 加载器（Forge / NeoForge / Fabric）→ 对应版本的 Java。</span><span data-lang="en">Pin down three things first: MC version → loader (Forge / NeoForge / Fabric) → matching Java version.</span></li>
-    <li><span data-lang="zh">在 <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge Files</a> 里选与这两项都一致的文件（文件名带 MC 版本与加载器标识）。</span><span data-lang="en">In <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge Files</a>, choose the file matching both (filenames carry the MC version and the loader).</span></li>
-    <li><span data-lang="zh">Fabric 版本线额外装 Fabric API；Forge / NeoForge 版本线不要装 Fabric API。</span><span data-lang="en">On Fabric lines, add Fabric API; on Forge / NeoForge lines, do not.</span></li>
-    <li><span data-lang="zh">把 JAR 放进 <code>mods/</code>，启动游戏；SDL3 无需单独安装（详见 <a href="platforms.html">平台支持</a>）。</span><span data-lang="en">Drop the JAR into <code>mods/</code> and launch; SDL3 needs no separate install (see <a href="platforms.html">Platform Support</a>).</span></li>
-  </ol>
-
-  <div class="callout">
-    <p>
-      <span data-lang="zh">版本线的功能是同一份代码库编译出来的：1.7.10 上的层、触发模式、组合键、径向菜单、模组适配、震动、分屏等，与 26.3 上一致。遇到某个功能在旧版本上“看起来不一样”，先怀疑界面适配差异，而不是功能缺失。</span>
-      <span data-lang="en">All lines compile from the same codebase: layers, trigger modes, combo keys, radial menus, mod adaptation, rumble, and split-screen on 1.7.10 behave the same as on 26.3. If a feature “looks different” on an older line, suspect UI adaptation differences rather than a missing feature.</span>
-    </p>
-  </div>
-
-  <h2><span data-lang="zh">配置在版本之间的复用</span><span data-lang="en">Reusing Configs Across Lines</span></h2>
-  <ul>
-    <li><span data-lang="zh">所有版本线的配置根目录都是 <code>config/controlflex/</code>（<code>templates/</code>、<code>profiles/</code>、<code>compat/</code>、<code>radial_menu/</code>、<code>guides/</code>、<code>keyboard/</code>、<code>backup/</code>），目录结构一致。</span><span data-lang="en">Every line uses <code>config/controlflex/</code> as its config root (<code>templates/</code>, <code>profiles/</code>, <code>compat/</code>, <code>radial_menu/</code>, <code>guides/</code>, <code>keyboard/</code>, <code>backup/</code>) with the same layout.</span></li>
-    <li><span data-lang="zh">跨版本线复制配置通常可用，但字段会随版本演进增加；复制前先备份，遇到解析失败就让游戏重新生成默认。</span><span data-lang="en">Copying configs between lines usually works, but fields grow over time; back up first, and let the game regenerate defaults if parsing fails.</span></li>
-    <li><span data-lang="zh">从 0.8.6.x 升级会自动迁移，原文件备份在 <code>config/controlflex/backup/</code>。</span><span data-lang="en">Upgrades from 0.8.6.x migrate automatically, with originals kept under <code>config/controlflex/backup/</code>.</span></li>
-  </ul>
-
-  <h2><span data-lang="zh">常见错误</span><span data-lang="en">Common Mistakes</span></h2>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th><span data-lang="zh">情况</span><span data-lang="en">Situation</span></th>
-          <th><span data-lang="zh">结果与处理</span><span data-lang="en">Result and fix</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span data-lang="zh">1.21+ 装了 Forge 版</span><span data-lang="en">Forge build on 1.21+</span></td>
-          <td><span data-lang="zh">加载失败 —— 1.21 起只有 NeoForge 版，换文件</span><span data-lang="en">Fails to load — only NeoForge builds exist from 1.21; switch files</span></td>
-        </tr>
-        <tr>
-          <td><span data-lang="zh">在 1.12.2 找 Fabric 版</span><span data-lang="en">Looking for a Fabric build on 1.12.2</span></td>
-          <td><span data-lang="zh">不存在；1.7.10–1.12.2 只有 Forge 版</span><span data-lang="en">It does not exist; 1.7.10–1.12.2 are Forge only</span></td>
-        </tr>
-        <tr>
-          <td><span data-lang="zh">Fabric 版没装 Fabric API</span><span data-lang="en">Fabric build without Fabric API</span></td>
-          <td><span data-lang="zh">启动即报缺少依赖；按上表补上对应版本</span><span data-lang="en">Startup reports a missing dependency; install the version from the table</span></td>
-        </tr>
-        <tr>
-          <td><span data-lang="zh">用 Java 17 跑 26.x</span><span data-lang="en">Java 17 on 26.x</span></td>
-          <td><span data-lang="zh">26.x 需要 Java 25；1.16.5 则需要 Java 8（不是 17）</span><span data-lang="en">26.x needs Java 25; conversely 1.16.5 needs Java 8, not 17</span></td>
-        </tr>
-        <tr>
-          <td><span data-lang="zh">JAR 放在客户端但服务器没装</span><span data-lang="en">JAR missing on the server</span></td>
-          <td><span data-lang="zh">无所谓 —— 这是纯客户端模组，服务器不需要安装</span><span data-lang="en">No problem — it is client-side only and the server does not need it</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <nav class="pager">
-    <a class="pager-prev" href="platforms.html"><span class="dir"><span data-lang="zh">← 上一页</span><span data-lang="en">← Previous</span></span><span class="name"><span data-lang="zh">平台支持</span><span data-lang="en">Platform Support</span></span></a>
-    <span class="spacer"></span>
-    <a class="pager-next" href="getting-started.html"><span class="dir"><span data-lang="zh">下一页 →</span><span data-lang="en">Next →</span></span><span class="name"><span data-lang="zh">快速上手</span><span data-lang="en">Getting Started</span></span></a>
-  </nav>
-
-</main>
-</div>
-
-<footer class="footer">
-  <div class="footer-inner">
-    <span>Control Flex — MIT License · SDL3 (zlib)</span>
-    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener"><span data-lang="zh">报告问题</span><span data-lang="en">Report issues</span> ↗</a>
-    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
-    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener"><span data-lang="zh">社区兼容配置</span><span data-lang="en">Community configs</span> ↗</a>
-  </div>
-</footer>
-
-<script src="../assets/app.js" defer></script>
+<p>正在载入 Control Flex Wiki · Loading Control Flex Wiki</p>
+<p><a href=""en"/guide/versions.html">Continue</a></p>
 </body>
 </html>

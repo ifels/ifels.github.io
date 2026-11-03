@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>插件开发与完整示例 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/dev/examples.html", "zh": "/control-flex/zh/dev/examples.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/dev/examples.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/dev/examples.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/dev/examples.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/dev/examples.html">
+<meta property="og:title" content="插件开发与完整示例 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/dev/examples.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span>插件开发与完整示例</span></h1>
+  <p class="lead">
+    <span>从 SPI 生命周期到端到端桥接模组：这一页的代码均来自官方文档与 <a href="https://github.com/ControlFlexMC/cfx-compat-epicfight" target="_blank" rel="noopener">cfx-compat-epicfight</a> 范例。</span>
+  </p>
+
+  <h2><span>生命周期回调</span></h2>
+
+  <h3>onInstallCompatConfigs</h3>
+  <p>
+    <span>在 <code>onControlFlexReady</code> 之前调用。用 <code>ICompatAssetInstaller.install()</code> 把 compat JSON 安装到 <code>config/controlflex/compat/mods/</code>（优先级高于 <code>default/</code>、低于 <code>user/</code>；同 <code>mod_id</code> 完全覆盖）。</span>
+  </p>
+  <pre><code>@Override
+public void onInstallCompatConfigs(ICompatAssetInstaller installer) {
+    installer.install(
+        "/../../assets/mymod/compat/targetmod_keys.json",
+        "targetmod_keys.json"
+    );
+}</code></pre>
+
+  <h3>onInstallGuideAssets</h3>
+  <p>
+    <span>同上，但安装 guide JSON 到 <code>config/controlflex/guides/mods/</code>。</span>
+  </p>
+  <pre><code>@Override
+public void onInstallGuideAssets(ICompatAssetInstaller installer) {
+    installer.install(
+        "/../../assets/mymod/guides/targetmod_guid.json",
+        "targetmod_guid.json"
+    );
+}</code></pre>
+
+  <h3>onControlFlexReady</h3>
+  <p>
+    <span><b>唯一的初始化回调</b>。此时所有 API provider 已就绪。</span>
+  </p>
+  <pre><code>@Override
+public void onControlFlexReady() {
+    // 1. version check
+    if (!requireApiVersion("0.8.7")) return;
+
+    // 2. availability check
+    if (!ControlFlexApi.isAvailable()) return;
+
+    // 3. register your event listeners
+    MinecraftForge.EVENT_BUS.addListener(this::onTargetModEvent);
+
+    // 4. push initial state
+    ControlFlexApi.getPlayerStateRegistry()
+        .setState("mymod:initialized", true);
+}</code></pre>
+
+  <h3>onControllerConnectionChanged</h3>
+  <pre><code>@Override
+public void onControllerConnectionChanged(boolean connected) {
+    if (connected) {
+        String name = ControlFlexApi.getInputProvider().getGamepadName();
+        LOGGER.info("Controller connected: {}", name);
+    } else {
+        LOGGER.info("Controller disconnected");
+        resetState();
+    }
+}</code></pre>
+
+  <h2><span>SPI 注册与目录分层</span></h2>
+  <pre><code>src/main/resources/META-INF/services/com.ifels.controlflex.api.IControlFlexPlugin
+
+com.example.mymod.MyPlugin</code></pre>
+  <pre><code>config/controlflex/compat/          config/controlflex/guides/
+├── default/    ← packaged by Control Flex    ├── default/
+├── mods/       ← installed by bridge mods   ├── mods/
+└── user/       ← user edits                 └── user/
+
+Priority: user &gt; mods &gt; default</code></pre>
+
+  <h2><span>线程安全与日志</span></h2>
+  <ul>
+    <li><span>除 <code>IPlayerStateRegistry.setState()</code> 与 <code>IInputInjector</code> 外，所有 API 调用必须在客户端主线程。</span></li>
+    <li><span><code>IControllerState</code> 与 <code>getActiveGameActions()</code> 返回的都是实时视图，<b>不要跨 tick 缓存引用</b>。</span></li>
+    <li><span>日志用自己的 Logger：</span></li>
+  </ul>
+  <pre><code>private static final Logger LOGGER = LogManager.getLogger("my-mod-id");</code></pre>
+
+  <h2><span>完整桥接模组模板</span></h2>
+  <pre><code>package com.example.mymod;
+
+import com.ifels.controlflex.api.*;
+import org.apache.logging.log4j.*;
+
+public class MyPlugin implements IControlFlexPlugin {
+
+    private static final Logger LOGGER = LogManager.getLogger("my-bridge-mod");
+
+    @Override
+    public String getModId() {
+        return "my_bridge_mod";
+    }
+
+    @Override
+    public void onInstallCompatConfigs(ICompatAssetInstaller installer) {
+        installer.install(
+            "/../../assets/my_bridge_mod/compat/targetmod_keys.json",
+            "targetmod_keys.json");
+    }
+
+    @Override
+    public void onInstallGuideAssets(ICompatAssetInstaller installer) {
+        installer.install(
+            "/../../assets/my_bridge_mod/guides/targetmod_guid.json",
+            "targetmod_guid.json");
+    }
+
+    @Override
+    public void onControlFlexReady() {
+        if (!requireApiVersion("0.8.7")) return;
+        if (!ControlFlexApi.isAvailable()) return;
+
+        IPlayerStateRegistry states = ControlFlexApi.getPlayerStateRegistry();
+        states.setState("targetmod:initialized", true);
+
+        LOGGER.info("Bridge mod ready. API version: {}",
+            ControlFlexApi.getApiVersion());
+    }
+
+    @Override
+    public void onControllerConnectionChanged(boolean connected) {
+        LOGGER.info("Controller connection: {}", connected);
+    }
+}</code></pre>
+
+  <h2><span>示例 1：读取摇杆移动向量</span></h2>
+  <pre><code>public class ControllerInputReader {
+
+    private static final float DEADZONE = 0.15f;
+
+    /** Returns {forward, strafe}, each in -1.0..1.0 */
+    public static float[] getMovement() {
+        if (!ControlFlexApi.isAvailable()) return new float[]{0, 0};
+
+        IInputProvider input = ControlFlexApi.getInputProvider();
+        if (input == null || !input.isConnected()) return new float[]{0, 0};
+
+        IControllerState state = input.getControllerState();
+        if (state == null) return new float[]{0, 0};
+
+        float forward = applyDeadzone(-state.getLeftStickY(), DEADZONE);
+        float strafe  = applyDeadzone(state.getLeftStickX(), DEADZONE);
+
+        return new float[]{forward, strafe};
+    }
+
+    private static float applyDeadzone(float v, float dz) {
+        if (Math.abs(v) < dz) return 0;
+        return Math.signum(v) * (Math.abs(v) - dz) / (1 - dz);
+    }
+}</code></pre>
+
+  <h2><span>示例 2：检测动作是否激活</span></h2>
+  <pre><code>public class ActionReader {
+
+    public static boolean isAttacking() {
+        IActionStateProvider actions = ControlFlexApi.getActionStateProvider();
+        return actions != null && actions.isGameActionActive("attack");
+    }
+
+    public static boolean isModActionActive(String modId, String keyName) {
+        IActionStateProvider actions = ControlFlexApi.getActionStateProvider();
+        if (actions == null) return false;
+        return actions.isGameActionActive(modId + ":" + keyName);
+    }
+
+    // Usage: ActionReader.isModActionActive("epicfight", "key.epicfight.dodge")
+}</code></pre>
+
+  <h2><span>示例 3：推送模组状态（与 compat JSON 联动）</span></h2>
+  <pre><code>public class StatePusher {
+
+    public static void onCombatModeChanged(boolean inCombat) {
+        IPlayerStateRegistry registry = ControlFlexApi.getPlayerStateRegistry();
+        if (registry != null) {
+            registry.setState("mymod:combat_mode", inCombat);
+        }
+    }
+}</code></pre>
+  <p>
+    <span>配套的 compat JSON 条件可以这样用：</span>
+  </p>
+  <pre><code>{
+  "itemSuppressKeys": [{
+    "item": "mymod:special_weapon",
+    "playerState": ["mymod:combat_mode"],
+    "suppressActions": ["attack"]
+  }]
+}</code></pre>
+
+  <h2><span>示例 4：Epic Fight 桥接的结构</span></h2>
+  <pre><code>cfx-compat-epicfight/
+├── build.gradle
+└── src/main/
+    ├── java/com/ifels/cfx/epicfight/
+    │   ├── CfxEpicFightMod.java           # @Mod main class
+    │   ├── CfxEpicFightPlugin.java        # IControlFlexPlugin implementation
+    │   ├── CfxEpicFightControllerMod.java # EpicFight IEpicFightControllerMod
+    │   ├── EpicFightStateBridge.java      # state detection + push
+    │   ├── CfxControllerBinding.java      # controller button bindings
+    │   ├── CfxMovementBinding.java        # stick movement mapping
+    │   ├── ActionBindingMapper.java       # action ID mapping
+    │   └── mixin/                         # mixin injections
+    └── resources/
+        ├── META-INF/
+        │   ├── mods.toml
+        │   └── services/com.ifels.controlflex.api.IControlFlexPlugin
+        ├── ../../assets/cfx_compat_epicfight/
+        │   ├── compat/epicfight_keys.json
+        │   ├── guides/epicfight_guid.json
+        │   └── lang/{en_us,zh_cn}.json
+        └── cfx-compat-epicfight.mixins.json</code></pre>
+  <pre><code>// build.gradle — key parts
+plugins {
+    id 'net.neoforged.moddev.legacyforge'
+}
+
+repositories {
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://cursemaven.com' }
+}
+
+dependencies {
+    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.8.9'
+    compileOnly 'curse.maven:epicfight-405076:7789099'
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+}</code></pre>
+
+  <h2><span>示例 5：按手柄类型显示按钮图标</span></h2>
+  <pre><code>public class GlyphHelper {
+
+    public static String getAttackGlyph() {
+        IInputProvider input = ControlFlexApi.getInputProvider();
+        if (input == null) return "[Attack]";
+
+        IControllerCapabilities caps = input.getCapabilities();
+        if (caps == null) return "[A]";
+
+        return switch (caps.getControllerType()) {
+            case PLAYSTATION -> "[✕]";
+            case XBOX         -> "[A]";
+            case NINTENDO_SWITCH -> "[B]";
+            default           -> "[A]";
+        };
+    }
+}</code></pre>
+
+  <h2><span>示例 6：声明交互式 Overlay（0.8.7）</span></h2>
+  <p>
+    <span>在自定义 Overlay 打开 / 关闭时调用；该类名的摇杆行为由 Control Flex 的 compat 配置解析。</span>
+  </p>
+  <pre><code>public class OverlayNotifier {
+
+    public static void onOverlayOpened(Object overlay) {
+        IInteractiveContextRegistrar registrar =
+            ControlFlexApi.getInteractiveContextRegistrar();
+        if (registrar != null) {
+            registrar.notifyOverlayForeground(overlay.getClass().getName());
+        }
+    }
+
+    public static void onOverlayClosed(Object overlay) {
+        IInteractiveContextRegistrar registrar =
+            ControlFlexApi.getInteractiveContextRegistrar();
+        if (registrar != null) {
+            registrar.notifyOverlayBackground(overlay.getClass().getName());
+        }
+    }
+}</code></pre>
+  <div class="callout warn">
+    <p>
+      <span>这两个方法在 0.8.7 由 <code>notifyForeground</code> / <code>notifyBackground</code> 改名而来，按 0.8.6 编译的模组需要重新编译。</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

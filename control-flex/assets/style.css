@@ -130,13 +130,9 @@ body {
   border-radius: 4px;
 }
 
-/* ---------- language visibility ----------
-   Adding a language: add a rule for it here (and add the code to LANGS in
-   assets/app.js — the JS block also injects these rules at runtime, so a new
-   language only needs: LANGS entry + <option> in the header select + content
-   blocks marked [data-lang="xx"]). */
-html[lang="en"] [data-lang]:not([data-lang="en"]) { display: none !important; }
-html[lang="zh"] [data-lang]:not([data-lang="zh"]) { display: none !important; }
+/* ---------- language switcher ----------
+   Each language is its own static tree (/<lang>/...), so switching is a plain
+   link. Adding a language needs no change here. */
 
 /* ============================================================
    Top bar
@@ -201,18 +197,38 @@ html[lang="zh"] [data-lang]:not([data-lang="zh"]) { display: none !important; }
 }
 .topnav a:hover { color: #fff; text-decoration: none; }
 
-.lang-select {
-  padding: 5px 9px;
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
   border: 1px solid rgba(255, 255, 255, .16);
   border-radius: 7px;
   background: rgba(255, 255, 255, .06);
-  color: var(--header-ink);
   font-size: 13px;
-  cursor: pointer;
-  color-scheme: dark;
-  transition: background .15s, border-color .15s;
+  white-space: nowrap;
 }
-.lang-select:hover { background: rgba(255, 255, 255, .12); border-color: rgba(255, 255, 255, .26); }
+
+.lang-switch a,
+.lang-switch .lang-current {
+  padding: 2px 8px;
+  border-radius: 5px;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+
+.lang-switch a { color: var(--header-muted); }
+.lang-switch a:hover {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  text-decoration: none;
+}
+
+.lang-switch .lang-current {
+  background: rgba(255, 255, 255, .16);
+  color: var(--header-ink);
+}
 
 .nav-toggle {
   display: none;

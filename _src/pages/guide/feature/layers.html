@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.layers.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.layers.31">Seven Layers</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.layers.32">A standard pad has roughly a dozen inputs; a modpack can expose hundreds of actions. The seven-layer model lets one physical button mean different things per context — it is the foundation everything else builds on.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.layers.33">The Seven Layers</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.layers.34">Layer</span></th>
+          <th><span data-i18n="guide.feature.layers.35">Active when</span></th>
+          <th><span data-i18n="guide.feature.layers.36">Notes</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Main</td>
+          <td><span data-i18n="guide.feature.layers.37">Default in-game</span></td>
+          <td><span data-i18n="guide.feature.layers.38">Movement, look, combat, hotbar, and everyday mod actions</span></td>
+        </tr>
+        <tr>
+          <td>Shift 1–4</td>
+          <td><span data-i18n="guide.feature.layers.39">While the matching layer switch is held</span></td>
+          <td><span data-i18n="guide.feature.layers.40">Four modifier planes, each with a full binding table; releasing the switch returns to Main</span></td>
+        </tr>
+        <tr>
+          <td>Screen</td>
+          <td><span data-i18n="guide.feature.layers.41">Whenever a screen is open (inventory, chests, mod UIs, settings)</span></td>
+          <td><span data-i18n="guide.feature.layers.42">Confirm, back, tab switching, scrolling, slot navigation, container helpers; opening a menu never fights your gameplay bindings</span></td>
+        </tr>
+        <tr>
+          <td>Overlay</td>
+          <td><span data-i18n="guide.feature.layers.43">Interactive HUDs (spell wheels, third-party radial menus, photo HUDs)</span></td>
+          <td><span data-i18n="guide.feature.layers.44">Explicit bindings, no Main inheritance: unconfigured actions stay silent so a HUD cannot misfire combat keys</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.feature.layers.45">Shift 1–4: Fully Explicit Planes</span></h2>
+  <p>
+    <span data-i18n="guide.feature.layers.46">Shift layers are four independent binding planes. Four rules explain the whole feature:</span>
+  </p>
+  <ul>
+    <li><span data-i18n="guide.feature.layers.47"><b>Movement and look keys default to Main's values</b> (pre-filled when the template is created); everything else defaults to unbound — the layers are <b>fully explicit</b>.</span></li>
+    <li><span data-i18n="guide.feature.layers.48"><b>Editing Main later does not change Shift layers</b>, and vice versa. Each layer owns its table.</span></li>
+    <li><span data-i18n="guide.feature.layers.49"><b>Layer switches are fixed to HOLD</b> (the layer_shift1–4 rows on Main cannot use another mode).</span></li>
+    <li><span data-i18n="guide.feature.layers.50"><b>Each Shift layer auto-derives a “return to Main” binding with RELEASE mode</b> — releasing the switch returns you, no manual setup.</span></li>
+  </ul>
+  <div class="callout warn">
+    <p>
+      <span data-i18n="guide.feature.layers.51"><b>Common misconception</b>: Shift layers do not inherit Main at runtime — an empty slot is simply unbound. Templates merely pre-fill movement and look with Main's values so you have a sensible starting point.</span>
+    </p>
+  </div>
+
+  <h2><span data-i18n="guide.feature.layers.52">Screen: Bindings for Menus</span></h2>
+  <p>
+    <span data-i18n="guide.feature.layers.53">Whenever any screen is open, input switches to the Screen layer. Defaults fall into four groups:</span>
+  </p>
+  <ul>
+    <li><span data-i18n="guide.feature.layers.54"><b>Cursor</b>: the left stick drives the virtual cursor (direction bindings can navigate it too; the two are separate rows).</span></li>
+    <li><span data-i18n="guide.feature.layers.55"><b>Slots</b>: D-Pad jumps between slots, A selects, Y quick-moves (shift-click), X takes half.</span></li>
+    <li><span data-i18n="guide.feature.layers.56"><b>Navigation</b>: A confirm, B back/close, LB/RB switch pages (creative tabs, recipe-book pages, the guide list).</span></li>
+    <li><span data-i18n="guide.feature.layers.57"><b>Scrolling</b>: right stick up/down emulates the wheel; left/right taps cycle options.</span></li>
+  </ul>
+  <p class="small muted">
+    <span data-i18n="guide.feature.layers.58">The Screen layer can also inject physical keys such as the scroll wheel (see <a href="virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>); cursor details live in <a href="cursor.html">Cursor &amp; GUI</a>.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.layers.59">Overlay: Interactive HUDs</span></h2>
+  <p>
+    <span data-i18n="guide.feature.layers.60">The Overlay layer covers interactive HUDs that are neither a full screen nor plain gameplay — spell wheels, third-party radial menus, photo/attachment HUDs. Its defaults follow the in-game feel (move, look, jump, attack, use, scroll) with <span class="kbd">B</span> as back. Two things matter:</span>
+  </p>
+  <ul>
+    <li><span data-i18n="guide.feature.layers.61"><b>No Main inheritance</b>: unconfigured actions stay silent during an overlay, so a HUD cannot misfire combat keys. Layer switches are suppressed while an overlay is open.</span></li>
+    <li><span data-i18n="guide.feature.layers.62"><b>The HUD must be declared</b>: add an Overlay rule for it in <a href="mod-adaptation.html">Mod Adaptation</a>, or use the Control Flex API's <code>IInteractiveContextRegistrar</code> from a bridge mod (see the <a href="../../dev/api-reference.html">API Reference</a>). Keys that must stay held across an overlay can be phase-locked until you unlock them.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.layers.63">Editing Layers</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.layers.64">Key Mapping shows and edits bindings per layer: switch the layer tab, or edit any layer's rows.</span></li>
+    <li><span data-i18n="guide.feature.layers.65">Which layers an action appears on is configured per action in its detail page. <b>Switching templates resets layer placement to template defaults</b>; “reset to template defaults” does not change layer placement.</span></li>
+    <li><span data-i18n="guide.feature.layers.66">Click the controller column to capture input; <span class="kbd">ESC</span> cancels; right-click a row to clear, reset, or change its layer.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.layers.67">Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.layers.68">Item</span></th>
+          <th><span data-i18n="guide.feature.layers.69">Default</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Shift 1 / 2</td><td><span class="kbd">LB</span> / <span class="kbd">RB</span>（Hold）</td></tr>
+        <tr><td>Shift 3 / 4</td><td><span data-i18n="guide.feature.layers.70">Unbound — assign them yourself when needed (paddles are a good fit)</span></td></tr>
+        <tr><td><span data-i18n="guide.feature.layers.71">Overlay back</span></td><td><span class="kbd">B</span>（Press）</td></tr>
+        <tr><td><span data-i18n="guide.feature.layers.72">Open settings</span></td><td><span class="kbd">Back</span> + <span class="kbd">Start</span>（Press）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.feature.layers.73">To go beyond layers: <a href="combo-keys.html">combo keys</a> add density to a single layer, and <a href="radial-menus.html">radial menus</a> keep frequent actions on a wheel.</span>
+  </p>
+
+<nav class="pager">
+  <span class="spacer"></span>
+  <a class="pager-next" href="../../guide/feature/trigger-modes.html"><span class="dir"><span data-i18n="guide.feature.layers.74">Next →</span></span><span class="name"><span data-i18n="guide.feature.layers.75">Trigger Modes</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

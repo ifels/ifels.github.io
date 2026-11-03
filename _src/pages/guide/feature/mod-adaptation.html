@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.mod-adaptation.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.mod-adaptation.31">Mod Adaptation</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.mod-adaptation.32">Control Flex is built for modpacks: most mods work out of the box. When one sits on the wrong layer or its screen misbehaves, the adaptation chain solves it in escalating steps — in-game center → community repo → compat JSON → bridge mod.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.mod-adaptation.33">Step One: Auto-Discovery</span></h2>
+  <p>
+    <span data-i18n="guide.feature.mod-adaptation.34">At startup Control Flex scans Minecraft's KeyMapping registry and registers every non-vanilla binding as a bindable action, then reconciles again when you open settings — so nothing gets missed. Library mods (the Fabric API and Kotlin language-support families) are exempted and never clutter the lists.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.mod-adaptation.35">Step Two: The In-Game Center</span></h2>
+  <p>
+    <span data-i18n="guide.feature.mod-adaptation.36">Open <b>Control Flex Settings → Mod Adaptation</b>: every installed mod is listed with name, icon, and version. Each mod has three tabs:</span>
+  </p>
+  <ul>
+    <li><span data-i18n="guide.feature.mod-adaptation.37"><b>Key Bindings</b>: the mod's discovered actions, assigned to layers (Main / Screen / Overlay) and bound straight to gamepad buttons.</span></li>
+    <li><span data-i18n="guide.feature.mod-adaptation.38"><b>Screen Adaptation</b>: stick mode, layer mapping, and cursor rules while that mod's GUI is open.</span></li>
+    <li><span data-i18n="guide.feature.mod-adaptation.39"><b>Overlay Adaptation</b>: the same, for interactive HUDs (spell wheels, photo HUDs, and similar).</span></li>
+  </ul>
+  <p>
+    <span data-i18n="guide.feature.mod-adaptation.40"><b>Adding a rule</b>: open the target GUI or HUD once in-game so Control Flex records it, then use <b>+ Add Screen/Overlay Adaptation</b> in the mod's page and pick it from the recent-pages list (up to 50). Entries that could not be matched to a mod can be scanned automatically.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.mod-adaptation.41">Stick Behavior: Three Choices</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.mod-adaptation.42">Behavior</span></th>
+          <th><span data-i18n="guide.feature.mod-adaptation.43">What it does</span></th>
+          <th><span data-i18n="guide.feature.mod-adaptation.44">Default for</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Independent</td>
+          <td><span data-i18n="guide.feature.mod-adaptation.45">Stick directions act as actions bound on Layer Mapping</span></td>
+          <td><span data-i18n="guide.feature.mod-adaptation.46">Both sticks on Overlay; the right stick on Screen</span></td>
+        </tr>
+        <tr>
+          <td>Radial Path</td>
+          <td><span data-i18n="guide.feature.mod-adaptation.47">Stick traces a path or angle — spell wheels and ring menus</span></td>
+          <td><span data-i18n="guide.feature.mod-adaptation.48">Assigned manually</span></td>
+        </tr>
+        <tr>
+          <td>Virtual Mouse</td>
+          <td><span data-i18n="guide.feature.mod-adaptation.49">Stick moves a cursor inside that UI</span></td>
+          <td><span data-i18n="guide.feature.mod-adaptation.50">The left stick on Screen</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.feature.mod-adaptation.51">With no rule: Screen uses Virtual Mouse on the left stick and Independent on the right; Overlay keeps both sticks Independent. Cursor style offers system / Bedrock / hand; Virtual Mouse has a speed setting, and Radial Path has threshold, radius, angle bias, and whether the last angle is restored.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.mod-adaptation.52">Step Three: The Community Repo</span></h2>
+  <p>
+    <span data-i18n="guide.feature.mod-adaptation.53">The official community source is <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>. From Mod Adaptation: <b>Sync Configs</b> → browse variants → preview Bindings / Screen / Overlay → <b>Apply</b> (existing user files are backed up first). Extra sources can be added, and local JSON can be imported or exported from a mod's page.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.mod-adaptation.54">Where Your Edits Go</span></h2>
+  <p>
+    <span data-i18n="guide.feature.mod-adaptation.55">All edits are <b>copy-on-write</b>: packaged and community files stay read-only and your changes land in <code>config/controlflex/compat/user/</code>. A mod's <b>Reset Config</b> restores its packaged or applied community default. Packaged rules sit behind every mod — the JAR ships three (JEI, Epic Fight, Nightfall), and each only activates when its target mod is actually loaded.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.mod-adaptation.56">Step Four: If It Still Misbehaves</span></h2>
+  <ol>
+    <li><span data-i18n="guide.feature.mod-adaptation.57">Check Key Mapping — is the action on the right layer?</span></li>
+    <li><span data-i18n="guide.feature.mod-adaptation.58">Add a Screen/Overlay rule, or apply a community config.</span></li>
+    <li><span data-i18n="guide.feature.mod-adaptation.59">Physical keys only → <a href="virtual-kbm.html">Virtual KBM</a>.</span></li>
+    <li><span data-i18n="guide.feature.mod-adaptation.60">Bypasses KeyMapping entirely → hand-write or share compat JSON, or write a bridge mod.</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-i18n="guide.feature.mod-adaptation.61">For compat JSON fields, layer priority, and pack distribution, see <a href="../../modpack/compat.html">Mod Compatibility</a>; for bridge-mod development, see <a href="../../dev/index.html">API Quick Start</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/splitscreen.html"><span class="dir"><span data-i18n="guide.feature.mod-adaptation.62">← Previous</span></span><span class="name"><span data-i18n="guide.feature.mod-adaptation.63">Split-Screen Co-op</span></span></a>
+  <a class="pager-next" href="../../guide/feature/guide-hud.html"><span class="dir"><span data-i18n="guide.feature.mod-adaptation.64">Next →</span></span><span class="name"><span data-i18n="guide.feature.mod-adaptation.65">In-Game Guide</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

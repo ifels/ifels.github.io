@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>组合键 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/feature/combo-keys.html", "zh": "/control-flex/zh/guide/feature/combo-keys.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/feature/combo-keys.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/feature/combo-keys.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/feature/combo-keys.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/feature/combo-keys.html">
+<meta property="og:title" content="组合键 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/feature/combo-keys.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span>功能详解</span></a></p>
+
+<h1><span>组合键</span></h1>
+  <p class="lead">
+    <span>一颗按键不够时，按下多颗：把 <span class="kbd">LB</span> + <span class="kbd">Back</span> 或 <span class="kbd">LT</span> + <span class="kbd">A</span> 这样的和弦绑定到一个动作。低频但重要的动作不必占用面键。</span>
+  </p>
+
+  <h2><span>怎么捕获一个和弦</span></h2>
+  <ol>
+    <li><span>在按键映射里点选目标行，进入捕获状态。</span></li>
+    <li><span>先按第一颗键，然后在 <b>500 ms</b> 内追加其余按键；界面上会显示已捕获的完整和弦。</span></li>
+    <li><span>和弦完成后，<b>所有按键同时按下</b>才会触发该动作 —— 单独按其中一颗仍然执行它原本的绑定。</span></li>
+    <li><span>按 <span class="kbd">ESC</span> 取消捕获；右键行可以清除、重置或改层。</span></li>
+  </ol>
+  <p class="small muted">
+    <span>捕获窗口固定为 500 ms，不随 Tap 阈值变化。</span>
+  </p>
+
+  <h2><span>组合键引擎的三条规则</span></h2>
+  <ul>
+    <li><span><b>升级规则</b>：较大的和弦激活时（如 A+B+Y），已经激活的、按键集合是它真子集的较小和弦（A+B）会被销毁。这让组合行为保持可预测。</span></li>
+    <li><span><b>按键共享（引用计数）</b>：一颗物理按键可以同时参与多个和弦，引擎按引用计数管理，互不干扰。</span></li>
+    <li><span><b>支持全部触发模式</b>：和弦可以使用与单键相同的 10 种模式，包括各种双击变体。</span></li>
+  </ul>
+
+  <h2><span>三种常见用法</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>模式</span></th>
+          <th><span>例子</span></th>
+          <th><span>说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>给常用键加“第二功能”</span></td>
+          <td><span>Basic 模板：<span class="kbd">右摇杆按下</span> + <span class="kbd">D-Pad ↓</span> = 丢弃整组</span></td>
+          <td><span>“丢弃”已有单个绑定，整组丢弃很少用，收进和弦</span></td>
+        </tr>
+        <tr>
+          <td><span>触发器的第二功能</span></td>
+          <td><span class="kbd">RT</span> + <span class="kbd">D-Pad ←</span> / <span class="kbd">→</span> = JEI 查看配方 / 用途</td>
+          <td><span>攻击键上加方向，成对记忆，也不挤占 GUI 之外的键位</span></td>
+        </tr>
+        <tr>
+          <td><span>Shift + 和弦</span></td>
+          <td><span>先按住层切换键，再在该层上按和弦</span></td>
+          <td><span>在不占用 Main 层槽位的前提下继续扩展布局</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span>注意事项</span></h2>
+  <ul>
+    <li><span>和弦的前提是“所有键同时处于按下状态”；如果一颗键被常用的 Hold 绑定长期占用（例如 <span class="kbd">LT</span> 的“使用”），和弦里带上它会更容易误触，慎重选择。</span></li>
+    <li><span>和弦同样受全局 Tap / Long Press 阈值影响（双击类模式以 Tap 阈值作为两次间隔）。</span></li>
+    <li><span>模板 JSON 中和弦写作按键名用 <code>+</code> 连接：<code>"drop_stack": "rightStickClick+dpadDown|PRESS"</code>。</span></li>
+  </ul>
+
+  <p class="small muted">
+    <span>相关：<a href="layers.html">七层按键架构</a>（每个层都有自己的和弦空间）、<a href="trigger-modes.html">触发模式</a>（和弦可用的模式集合）。</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/trigger-modes.html"><span class="dir"><span>← 上一个功能</span></span><span class="name"><span>触发模式</span></span></a>
+  <a class="pager-next" href="../../guide/feature/radial-menus.html"><span class="dir"><span>下一个功能 →</span></span><span class="name"><span>径向菜单</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

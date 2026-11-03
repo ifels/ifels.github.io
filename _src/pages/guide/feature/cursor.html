@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.cursor.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.cursor.31">Cursor &amp; GUI</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.cursor.32">Once a chest or inventory is open, a pad has to point, click, and drag like a mouse. The Screen layer covers this with three mechanisms: a virtual cursor, slot snapping, and D-Pad slot jumps.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.cursor.33">Virtual Cursor</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.cursor.34"><b>How it moves</b>: the left stick's raw axis values are routed through Minecraft's mouse event pipeline — a separate mechanism from the direction bindings (cursor_navi_*).</span></li>
+    <li><span data-i18n="guide.feature.cursor.35"><b>Cursor speed</b>: 2–20 pixels per tick, tuned in <b>Cursor Settings</b>.</span></li>
+    <li><span data-i18n="guide.feature.cursor.36"><b>Cursor style</b>: the system cursor, a Bedrock-style set, or a hand style (textures ship with the cursor style packs).</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.cursor.37">Slot Snapping</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.cursor.38"><b>On by default</b>, switchable in Cursor Settings.</span></li>
+    <li><span data-i18n="guide.feature.cursor.39"><b>When the stick stops</b>, the cursor snaps to the nearest container slot; the snap distance is adjustable from 1–80 pixels.</span></li>
+    <li><span data-i18n="guide.feature.cursor.40"><b>Only active while holding an item</b> — an empty hand moves the cursor freely without sticking.</span></li>
+    <li><span data-i18n="guide.feature.cursor.41"><b>Hover slowdown</b>: with snapping on, the cursor slows while hovering a slot for precise selection.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.cursor.42">D-Pad Slot Navigation</span></h2>
+  <p>
+    <span data-i18n="guide.feature.cursor.43">When precision is not needed, the D-Pad jumps between slots directly. It uses cone-shaped targeting, so long horizontal rows and irregular grids (custom containers) still jump reliably. Slot jumps coexist with the virtual cursor — the left stick takes over free movement at any time.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.cursor.44">GUI Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.cursor.45">Action</span></th>
+          <th><span data-i18n="guide.feature.cursor.46">Default</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-i18n="guide.feature.cursor.47">Cursor navigation</span></td><td><span data-i18n="guide.feature.cursor.48">Left stick directions</span>（Hold）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.49">Slot navigation</span></td><td><span class="kbd">D-Pad</span>（Hold）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.50">Confirm / click / select</span></td><td><span class="kbd">A</span>（Press）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.51">Back / close</span></td><td><span class="kbd">B</span>（Press）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.52">Tab prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span>（Press）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.53">Quick move (shift-click)</span></td><td><span class="kbd">Y</span>（Tap）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.54">Take half</span></td><td><span class="kbd">X</span>（Press）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.55">Scroll</span></td><td><span class="kbd"><span data-i18n="guide.feature.cursor.56">R-stick ↑ / ↓</span></span>（Hold）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.57">Cycle options</span></td><td><span class="kbd"><span data-i18n="guide.feature.cursor.58">R-stick ← / →</span></span>（Tap）</td></tr>
+        <tr><td><span data-i18n="guide.feature.cursor.59">JEI recipe / uses</span></td><td><span class="kbd">RT</span> + <span class="kbd">D-Pad ← / →</span>（Press）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.feature.cursor.60">All of these live on the Screen layer of Key Mapping and can be changed row by row; LB/RB tab switching also works for creative tabs, recipe-book pages, and the guide list.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.cursor.61">Beyond: Screens That Only Read Physical Keys</span></h2>
+  <p>
+    <span data-i18n="guide.feature.cursor.62">Some mod screens ignore the virtual cursor and only react to keyboard/mouse events — use <a href="virtual-kbm.html">Virtual Keyboard &amp; Mouse</a> to inject real keys there (e.g. map <span class="kbd">B</span> to physical <span class="kbd">Esc</span>). To customize stick behavior per screen (Independent / Radial Path / Virtual Mouse), add a Screen rule in <a href="mod-adaptation.html">Mod Adaptation</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/camera.html"><span class="dir"><span data-i18n="guide.feature.cursor.63">← Previous</span></span><span class="name"><span data-i18n="guide.feature.cursor.64">Camera &amp; Aim</span></span></a>
+  <a class="pager-next" href="../../guide/feature/rumble.html"><span class="dir"><span data-i18n="guide.feature.cursor.65">Next →</span></span><span class="name"><span data-i18n="guide.feature.cursor.66">Rumble</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

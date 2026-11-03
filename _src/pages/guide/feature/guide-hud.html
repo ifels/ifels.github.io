@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.guide-hud.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.guide-hud.31">In-Game Guide</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.guide-hud.32">No need to alt-tab to a document: Control Flex brings the reference into the game. Context HUD tips appear for the current action, held item, open screen, or controller button, and the guide list gathers everything available.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.guide-hud.33">Context HUD Tips</span></h2>
+  <p>
+    <span data-i18n="guide.feature.guide-hud.34">Guide entries can be marked for HUD display: those tips appear on screen in context — the movement and interaction basics when you first join, tips for a specific held item, or the key hints for a screen you just opened. Entries reference Control Flex actions directly, so your own rebinds are reflected in the tips.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.guide-hud.35">The Guide List</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.guide-hud.36">Press the <b>Guide</b> button to open the list (<code>open_guide</code>, bound to <span class="kbd">Guide</span> in the Basic template); <span class="kbd">LB</span> / <span class="kbd">RB</span> switch tabs inside.</span></li>
+    <li><span data-i18n="guide.feature.guide-hud.37">The list is organized by category; each guide has a trigger (such as “first join”) plus entries made of an action, a label, and a display mode.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.guide-hud.38">Button Glyphs Follow the Platform</span></h2>
+  <p>
+    <span data-i18n="guide.feature.guide-hud.39">Glyphs in the tips follow the connected controller: Xbox, PlayStation, and Switch layouts each have their own mappings, and the Nintendo layout handles the A/B swap — so the same tip shows the right icons on a DualSense and an Xbox pad alike.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.guide-hud.40">Config Files</span></h2>
+  <p>
+    <span data-i18n="guide.feature.guide-hud.41">Guide JSON lives in <code>config/controlflex/guides/</code> (layered: <code>default/</code> packaged, <code>mods/</code> installed by bridge mods, <code>user/</code> your edits); the packaged defaults are copied out on first run. Structure (excerpt):</span>
+  </p>
+  <pre><code>{
+  "mod_id": "controlflex",
+  "categories": [
+    {
+      "id": "basic",
+      "guides": [
+        {
+          "id": "movement",
+          "title": "controlflex.guide.basic.movement",
+          "trigger": { "type": "first_join" },
+          "entries": [
+            { "action": "move_forward", "label": "controlflex.guide.entry.move", "display": "auto_move", "hud": true },
+            { "action": "jump",         "label": "controlflex.guide.entry.jump",  "hud": true }
+          ]
+        }
+      ]
+    }
+  ]
+}</code></pre>
+
+  <h2><span data-i18n="guide.feature.guide-hud.42">When It Helps</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.guide-hud.43">Pack authors: ship a guide describing your pack's controller layout so new players see it the moment they join.</span></li>
+    <li><span data-i18n="guide.feature.guide-hud.44">Bridge mods: install guide assets alongside compat configs (<code>onInstallGuideAssets</code>, see <a href="../../dev/examples.html">Plugin &amp; Examples</a>) to add tips for key actions.</span></li>
+  </ul>
+
+  <p class="small muted">
+    <span data-i18n="guide.feature.guide-hud.45">Related: <a href="../../guide/settings.html">Settings &amp; Controls</a> (the key-detection panel for debugging missing tips) and the <a href="../../dev/api-reference.html">API Reference</a> (<code>reloadGuides()</code> and <code>IControllerCapabilities</code>).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/mod-adaptation.html"><span class="dir"><span data-i18n="guide.feature.guide-hud.46">← Previous</span></span><span class="name"><span data-i18n="guide.feature.guide-hud.47">Mod Adaptation</span></span></a>
+  <span class="spacer"></span>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

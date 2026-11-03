@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="dev.index.18">API Quick Start</span></h1>
+  <p class="lead">
+    <span data-i18n="dev.index.19">The Control Flex API (currently 0.8.9) is for <b>bridge mod</b> developers: read controller input, query action states, push mod states, and export compat configs. Repository: <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>.</span>
+  </p>
+
+  <h2><span data-i18n="dev.index.20">1. Project Setup</span></h2>
+  <pre><code>// build.gradle
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    // compileOnly — provided by the Control Flex mod at runtime
+    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.8.9'
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+}</code></pre>
+  <p>
+    <span data-i18n="dev.index.21">Declare the Control Flex dependency so the loader orders things correctly:</span>
+  </p>
+  <pre><code># mods.toml (Forge / NeoForge)
+[[dependencies.your_mod_id]]
+    modId = "controlflex"
+    mandatory = true
+    versionRange = "[0.8.7,)"
+    ordering = "AFTER"
+    side = "CLIENT"</code></pre>
+  <pre><code>// fabric.mod.json (Fabric)
+{
+  "depends": {
+    "controlflex": ">=0.8.7"
+  }
+}</code></pre>
+  <div class="callout tip">
+    <p>
+      <span data-i18n="dev.index.22">The API is published as Java 8 bytecode, so bridge mods on a range of toolchains can consume it.</span>
+    </p>
+  </div>
+
+  <h2><span data-i18n="dev.index.23">2. Always Check Availability First</span></h2>
+  <p>
+    <span data-i18n="dev.index.24">Control Flex may not be installed, or SDL3 may fail to initialize. So the first check is always:</span>
+  </p>
+  <pre><code>if (!ControlFlexApi.isAvailable()) {
+    // fall back: skip all controller-related handling
+    return;
+}</code></pre>
+
+  <h2><span data-i18n="dev.index.25">3. API Overview</span></h2>
+  <pre><code>ControlFlexApi (static entry point)
+├── getActionStateProvider()            → IActionStateProvider          query action states
+├── getInputProvider()                  → IInputProvider                read controller input
+│                                          ├── getControllerState()    → IControllerState
+│                                          └── getCapabilities()       → IControllerCapabilities
+├── getPlayerStateRegistry()            → IPlayerStateRegistry          push mod states
+├── getInputInjector()                  → IInputInjector                inject virtual input
+├── getInteractiveContextRegistrar()    → IInteractiveContextRegistrar overlay foreground/background
+└── isAvailable() / isControllerConnected() / getApiVersion() / reloadGuides()</code></pre>
+
+  <h2><span data-i18n="dev.index.26">4. Two Ways to Adapt a Mod</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Compat JSON</th>
+          <th>Bridge Mod (Java)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="dev.index.27">How</span></td>
+          <td><span data-i18n="dev.index.28">Write a JSON config file</span></td>
+          <td><span data-i18n="dev.index.29">Implement <code>IControlFlexPlugin</code> (SPI)</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="dev.index.30">Power</span></td>
+          <td><span data-i18n="dev.index.31">Key classification, event control, conditional suppression</span></td>
+          <td><span data-i18n="dev.index.32">Fully custom: input reading, state sync</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="dev.index.33">Use when</span></td>
+          <td><span data-i18n="dev.index.34">The mod's keys are registered via MC KeyMapping</span></td>
+          <td><span data-i18n="dev.index.35">The mod has its own input system or runtime state</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="dev.index.36">Examples</span></td>
+          <td>JEI · Nightfall</td>
+          <td>Epic Fight (<a href="https://github.com/ControlFlexMC/cfx-compat-epicfight" target="_blank" rel="noopener">cfx-compat-epicfight</a>)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="dev.index.37">For the full compat JSON field set, see <a href="../modpack/compat.html">Mod Compatibility</a> and the <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">cfx-compat-configs</a> field reference.</span>
+  </p>
+
+  <h2><span data-i18n="dev.index.38">5. Your First Bridge Mod</span></h2>
+  <pre><code>package com.example.mymod;
+
+import com.ifels.controlflex.api.*;
+
+public class MyPlugin implements IControlFlexPlugin {
+
+    @Override
+    public String getModId() {
+        return "my_bridge_mod";
+    }
+
+    @Override
+    public void onControlFlexReady() {
+        if (!requireApiVersion("0.8.7")) return;
+        if (!ControlFlexApi.isAvailable()) return;
+
+        IPlayerStateRegistry states = ControlFlexApi.getPlayerStateRegistry();
+        states.setState("mymod:initialized", true);
+    }
+}</code></pre>
+  <p>
+    <span data-i18n="dev.index.39">Register it through the SPI services file — Control Flex discovers plugins automatically:</span>
+  </p>
+  <pre><code>src/main/resources/META-INF/services/com.ifels.controlflex.api.IControlFlexPlugin
+
+com.example.mymod.MyPlugin</code></pre>
+
+  <h2><span data-i18n="dev.index.40">Next Steps</span></h2>
+  <div class="cards">
+    <a class="card" href="api-reference.html">
+      <h3><span data-i18n="dev.index.41">API Reference</span></h3>
+      <p><span data-i18n="dev.index.42">Complete signatures, action ID formats, and the threading model.</span></p>
+      <p class="card-arrow"><span data-i18n="dev.index.43">Read the reference →</span></p>
+    </a>
+    <a class="card" href="examples.html">
+      <h3><span data-i18n="dev.index.44">Plugin &amp; Examples</span></h3>
+      <p><span data-i18n="dev.index.45">Lifecycle details, asset installation, and the end-to-end EpicFight example.</span></p>
+      <p class="card-arrow"><span data-i18n="dev.index.46">See examples →</span></p>
+    </a>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

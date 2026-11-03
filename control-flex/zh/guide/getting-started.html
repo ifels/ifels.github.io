@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>快速上手 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/getting-started.html", "zh": "/control-flex/zh/guide/getting-started.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/getting-started.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/getting-started.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/getting-started.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/getting-started.html">
+<meta property="og:title" content="快速上手 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/getting-started.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span>快速上手</span></h1>
+  <p class="lead">
+    <span>从下载安装到手柄跑起来，大约需要五分钟。</span>
+  </p>
+
+  <h2><span>前置要求</span></h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>组件</span></th>
+          <th><span>要求</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Minecraft</td>
+          <td><span>1.7.10 – 26.3，共 13 个版本：1.20.1 / 1.19.2 / 1.18.2（Forge / Fabric）；1.21.1、1.21.11、26.x（NeoForge / Fabric）；1.16.5 及更早为 Forge 版（1.16.5 另有 Fabric 版）—— 详见 <a href="versions.html">MC 版本支持</a></span></td>
+        </tr>
+        <tr>
+          <td>Java</td>
+          <td><span>8（1.16.5 及更早）；17（1.18.2 – 1.20.1）；21（1.21.x）；25（26.x）</span></td>
+        </tr>
+        <tr>
+          <td>Fabric API</td>
+          <td><span>Fabric 版必需（Forge / NeoForge 版无需额外依赖）</span></td>
+        </tr>
+        <tr>
+          <td>SDL3</td>
+          <td><span>桌面三平台已内置，无需单独安装；Android 上由启动器提供 —— 详见 <a href="platforms.html">平台支持</a></span></td>
+        </tr>
+        <tr>
+          <td><span>运行平台</span></td>
+          <td><span>Windows（x86_64 / ARM64）、macOS（Intel / Apple Silicon）、Linux（x86_64 / aarch64）；Android 通过启动器运行（FCL / Zalith Launcher 2 / Mojo / Amethyst）—— 详见 <a href="platforms.html">平台支持</a></span></td>
+        </tr>
+        <tr>
+          <td><span>安装侧</span></td>
+          <td><span>仅客户端；服务器无需安装，也不会影响不装本模组的玩家</span></td>
+        </tr>
+        <tr>
+          <td><span>兼容手柄</span></td>
+          <td><span>Xbox One / Series X|S、PS4 / PS5（DualShock 4、DualSense）、Switch Pro、Xbox Elite（含背键）、Steam Controller、通用 XInput / DirectInput 手柄</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span>下载与安装</span></h2>
+  <ol>
+    <li>
+      <span>在 <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge 项目页</a>的 Files 中选择与你的 MC 版本、加载器一致的 JAR。</span>
+    </li>
+    <li>
+      <span>把 JAR 放入游戏的 <code>mods/</code> 文件夹（Fabric 版请确认已安装 Fabric API）。</span>
+    </li>
+    <li>
+      <span>启动游戏。控制器的连接状态、名称与类型可在 <b>Control Flex 设置 → 手柄选择（Gamepad Selection）</b>中查看。</span>
+    </li>
+  </ol>
+
+  <div class="callout">
+    <p>
+      <span>多手柄（热插拔）：Control Flex 通过 SDL3 热插拔事件自动识别手柄，按手柄身份（名称 / 类型 / 序列号）分别记忆配置；当前手柄断开后会自动切换到下一个可用手柄。</span>
+    </p>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span>在 Android 上（Fold Craft Launcher、Zalith Launcher 2、Mojo、Amethyst 等启动器）：把 JAR 放进该实例的 <code>mods/</code> 即可，<b>不需要</b>另外安装 SDL3 —— 它来自启动器本身。唯一要留意的坑是启动器的 <code>-Dos.version</code> 不能被自定义 JVM 参数覆盖，否则模组会把环境当成桌面 Linux，手柄始终不显示。详见 <a href="platforms.html">平台支持</a>。</span>
+    </p>
+  </div>
+
+  <h2><span>打开设置</span></h2>
+  <p>
+    <span>默认按键：键盘 <span class="kbd">F9</span>，手柄 <span class="kbd">Back</span> + <span class="kbd">Start</span>。这个按键本身也是一个可改绑的动作，位置在按键映射的 Control Flex 分类里。</span>
+  </p>
+
+  <h2><span>选择模板</span></h2>
+  <p>
+    <span>首次启动会内置三个模板，可在设置中随时切换：</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th><span>模板</span></th><th><span>定位</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Basic</td><td><span>基础映射：A 跳跃、RT 攻击、LT 使用、左摇杆移动、右摇杆视角</span></td></tr>
+        <tr><td>Bedrock</td><td><span>贴近基岩版手柄布局的手感</span></td></tr>
+        <tr><td>Recommend</td><td><span>作者推荐的整合包向布局，预置更多常用动作</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>模板就是一套默认键位；你自己的修改会单独保存，不污染模板。详见<a href="settings.html">设置与键位</a>。</span>
+  </p>
+
+  <h2><span>默认键位（Basic 模板）</span></h2>
+
+  <h3>Main <span>层（游戏内）</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>动作</span></th>
+          <th><span>按键</span></th>
+          <th><span>模式</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span>移动</span></td><td><span>左摇杆</span></td><td>Hold</td></tr>
+        <tr><td><span>视角</span></td><td><span>右摇杆</span></td><td>Hold</td></tr>
+        <tr><td><span>跳跃</span></td><td><span class="kbd">A</span></td><td>Hold</td></tr>
+        <tr><td><span>潜行（按住）</span></td><td><span class="kbd"><span>右摇杆按下</span></span></td><td>Hold</td></tr>
+        <tr><td><span>潜行（锁定切换）</span></td><td><span class="kbd"><span>右摇杆按下</span></span></td><td>Double Toggle</td></tr>
+        <tr><td><span>疾跑</span></td><td><span class="kbd"><span>左摇杆按下</span></span></td><td>Hold</td></tr>
+        <tr><td><span>攻击</span></td><td><span class="kbd">RT</span></td><td>Hold</td></tr>
+        <tr><td><span>使用 / 放置</span></td><td><span class="kbd">LT</span></td><td>Hold</td></tr>
+        <tr><td><span>丢弃</span></td><td><span class="kbd">D-Pad ↓</span></td><td>Press</td></tr>
+        <tr><td><span>丢弃整组（组合键）</span></td><td><span class="kbd"><span>右摇杆按下</span></span> + <span class="kbd">D-Pad ↓</span></td><td>Press</td></tr>
+        <tr><td><span>背包</span></td><td><span class="kbd">D-Pad ↑</span></td><td>Press</td></tr>
+        <tr><td><span>切换视角</span></td><td><span class="kbd">D-Pad →</span></td><td>Tap</td></tr>
+        <tr><td><span>快捷栏上一 / 下一</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Tap</td></tr>
+        <tr><td><span>暂停菜单</span></td><td><span class="kbd">Start</span></td><td>Long Press</td></tr>
+        <tr><td><span>打开设置</span></td><td><span class="kbd">Back</span> + <span class="kbd">Start</span></td><td>Press</td></tr>
+        <tr><td><span>径向菜单 1–5</span></td><td><span class="kbd">Back</span><span>（Shift 1–4 层上按住 Back 打开菜单 2–5）</span></td><td>Hold</td></tr>
+        <tr><td><span>Shift 层 1 / 2</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Hold</td></tr>
+        <tr><td><span>游戏内指南</span></td><td><span class="kbd">Guide</span></td><td>Press</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Screen <span>层（打开任意界面时）</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>动作</span></th>
+          <th><span>按键</span></th>
+          <th><span>模式</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span>光标移动</span></td><td><span>左摇杆</span></td><td>Hold</td></tr>
+        <tr><td><span>槽位跳转</span></td><td><span class="kbd">D-Pad</span></td><td>Hold</td></tr>
+        <tr><td><span>确认 / 点击</span></td><td><span class="kbd">A</span></td><td>Press</td></tr>
+        <tr><td><span>返回 / 关闭</span></td><td><span class="kbd">B</span></td><td>Press</td></tr>
+        <tr><td><span>标签页上一 / 下一</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Press</td></tr>
+        <tr><td><span>快捷移动（Shift + 点击）</span></td><td><span class="kbd">Y</span></td><td>Tap</td></tr>
+        <tr><td><span>取一半</span></td><td><span class="kbd">X</span></td><td>Press</td></tr>
+        <tr><td><span>滚动</span></td><td><span class="kbd"><span>右摇杆 ↑ / ↓</span></span></td><td>Hold</td></tr>
+        <tr><td><span>切换选项</span></td><td><span class="kbd"><span>右摇杆 ← / →</span></span></td><td>Tap</td></tr>
+        <tr><td><span>JEI 查看配方 / 用途</span></td><td><span class="kbd">RT</span> + <span class="kbd">D-Pad ← / →</span></td><td>Press</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Overlay <span>层（交互式 HUD 打开时）</span></h3>
+  <p class="small muted">
+    <span>Overlay 层是显式绑定、不继承 Main：默认保留移动、跳跃、攻击、使用、视角与滚动，<span class="kbd">B</span> 为返回。未配置的动作在 Overlay 相位中保持静默，避免误触发战斗键位。</span>
+  </p>
+
+  <h3><span>虚拟键鼠与阈值</span></h3>
+  <ul>
+    <li><span>虚拟键鼠：<span class="kbd">B</span> 在界面中注入物理 <span class="kbd">Esc</span>；<span class="kbd">LT</span> 注入左 Shift（GUI 层）；Page Up / Page Down 已配置为 GUI 层可用。</span></li>
+    <li><span>阈值默认值：Tap 500 ms，Long Press 1000 ms（可在“其他设置”中调整）。</span></li>
+  </ul>
+
+  <div class="callout tip">
+    <p>
+      <span>以上是 Basic 模板的默认值。Bedrock 与 Recommend 模板略有差异，所有键位都可以在设置里改绑 —— 改键方法与校准请看<a href="settings.html">设置与键位</a>。</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

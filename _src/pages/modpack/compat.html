@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="modpack.compat.18">Mod Compatibility</span></h1>
+  <p class="lead">
+    <span data-i18n="modpack.compat.19">Control Flex is built for modpacks: auto-discovery first, then four escalating tools — the in-game adaptation center, the community config repo, compat JSON, and bridge mods.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.compat.20">Layer One: Auto-Discovery</span></h2>
+  <p>
+    <span data-i18n="modpack.compat.21">At startup Control Flex scans Minecraft's KeyMapping registry and registers every non-vanilla binding as a dynamic action. If a mod registered its keys the standard way (JEI recipe keys, combat-mod skills, map hotkeys…), they show up in Key Mapping with no config file at all.</span>
+  </p>
+  <p class="small muted">
+    <span data-i18n="modpack.compat.22">Library mods are exempted automatically (the built-in list covers the Fabric API and Kotlin language-support families), so they never clutter the adaptation lists.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.compat.23">Built-in Compat Configs</span></h2>
+  <p>
+    <span data-i18n="modpack.compat.24">A small set of built-in compat configs ships inside the JAR and is extracted to <code>config/controlflex/compat/default/</code> on every launch:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="modpack.compat.25">Mod</span></th>
+          <th><span data-i18n="modpack.compat.26">What it provides</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Just Enough Items (JEI)</td>
+          <td><span data-i18n="modpack.compat.27">Recipe / uses keys on the GUI layer, plus an ignore list for internal keys that should not be exposed</span></td>
+        </tr>
+        <tr>
+          <td>Epic Fight</td>
+          <td><span data-i18n="modpack.compat.28">Battle-mode key and screen rules; points to the official cfx-compat-epicfight bridge</span></td>
+        </tr>
+        <tr>
+          <td>Nightfall</td>
+          <td><span data-i18n="modpack.compat.29">Key and screen adaptation for the mod</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="modpack.compat.30">Everything else is covered by auto-discovery or the community repo; built-in configs only activate when their target mod is actually installed and loaded.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.compat.31">Layer Two: In-Game Mod Adaptation</span></h2>
+  <p>
+    <span data-i18n="modpack.compat.32">Open <b>Control Flex Settings → Mod Adaptation</b>: every installed mod is listed with name, icon, and version. Open a mod to work in three tabs:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="modpack.compat.33">Tab</span></th>
+          <th><span data-i18n="modpack.compat.34">Purpose</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="modpack.compat.35">Key Bindings</span></td>
+          <td><span data-i18n="modpack.compat.36">The mod's discovered actions; assign layers (Main / Screen / Overlay) and bind controller buttons</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="modpack.compat.37">Screen Adaptation</span></td>
+          <td><span data-i18n="modpack.compat.38">Stick mode, layer mapping, and cursor rules while that mod's GUI is open</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="modpack.compat.39">Overlay Adaptation</span></td>
+          <td><span data-i18n="modpack.compat.40">The same for interactive HUDs (spell wheels, radial menus, photo HUDs)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <span data-i18n="modpack.compat.41">To add a Screen or Overlay rule: open the target GUI or HUD once in-game so Control Flex records it, then use <b>+ Add Screen/Overlay Adaptation</b> in the mod's detail page and pick it from the recent-pages list (up to 50). Entries that could not be matched to a mod can be scanned automatically.</span>
+  </p>
+  <p>
+    <span data-i18n="modpack.compat.42">Each stick can use a different behavior for that page:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="modpack.compat.43">Behavior</span></th>
+          <th><span data-i18n="modpack.compat.44">What it does</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Independent</td>
+          <td><span data-i18n="modpack.compat.45">Stick directions are actions bound on Layer Mapping; the default on Overlay and for the Screen right stick</span></td>
+        </tr>
+        <tr>
+          <td>Radial Path</td>
+          <td><span data-i18n="modpack.compat.46">Stick traces a path / angle — spell wheels and radial-menu style UIs</span></td>
+        </tr>
+        <tr>
+          <td>Virtual Mouse</td>
+          <td><span data-i18n="modpack.compat.47">Stick moves a cursor inside that UI; the default for the Screen left stick</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="modpack.compat.48">With no rule: Screen uses Virtual Mouse on the left stick and Independent on the right; Overlay keeps both sticks Independent (the layer's four-way bindings). Cursor style can be system / Bedrock / hand; Virtual Mouse has cursor speed, and Radial Path has threshold, radius, angle bias, and whether the stick restores its last angle.</span>
+  </p>
+  <p class="small muted">
+    <span data-i18n="modpack.compat.49">Rule edits are copy-on-write: packaged and community files stay read-only and changes land in <code>config/controlflex/compat/user/</code>; a mod's <b>Reset Config</b> restores its packaged or applied community default.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.compat.50">Layer Three: Community Configs</span></h2>
+  <p>
+    <span data-i18n="modpack.compat.51">The official community source is <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>. From Mod Adaptation, hit <b>Sync Configs</b>, browse variants, preview Bindings / Screen / Overlay, and <b>Apply</b> — any existing user file is backed up first. Extra sources can be added, and local JSON can be imported/exported from a mod's detail page. PRs for new mod configs are welcome.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.compat.52">Layer Four: Compat JSON (pack authors &amp; power users)</span></h2>
+  <p>
+    <span data-i18n="modpack.compat.53">JSON is the shareable unit behind the UI. Drop files at <code>config/controlflex/compat/user/{mod_id}.json</code>; bridge mods may install theirs into <code>compat/mods/</code> (read-only at runtime). A config can:</span>
+  </p>
+  <ul>
+    <li><span data-i18n="modpack.compat.54">Place keys on Main / Screen / Overlay (<code>inGameKeys</code> / <code>screenKeys</code> / <code>overlayKeys</code>).</span></li>
+    <li><span data-i18n="modpack.compat.55">Choose a dispatch channel per key (KeyMapping, Forge event bus, GLFW-compat polling, screen input).</span></li>
+    <li><span data-i18n="modpack.compat.56">Ignore unused keys (<code>ignoreKeys</code>), suppress keys while holding an item (<code>itemSuppressKeys</code>), and attach tips.</span></li>
+    <li><span data-i18n="modpack.compat.57">Declare per-screen / per-overlay stick maps (Independent / Radial Path / Virtual Mouse, same options as the UI).</span></li>
+  </ul>
+  <p>
+    <span data-i18n="modpack.compat.58">Example shape (excerpted fields showing layer placement and state coupling):</span>
+  </p>
+  <pre><code>{
+  "mod_id": "epicfight",
+  "mod_name": "Epic Fight",
+  "home_page": "https://www.curseforge.com/minecraft/mc-mods/epic-fight-mod",
+  "ignoreKeys": ["key.epicfight.dodge"],
+  "inGameKeys": ["epicfight:key.epicfight.attack"],
+  "screenKeys": [],
+  "overlayKeys": [],
+  "itemSuppressKeys": [{
+    "item": "mymod:special_weapon",
+    "playerState": ["mymod:combat_mode"],
+    "suppressActions": ["attack"]
+  }]
+}</code></pre>
+  <div class="callout">
+    <p>
+      <span data-i18n="modpack.compat.59">For the full field set and allowed values, see the authoritative reference: <a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference.md" target="_blank" rel="noopener">cfx-compat-configs field reference (English)</a> / <a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference_ZH.md" target="_blank" rel="noopener">中文</a>.</span>
+    </p>
+  </div>
+  <p class="small muted">
+    <span data-i18n="modpack.compat.60"><code>playerState</code> conditions work together with states pushed by bridge mods (<code>IPlayerStateRegistry</code>, keys shaped <code>modId:stateName</code>) — see the <a href="../dev/index.html">developer docs</a> for the bridge side.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.compat.61">Custom Input Systems: Bridge Mods</span></h2>
+  <p>
+    <span data-i18n="modpack.compat.62">If a mod bypasses KeyMapping, has runtime combat state, or reads the gamepad directly, it needs a bridge mod using the <code>IControlFlexPlugin</code> SPI: export compat JSON, push player states, react to controller lifecycle events. The official example is <a href="https://github.com/ControlFlexMC/cfx-compat-epicfight" target="_blank" rel="noopener">cfx-compat-epicfight</a> (which the built-in Epic Fight file points to). Start at <a href="../dev/index.html">API Quick Start</a>.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.compat.63">Still Misbehaving? Check in This Order</span></h2>
+  <ol>
+    <li><span data-i18n="modpack.compat.64">Check Key Mapping — is the action on the right layer (Screen vs Overlay vs Main)?</span></li>
+    <li><span data-i18n="modpack.compat.65">Open Mod Adaptation for that mod — add a Screen/Overlay rule, or apply a community config.</span></li>
+    <li><span data-i18n="modpack.compat.66">If the mod only listens for physical keys, bind it with Virtual KBM.</span></li>
+    <li><span data-i18n="modpack.compat.67">Hand-edit or share a compat JSON; write a bridge if the mod bypasses KeyMapping entirely.</span></li>
+  </ol>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

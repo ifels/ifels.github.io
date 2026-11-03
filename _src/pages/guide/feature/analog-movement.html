@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.analog-movement.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.analog-movement.31">Analog Movement (360°)</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.analog-movement.32">Vanilla Minecraft only sees WASD as on/off, so stick-to-keys walking is limited to eight directions at full speed. With Analog Movement, Control Flex feeds a continuous 360° vector: any angle, and a light push walks slowly.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.analog-movement.33">Two Policies</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.analog-movement.34">Policy</span></th>
+          <th><span data-i18n="guide.feature.analog-movement.35">Behavior</span></th>
+          <th><span data-i18n="guide.feature.analog-movement.36">Best for</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Analog Smooth</td>
+          <td><span data-i18n="guide.feature.analog-movement.37">Direction and magnitude used as-is — the console feel</span></td>
+          <td><span data-i18n="guide.feature.analog-movement.38">Singleplayer, LAN, and servers that tolerate smooth movement</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.feature.analog-movement.39">Keyboard-like 8-way</span></td>
+          <td><span data-i18n="guide.feature.analog-movement.40">Stick snapped to eight directions at full speed, which looks like keyboard input to a server</span></td>
+          <td><span data-i18n="guide.feature.analog-movement.41">Public servers and Realms</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.feature.analog-movement.42">How the Default Is Chosen</span></h2>
+  <p>
+    <span data-i18n="guide.feature.analog-movement.43">The default follows the connection:</span>
+  </p>
+  <ul>
+    <li><span data-i18n="guide.feature.analog-movement.44"><b>Singleplayer / LAN</b> → Analog Smooth</span></li>
+    <li><span data-i18n="guide.feature.analog-movement.45"><b>Public servers and Realms</b> → keyboard-like 8-way, so analog walk is less likely to look like abnormal input to server-side anti-cheat</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.analog-movement.46">Where to Configure</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.analog-movement.47"><b>Control Flex Settings → Other → Analog Movement</b>: master switch plus policy.</span></li>
+    <li><span data-i18n="guide.feature.analog-movement.48"><b>Server whitelist</b>: if a specific remote server should still get Analog Smooth, add it (host:port or Realm name) on the same page.</span></li>
+    <li><span data-i18n="guide.feature.analog-movement.49"><b>Turning the master switch off</b> restores digital WASD bindings; the policy then does nothing.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.analog-movement.50">Relation to Calibration</span></h2>
+  <p>
+    <span data-i18n="guide.feature.analog-movement.51">Two more knobs live on the <b>Calibration</b> page: stick deadzones (one value per stick, saved per controller) and the movement response curve. If a light push does nothing or drifts, run auto calibration first, then fine-tune the deadzone, and only then adjust the response curve.</span>
+  </p>
+
+  <div class="callout tip">
+    <p>
+      <span data-i18n="guide.feature.analog-movement.52">Looking keyboard-like on a server only changes the shape of the movement vector; every action key you press behaves exactly the same.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span data-i18n="guide.feature.analog-movement.53">Related: <a href="camera.html">Camera &amp; Aim</a> (the look curve also lives under Calibration) and <a href="../../guide/settings.html">Settings &amp; Controls</a> (calibration steps).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/radial-menus.html"><span class="dir"><span data-i18n="guide.feature.analog-movement.54">← Previous</span></span><span class="name"><span data-i18n="guide.feature.analog-movement.55">Radial Menus</span></span></a>
+  <a class="pager-next" href="../../guide/feature/camera.html"><span class="dir"><span data-i18n="guide.feature.analog-movement.56">Next →</span></span><span class="name"><span data-i18n="guide.feature.analog-movement.57">Camera &amp; Aim</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

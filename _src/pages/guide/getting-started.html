@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="guide.getting-started.18">Getting Started</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.getting-started.19">From download to a working controller in about five minutes.</span>
+  </p>
+
+  <h2><span data-i18n="guide.getting-started.20">Requirements</span></h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.getting-started.21">Component</span></th>
+          <th><span data-i18n="guide.getting-started.22">Requirement</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Minecraft</td>
+          <td><span data-i18n="guide.getting-started.23">1.7.10 – 26.3, 13 versions: 1.20.1 / 1.19.2 / 1.18.2 (Forge / Fabric); 1.21.1, 1.21.11, 26.x (NeoForge / Fabric); 1.16.5 and older are Forge builds (1.16.5 also has Fabric) — see <a href="versions.html">Minecraft Versions</a></span></td>
+        </tr>
+        <tr>
+          <td>Java</td>
+          <td><span data-i18n="guide.getting-started.24">8 (1.16.5 and older); 17 (1.18.2 – 1.20.1); 21 (1.21.x); 25 (26.x)</span></td>
+        </tr>
+        <tr>
+          <td>Fabric API</td>
+          <td><span data-i18n="guide.getting-started.25">Required on Fabric (Forge / NeoForge builds have no extra dependencies)</span></td>
+        </tr>
+        <tr>
+          <td>SDL3</td>
+          <td><span data-i18n="guide.getting-started.26">Bundled on all three desktop platforms; on Android it comes from the launcher — see <a href="platforms.html">Platform Support</a></span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.getting-started.27">Platform</span></td>
+          <td><span data-i18n="guide.getting-started.28">Windows (x86_64 / ARM64), macOS (Intel / Apple Silicon), Linux (x86_64 / aarch64); on Android it runs inside a launcher (FCL / Zalith Launcher 2 / Mojo / Amethyst) — see <a href="platforms.html">Platform Support</a></span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.getting-started.29">Side</span></td>
+          <td><span data-i18n="guide.getting-started.30">Client-side only; servers do not need it and other players are unaffected</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.getting-started.31">Controllers</span></td>
+          <td><span data-i18n="guide.getting-started.32">Xbox One / Series X|S, PS4 / PS5 (DualShock 4, DualSense), Switch Pro, Xbox Elite (paddles), Steam Controller, generic XInput / DirectInput pads</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.getting-started.33">Download &amp; Install</span></h2>
+  <ol>
+    <li>
+      <span data-i18n="guide.getting-started.34">On the <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge project page</a>, pick the file matching your MC version and loader.</span>
+    </li>
+    <li>
+      <span data-i18n="guide.getting-started.35">Put the JAR into the game's <code>mods/</code> folder (on Fabric, make sure Fabric API is installed too).</span>
+    </li>
+    <li>
+      <span data-i18n="guide.getting-started.36">Launch the game. Connection status, name, and type of each controller appear under <b>Control Flex Settings → Gamepad Selection</b>.</span>
+    </li>
+  </ol>
+
+  <div class="callout">
+    <p>
+      <span data-i18n="guide.getting-started.37">Multiple controllers (hotplug): Control Flex detects pads via SDL3 hotplug events and tracks them by identity (name / type / serial). If the active pad disconnects, the first available one is selected automatically.</span>
+    </p>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span data-i18n="guide.getting-started.38">On Android (Fold Craft Launcher, Zalith Launcher 2, Mojo, Amethyst, and similar): just drop the JAR into that instance's <code>mods/</code>. There is <b>no</b> SDL3 to install — it comes from the launcher itself. The one pitfall is that the launcher's <code>-Dos.version</code> must not be overridden by custom JVM arguments, or the mod treats the JVM as desktop Linux and no controller ever appears. See <a href="platforms.html">Platform Support</a>.</span>
+    </p>
+  </div>
+
+  <h2><span data-i18n="guide.getting-started.39">Opening Settings</span></h2>
+  <p>
+    <span data-i18n="guide.getting-started.40">Defaults: <span class="kbd">F9</span> on keyboard, <span class="kbd">Back</span> + <span class="kbd">Start</span> on a controller. The open-settings action is itself rebindable and lives in the Control Flex category of Key Mapping.</span>
+  </p>
+
+  <h2><span data-i18n="guide.getting-started.41">Pick a Template</span></h2>
+  <p>
+    <span data-i18n="guide.getting-started.42">Three templates ship with the mod; switch between them in the settings screen at any time:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th><span data-i18n="guide.getting-started.43">Template</span></th><th><span data-i18n="guide.getting-started.44">What it is</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Basic</td><td><span data-i18n="guide.getting-started.45">The foundation: A jump, RT attack, LT use, left stick move, right stick look</span></td></tr>
+        <tr><td>Bedrock</td><td><span data-i18n="guide.getting-started.46">Closer to the Bedrock Edition controller feel</span></td></tr>
+        <tr><td>Recommend</td><td><span data-i18n="guide.getting-started.47">The author's modpack-oriented layout with more actions pre-bound</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.getting-started.48">A template is a set of default bindings; your edits are stored separately and never modify the template. See <a href="settings.html">Settings &amp; Controls</a>.</span>
+  </p>
+
+  <h2><span data-i18n="guide.getting-started.49">Default Bindings (Basic Template)</span></h2>
+
+  <h3>Main <span data-i18n="guide.getting-started.50">layer (in-game)</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.getting-started.51">Action</span></th>
+          <th><span data-i18n="guide.getting-started.52">Button</span></th>
+          <th><span data-i18n="guide.getting-started.53">Mode</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-i18n="guide.getting-started.54">Move</span></td><td><span data-i18n="guide.getting-started.55">Left stick</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.56">Look</span></td><td><span data-i18n="guide.getting-started.57">Right stick</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.58">Jump</span></td><td><span class="kbd">A</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.59">Sneak (hold)</span></td><td><span class="kbd"><span data-i18n="guide.getting-started.60">R-stick click</span></span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.61">Sneak (latch)</span></td><td><span class="kbd"><span data-i18n="guide.getting-started.62">R-stick click</span></span></td><td>Double Toggle</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.63">Sprint</span></td><td><span class="kbd"><span data-i18n="guide.getting-started.64">L-stick click</span></span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.65">Attack</span></td><td><span class="kbd">RT</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.66">Use / Place</span></td><td><span class="kbd">LT</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.67">Drop</span></td><td><span class="kbd">D-Pad ↓</span></td><td>Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.68">Drop stack (combo)</span></td><td><span class="kbd"><span data-i18n="guide.getting-started.69">R-stick click</span></span> + <span class="kbd">D-Pad ↓</span></td><td>Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.70">Inventory</span></td><td><span class="kbd">D-Pad ↑</span></td><td>Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.71">Perspective</span></td><td><span class="kbd">D-Pad →</span></td><td>Tap</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.72">Hotbar prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Tap</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.73">Pause menu</span></td><td><span class="kbd">Start</span></td><td>Long Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.74">Open settings</span></td><td><span class="kbd">Back</span> + <span class="kbd">Start</span></td><td>Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.75">Radial menus 1–5</span></td><td><span class="kbd">Back</span><span data-i18n="guide.getting-started.76">(on Shift 1–4, hold Back for menus 2–5)</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.77">Shift layer 1 / 2</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.78">Open guide</span></td><td><span class="kbd">Guide</span></td><td>Press</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Screen <span data-i18n="guide.getting-started.79">layer (whenever a screen is open)</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.getting-started.80">Action</span></th>
+          <th><span data-i18n="guide.getting-started.81">Button</span></th>
+          <th><span data-i18n="guide.getting-started.82">Mode</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-i18n="guide.getting-started.83">Cursor move</span></td><td><span data-i18n="guide.getting-started.84">Left stick</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.85">Slot navigation</span></td><td><span class="kbd">D-Pad</span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.86">Confirm / click</span></td><td><span class="kbd">A</span></td><td>Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.87">Back / close</span></td><td><span class="kbd">B</span></td><td>Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.88">Tab prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.89">Quick move (shift-click)</span></td><td><span class="kbd">Y</span></td><td>Tap</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.90">Take half</span></td><td><span class="kbd">X</span></td><td>Press</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.91">Scroll</span></td><td><span class="kbd"><span data-i18n="guide.getting-started.92">R-stick ↑ / ↓</span></span></td><td>Hold</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.93">Cycle options</span></td><td><span class="kbd"><span data-i18n="guide.getting-started.94">R-stick ← / →</span></span></td><td>Tap</td></tr>
+        <tr><td><span data-i18n="guide.getting-started.95">JEI recipe / uses</span></td><td><span class="kbd">RT</span> + <span class="kbd">D-Pad ← / →</span></td><td>Press</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Overlay <span data-i18n="guide.getting-started.96">layer (interactive HUDs)</span></h3>
+  <p class="small muted">
+    <span data-i18n="guide.getting-started.97">The Overlay layer is explicit (no Main inheritance): movement, jump, attack, use, look, and scrolling stay bound, with <span class="kbd">B</span> as back. Unconfigured actions stay silent during overlays so combat keys cannot misfire.</span>
+  </p>
+
+  <h3><span data-i18n="guide.getting-started.98">Virtual KBM &amp; Thresholds</span></h3>
+  <ul>
+    <li><span data-i18n="guide.getting-started.99">Virtual KBM: <span class="kbd">B</span> injects physical <span class="kbd">Esc</span> in screens; <span class="kbd">LT</span> injects Left Shift (GUI layer); Page Up / Page Down are enabled for the GUI layer.</span></li>
+    <li><span data-i18n="guide.getting-started.100">Default thresholds: Tap 500 ms, Long Press 1000 ms (configurable in Other Settings).</span></li>
+  </ul>
+
+  <div class="callout tip">
+    <p>
+      <span data-i18n="guide.getting-started.101">These are the Basic template defaults. Bedrock and Recommend differ slightly, and every binding can be changed — see <a href="settings.html">Settings &amp; Controls</a> for rebinding and calibration.</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

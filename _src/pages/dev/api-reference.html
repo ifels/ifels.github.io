@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="dev.api-reference.18">API Reference</span></h1>
+  <p class="lead">
+    <span data-i18n="dev.api-reference.19">Package <code>com.ifels.controlflex.api</code> · version 0.8.9 · all methods must be called on the client main thread unless noted otherwise.</span>
+  </p>
+
+  <h2><span data-i18n="dev.api-reference.20">Type Index</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="dev.api-reference.21">Type</span></th>
+          <th><span data-i18n="dev.api-reference.22">Purpose</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>ControlFlexApi</code></td><td><span data-i18n="dev.api-reference.23">Static entry point for all providers</span></td></tr>
+        <tr><td><code>ButtonName</code></td><td><span data-i18n="dev.api-reference.24">Button / axis name constants</span></td></tr>
+        <tr><td><code>IControlFlexPlugin</code></td><td><span data-i18n="dev.api-reference.25">SPI plugin interface</span></td></tr>
+        <tr><td><code>ICompatAssetInstaller</code></td><td><span data-i18n="dev.api-reference.26">Asset installer (SPI callback parameter)</span></td></tr>
+        <tr><td><code>IActionStateProvider</code></td><td><span data-i18n="dev.api-reference.27">Action state queries</span></td></tr>
+        <tr><td><code>IInputProvider</code></td><td><span data-i18n="dev.api-reference.28">Controller input queries</span></td></tr>
+        <tr><td><code>IControllerState</code></td><td><span data-i18n="dev.api-reference.29">Controller hardware state (live view)</span></td></tr>
+        <tr><td><code>IControllerCapabilities</code></td><td><span data-i18n="dev.api-reference.30">Controller hardware capabilities</span></td></tr>
+        <tr><td><code>IPlayerStateRegistry</code></td><td><span data-i18n="dev.api-reference.31">Third-party mod state push</span></td></tr>
+        <tr><td><code>IInputInjector</code></td><td><span data-i18n="dev.api-reference.32">Virtual controller input injection (testing)</span></td></tr>
+        <tr><td><code>IInteractiveContextRegistrar</code></td><td><span data-i18n="dev.api-reference.33">Interactive overlay foreground/background declaration</span></td></tr>
+        <tr><td><code>InputMode</code></td><td><span data-i18n="dev.api-reference.34">Input mode (KEYBOARD_MOUSE / MIXED)</span></td></tr>
+        <tr><td><code>ControllerType</code></td><td><span data-i18n="dev.api-reference.35">Controller type enum</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>ControlFlexApi</h2>
+  <p>
+    <span data-i18n="dev.api-reference.36">The single entry point for bridge mods. Every method returns safe defaults when Control Flex is absent or not initialized.</span>
+  </p>
+  <pre><code>public final class ControlFlexApi
+
+// Availability
+boolean isAvailable()               // installed and fully initialized
+boolean isControllerConnected()     // a controller is connected
+
+// Providers (null = not available)
+IActionStateProvider getActionStateProvider()
+IInputProvider getInputProvider()
+IPlayerStateRegistry getPlayerStateRegistry()
+IInputInjector getInputInjector()
+IInteractiveContextRegistrar getInteractiveContextRegistrar()
+
+// Utilities
+String getApiVersion()              // e.g. "0.8.9"
+void reloadGuides()                 // reload guide configs</code></pre>
+
+  <h2>ButtonName</h2>
+  <p>
+    <span data-i18n="dev.api-reference.37">Button and axis name constants for <code>isButtonPressed(String)</code> and <code>getAxisValue(String)</code>.</span>
+  </p>
+  <pre><code>// Buttons
+ButtonName.A, ButtonName.B, ButtonName.X, ButtonName.Y
+ButtonName.DPAD_UP, ButtonName.DPAD_DOWN, ButtonName.DPAD_LEFT, ButtonName.DPAD_RIGHT
+ButtonName.LEFT_BUMPER, ButtonName.RIGHT_BUMPER
+ButtonName.LEFT_TRIGGER, ButtonName.RIGHT_TRIGGER
+ButtonName.LEFT_STICK_CLICK, ButtonName.RIGHT_STICK_CLICK
+ButtonName.BACK, ButtonName.START, ButtonName.GUIDE
+ButtonName.PADDLE_1 ~ ButtonName.PADDLE_4
+ButtonName.TOUCHPAD
+
+// Stick directions (for isButtonPressed / IInputInjector.pressButton)
+ButtonName.LEFT_STICK_UP / DOWN / LEFT / RIGHT
+ButtonName.RIGHT_STICK_UP / DOWN / LEFT / RIGHT
+
+// Axes (for getAxisValue)
+ButtonName.AXIS_LEFT_X, ButtonName.AXIS_LEFT_Y
+ButtonName.AXIS_RIGHT_X, ButtonName.AXIS_RIGHT_Y
+ButtonName.AXIS_LEFT_TRIGGER, ButtonName.AXIS_RIGHT_TRIGGER</code></pre>
+
+  <h2>IControlFlexPlugin</h2>
+  <p>
+    <span data-i18n="dev.api-reference.38">The SPI interface for bridge mods, registered via <code>META-INF/services/</code>.</span>
+  </p>
+  <pre><code>String getModId()
+
+// Lifecycle callbacks (in call order):
+void onInstallCompatConfigs(ICompatAssetInstaller installer)   // export compat JSON
+void onInstallGuideAssets(ICompatAssetInstaller installer)     // export guide JSON
+void onControlFlexReady()                                       // Control Flex is ready
+void onControllerConnectionChanged(boolean connected)           // controller plug/unplug
+
+// Utility:
+boolean requireApiVersion(String minVersion)  // false when the version is not met</code></pre>
+  <h3><span data-i18n="dev.api-reference.39">Lifecycle Timing</span></h3>
+  <pre><code>Control Flex startup
+  └── initializeClient()
+        → API providers injected (isAvailable() = true)
+        → built-in configs extracted to default/
+
+  └── onKeyMappingsReady()
+        └── discover SPI plugins
+              ├── new CompatAssetInstaller(plugin.class, compatDir)
+              ├── plugin.onInstallCompatConfigs(installer)
+              ├── new CompatAssetInstaller(plugin.class, guideDir)
+              ├── plugin.onInstallGuideAssets(installer)
+              └── plugin.onControlFlexReady()
+
+  Runtime:
+        └── plugin.onControllerConnectionChanged(connected)</code></pre>
+
+  <h2>ICompatAssetInstaller</h2>
+  <p>
+    <span data-i18n="dev.api-reference.40">Asset installer. Control Flex creates the instance and injects the plugin's ClassLoader and target directory.</span>
+  </p>
+  <pre><code>boolean install(String resourcePath, String fileName)
+// resourcePath: classpath path, e.g. "/{{ROOT}}assets/mymod/compat/epicfight_keys.json"
+// fileName:      target filename in the mods/ config directory
+// returns:       true if installed successfully</code></pre>
+  <pre><code>@Override
+public void onInstallCompatConfigs(ICompatAssetInstaller installer) {
+    installer.install("/{{ROOT}}assets/mymod/compat/epicfight_keys.json", "epicfight_keys.json");
+}
+
+@Override
+public void onInstallGuideAssets(ICompatAssetInstaller installer) {
+    installer.install("/{{ROOT}}assets/mymod/guides/epicfight_guid.json", "epicfight_guid.json");
+}</code></pre>
+
+  <h2>IActionStateProvider</h2>
+  <p>
+    <span data-i18n="dev.api-reference.41">Query which actions Control Flex currently has active.</span>
+  </p>
+  <pre><code>boolean isGameActionActive(String actionId)   // game-layer action active
+boolean isGuiActionActive(String actionId)    // GUI-layer action active
+Set&lt;String&gt; getActiveGameActions()             // all active game actions (live view, do not cache)
+Set&lt;String&gt; getActiveGuiActions()              // all active GUI actions (live view, do not cache)</code></pre>
+  <p><span data-i18n="dev.api-reference.42"><b>Action ID formats:</b></span></p>
+  <ul>
+    <li><span data-i18n="dev.api-reference.43">Built-in actions: <code>"attack"</code>, <code>"use"</code>, <code>"jump"</code></span></li>
+    <li><span data-i18n="dev.api-reference.44">Vanilla keys: <code>"key.jump"</code>, <code>"key.sneak"</code></span></li>
+    <li><span data-i18n="dev.api-reference.45">Mod keys: <code>"epicfight:key.epicfight.attack"</code> (<code>modId:keyName</code>)</span></li>
+  </ul>
+
+  <h2>IInputProvider</h2>
+  <p>
+    <span data-i18n="dev.api-reference.46">Controller hardware state queries.</span>
+  </p>
+  <pre><code>boolean isConnected()
+IControllerState getControllerState()          // null when disconnected (live view, do not cache)
+String getGamepadName()                         // null when disconnected
+int getGamepadIndex()                           // -1 when disconnected
+IControllerCapabilities getCapabilities()       // null when disconnected</code></pre>
+
+  <h2>IControllerState</h2>
+  <p>
+    <span data-i18n="dev.api-reference.47">Live view of controller hardware state. Sticks −1.0 to 1.0, triggers 0.0 to 1.0; positive Y points down.</span>
+  </p>
+  <pre><code>boolean isConnected()
+
+// Sticks
+float getLeftStickX() / getLeftStickY()
+float getRightStickX() / getRightStickY()
+
+// Triggers
+float getLeftTrigger() / getRightTrigger()
+boolean isLeftTriggerPressed() / isRightTriggerPressed()   // threshold 0.5
+
+// Buttons (camelCase)
+boolean isButtonAPressed() / isButtonBPressed() / isButtonXPressed() / isButtonYPressed()
+boolean isButtonBackPressed() / isButtonStartPressed() / isButtonGuidePressed()
+boolean isLeftBumperPressed() / isRightBumperPressed()
+boolean isLeftStickClicked() / isRightStickClicked()
+boolean isDpadUpPressed() / isDpadDownPressed() / isDpadLeftPressed() / isDpadRightPressed()
+boolean isPaddle1Pressed() ~ isPaddle4Pressed()
+boolean isTouchpadPressed()
+boolean isShiftLayerActive()
+
+// String queries (prefer the ButtonName constants)
+boolean isButtonPressed(String buttonName)
+float getAxisValue(String axisName)</code></pre>
+
+  <h2>IControllerCapabilities</h2>
+  <pre><code>ControllerType getControllerType()   // XBOX / PLAYSTATION / NINTENDO_SWITCH / ...
+boolean hasPaddles()                  // back buttons
+int getPaddleCount()
+boolean hasTouchpad()
+boolean hasGyro()
+boolean hasRumble()
+boolean hasAnalogTriggers()           // analog vs digital
+boolean isNintendoLayout()            // Nintendo A/B swap</code></pre>
+
+  <h2>ControllerType</h2>
+  <p>
+    <span data-i18n="dev.api-reference.48">Returned by <code>IControllerCapabilities.getControllerType()</code>. Use it to pick button glyphs and layouts per platform.</span>
+  </p>
+  <pre><code>UNKNOWN, XBOX, PLAYSTATION, NINTENDO_SWITCH, NINTENDO_WII_U,
+GENERIC, STEAM_DECK, GOOGLE_STADIA</code></pre>
+
+  <h2>InputMode</h2>
+  <pre><code>KEYBOARD_MOUSE   // keyboard and mouse only
+MIXED            // a controller is connected</code></pre>
+
+  <h2>IPlayerStateRegistry</h2>
+  <p>
+    <span data-i18n="dev.api-reference.49">Bridge mods push states to Control Flex for use by <code>playerState</code> conditions in compat JSON.</span>
+  </p>
+  <pre><code>void setState(String stateKey, boolean active)  // thread-safe
+boolean getState(String stateKey)               // client thread
+void clearState(String stateKey)                // remove the registration</code></pre>
+  <p class="small muted">
+    <span data-i18n="dev.api-reference.50"><b>stateKey format</b>: <code>"modId:stateName"</code>, e.g. <code>"epicfight:battle_mode"</code>.</span>
+  </p>
+
+  <h2>IInputInjector</h2>
+  <p>
+    <span data-i18n="dev.api-reference.51">Virtual controller input injection for test tools and bridge mods. Injected state is <b>sticky</b> (a pressed button stays pressed until released or cleared) and flows through the normal binding pipeline like real input.</span>
+  </p>
+  <pre><code>void pressButton(String buttonName, boolean pressed)  // ButtonName constants; stick directions map to axes
+void setAxis(String axisName, float value)            // -1.0..1.0; 0 clears the override
+void clearAll()                                       // release all buttons, zero all axes</code></pre>
+  <p class="small muted">
+    <span data-i18n="dev.api-reference.52"><b>Thread safety</b>: implementations must be callable from any thread; state is applied atomically on the client tick.</span>
+  </p>
+
+  <h2>IInteractiveContextRegistrar</h2>
+  <p>
+    <span data-i18n="dev.api-reference.53">Declare interactive overlays: <b>foreground</b> means the overlay is open, <b>background</b> means it closed. Control Flex records the class name as the active overlay, switches stick behavior during the OVERLAY phase, and clears it automatically when the scene unloads as a fallback.</span>
+  </p>
+  <pre><code>void notifyOverlayForeground(String className)   // overlay enters foreground
+void notifyOverlayBackground(String className)   // returns to background (pairs with foreground)
+void clearAll()                                   // fallback for mod unload / leaving the world</code></pre>
+  <p class="small muted">
+    <span data-i18n="dev.api-reference.54"><b>className</b> is the fully qualified class name of the interactive overlay — its stick behavior is resolved by Control Flex's compat configs. Client thread only; <code>getInteractiveContextRegistrar()</code> may be null, so null-check before calling.</span>
+  </p>
+  <div class="callout warn">
+    <p>
+      <span data-i18n="dev.api-reference.55"><b>0.8.7 breaking change</b>: these methods were renamed from <code>notifyForeground</code> / <code>notifyBackground</code> in 0.8.6; mods compiled against the old names must be recompiled.</span>
+    </p>
+  </div>
+
+  <h2><span data-i18n="dev.api-reference.56">Threading Model</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="dev.api-reference.57">Interface</span></th>
+          <th><span data-i18n="dev.api-reference.58">Constraint</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>ControlFlexApi</code></td><td><span data-i18n="dev.api-reference.59">Client main thread</span></td></tr>
+        <tr><td><code>IActionStateProvider</code></td><td><span data-i18n="dev.api-reference.60">Client main thread</span></td></tr>
+        <tr><td><code>IInputProvider</code> / <code>IControllerState</code></td><td><span data-i18n="dev.api-reference.61">Client main thread (volatile fields underneath ensure visibility)</span></td></tr>
+        <tr><td><code>IControllerCapabilities</code></td><td><span data-i18n="dev.api-reference.62">Client main thread</span></td></tr>
+        <tr><td><code>IPlayerStateRegistry.setState()</code></td><td><span data-i18n="dev.api-reference.63"><b>Any thread</b></span></td></tr>
+        <tr><td><code>IPlayerStateRegistry.getState()</code></td><td><span data-i18n="dev.api-reference.64">Client main thread</span></td></tr>
+        <tr><td><code>IInputInjector</code></td><td><span data-i18n="dev.api-reference.65"><b>Any thread</b> (applied atomically on the client tick)</span></td></tr>
+        <tr><td><code>IInteractiveContextRegistrar</code></td><td><span data-i18n="dev.api-reference.66">Client main thread</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平台支持 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/platforms.html", "zh": "/control-flex/zh/guide/platforms.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/platforms.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/platforms.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/platforms.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/platforms.html">
+<meta property="og:title" content="平台支持 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/platforms.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span>平台支持</span></h1>
+  <p class="lead">
+    <span>Control Flex 通过 <code>libgamepadjni</code> + SDL3 读取手柄。桌面三平台的原生库与 SDL3 都随 JAR 提供，开箱即用；Android 上 SDL3 必须来自启动器 APK，因此不同启动器的行为并不完全一样。</span>
+  </p>
+
+  <h2><span>支持总览</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>平台</span></th>
+          <th><span>架构</span></th>
+          <th><span>SDL3 来源</span></th>
+          <th><span>状态</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Windows</td>
+          <td>x86_64 · ARM64</td>
+          <td><span>JAR 内置（<code>SDL3.dll</code>）</span></td>
+          <td><span class="badge green"><span>支持</span></span></td>
+        </tr>
+        <tr>
+          <td>macOS</td>
+          <td>x86_64 · Apple&nbsp;Silicon (aarch64)</td>
+          <td><span>JAR 内置（<code>libSDL3.0.dylib</code>）</span></td>
+          <td><span class="badge green"><span>支持</span></span></td>
+        </tr>
+        <tr>
+          <td>Linux</td>
+          <td>x86_64 · aarch64</td>
+          <td><span>JAR 内置（<code>libSDL3.so</code>）</span></td>
+          <td><span class="badge green"><span>支持</span></span></td>
+        </tr>
+        <tr>
+          <td>Android<br><span class="small muted"><span>启动器里的游戏 JVM</span></span></td>
+          <td>arm64-v8a · armeabi-v7a · x86_64</td>
+          <td><span>启动器 APK 提供，JAR 不打包</span></td>
+          <td><span class="badge green"><span>支持</span></span></td>
+        </tr>
+        <tr>
+          <td>iOS</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="badge"><span>尚未支持</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>平台判定只看 <code>os.version</code>：以 <code>Android-</code> 开头即视为 Android，其余按桌面处理。<code>os.name</code>（Android 启动器同样写 <code>Linux</code>）只用于诊断日志，不参与判定。</span>
+  </p>
+
+  <h2><span>桌面平台</span></h2>
+  <ul>
+    <li><span>无需安装 SDL3、驱动或额外运行库 —— 模组固定使用 JAR 内打包的 SDL3，不与系统里已有的 SDL 冲突，也不会去搜索系统路径。</span></li>
+    <li><span>Windows 的 x86_64 与 ARM64 都随包提供原生库（<code>gamepadjni.dll</code> + <code>SDL3.dll</code>）。</span></li>
+    <li><span>macOS 同时提供 Intel 与 Apple Silicon 两份 <code>libgamepadjni.dylib</code>，Rosetta 与否都能用。</span></li>
+    <li><span>Linux 提供 x86_64 与 aarch64 两份 <code>libgamepadjni.so</code>；Steam Deck 之类的 aarch64 设备同样在列。</span></li>
+    <li><span>手柄热插拔、多手柄识别、按手柄身份（名称 / 类型 / 序列号）记忆配置，在三个桌面平台上行为一致。</span></li>
+  </ul>
+
+  <h2><span>Android（启动器环境）</span></h2>
+  <p>
+    <span>Android 版 Minecraft: Java Edition 由启动器提供的 JVM 运行，手柄链路因此分成两段：SDL3 来自启动器 APK（启动器已经在 ART 侧装好 SDL 的 glue），<code>libgamepadjni.so</code> 由模组自带并按 <code>os.arch</code> 解压加载。两者顺序固定 —— 先 SDL3，再 JNI 桥，否则动态链接器绑不到同一份库。</span>
+  </p>
+
+  <h3><span>已验证的启动器</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>启动器</span></th>
+          <th><span>如何找到启动器的 <code>libSDL3.so</code></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fold Craft Launcher (FCL)</td>
+          <td><span>设置 <code>POJAV_NATIVEDIR</code> 为 APK native 目录，走绝对路径</span></td>
+        </tr>
+        <tr>
+          <td>Zalith Launcher 2 (ZL2)</td>
+          <td><span>同上</span></td>
+        </tr>
+        <tr>
+          <td>Mojo Launcher<br><span class="small muted">v3_openjdk</span></td>
+          <td><span>不设 <code>POJAV_NATIVEDIR</code>；APK native 目录在 <code>LD_LIBRARY_PATH</code> 里，通过 <code>System.loadLibrary("SDL3")</code> 命中</span></td>
+        </tr>
+        <tr>
+          <td>Amethyst Android</td>
+          <td><span>设置 <code>POJAV_NATIVEDIR</code>，走绝对路径</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>这是兼容性说明，不是运行时白名单：只要启动器把 <code>os.version</code> 写成 <code>Android-*</code>，未列出的启动器同样会走 Android 路径。</span>
+  </p>
+
+  <h3><span>ABI 与原生库</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><code>os.arch</code></th>
+          <th><span>JAR 内目录</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>aarch64</code> / <code>arm64</code></td><td><code>native/android-arm64-v8a/</code></td></tr>
+        <tr><td><code>arm</code> / <code>armv7l</code> / <code>armv8l</code></td><td><code>native/android-armeabi-v7a/</code></td></tr>
+        <tr><td><code>x86_64</code> / <code>amd64</code></td><td><code>native/android-x86_64/</code></td></tr>
+        <tr>
+          <td><code>i386</code> <span class="small muted"><span>及其他</span></span></td>
+          <td><span>不支持 —— 初始化失败，游戏仍可正常启动（只是没有手柄）</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span>Android 上的注意事项</span></h3>
+  <div class="callout warn">
+    <p>
+      <span><b>不要覆盖 <code>os.version</code>。</b>部分启动器的自定义 JVM 参数或版本 JSON 会把它改成普通内核号（例如 <code>5.0</code>）或干脆不写 <code>Android-</code> 前缀，这时模组会把环境当成桌面 Linux，去加载桌面的 SDL3，结果是手柄在设置里始终不可见。确认启动器注入 <code>-Dos.version=Android-&lt;版本&gt;</code> 没有被你的自定义参数覆盖。</span>
+    </p>
+  </div>
+  <ul>
+    <li><span>JAR 里<b>没有</b> Android 版 <code>libSDL3.so</code>；不要在 mods 目录旁边再塞一份 SDL3，加载到没有启动器 glue 的 SDL 会让手柄永远不可见。</span></li>
+    <li><span>需要自带 <code>libgamepadjni.so</code> 时，把 <code>CFX_LIB_PATH</code> 指向包含该文件的目录（系统属性优先于环境变量）。</span></li>
+    <li><span>Android 上 SDL 与启动器共用同一个进程实例，所以退出游戏时模组不会 <code>SDL_Quit</code> 整个库，避免拆掉启动器的 video / glue。</span></li>
+    <li><span>配置目录仍是 <code>config/controlflex/</code>，相对启动器为实例指定的游戏目录；换启动器（或换实例目录）时，配置不会自动跟过去。</span></li>
+    <li><span>震动、光标、分屏这类功能的实际可用度取决于启动器窗口模型与设备：分屏为桌面多实例场景设计，Android 上一般无法同时跑两个实例。</span></li>
+  </ul>
+
+  <h2><span>平台与依赖对照</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>平台</span></th>
+          <th><span>需要额外安装</span></th>
+          <th><span>配置文件位置</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Windows / macOS / Linux</td>
+          <td><span>无（SDL3 内置）</span></td>
+          <td><code>config/controlflex/</code></td>
+        </tr>
+        <tr>
+          <td>Android</td>
+          <td><span>无（SDL3 由启动器提供；启动器需被本页列出的机制覆盖）</span></td>
+          <td><span>启动器实例目录下的 <code>config/controlflex/</code></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span>排障速查</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>现象</span></th>
+          <th><span>先检查什么</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>设置 → 手柄选择里完全没有设备（桌面）</span></td>
+          <td><span>JAR 是否与 MC 版本、加载器匹配（见 <a href="versions.html">MC 版本支持</a>）；手柄是否被其他程序（Steam Input、远程串流等）独占</span></td>
+        </tr>
+        <tr>
+          <td><span>Android 上游戏正常但手柄始终不可见</span></td>
+          <td><span><code>os.version</code> 是否被覆盖；启动器是否属于已验证的那几种；日志里 <code>POJAV_NATIVEDIR</code> 与 SDL3 路径是否打印出来</span></td>
+        </tr>
+        <tr>
+          <td><span>日志出现 <code>UnsatisfiedLinkError</code></span></td>
+          <td><span>Android 上是 ABI 不被支持（如 32 位 x86）或启动器 APK 缺 SDL3；桌面上则是原生库与系统架构不符</span></td>
+        </tr>
+        <tr>
+          <td><span>iOS 设备上找不到入口</span></td>
+          <td><span>iOS 尚未接入（平台层已预留判定位，但没有原生库）</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav class="pager">
+    <span class="spacer"></span>
+    <a class="pager-next" href="versions.html"><span class="dir"><span>下一页 →</span></span><span class="name"><span>MC 版本支持</span></span></a>
+  </nav>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

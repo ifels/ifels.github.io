@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.radial-menus.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.radial-menus.31">Radial Menus</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.radial-menus.32">Up to five independent wheels, each with as many as eight slots around the stick: open a wheel, aim with the stick, confirm with A. Food, torches, <code>/home</code> — frequent actions that do not deserve a dedicated face button belong on a wheel.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.radial-menus.33">What a Slot Can Do</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.radial-menus.34">Type</span></th>
+          <th><span data-i18n="guide.feature.radial-menus.35">Effect</span></th>
+          <th><span data-i18n="guide.feature.radial-menus.36">Examples</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="guide.feature.radial-menus.37">Key binding</span></td>
+          <td><span data-i18n="guide.feature.radial-menus.38">Fires a vanilla or mod KeyMapping</span></td>
+          <td><span data-i18n="guide.feature.radial-menus.39">Perspective toggle, mod skill keys</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.feature.radial-menus.40">Chat command</span></td>
+          <td><span data-i18n="guide.feature.radial-menus.41">Runs a <code>/</code> command</span></td>
+          <td><code>/home</code> · <code>/spawn</code> · <code>/warp</code></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.feature.radial-menus.42">Use item</span></td>
+          <td><span data-i18n="guide.feature.radial-menus.43">Switches to the hotbar slot and uses it</span></td>
+          <td><span data-i18n="guide.feature.radial-menus.44">Torches, food, potions, tools</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.feature.radial-menus.45">Opening &amp; Selecting</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.radial-menus.46"><b>Opening follows the menu's binding</b>: <code>Press</code> taps to open (release does not close it), <code>Hold</code> keeps it open while held and closes on release.</span></li>
+    <li><span data-i18n="guide.feature.radial-menus.47"><b>Selection stick</b>: left, right, or both (both by default).</span></li>
+    <li><span data-i18n="guide.feature.radial-menus.48"><b>Menus are assigned to layers</b>: by default Menu 1 lives on Main and Menus 2–5 on Shift 1–4 — Shift layers serve as wheel entry points as well as binding planes.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.radial-menus.49">Icons &amp; Appearance</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.radial-menus.50">Icon modes: <b>auto</b> (inferred from the slot's content, e.g. item icons), <b>random</b>, <b>default</b>, <b>item ID</b>, or a custom texture path.</span></li>
+    <li><span data-i18n="guide.feature.radial-menus.51">The in-game editor lets you pick icons, reorder slots, and set the trigger mode per menu.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.radial-menus.52">Config Files</span></h2>
+  <p>
+    <span data-i18n="guide.feature.radial-menus.53">Wheel layouts persist in <code>config/controlflex/radial_menu/radial_menus.json</code> with icons alongside. Packs can ship this file so players start with working wheels. Structure (excerpt):</span>
+  </p>
+  <pre><code>{
+  "version": 1,
+  "selectionStick": "BOTH",
+  "menus": [
+    { "id": 1, "name": "Menu 1", "mode": "HOLD",  "assignedLayer": "main",   "slots": [ 8 × slot ] },
+    { "id": 2, "name": "Menu 2", "mode": "HOLD",  "assignedLayer": "shift1", "slots": [ … ] },
+    { "id": 5, "name": "Menu 5", "mode": "PRESS", "assignedLayer": "shift4", "slots": [ … ] }
+  ]
+}</code></pre>
+
+  <h2><span data-i18n="guide.feature.radial-menus.54">Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th><span data-i18n="guide.feature.radial-menus.55">Menu</span></th>
+          <th><span data-i18n="guide.feature.radial-menus.56">Default open binding</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Main</td><td><span data-i18n="guide.feature.radial-menus.57">Menu 1</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 1</td><td><span data-i18n="guide.feature.radial-menus.58">Menu 2</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 2</td><td><span data-i18n="guide.feature.radial-menus.59">Menu 3</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 3</td><td><span data-i18n="guide.feature.radial-menus.60">Menu 4</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+        <tr><td>Shift 4</td><td><span data-i18n="guide.feature.radial-menus.61">Menu 5</span></td><td><span class="kbd">Back</span>（Hold）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p>
+      <span data-i18n="guide.feature.radial-menus.62">All slots ship empty — a wheel is a container you (or a pack author) fill. The same <span class="kbd">Back</span> button opens five different wheels because each menu belongs to a different layer.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span data-i18n="guide.feature.radial-menus.63">Related: <a href="layers.html">Seven Layers</a> (wheels hang off layers) and <a href="../../modpack/index.html">Configuration</a> (shipping wheel layouts in a pack).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/combo-keys.html"><span class="dir"><span data-i18n="guide.feature.radial-menus.64">← Previous</span></span><span class="name"><span data-i18n="guide.feature.radial-menus.65">Combo Keys</span></span></a>
+  <a class="pager-next" href="../../guide/feature/analog-movement.html"><span class="dir"><span data-i18n="guide.feature.radial-menus.66">Next →</span></span><span class="name"><span data-i18n="guide.feature.radial-menus.67">Analog Movement</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

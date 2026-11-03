@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.splitscreen.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.splitscreen.31">Split-Screen Co-op</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.splitscreen.32">Java Edition does not render two players in one window, so couch co-op means <b>two clients on one PC</b> joined over Open to LAN, each with its own controller. Control Flex supports that setup in two specific ways: controller ownership and unfocused windows that keep playing.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.splitscreen.33">What You Need</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.splitscreen.34">Two or more Minecraft accounts.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.35">Two gamepads, <b>or</b> one gamepad plus keyboard and mouse.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.36">A launcher that can run two instances at once.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.37">Control Flex installed in <b>each</b> instance that uses a gamepad.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.38">Optional: <a href="https://modrinth.com/mod/splitscreen" target="_blank" rel="noopener">Splitscreen Support</a> (window tiling only, no input handling).</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.splitscreen.39">Steps</span></h2>
+  <ol>
+    <li><span data-i18n="guide.feature.splitscreen.40">Create one launcher instance per account; keep both <b>windowed</b> (not fullscreen).</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.41">Install the mods: Control Flex in the gamepad instances, optionally Splitscreen Support too.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.42">Launch both. Two pads: pick a <b>different</b> controller in each game's <b>Gamepad Selection</b>. Pad + keyboard: assign the pad in the gamepad instance only.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.43">Press <span class="kbd">F3</span>+<span class="kbd">P</span> in each window to disable Pause on Lost Focus (or change it in video options) — the unfocused window must keep running; the pause screen also shows a hint.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.44">With Splitscreen Support, press <span class="kbd">F11</span> to cycle half- and quarter-screen layouts; the last position is remembered.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.45">Host on one instance (<b>Open to LAN</b>); join from the others from the multiplayer list, or via <code>localhost</code> plus the port shown.</span></li>
+  </ol>
+
+  <h2><span data-i18n="guide.feature.splitscreen.46">Picking a Look Mode</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.splitscreen.47">Use <b>Direct Turn</b> or <b>Smooth Turn</b> in background windows.</span></li>
+    <li><span data-i18n="guide.feature.splitscreen.48"><b>Simulate Mouse</b> cannot drive the OS cursor in a background window and falls back to Direct Turn automatically — use Direct or Smooth everywhere to avoid the switch.</span></li>
+  </ul>
+
+  <div class="callout tip">
+    <p>
+      <span data-i18n="guide.feature.splitscreen.49">“Input stealing” is the classic two-pad problem: SDL3 reports devices honestly, but both clients might pick the same one. Just assign different devices in <b>Gamepad Selection</b>. When a pad disconnects, Control Flex auto-selects the first available one, so keep each player on their own device.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span data-i18n="guide.feature.splitscreen.50">Related: <a href="camera.html">Camera &amp; Aim</a> (look mode details) and <a href="layers.html">Seven Layers</a> (each player keeps their own template and config).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/virtual-kbm.html"><span class="dir"><span data-i18n="guide.feature.splitscreen.51">← Previous</span></span><span class="name"><span data-i18n="guide.feature.splitscreen.52">Virtual Keyboard &amp; Mouse</span></span></a>
+  <a class="pager-next" href="../../guide/feature/mod-adaptation.html"><span class="dir"><span data-i18n="guide.feature.splitscreen.53">Next →</span></span><span class="name"><span data-i18n="guide.feature.splitscreen.54">Mod Adaptation</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

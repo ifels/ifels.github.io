@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cursor &amp; GUI · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/feature/cursor.html", "zh": "/control-flex/zh/guide/feature/cursor.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="en")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/guide/feature/cursor.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/feature/cursor.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/feature/cursor.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/feature/cursor.html">
+<meta property="og:title" content="Cursor &amp; GUI · Control Flex Wiki">
+<meta property="og:locale" content="en">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current" aria-current="true">English</span><a href="/control-flex/zh/guide/feature/cursor.html" hreflang="zh" lang="zh" data-set-lang="zh">中文</a></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/en/index.html">Home</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Player Guide</div>
+      <a href="/control-flex/en/guide/getting-started.html">Getting Started</a>
+      <a href="/control-flex/en/guide/features.html">Features</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/guide/feature/layers.html">Seven Layers</a>
+        <a href="/control-flex/en/guide/feature/trigger-modes.html">Trigger Modes</a>
+        <a href="/control-flex/en/guide/feature/combo-keys.html">Combo Keys</a>
+        <a href="/control-flex/en/guide/feature/radial-menus.html">Radial Menus</a>
+        <a href="/control-flex/en/guide/feature/analog-movement.html">Analog Movement</a>
+        <a href="/control-flex/en/guide/feature/camera.html">Camera &amp; Aim</a>
+        <a href="/control-flex/en/guide/feature/cursor.html">Cursor &amp; GUI</a>
+        <a href="/control-flex/en/guide/feature/rumble.html">Rumble</a>
+        <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
+        <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
+        <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
+      </div>
+      <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Platforms &amp; Versions</div>
+      <a href="/control-flex/en/guide/platforms.html">Platform Support</a>
+      <a href="/control-flex/en/guide/versions.html">Minecraft Versions</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Modpacks &amp; Compat</div>
+      <a href="/control-flex/en/modpack/index.html">Configuration</a>
+      <a href="/control-flex/en/modpack/compat.html">Mod Compatibility</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Developers</div>
+      <a href="/control-flex/en/dev/index.html">API Quick Start</a>
+      <a href="/control-flex/en/dev/api-reference.html">API Reference</a>
+      <a href="/control-flex/en/dev/examples.html">Plugin &amp; Examples</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Links</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span>Features</span></a></p>
+
+<h1><span>Cursor &amp; GUI</span></h1>
+  <p class="lead">
+    <span>Once a chest or inventory is open, a pad has to point, click, and drag like a mouse. The Screen layer covers this with three mechanisms: a virtual cursor, slot snapping, and D-Pad slot jumps.</span>
+  </p>
+
+  <h2><span>Virtual Cursor</span></h2>
+  <ul>
+    <li><span><b>How it moves</b>: the left stick's raw axis values are routed through Minecraft's mouse event pipeline — a separate mechanism from the direction bindings (cursor_navi_*).</span></li>
+    <li><span><b>Cursor speed</b>: 2–20 pixels per tick, tuned in <b>Cursor Settings</b>.</span></li>
+    <li><span><b>Cursor style</b>: the system cursor, a Bedrock-style set, or a hand style (textures ship with the cursor style packs).</span></li>
+  </ul>
+
+  <h2><span>Slot Snapping</span></h2>
+  <ul>
+    <li><span><b>On by default</b>, switchable in Cursor Settings.</span></li>
+    <li><span><b>When the stick stops</b>, the cursor snaps to the nearest container slot; the snap distance is adjustable from 1–80 pixels.</span></li>
+    <li><span><b>Only active while holding an item</b> — an empty hand moves the cursor freely without sticking.</span></li>
+    <li><span><b>Hover slowdown</b>: with snapping on, the cursor slows while hovering a slot for precise selection.</span></li>
+  </ul>
+
+  <h2><span>D-Pad Slot Navigation</span></h2>
+  <p>
+    <span>When precision is not needed, the D-Pad jumps between slots directly. It uses cone-shaped targeting, so long horizontal rows and irregular grids (custom containers) still jump reliably. Slot jumps coexist with the virtual cursor — the left stick takes over free movement at any time.</span>
+  </p>
+
+  <h2><span>GUI Defaults (Basic Template)</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Action</span></th>
+          <th><span>Default</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span>Cursor navigation</span></td><td><span>Left stick directions</span>（Hold）</td></tr>
+        <tr><td><span>Slot navigation</span></td><td><span class="kbd">D-Pad</span>（Hold）</td></tr>
+        <tr><td><span>Confirm / click / select</span></td><td><span class="kbd">A</span>（Press）</td></tr>
+        <tr><td><span>Back / close</span></td><td><span class="kbd">B</span>（Press）</td></tr>
+        <tr><td><span>Tab prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span>（Press）</td></tr>
+        <tr><td><span>Quick move (shift-click)</span></td><td><span class="kbd">Y</span>（Tap）</td></tr>
+        <tr><td><span>Take half</span></td><td><span class="kbd">X</span>（Press）</td></tr>
+        <tr><td><span>Scroll</span></td><td><span class="kbd"><span>R-stick ↑ / ↓</span></span>（Hold）</td></tr>
+        <tr><td><span>Cycle options</span></td><td><span class="kbd"><span>R-stick ← / →</span></span>（Tap）</td></tr>
+        <tr><td><span>JEI recipe / uses</span></td><td><span class="kbd">RT</span> + <span class="kbd">D-Pad ← / →</span>（Press）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>All of these live on the Screen layer of Key Mapping and can be changed row by row; LB/RB tab switching also works for creative tabs, recipe-book pages, and the guide list.</span>
+  </p>
+
+  <h2><span>Beyond: Screens That Only Read Physical Keys</span></h2>
+  <p>
+    <span>Some mod screens ignore the virtual cursor and only react to keyboard/mouse events — use <a href="virtual-kbm.html">Virtual Keyboard &amp; Mouse</a> to inject real keys there (e.g. map <span class="kbd">B</span> to physical <span class="kbd">Esc</span>). To customize stick behavior per screen (Independent / Radial Path / Virtual Mouse), add a Screen rule in <a href="mod-adaptation.html">Mod Adaptation</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/camera.html"><span class="dir"><span>← Previous</span></span><span class="name"><span>Camera &amp; Aim</span></span></a>
+  <a class="pager-next" href="../../guide/feature/rumble.html"><span class="dir"><span>Next →</span></span><span class="name"><span>Rumble</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">Report issues ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community configs ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>配置文件与整合包 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/modpack/index.html", "zh": "/control-flex/zh/modpack/index.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/modpack/index.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/modpack/index.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/modpack/index.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/modpack/index.html">
+<meta property="og:title" content="配置文件与整合包 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/modpack/index.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+
+  <h1><span>配置文件与整合包</span></h1>
+  <p class="lead">
+    <span>面向想改默认配置、并让它随整合包一起分发的玩家与包作者：配置放在哪、覆盖规则是什么、模板 JSON 怎么写。</span>
+  </p>
+
+  <h2><span>配置目录结构</span></h2>
+  <pre><code>config/controlflex/
+├── templates/          <span># 模板 JSON（内置 + 自定义）</span>
+├── profiles/           <span># 每个模板对应的用户修改</span>
+├── compat/             <span># 模组兼容配置</span>
+│   ├── default/        <span># 内置（从 JAR 释放，只读）</span>
+│   ├── mods/           <span># 桥接模组安装（只读）</span>
+│   └── user/           <span># 你的修改（优先级最高）</span>
+├── guides/             <span># 引导资源，分层同 compat/</span>
+├── radial_menu/        <span># 径向菜单布局与图标</span>
+├── backup/             <span># 升级迁移时的自动备份</span>
+└── cfx-client.json     <span># 客户端全局状态</span></code></pre>
+
+  <h2><span>覆盖规则</span></h2>
+  <ul>
+    <li><span>兼容配置分三层，优先级 <b>user &gt; mods &gt; default</b>；同 <code>mod_id</code> 的文件按层整体覆盖。</span></li>
+    <li><span>游戏内编辑是“写时复制”：内置与社区文件保持只读，你的改动落到 <code>compat/user/</code>。<b>Reset Config</b> 会把某个模组恢复为内置或已应用的社区默认。</span></li>
+    <li><span>兼容文件只在目标 <code>mod_id</code>（及其声明的 <code>dependencies</code>）实际加载时生效，未安装的模组配置会被干净跳过。</span></li>
+  </ul>
+
+  <h2><span>作为整合包分发默认配置</span></h2>
+  <ol>
+    <li>
+      <span>先在游戏里调出你满意的键位，然后从 <code>config/controlflex/profiles/</code> 取对应文件。</span>
+    </li>
+    <li>
+      <span>想做成“可选布局”时，把它整理成一个自定义模板放进 <code>config/controlflex/templates/&lt;name&gt;.json</code> —— 它会出现在游戏内的模板切换列表中。</span>
+    </li>
+    <li>
+      <span>把 <code>config/controlflex/</code> 下的相应文件放进整合包的 overrides（如 CurseForge / Modrinth 包的 <code>overrides/config/controlflex/</code>）。玩家的个人改动仍然写进 <code>profiles/</code> 与 <code>compat/user/</code>，不会丢失。</span>
+    </li>
+  </ol>
+
+  <h2><span>模板 JSON 格式</span></h2>
+  <p>
+    <span>模板把“动作 → 按键|模式”按层组织起来。以下是内置 Basic 模板的结构（节选）：</span>
+  </p>
+  <pre><code>{
+  "templateMeta": {
+    "name": "basic",
+    "displayName": "Basic",
+    "description": "Basic controller bindings for Minecraft Java Edition",
+    "version": 4
+  },
+  "mainActionBindings": {
+    "layer_shift1": "leftBumper|HOLD",
+    "jump": "buttonA|HOLD",
+    "sneak": "rightStickClick|HOLD",
+    "toggle_sneak": "rightStickClick|DOUBLE_TOGGLE",
+    "attack": "rightTrigger|HOLD",
+    "drop_stack": "rightStickClick+dpadDown|PRESS",
+    "sys_pause": "buttonStart|LONG_PRESS",
+    "controlflex:key.controlflex.open_settings": "buttonBack+buttonStart|PRESS"
+  },
+  "shift1ActionBindings": { "controlflex:key.controlflex.open_radial_menu_2": "buttonBack|HOLD" },
+  "shift2ActionBindings": {},
+  "shift3ActionBindings": {},
+  "shift4ActionBindings": {},
+  "guiActionBindings": {
+    "inv_select": "buttonA|PRESS",
+    "inv_quick_move": "buttonY|TAP",
+    "mouse_wheel_up": "rightStickUp|HOLD"
+  },
+  "overlayActionBindings": {
+    "gui_back": "buttonB|PRESS"
+  },
+  "virtualKbmBindings": {
+    "key.keyboard.left.shift": { "guiLayer": { "binding": "leftTrigger", "enabled": true } }
+  },
+  "thresholds": {
+    "tapThresholdMs": 500,
+    "longPressThresholdMs": 1000
+  }
+}</code></pre>
+
+  <h3><span>按键 token（ButtonId）</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>分类</span></th>
+          <th><span>取值</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span>面键</span></td><td><code>buttonA</code> · <code>buttonB</code> · <code>buttonX</code> · <code>buttonY</code></td></tr>
+        <tr><td><span>肩键 / 扳机</span></td><td><code>leftBumper</code> · <code>rightBumper</code> · <code>leftTrigger</code> · <code>rightTrigger</code></td></tr>
+        <tr><td><span>摇杆按下</span></td><td><code>leftStickClick</code> · <code>rightStickClick</code></td></tr>
+        <tr><td><span>摇杆方向</span></td><td><code>leftStickUp/Down/Left/Right</code> · <code>rightStickUp/Down/Left/Right</code></td></tr>
+        <tr><td><span>十字键</span></td><td><code>dpadUp</code> · <code>dpadDown</code> · <code>dpadLeft</code> · <code>dpadRight</code></td></tr>
+        <tr><td><span>系统键</span></td><td><code>buttonBack</code> · <code>buttonStart</code> · <code>buttonGuide</code></td></tr>
+        <tr><td><span>背键</span></td><td><code>paddle1</code> – <code>paddle4</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span>模式 token（TriggerMode）</span></h3>
+  <p class="small muted">
+    <code>PRESS</code> · <code>RELEASE</code> · <code>HOLD</code> · <code>TAP</code> · <code>LONG_PRESS</code> · <code>TOGGLE</code> · <code>DOUBLE_PRESS</code> · <code>DOUBLE_TAP</code> · <code>DOUBLE_HOLD</code> · <code>DOUBLE_TOGGLE</code>
+  </p>
+  <p class="small muted">
+    <span>组合键把按键用 <code>+</code> 连接；模式跟在 <code>|</code> 之后。键位字符串按 <code>button1+button2|MODE</code> 的形式书写。</span>
+  </p>
+
+  <div class="callout">
+    <p>
+      <span>动作 ID 有四种形态：内置动作（<code>jump</code>）、原版按键（<code>key.jump</code>）、模组按键（<code>epicfight:key.epicfight.attack</code>，即 <code>modId:keyName</code>）以及 Control Flex 自身按键（<code>controlflex:key.controlflex.open_settings</code>）。最稳妥的做法是在游戏内改好后导出，而不是手写整表。</span>
+    </p>
+  </div>
+
+  <h2><span>径向菜单配置</span></h2>
+  <p>
+    <span>径向菜单布局保存在 <code>config/controlflex/radial_menu/radial_menus.json</code>，图标资源放在同目录下；游戏内编辑器更直观，配置库分发时直接带上这个文件即可。</span>
+  </p>
+
+  <h2><span>版本升级与迁移</span></h2>
+  <p>
+    <span>从 0.8.6.x 升级到 0.8.7+ 时，配置档案、兼容文件与客户端设置会在首次启动自动迁移，原文件复制到 <code>config/controlflex/backup/</code>。整合包更新模组版本时，玩家的 <code>profiles/</code> 与 <code>compat/user/</code> 会被保留。</span>
+  </p>
+
+  <div class="callout tip">
+    <p>
+      <span>下一步：处理多模组兼容的完整手段，见<a href="compat.html">模组兼容性</a>。</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

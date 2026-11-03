@@ -1,11 +1,12 @@
 # Control Flex Wiki
 
 Static documentation site for the [Control Flex](https://www.curseforge.com/minecraft/mc-mods/control-flex)
-Minecraft mod. Served from GitHub Pages at:
+Minecraft mod, served from GitHub Pages at **https://ifels.github.io/control-flex/**.
 
-**https://ifels.github.io/control-flex/**
-
-No build step: plain HTML + CSS + a small JS file. Push to `main` and GitHub Pages serves it.
+Text is written once (templates + one JSON file per language) and built into a
+complete static tree for each language. There is no runtime translation and no
+language swapping in the browser — every visitor gets a finished HTML page, so
+first paint never flashes the wrong language and crawlers see real content.
 
 ## Naming
 
@@ -14,71 +15,113 @@ in-game key-binding category. Identifiers stay joined: the mod id `controlflex`,
 such as `config/controlflex/`, class names such as `ControlFlexApi` / `IControlFlexPlugin`, and
 repository names (`ControlFlexMC/...`).
 
-## Structure
+## Source vs output
+
+Everything under `../_src/` is the source. Everything under `control-flex/` except
+`assets/` and this README is generated — do not edit it by hand, it gets overwritten.
 
 ```
-control-flex/
-├── index.html               # Landing page (hero, three audiences, versions, quick start)
-├── guide/                   # Player Guide
-│   ├── getting-started.html #   Install, first launch, templates, default bindings
-│   ├── platforms.html       #   Platform Support (desktop OSes, Android launchers, ABIs, SDL3)
-│   ├── versions.html        #   Minecraft Versions (loader / Java / dependency matrix)
-│   ├── features.html        #   Feature overview (cards linking to feature/*)
-│   ├── feature/             #   One page per feature (12 pages, breadcrumb + prev/next)
-│   └── settings.html        #   Settings UI, rebinding, calibration, config paths, FAQ
-├── modpack/                 # Modpacks & Compatibility
-│   ├── index.html           #   Config layout, override rules, template JSON format
-│   └── compat.html          #   Auto-discovery, Mod Adaptation, community configs, compat JSON
-├── dev/                     # Developers
-│   ├── index.html           #   API quick start (JitPack, availability check, first bridge mod)
-│   ├── api-reference.html   #   Full interface reference + threading model
-│   └── examples.html        #   Plugin lifecycle + end-to-end examples
-└── assets/
-    ├── style.css            # All styling (light + dark via prefers-color-scheme)
-    └── app.js               # Language switching, mobile sidebar, active nav, copy buttons
+_src/
+├── pages/                   # page templates
+│   ├── index.html           #   Landing page
+│   ├── guide/               #   getting-started, platforms, versions, features, settings
+│   │   └── feature/         #   one page per feature (12 pages, breadcrumb + prev/next)
+│   ├── modpack/             #   config layout, override rules, compatibility
+│   └── dev/                 #   API quick start, reference, plugin examples
+├── locales/
+│   ├── en.json              # one file per language; add a file = add a language
+│   └── zh.json
+├── nav.json                 # sidebar structure, shared by every page
+├── site.json                # basePath + absolute URL (canonical / hreflang)
+├── build.py                 # generator
+└── one-off/                 # migration scripts, kept for reference, not needed to build
 ```
+
+```
+control-flex/                # generated
+├── index.html               # language picker / auto redirect
+├── en/**                    # complete English tree
+├── zh/**                    # complete Chinese tree
+├── guide/ dev/ modpack/     # redirect stubs for legacy URLs (no language segment)
+├── assets/
+│   ├── style.css            # all styling (light + dark via prefers-color-scheme)
+│   └── app.js               # mobile sidebar, active nav, copy buttons, language memory
+└── README.md
+```
+
+## Build
+
+```bash
+# from the repository root (ifels.github.io)
+python _src/build.py
+```
+
+Prints the rendered page count, the number of redirect stubs, and fails loudly if
+a template references an `data-i18n` key that no locale file defines. Requires
+Python 3.8+ and nothing else.
+
+Commit the generated output — GitHub Pages serves `control-flex/` directly, there
+is no CI step.
+
+## URLs
+
+| URL | Behaviour |
+|-----|-----------|
+| `/control-flex/zh/guide/getting-started.html` | canonical form |
+| `/control-flex/guide/getting-started.html` | legacy stub → redirects to the right language |
+| `/control-flex/guide/…?lang=en` | explicit language, wins over everything |
+| `/control-flex/` | picks a language: `?lang` → `localStorage` → `navigator.language` → `en` |
+
+`?lang=` is an entry shortcut, not a content switch: the stub redirects to the
+matching static tree, so the canonical URL always carries the language segment.
+Every page also carries `hreflang` alternates, an `x-default`, and a self
+`canonical`.
+
+## Editing text
+
+1. Find the key in the page template: `<li data-i18n="guide.settings.42">…</li>`.
+2. Change the same key in **both** `_src/locales/en.json` and `_src/locales/zh.json`.
+3. Run `python _src/build.py`.
+
+Keys are `<page>.<n>`, numbered in document order. When you add a paragraph, append
+a **new** key at the next free number instead of renumbering — renumbering quietly
+detaches existing translations.
 
 ## Adding a page
 
-1. Copy an existing page in the same section as a starting point.
-2. Update `<title>`, the `<h1>`, and the content. Keep the header and sidebar block as-is
-   (adjust `../` prefixes if the new page sits at a different depth).
-3. Add a link to the sidebar of **every** page (the sidebar is duplicated per page).
-4. Write content in both languages — see below.
+1. Create `_src/pages/<section>/<name>.html` (copy a sibling as a starting point).
+2. Give every translatable text node a `data-i18n` key; leave the chrome as
+   `{{SIDEBAR}}`, `{{FOOTER}}`, `{{LANGSWITCH}}`, `{{HEAD_META}}`, `{{ROOT}}`,
+   `{{TITLE}}`, `{{LANG}}` placeholders.
+3. Add the matching keys to every `_src/locales/*.json`.
+4. Add the entry to `_src/nav.json` — the sidebar is generated, so this is the only
+   place to touch (previously it was duplicated in all 23 pages).
+5. `python _src/build.py`.
 
-## Languages
+## Adding a language (e.g. `ja`)
 
-The site currently ships **English (`en`)** and **Chinese (`zh`)**, switchable from the
-header dropdown. The preference is stored in `localStorage.preferredLang`, the same key
-the root `ifels.github.io` page uses.
-
-Content blocks are marked with `data-lang`:
-
-```html
-<div data-lang="zh">…Chinese…</div>
-<div data-lang="en">…English…</div>
-
-<p><span data-lang="zh">中文文字</span><span data-lang="en">English text</span></p>
+```bash
+cp _src/locales/en.json _src/locales/ja.json
 ```
 
-Visibility rules hide every `[data-lang]` block whose language is not the active
-`<html lang>`.
+Then:
 
-### Adding a language (e.g. `ja`)
+1. Replace the `_lang` block with `{"name": "日本語", "htmlLang": "ja", "order": 3}`
+   (only the default language keeps `"default": true`).
+2. Translate every value.
+3. `python _src/build.py`.
 
-1. `assets/app.js` — add `'ja'` to the `LANGS` array (this injects the visibility rules).
-2. Every page header — add `<option value="ja">日本語</option>` to the language `<select>`,
-   and add `'ja'` to the inline `S` array in the `<head>` script.
-3. Add `<... data-lang="ja">` blocks with the translations next to the existing ones.
-4. `assets/style.css` — optionally add a static fallback rule for no-JS visitors:
-   `html[lang="ja"] [data-lang]:not([data-lang="ja"]) { display: none !important; }`
+The build discovers languages from the filenames, so `control-flex/ja/**` appears,
+the header switcher gains the new entry, `hreflang` alternates are added to every
+page, and the redirect stubs start honouring `ja`. No template, CSS, or JS change.
 
 ## Local preview
 
 ```bash
 # from the repository root (ifels.github.io)
 python -m http.server 8080
-# → http://127.0.0.1:8080/control-flex/
+# → http://127.0.0.1:8080/control-flex/   (redirects to /zh/ or /en/)
+# → http://127.0.0.1:8080/control-flex/zh/guide/getting-started.html
 ```
 
 ## Content sources

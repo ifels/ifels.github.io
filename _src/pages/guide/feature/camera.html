@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.camera.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.camera.31">Camera &amp; Aim</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.camera.32">The right stick drives the camera, updating yaw and pitch at render frame rate for smoothness. Three modes cover everything from vanilla play to combat mods.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.camera.33">Three Look Modes</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.camera.34">Mode</span></th>
+          <th><span data-i18n="guide.feature.camera.35">What it does</span></th>
+          <th><span data-i18n="guide.feature.camera.36">Best for</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Direct Turn</td>
+          <td><span data-i18n="guide.feature.camera.37">Stick moves the camera directly; the most responsive</span></td>
+          <td><span data-i18n="guide.feature.camera.38">Fast turns and background windows (split-screen)</span></td>
+        </tr>
+        <tr>
+          <td>Smooth Turn</td>
+          <td><span data-i18n="guide.feature.camera.39">Turns with smoothing, closer to a console feel</span></td>
+          <td><span data-i18n="guide.feature.camera.40">Everyday play where a follow-through feel is wanted</span></td>
+        </tr>
+        <tr>
+          <td>Simulate Mouse</td>
+          <td><span data-i18n="guide.feature.camera.41">Look is routed through the mouse pipeline (MouseHandler), so mods that intercept the mouse still see crosshair movement</span></td>
+          <td><span data-i18n="guide.feature.camera.42">Combat mods with custom aiming such as Epic Fight (on by default for new installs)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.feature.camera.43">Sensitivity &amp; Response</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.camera.44"><b>Sensitivity</b>: a 1–100 slider plus a 1.0–10.0 multiplier (default 1.0).</span></li>
+    <li><span data-i18n="guide.feature.camera.45"><b>Response curve</b>: a quadratic curve that gives finer control at small deflections, tuned in <b>Camera Settings</b>; it belongs to the same <b>Calibration</b> family as stick deadzones.</span></li>
+    <li><span data-i18n="guide.feature.camera.46"><b>Y-axis invert</b>: optional, toggled in Camera Settings.</span></li>
+    <li><span data-i18n="guide.feature.camera.47"><b>Frame-rate independent</b>: look uses the frame delta, so it neither speeds up at high refresh rates nor lags at low ones.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.camera.48">Zoom</span></h2>
+  <p>
+    <span data-i18n="guide.feature.camera.49">Zoom slowdown (sensitivity compensation while scoping) <b>only applies in Simulate Mouse mode</b>, matching what mods expect from the mouse pipeline. Zoom itself is a bindable action (unbound in the Basic template).</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.camera.50">Split-Screen Caveat</span></h2>
+  <p>
+    <span data-i18n="guide.feature.camera.51">Simulate Mouse cannot drive the OS cursor in a background window, so it automatically falls back to Direct Turn there. For couch co-op, use Direct Turn or Smooth Turn (see <a href="splitscreen.html">Split-Screen Co-op</a>).</span>
+  </p>
+
+  <p class="small muted">
+    <span data-i18n="guide.feature.camera.52">Related: <a href="cursor.html">Cursor &amp; GUI</a> (aiming inside menus) and <a href="analog-movement.html">Analog Movement</a> (movement response curves).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/analog-movement.html"><span class="dir"><span data-i18n="guide.feature.camera.53">← Previous</span></span><span class="name"><span data-i18n="guide.feature.camera.54">Analog Movement</span></span></a>
+  <a class="pager-next" href="../../guide/feature/cursor.html"><span class="dir"><span data-i18n="guide.feature.camera.55">Next →</span></span><span class="name"><span data-i18n="guide.feature.camera.56">Cursor &amp; GUI</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

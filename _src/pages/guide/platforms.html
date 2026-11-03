@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="guide.platforms.18">Platform Support</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.platforms.19">Control Flex reads controllers through <code>libgamepadjni</code> + SDL3. On desktop, both the native library and SDL3 ship inside the JAR, so it works out of the box; on Android, SDL3 must come from the launcher APK, which is why behaviour varies a little between launchers.</span>
+  </p>
+
+  <h2><span data-i18n="guide.platforms.20">At a Glance</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.platforms.21">Platform</span></th>
+          <th><span data-i18n="guide.platforms.22">Architectures</span></th>
+          <th><span data-i18n="guide.platforms.23">SDL3 source</span></th>
+          <th><span data-i18n="guide.platforms.24">Status</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Windows</td>
+          <td>x86_64 · ARM64</td>
+          <td><span data-i18n="guide.platforms.25">Bundled in the JAR (<code>SDL3.dll</code>)</span></td>
+          <td><span class="badge green"><span data-i18n="guide.platforms.26">Supported</span></span></td>
+        </tr>
+        <tr>
+          <td>macOS</td>
+          <td>x86_64 · Apple&nbsp;Silicon (aarch64)</td>
+          <td><span data-i18n="guide.platforms.27">Bundled in the JAR (<code>libSDL3.0.dylib</code>)</span></td>
+          <td><span class="badge green"><span data-i18n="guide.platforms.28">Supported</span></span></td>
+        </tr>
+        <tr>
+          <td>Linux</td>
+          <td>x86_64 · aarch64</td>
+          <td><span data-i18n="guide.platforms.29">Bundled in the JAR (<code>libSDL3.so</code>)</span></td>
+          <td><span class="badge green"><span data-i18n="guide.platforms.30">Supported</span></span></td>
+        </tr>
+        <tr>
+          <td>Android<br><span class="small muted"><span data-i18n="guide.platforms.31">game JVM inside a launcher</span></span></td>
+          <td>arm64-v8a · armeabi-v7a · x86_64</td>
+          <td><span data-i18n="guide.platforms.32">Provided by the launcher APK; never bundled</span></td>
+          <td><span class="badge green"><span data-i18n="guide.platforms.33">Supported</span></span></td>
+        </tr>
+        <tr>
+          <td>iOS</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="badge"><span data-i18n="guide.platforms.34">Not yet</span></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.platforms.35">Detection reads <code>os.version</code> only: a value starting with <code>Android-</code> means Android, everything else is treated as desktop. <code>os.name</code> (Android launchers also report <code>Linux</code>) is written to diagnostic logs and never used for detection.</span>
+  </p>
+
+  <h2><span data-i18n="guide.platforms.36">Desktop</span></h2>
+  <ul>
+    <li><span data-i18n="guide.platforms.37">No SDL3, driver, or extra runtime to install — the mod always uses the SDL3 packaged in the JAR, so it neither conflicts with a system SDL nor searches system paths.</span></li>
+    <li><span data-i18n="guide.platforms.38">Both Windows x86_64 and ARM64 ship native binaries (<code>gamepadjni.dll</code> + <code>SDL3.dll</code>).</span></li>
+    <li><span data-i18n="guide.platforms.39">macOS ships both Intel and Apple Silicon <code>libgamepadjni.dylib</code> builds, so it works with or without Rosetta.</span></li>
+    <li><span data-i18n="guide.platforms.40">Linux ships x86_64 and aarch64 <code>libgamepadjni.so</code> builds, covering aarch64 devices such as Steam Deck.</span></li>
+    <li><span data-i18n="guide.platforms.41">Hotplug, multi-controller detection, and per-controller identity (name / type / serial) behave the same across the three desktop platforms.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.platforms.42">Android (inside a Launcher)</span></h2>
+  <p>
+    <span data-i18n="guide.platforms.43">On Android, Minecraft: Java Edition runs on a JVM provided by a launcher, so the controller path is split in two: SDL3 comes from the launcher APK (the launcher already installed the SDL glue on the ART side), while <code>libgamepadjni.so</code> ships with the mod and is extracted per <code>os.arch</code>. The order is fixed — SDL3 first, then the JNI bridge — or the dynamic linker binds to a different copy.</span>
+  </p>
+
+  <h3><span data-i18n="guide.platforms.44">Launchers Verified</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.platforms.45">Launcher</span></th>
+          <th><span data-i18n="guide.platforms.46">How the launcher's <code>libSDL3.so</code> is found</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fold Craft Launcher (FCL)</td>
+          <td><span data-i18n="guide.platforms.47">Sets <code>POJAV_NATIVEDIR</code> to the APK native dir; loaded by absolute path</span></td>
+        </tr>
+        <tr>
+          <td>Zalith Launcher 2 (ZL2)</td>
+          <td><span data-i18n="guide.platforms.48">Same as above</span></td>
+        </tr>
+        <tr>
+          <td>Mojo Launcher<br><span class="small muted">v3_openjdk</span></td>
+          <td><span data-i18n="guide.platforms.49">No <code>POJAV_NATIVEDIR</code>; the APK native dir sits on <code>LD_LIBRARY_PATH</code>, so <code>System.loadLibrary("SDL3")</code> resolves it</span></td>
+        </tr>
+        <tr>
+          <td>Amethyst Android</td>
+          <td><span data-i18n="guide.platforms.50">Sets <code>POJAV_NATIVEDIR</code> and loads by absolute path</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.platforms.51">This is a compatibility note, not a runtime allowlist: any launcher that sets <code>os.version</code> to <code>Android-*</code> takes the Android path, listed or not.</span>
+  </p>
+
+  <h3><span data-i18n="guide.platforms.52">ABIs and Natives</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><code>os.arch</code></th>
+          <th><span data-i18n="guide.platforms.53">Directory in the JAR</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>aarch64</code> / <code>arm64</code></td><td><code>native/android-arm64-v8a/</code></td></tr>
+        <tr><td><code>arm</code> / <code>armv7l</code> / <code>armv8l</code></td><td><code>native/android-armeabi-v7a/</code></td></tr>
+        <tr><td><code>x86_64</code> / <code>amd64</code></td><td><code>native/android-x86_64/</code></td></tr>
+        <tr>
+          <td><code>i386</code> <span class="small muted"><span data-i18n="guide.platforms.54">and others</span></span></td>
+          <td><span data-i18n="guide.platforms.55">Unsupported — initialization fails and the game still launches, just without a controller</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span data-i18n="guide.platforms.56">Android Caveats</span></h3>
+  <div class="callout warn">
+    <p>
+      <span data-i18n="guide.platforms.57"><b>Do not override <code>os.version</code>.</b> Some launchers' custom JVM arguments or version JSON replace it with a plain kernel number (e.g. <code>5.0</code>) or drop the <code>Android-</code> prefix. The mod then treats the JVM as desktop Linux, loads a desktop SDL3, and the controller never shows up in settings. Make sure the launcher's <code>-Dos.version=Android-&lt;release&gt;</code> is not overridden by your own arguments.</span>
+    </p>
+  </div>
+  <ul>
+    <li><span data-i18n="guide.platforms.58">The JAR ships <b>no</b> Android <code>libSDL3.so</code>; do not drop another SDL3 next to your mods. Loading an SDL without the launcher glue makes controllers permanently invisible.</span></li>
+    <li><span data-i18n="guide.platforms.59">To supply your own <code>libgamepadjni.so</code>, point <code>CFX_LIB_PATH</code> at the directory holding it (system property wins over environment variable).</span></li>
+    <li><span data-i18n="guide.platforms.60">On Android, SDL is shared with the launcher inside one process, so the mod never <code>SDL_Quit</code>s the whole library on shutdown — that would tear down the launcher's video / glue.</span></li>
+    <li><span data-i18n="guide.platforms.61">The config directory is still <code>config/controlflex/</code>, relative to the game directory the launcher assigned to that instance; switching launchers (or instance dirs) does not carry configs over.</span></li>
+    <li><span data-i18n="guide.platforms.62">Rumble, cursor, and split-screen availability depends on the launcher's window model and the device: split-screen targets multi-instance desktop setups, and Android devices normally cannot run two instances side by side.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.platforms.63">Platform &amp; Dependency Matrix</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.platforms.64">Platform</span></th>
+          <th><span data-i18n="guide.platforms.65">Extra installs</span></th>
+          <th><span data-i18n="guide.platforms.66">Config location</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Windows / macOS / Linux</td>
+          <td><span data-i18n="guide.platforms.67">None (SDL3 bundled)</span></td>
+          <td><code>config/controlflex/</code></td>
+        </tr>
+        <tr>
+          <td>Android</td>
+          <td><span data-i18n="guide.platforms.68">None (SDL3 comes from the launcher; the launcher must be covered by one of the mechanisms above)</span></td>
+          <td><span data-i18n="guide.platforms.69"><code>config/controlflex/</code> under the launcher's instance dir</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.platforms.70">Troubleshooting</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.platforms.71">Symptom</span></th>
+          <th><span data-i18n="guide.platforms.72">Check first</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="guide.platforms.73">No device at all in Settings → Gamepad Selection (desktop)</span></td>
+          <td><span data-i18n="guide.platforms.74">Does the JAR match your MC version and loader (see <a href="versions.html">Minecraft Versions</a>)? Is another program (Steam Input, remote play) holding the pad?</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.platforms.75">On Android the game runs but no controller is ever visible</span></td>
+          <td><span data-i18n="guide.platforms.76">Is <code>os.version</code> overridden? Is the launcher one of the verified ones? Do the logs show <code>POJAV_NATIVEDIR</code> and the SDL3 path?</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.platforms.77"><code>UnsatisfiedLinkError</code> in the log</span></td>
+          <td><span data-i18n="guide.platforms.78">On Android, either an unsupported ABI (e.g. 32-bit x86) or the launcher APK lacks SDL3; on desktop, the native does not match the OS architecture</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.platforms.79">Nothing available on iOS</span></td>
+          <td><span data-i18n="guide.platforms.80">iOS is not wired up yet (the platform layer reserves a flag, but no natives exist)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <nav class="pager">
+    <span class="spacer"></span>
+    <a class="pager-next" href="versions.html"><span class="dir"><span data-i18n="guide.platforms.81">Next →</span></span><span class="name"><span data-i18n="guide.platforms.82">Minecraft Versions</span></span></a>
+  </nav>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

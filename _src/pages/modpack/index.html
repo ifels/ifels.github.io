@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="modpack.index.18">Configuration for Modpacks</span></h1>
+  <p class="lead">
+    <span data-i18n="modpack.index.19">For players and pack authors who want to change defaults and ship them with a pack: where configs live, how overrides resolve, and how template JSON is written.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.index.20">Config Directory Layout</span></h2>
+  <pre><code>config/controlflex/
+├── templates/          <span data-i18n="modpack.index.21"># template JSON (built-in + custom)</span>
+├── profiles/           <span data-i18n="modpack.index.22"># per-template user modifications</span>
+├── compat/             <span data-i18n="modpack.index.23"># mod compatibility configs</span>
+│   ├── default/        <span data-i18n="modpack.index.24"># packaged (extracted from the JAR, read-only)</span>
+│   ├── mods/           <span data-i18n="modpack.index.25"># installed by bridge mods (read-only)</span>
+│   └── user/           <span data-i18n="modpack.index.26"># your edits (highest priority)</span>
+├── guides/             <span data-i18n="modpack.index.27"># guide assets, same default/mods/user layering</span>
+├── radial_menu/        <span data-i18n="modpack.index.28"># radial menu layouts and icons</span>
+├── backup/             <span data-i18n="modpack.index.29"># automatic backups from migrations</span>
+└── cfx-client.json     <span data-i18n="modpack.index.30"># global client state</span></code></pre>
+
+  <h2><span data-i18n="modpack.index.31">Override Rules</span></h2>
+  <ul>
+    <li><span data-i18n="modpack.index.32">Compat configs resolve in three layers with priority <b>user &gt; mods &gt; default</b>; files with the same <code>mod_id</code> override wholesale by layer.</span></li>
+    <li><span data-i18n="modpack.index.33">In-game edits are copy-on-write: packaged and community files stay read-only and your changes land in <code>compat/user/</code>. <b>Reset Config</b> restores a mod to its packaged or applied community default.</span></li>
+    <li><span data-i18n="modpack.index.34">A compat file only activates when its target <code>mod_id</code> (and any declared <code>dependencies</code>) are actually loaded; configs for absent mods are skipped cleanly.</span></li>
+  </ul>
+
+  <h2><span data-i18n="modpack.index.35">Shipping Defaults with a Pack</span></h2>
+  <ol>
+    <li>
+      <span data-i18n="modpack.index.36">Tune the bindings in-game until you are happy, then take the matching file from <code>config/controlflex/profiles/</code>.</span>
+    </li>
+    <li>
+      <span data-i18n="modpack.index.37">For an optional layout, package it as a custom template at <code>config/controlflex/templates/&lt;name&gt;.json</code> — it appears in the in-game template switcher.</span>
+    </li>
+    <li>
+      <span data-i18n="modpack.index.38">Put the relevant files from <code>config/controlflex/</code> into your pack's overrides (e.g. <code>overrides/config/controlflex/</code> on CurseForge / Modrinth packs). Player edits still go to <code>profiles/</code> and <code>compat/user/</code> and are preserved.</span>
+    </li>
+  </ol>
+
+  <h2><span data-i18n="modpack.index.39">Template JSON Format</span></h2>
+  <p>
+    <span data-i18n="modpack.index.40">A template maps “action → button|mode” per layer. This is the structure of the built-in Basic template (excerpt):</span>
+  </p>
+  <pre><code>{
+  "templateMeta": {
+    "name": "basic",
+    "displayName": "Basic",
+    "description": "Basic controller bindings for Minecraft Java Edition",
+    "version": 4
+  },
+  "mainActionBindings": {
+    "layer_shift1": "leftBumper|HOLD",
+    "jump": "buttonA|HOLD",
+    "sneak": "rightStickClick|HOLD",
+    "toggle_sneak": "rightStickClick|DOUBLE_TOGGLE",
+    "attack": "rightTrigger|HOLD",
+    "drop_stack": "rightStickClick+dpadDown|PRESS",
+    "sys_pause": "buttonStart|LONG_PRESS",
+    "controlflex:key.controlflex.open_settings": "buttonBack+buttonStart|PRESS"
+  },
+  "shift1ActionBindings": { "controlflex:key.controlflex.open_radial_menu_2": "buttonBack|HOLD" },
+  "shift2ActionBindings": {},
+  "shift3ActionBindings": {},
+  "shift4ActionBindings": {},
+  "guiActionBindings": {
+    "inv_select": "buttonA|PRESS",
+    "inv_quick_move": "buttonY|TAP",
+    "mouse_wheel_up": "rightStickUp|HOLD"
+  },
+  "overlayActionBindings": {
+    "gui_back": "buttonB|PRESS"
+  },
+  "virtualKbmBindings": {
+    "key.keyboard.left.shift": { "guiLayer": { "binding": "leftTrigger", "enabled": true } }
+  },
+  "thresholds": {
+    "tapThresholdMs": 500,
+    "longPressThresholdMs": 1000
+  }
+}</code></pre>
+
+  <h3><span data-i18n="modpack.index.41">Button tokens (ButtonId)</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="modpack.index.42">Group</span></th>
+          <th><span data-i18n="modpack.index.43">Values</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-i18n="modpack.index.44">Face buttons</span></td><td><code>buttonA</code> · <code>buttonB</code> · <code>buttonX</code> · <code>buttonY</code></td></tr>
+        <tr><td><span data-i18n="modpack.index.45">Bumpers / triggers</span></td><td><code>leftBumper</code> · <code>rightBumper</code> · <code>leftTrigger</code> · <code>rightTrigger</code></td></tr>
+        <tr><td><span data-i18n="modpack.index.46">Stick clicks</span></td><td><code>leftStickClick</code> · <code>rightStickClick</code></td></tr>
+        <tr><td><span data-i18n="modpack.index.47">Stick directions</span></td><td><code>leftStickUp/Down/Left/Right</code> · <code>rightStickUp/Down/Left/Right</code></td></tr>
+        <tr><td><span data-i18n="modpack.index.48">D-Pad</span></td><td><code>dpadUp</code> · <code>dpadDown</code> · <code>dpadLeft</code> · <code>dpadRight</code></td></tr>
+        <tr><td><span data-i18n="modpack.index.49">System buttons</span></td><td><code>buttonBack</code> · <code>buttonStart</code> · <code>buttonGuide</code></td></tr>
+        <tr><td><span data-i18n="modpack.index.50">Paddles</span></td><td><code>paddle1</code> – <code>paddle4</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span data-i18n="modpack.index.51">Mode tokens (TriggerMode)</span></h3>
+  <p class="small muted">
+    <code>PRESS</code> · <code>RELEASE</code> · <code>HOLD</code> · <code>TAP</code> · <code>LONG_PRESS</code> · <code>TOGGLE</code> · <code>DOUBLE_PRESS</code> · <code>DOUBLE_TAP</code> · <code>DOUBLE_HOLD</code> · <code>DOUBLE_TOGGLE</code>
+  </p>
+  <p class="small muted">
+    <span data-i18n="modpack.index.52">Chords join buttons with <code>+</code>; the mode follows <code>|</code>. A binding string reads <code>button1+button2|MODE</code>.</span>
+  </p>
+
+  <div class="callout">
+    <p>
+      <span data-i18n="modpack.index.53">Action IDs come in four shapes: built-in actions (<code>jump</code>), vanilla keys (<code>key.jump</code>), mod keys (<code>epicfight:key.epicfight.attack</code>, i.e. <code>modId:keyName</code>), and Control Flex's own keys (<code>controlflex:key.controlflex.open_settings</code>). The safest workflow is to edit in-game and export, rather than hand-writing the whole table.</span>
+    </p>
+  </div>
+
+  <h2><span data-i18n="modpack.index.54">Radial Menu Config</span></h2>
+  <p>
+    <span data-i18n="modpack.index.55">Radial layouts persist in <code>config/controlflex/radial_menu/radial_menus.json</code> with icons alongside them; the in-game editor is easier, and shipping this file in a pack carries the menus along.</span>
+  </p>
+
+  <h2><span data-i18n="modpack.index.56">Upgrades &amp; Migration</span></h2>
+  <p>
+    <span data-i18n="modpack.index.57">Upgrading from 0.8.6.x to 0.8.7+ migrates profiles, compat files, and client settings on first launch, copying originals to <code>config/controlflex/backup/</code>. When a pack bumps the mod version, players' <code>profiles/</code> and <code>compat/user/</code> are preserved.</span>
+  </p>
+
+  <div class="callout tip">
+    <p>
+      <span data-i18n="modpack.index.58">Next: the full toolbox for multi-mod compatibility on the <a href="compat.html">Mod Compatibility</a> page.</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

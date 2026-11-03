@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.combo-keys.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.combo-keys.31">Combo Keys</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.combo-keys.32">When one button is not enough, press several: bind a chord such as <span class="kbd">LB</span> + <span class="kbd">Back</span> or <span class="kbd">LT</span> + <span class="kbd">A</span> to a single action. Rare-but-important actions no longer need a dedicated face button.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.combo-keys.33">Capturing a Chord</span></h2>
+  <ol>
+    <li><span data-i18n="guide.feature.combo-keys.34">Select the target row in Key Mapping to start capture.</span></li>
+    <li><span data-i18n="guide.feature.combo-keys.35">Press the first button, then add the rest within <b>500 ms</b>; the UI shows the full chord as it builds.</span></li>
+    <li><span data-i18n="guide.feature.combo-keys.36">Once complete, <b>all buttons must be down together</b> for the action to fire — pressing one of them alone still performs its own binding.</span></li>
+    <li><span data-i18n="guide.feature.combo-keys.37"><span class="kbd">ESC</span> cancels capture; right-click a row to clear, reset, or move it to another layer.</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-i18n="guide.feature.combo-keys.38">The capture window is fixed at 500 ms; it does not follow the Tap threshold.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.combo-keys.39">Three Engine Rules</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.combo-keys.40"><b>Upgrade rule</b>: when a larger chord activates (say A+B+Y), any active smaller chord whose buttons are a proper subset of it (A+B) is destroyed. Behavior stays predictable.</span></li>
+    <li><span data-i18n="guide.feature.combo-keys.41"><b>Button sharing (reference counting)</b>: one physical button can take part in several chords; the engine tracks references so they do not interfere.</span></li>
+    <li><span data-i18n="guide.feature.combo-keys.42"><b>Every trigger mode works</b>: chords support the same ten modes as single-key bindings, including all the Double variants.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.combo-keys.43">Three Common Patterns</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.combo-keys.44">Pattern</span></th>
+          <th><span data-i18n="guide.feature.combo-keys.45">Example</span></th>
+          <th><span data-i18n="guide.feature.combo-keys.46">Why</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="guide.feature.combo-keys.47">Second function on a common key</span></td>
+          <td><span data-i18n="guide.feature.combo-keys.48">Basic template: <span class="kbd">R-stick click</span> + <span class="kbd">D-Pad ↓</span> = drop stack</span></td>
+          <td><span data-i18n="guide.feature.combo-keys.49">Plain “drop” already has a button; the rarer stack-drop rides on a chord</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.feature.combo-keys.50">Variants on the trigger</span></td>
+          <td><span class="kbd">RT</span> + <span class="kbd">D-Pad ←</span> / <span class="kbd">→</span> = JEI 查看配方 / 用途</td>
+          <td><span data-i18n="guide.feature.combo-keys.51">Direction chords on the attack trigger are easy to remember as a pair</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.feature.combo-keys.52">Shift + chord</span></td>
+          <td><span data-i18n="guide.feature.combo-keys.53">Hold a layer switch, then press a chord on that layer</span></td>
+          <td><span data-i18n="guide.feature.combo-keys.54">Extends layouts further without spending Main-layer slots</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.feature.combo-keys.55">Things to Watch</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.combo-keys.56">A chord requires every button to be held at once; if one of them is heavily used as a Hold binding (say <span class="kbd">LT</span> for “use”), including it makes accidental chords more likely — choose deliberately.</span></li>
+    <li><span data-i18n="guide.feature.combo-keys.57">Chords respect the global Tap / Long Press thresholds too (Double modes use the Tap threshold as their gap).</span></li>
+    <li><span data-i18n="guide.feature.combo-keys.58">In template JSON a chord joins button names with <code>+</code>: <code>"drop_stack": "rightStickClick+dpadDown|PRESS"</code>.</span></li>
+  </ul>
+
+  <p class="small muted">
+    <span data-i18n="guide.feature.combo-keys.59">Related: <a href="layers.html">Seven Layers</a> (each layer has its own chord space) and <a href="trigger-modes.html">Trigger Modes</a> (the mode set chords can use).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/trigger-modes.html"><span class="dir"><span data-i18n="guide.feature.combo-keys.60">← Previous</span></span><span class="name"><span data-i18n="guide.feature.combo-keys.61">Trigger Modes</span></span></a>
+  <a class="pager-next" href="../../guide/feature/radial-menus.html"><span class="dir"><span data-i18n="guide.feature.combo-keys.62">Next →</span></span><span class="name"><span data-i18n="guide.feature.combo-keys.63">Radial Menus</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

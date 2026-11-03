@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+  <h1><span data-i18n="guide.features.30">Features</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.features.31">Every Control Flex capability has its own page: how it works, how to set it up, what the defaults are, and what to watch out for.</span>
+  </p>
+
+  <div class="cards">
+    <a class="card" href="feature/layers.html">
+      <h3><span data-i18n="guide.features.32">Seven Layers</span></h3>
+      <p><span data-i18n="guide.features.33">How Main / Shift 1–4 / Screen / Overlay divide the work, and how the binding rules resolve.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.34">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/trigger-modes.html">
+      <h3><span data-i18n="guide.features.35">Trigger Modes</span></h3>
+      <p><span data-i18n="guide.features.36">Ten trigger modes from Press to Double Toggle — several behaviors on one button.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.37">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/combo-keys.html">
+      <h3><span data-i18n="guide.features.38">Combo Keys</span></h3>
+      <p><span data-i18n="guide.features.39">Chord multiple buttons into one action, with upgrade rules and button sharing.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.40">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/radial-menus.html">
+      <h3><span data-i18n="guide.features.41">Radial Menus</span></h3>
+      <p><span data-i18n="guide.features.42">Five wheels × eight slots for keys, chat commands, and quick item use.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.43">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/analog-movement.html">
+      <h3><span data-i18n="guide.features.44">Analog Movement</span></h3>
+      <p><span data-i18n="guide.features.45">360° stick movement, with a keyboard-like 8-way mode for servers.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.46">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/camera.html">
+      <h3><span data-i18n="guide.features.47">Camera &amp; Aim</span></h3>
+      <p><span data-i18n="guide.features.48">Three look modes for the right stick, sensitivity curves, and mouse-pipeline compatibility.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.49">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/cursor.html">
+      <h3><span data-i18n="guide.features.50">Cursor &amp; GUI</span></h3>
+      <p><span data-i18n="guide.features.51">Virtual cursor, slot snapping, D-Pad slot jumps, and container helpers.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.52">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/rumble.html">
+      <h3><span data-i18n="guide.features.53">Rumble</span></h3>
+      <p><span data-i18n="guide.features.54">Seven waveforms, per-damage-type configuration, and three intensity bands.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.55">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/virtual-kbm.html">
+      <h3><span data-i18n="guide.features.56">Virtual Keyboard &amp; Mouse</span></h3>
+      <p><span data-i18n="guide.features.57">Inject real keyboard and mouse keys from the pad for mods that only read physical input.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.58">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/splitscreen.html">
+      <h3><span data-i18n="guide.features.59">Split-Screen Co-op</span></h3>
+      <p><span data-i18n="guide.features.60">Couch co-op on one PC: two instances, two pads, no input stealing.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.61">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/mod-adaptation.html">
+      <h3><span data-i18n="guide.features.62">Mod Adaptation</span></h3>
+      <p><span data-i18n="guide.features.63">Auto-discover mod keys, per-screen stick rules, and community config sync.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.64">Read more →</span></p>
+    </a>
+    <a class="card" href="feature/guide-hud.html">
+      <h3><span data-i18n="guide.features.65">In-Game Guide</span></h3>
+      <p><span data-i18n="guide.features.66">Context HUD tips, the in-game guide list, and controller-specific button glyphs.</span></p>
+      <p class="card-arrow"><span data-i18n="guide.features.67">Read more →</span></p>
+    </a>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span data-i18n="guide.features.68">New to the mod? Start with <a href="getting-started.html">Getting Started</a>. For rebinding and calibration, see <a href="settings.html">Settings &amp; Controls</a>; for the full mod-compatibility toolbox, see <a href="../modpack/compat.html">Mod Compatibility</a>.</span>
+    </p>
+  </div>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

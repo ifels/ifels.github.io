@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <div class="hero">
+    <h1>Control <span style="color:#5fd897">Flex</span></h1>
+    <p class="tagline">
+      <span data-i18n="home.18">Flexible controller mapping for Minecraft Java Edition, built for modpacks.</span>
+    </p>
+    <div class="badges">
+      <span class="badge green">Minecraft 1.7.10 – 26.3</span>
+      <span class="badge">Forge / NeoForge / Fabric</span>
+      <span class="badge">Windows · macOS · Linux · Android</span>
+      <span class="badge"><span data-i18n="home.19">Client-side</span></span>
+      <span class="badge">MIT</span>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener"><span data-i18n="home.20">Download on CurseForge</span></a>
+      <a class="btn btn-ghost" href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord</a>
+    </div>
+  </div>
+
+  <div data-i18n="home.21"><p class="lead">Control Flex turns a limited set of buttons into broad coverage of modded content through a seven-layer binding architecture, ten trigger modes, combo keys, radial menus, and cross-layer mappings. Its mod adaptation system auto-discovers mod keys, adapts stick behavior per screen or overlay, and supports a community config repo plus a bridge-mod API.</p></div>
+
+  <h2><span data-i18n="home.22">Start Here</span></h2>
+
+  <div class="cards">
+    <a class="card" href="guide/getting-started.html">
+      <h3><span data-i18n="home.23">🎮 Players</span></h3>
+      <p><span data-i18n="home.24">Install, first-time setup, how each feature works, and how to rebind.</span></p>
+      <p class="card-arrow"><span data-i18n="home.25">Getting started →</span></p>
+    </a>
+    <a class="card" href="modpack/index.html">
+      <h3><span data-i18n="home.26">📦 Modpack Authors</span></h3>
+      <p><span data-i18n="home.27">Change defaults, ship templates with your pack, and resolve multi-mod compatibility.</span></p>
+      <p class="card-arrow"><span data-i18n="home.28">Configuration &amp; compat →</span></p>
+    </a>
+    <a class="card" href="dev/index.html">
+      <h3><span data-i18n="home.29">🔧 Mod Developers</span></h3>
+      <p><span data-i18n="home.30">Build bridge mods with the Control Flex API: read input, query actions, push states.</span></p>
+      <p class="card-arrow"><span data-i18n="home.31">API docs →</span></p>
+    </a>
+  </div>
+
+  <h2><span data-i18n="home.32">Feature Highlights</span></h2>
+
+  <div class="cards">
+    <a class="card" href="guide/feature/layers.html">
+      <h3><span data-i18n="home.33">7-Layer Bindings</span></h3>
+      <p><span data-i18n="home.34">Main / Shift 1–4 / Screen / Overlay — one map per context; Shift layers are fully explicit and pre-filled from Main for movement and look.</span></p>
+      <p class="card-arrow"><span data-i18n="home.35">Read more →</span></p>
+    </a>
+    <a class="card" href="guide/feature/trigger-modes.html">
+      <h3><span data-i18n="home.36">10 Trigger Modes</span></h3>
+      <p><span data-i18n="home.37">Press, Release, Hold, Tap, Long Press, Toggle, plus four double-press variants.</span></p>
+      <p class="card-arrow"><span data-i18n="home.38">Read more →</span></p>
+    </a>
+    <a class="card" href="guide/feature/combo-keys.html">
+      <h3><span data-i18n="home.39">Combo Keys</span></h3>
+      <p><span data-i18n="home.40">Chord multiple buttons into one action, with priority-based upgrade rules.</span></p>
+      <p class="card-arrow"><span data-i18n="home.41">Read more →</span></p>
+    </a>
+    <a class="card" href="guide/feature/radial-menus.html">
+      <h3><span data-i18n="home.42">Radial Menus</span></h3>
+      <p><span data-i18n="home.43">5 wheels × 8 slots for keys, commands, or use-item actions.</span></p>
+      <p class="card-arrow"><span data-i18n="home.44">Read more →</span></p>
+    </a>
+    <a class="card" href="guide/feature/mod-adaptation.html">
+      <h3><span data-i18n="home.45">Mod Adaptation</span></h3>
+      <p><span data-i18n="home.46">Auto-discovers mod keys with per-screen stick rules and a community config repo.</span></p>
+      <p class="card-arrow"><span data-i18n="home.47">Read more →</span></p>
+    </a>
+    <a class="card" href="guide/feature/analog-movement.html">
+      <h3><span data-i18n="home.48">Analog Movement</span></h3>
+      <p><span data-i18n="home.49">360° stick movement, with a keyboard-like 8-way mode on servers.</span></p>
+      <p class="card-arrow"><span data-i18n="home.50">Read more →</span></p>
+    </a>
+    <a class="card" href="guide/feature/rumble.html">
+      <h3><span data-i18n="home.51">Rumble</span></h3>
+      <p><span data-i18n="home.52">Seven waveforms configured per damage type, with three intensity bands.</span></p>
+      <p class="card-arrow"><span data-i18n="home.53">Read more →</span></p>
+    </a>
+  </div>
+
+  <h2><span data-i18n="home.54">Supported Versions &amp; Platforms</span></h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Minecraft</th><th><span data-i18n="home.55">Loaders</span></th><th>Java</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>26.3 / 26.2 / 26.1.2</td><td>Fabric · NeoForge</td><td>25</td></tr>
+        <tr><td>1.21.11 / 1.21.1</td><td>Fabric · NeoForge</td><td>21</td></tr>
+        <tr><td>1.20.1 / 1.19.2 / 1.18.2</td><td>Forge · Fabric</td><td>17</td></tr>
+        <tr><td>1.16.5</td><td>Forge · Fabric</td><td>8</td></tr>
+        <tr><td>1.12.2 / 1.10.2 / 1.8.9 / 1.7.10</td><td>Forge</td><td>8</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="home.56">13 Minecraft versions in total; Fabric builds require Fabric API, and SDL3 is bundled (on Android it comes from the launcher, so nothing to install). Per-version dependencies are on <a href="guide/versions.html">Minecraft Versions</a>; desktop vs. Android launcher differences are on <a href="guide/platforms.html">Platform Support</a>.</span>
+  </p>
+
+  <h2><span data-i18n="home.57">Up and Running in Three Steps</span></h2>
+  <ol>
+    <li><span data-i18n="home.58">Download the JAR for your MC version and loader from <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge</a> and drop it into <code>mods/</code>.</span></li>
+    <li><span data-i18n="home.59">Launch the game and connect a controller — Control Flex detects it via SDL3 (hotplug supported).</span></li>
+    <li><span data-i18n="home.60">Press <span class="kbd">F9</span> (keyboard) or <span class="kbd">Back</span> + <span class="kbd">Start</span> (controller) to open settings, pick a template, and start tuning.</span></li>
+  </ol>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

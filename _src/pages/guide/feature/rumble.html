@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.rumble.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.rumble.31">Rumble</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.rumble.32">Minecraft events translated into controller vibration: seven waveforms, configured per event type, with light / medium / heavy intensity bands — taking a hit and scoring a kill can feel completely different.</span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.rumble.33">Seven Waveforms</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.rumble.34">Waveform</span></th>
+          <th><span data-i18n="guide.feature.rumble.35">Feel</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span data-i18n="guide.feature.rumble.36">None</span></td><td><span data-i18n="guide.feature.rumble.37">No vibration for that type</span></td></tr>
+        <tr><td><span data-i18n="guide.feature.rumble.38">Pulse</span></td><td><span data-i18n="guide.feature.rumble.39">A short jolt, good for light hits</span></td></tr>
+        <tr><td><span data-i18n="guide.feature.rumble.40">Double Pulse</span></td><td><span data-i18n="guide.feature.rumble.41">Two quick pulses</span></td></tr>
+        <tr><td><span data-i18n="guide.feature.rumble.42">Crescendo</span></td><td><span data-i18n="guide.feature.rumble.43">Ramps up from light to strong</span></td></tr>
+        <tr><td><span data-i18n="guide.feature.rumble.44">Sustained</span></td><td><span data-i18n="guide.feature.rumble.45">Continuous buzz for big events like explosions</span></td></tr>
+        <tr><td><span data-i18n="guide.feature.rumble.46">Fade</span></td><td><span data-i18n="guide.feature.rumble.47">Strong then fading out</span></td></tr>
+        <tr><td><span data-i18n="guide.feature.rumble.48">Heartbeat</span></td><td><span data-i18n="guide.feature.rumble.49">A lub-dub rhythm, good for tension or low-health moments</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.feature.rumble.50">Configured per Event Type</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.rumble.51"><b>Damage types</b>: fall, fire, drown, mob, player, explosion, other — each picks its own waveform (including “none”).</span></li>
+    <li><span data-i18n="guide.feature.rumble.52"><b>Entity kills</b>: kills can have their own feedback.</span></li>
+    <li><span data-i18n="guide.feature.rumble.53"><b>Intensity bands</b>: global light / medium / heavy thresholds, so the same damage type can hit differently depending on severity.</span></li>
+    <li><span data-i18n="guide.feature.rumble.54"><b>Master switch</b>: turn everything off in one place.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.rumble.55">Tuning It</span></h2>
+  <ol>
+    <li><span data-i18n="guide.feature.rumble.56">Open <b>Control Flex Settings → Rumble</b> and confirm the current pad reports rumble support (pads without it simply do nothing here).</span></li>
+    <li><span data-i18n="guide.feature.rumble.57">Use the built-in <b>intensity tests</b> to feel light / medium / heavy, then set thresholds.</span></li>
+    <li><span data-i18n="guide.feature.rumble.58">Pick waveforms per type: a pulse for falls, a sustained buzz for explosions, and a distinct feel for player damage.</span></li>
+  </ol>
+
+  <div class="callout tip">
+    <p>
+      <span data-i18n="guide.feature.rumble.59">In multiplayer your rumble follows your own settings; the events that drive it come from the game itself, so singleplayer and server play behave the same.</span>
+    </p>
+  </div>
+
+  <p class="small muted">
+    <span data-i18n="guide.feature.rumble.60">Related: <a href="mod-adaptation.html">Mod Adaptation</a> (bringing mod events into Control Flex actions) and the <a href="../../dev/api-reference.html">API Reference</a> (<code>IControllerCapabilities.hasRumble()</code> for bridge mods).</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/cursor.html"><span class="dir"><span data-i18n="guide.feature.rumble.61">← Previous</span></span><span class="name"><span data-i18n="guide.feature.rumble.62">Cursor &amp; GUI</span></span></a>
+  <a class="pager-next" href="../../guide/feature/virtual-kbm.html"><span class="dir"><span data-i18n="guide.feature.rumble.63">Next →</span></span><span class="name"><span data-i18n="guide.feature.rumble.64">Virtual Keyboard &amp; Mouse</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

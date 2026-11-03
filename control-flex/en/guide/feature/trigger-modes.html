@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trigger Modes · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/feature/trigger-modes.html", "zh": "/control-flex/zh/guide/feature/trigger-modes.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="en")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/guide/feature/trigger-modes.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/feature/trigger-modes.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/feature/trigger-modes.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/feature/trigger-modes.html">
+<meta property="og:title" content="Trigger Modes · Control Flex Wiki">
+<meta property="og:locale" content="en">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current" aria-current="true">English</span><a href="/control-flex/zh/guide/feature/trigger-modes.html" hreflang="zh" lang="zh" data-set-lang="zh">中文</a></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/en/index.html">Home</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Player Guide</div>
+      <a href="/control-flex/en/guide/getting-started.html">Getting Started</a>
+      <a href="/control-flex/en/guide/features.html">Features</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/guide/feature/layers.html">Seven Layers</a>
+        <a href="/control-flex/en/guide/feature/trigger-modes.html">Trigger Modes</a>
+        <a href="/control-flex/en/guide/feature/combo-keys.html">Combo Keys</a>
+        <a href="/control-flex/en/guide/feature/radial-menus.html">Radial Menus</a>
+        <a href="/control-flex/en/guide/feature/analog-movement.html">Analog Movement</a>
+        <a href="/control-flex/en/guide/feature/camera.html">Camera &amp; Aim</a>
+        <a href="/control-flex/en/guide/feature/cursor.html">Cursor &amp; GUI</a>
+        <a href="/control-flex/en/guide/feature/rumble.html">Rumble</a>
+        <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
+        <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
+        <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
+      </div>
+      <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Platforms &amp; Versions</div>
+      <a href="/control-flex/en/guide/platforms.html">Platform Support</a>
+      <a href="/control-flex/en/guide/versions.html">Minecraft Versions</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Modpacks &amp; Compat</div>
+      <a href="/control-flex/en/modpack/index.html">Configuration</a>
+      <a href="/control-flex/en/modpack/compat.html">Mod Compatibility</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Developers</div>
+      <a href="/control-flex/en/dev/index.html">API Quick Start</a>
+      <a href="/control-flex/en/dev/api-reference.html">API Reference</a>
+      <a href="/control-flex/en/dev/examples.html">Plugin &amp; Examples</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Links</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span>Features</span></a></p>
+
+<h1><span>Trigger Modes</span></h1>
+  <p class="lead">
+    <span>Every binding pairs which button with how it fires. Control Flex offers ten trigger modes, so one button can tap, hold, latch, and double-press for different actions.</span>
+  </p>
+
+  <h2><span>The Ten Modes</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Mode</span></th>
+          <th><span>When it fires</span></th>
+          <th><span>Typical use</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Press</td><td><span>Once, on button down</span></td><td><span>One-shots and menu opens</span></td></tr>
+        <tr><td>Release</td><td><span>Once, on button up</span></td><td><span>Layer return, “on let go” actions</span></td></tr>
+        <tr><td>Hold</td><td><span>Active the whole time held</span></td><td><span>Movement, look, sustained use, layer switches</span></td></tr>
+        <tr><td>Tap</td><td><span>Once, on release after a short press; <b>if held past the threshold, nothing fires on release</b></span></td><td><span>Quick actions that must not fire on a hold</span></td></tr>
+        <tr><td>Long Press</td><td><span>Once, after being held past the long-press threshold</span></td><td><span>A second function on the same button (e.g. pause menu)</span></td></tr>
+        <tr><td>Toggle</td><td><span>First press activates and holds, second press releases; <b>independent of button hold</b> (RELEASE events are ignored)</span></td><td><span>Persistent states: sprint, walk mode, POV</span></td></tr>
+        <tr><td>Double Press</td><td><span>A second press inside the tap window fires once <b>immediately on down</b> (not latched)</span></td><td><span>An extra one-shot alongside Hold / Press</span></td></tr>
+        <tr><td>Double Tap</td><td><span>Two short presses; fires once on the second release</span></td><td><span>Confirm-style actions that must not steal the first tap</span></td></tr>
+        <tr><td>Double Hold</td><td><span>Short press, then press-and-hold inside the tap window; stays active until release</span></td><td><span>Tap-then-hold for deliberate triggers that resist misfires</span></td></tr>
+        <tr><td>Double Toggle</td><td><span>Same latch as Toggle; flips on the second short-press release</span></td><td><span>A latch sharing one button with its Hold variant (Basic does this for sneak)</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span>Thresholds &amp; Time Windows</span></h2>
+  <ul>
+    <li><span><b>Tap and Long Press thresholds</b> are global, 100–2000 ms, configured in <b>Other Settings</b>. They apply to every binding and template.</span></li>
+    <li><span><b>The Tap threshold doubles as the gap limit for every Double mode</b>: Double Press / Tap / Hold / Toggle all use it as the maximum interval between the two presses.</span></li>
+    <li><span><b>Defaults</b>: Tap 500 ms, Long Press 1000 ms (from the Basic template).</span></li>
+  </ul>
+
+  <h2><span>Changing a Mode</span></h2>
+  <ul>
+    <li><span>In Key Mapping, the Mode column cycles through the common modes (Press / Hold / Tap / Long Press).</span></li>
+    <li><span>Templates and compat JSON support all ten, written as <code>button|MODE</code> — for example <code>buttonA|HOLD</code> or <code>rightStickClick|DOUBLE_TOGGLE</code>. Mode tokens: <code>PRESS / RELEASE / HOLD / TAP / LONG_PRESS / TOGGLE / DOUBLE_PRESS / DOUBLE_TAP / DOUBLE_HOLD / DOUBLE_TOGGLE</code>.</span></li>
+    <li><span>Some actions restrict their mode: layer switches are fixed to HOLD, Shift-layer return-to-Main to RELEASE, and radial-menu opens support PRESS and HOLD.</span></li>
+  </ul>
+
+  <h2><span>Worked Examples</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Button</span></th>
+          <th><span>Binding</span></th>
+          <th><span>Effect</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>R-stick click</span></td>
+          <td><code>HOLD</code> + <code>DOUBLE_TOGGLE</code></td>
+          <td><span>Hold to sneak, double-tap to latch sneak (Basic default)</span></td>
+        </tr>
+        <tr>
+          <td><span class="kbd">Start</span></td>
+          <td><code>LONG_PRESS</code></td>
+          <td><span>Long press opens the pause menu; short presses do nothing</span></td>
+        </tr>
+        <tr>
+          <td><span class="kbd">D-Pad →</span></td>
+          <td><code>TAP</code></td>
+          <td><span>Tap to change perspective; an accidental hold does nothing</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>To combine buttons into one action, see <a href="combo-keys.html">Combo Keys</a>; to bake toggles into a template, see <a href="../../modpack/index.html">Configuration</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/layers.html"><span class="dir"><span>← Previous</span></span><span class="name"><span>Seven Layers</span></span></a>
+  <a class="pager-next" href="../../guide/feature/combo-keys.html"><span class="dir"><span>Next →</span></span><span class="name"><span>Combo Keys</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">Report issues ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community configs ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>
