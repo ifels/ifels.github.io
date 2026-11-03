@@ -132,6 +132,41 @@ def render_nav(nav, strings, fallback, base, lang, page_path):
         lines.append("    </div>")
     lines.append("  </nav>")
     lines.append("</aside>")
+    # Restore the sidebar scroll position synchronously, before first paint, so
+    # navigating between pages does not snap the menu back to the top.
+    lines.append(
+        "<script>\n"
+        "(function () {\n"
+        "  var s = document.getElementById('sidebar');\n"
+        "  var KEY = 'cfxSidebarScroll';\n"
+        "  var saved = null;\n"
+        "  try { saved = sessionStorage.getItem(KEY); } catch (e) {}\n"
+        "  if (saved !== null) {\n"
+        "    s.scrollTop = +saved || 0;\n"
+        "  } else {\n"
+        "    var here = location.pathname.split('/').pop();\n"
+        "    var links = s.querySelectorAll('a[href]');\n"
+        "    for (var i = 0; i < links.length; i++) {\n"
+        "      if (links[i].getAttribute('href').split('/').pop() === here) {\n"
+        "        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);\n"
+        "        break;\n"
+        "      }\n"
+        "    }\n"
+        "  }\n"
+        "  function save() {\n"
+        "    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}\n"
+        "  }\n"
+        "  var t;\n"
+        "  s.addEventListener('scroll', function () {\n"
+        "    clearTimeout(t);\n"
+        "    t = setTimeout(save, 100);\n"
+        "  }, { passive: true });\n"
+        "  s.addEventListener('click', function (ev) {\n"
+        "    if (ev.target.closest('a')) save();\n"
+        "  });\n"
+        "})();\n"
+        "</script>"
+    )
     return "\n".join(lines)
 
 
