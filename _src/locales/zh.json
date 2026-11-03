@@ -756,10 +756,10 @@
   "guide.versions.29": "Fabric 版需 Fabric API 0.58.6+1.19.2",
   "guide.versions.30": "Fabric 版需 Fabric API 0.47.8+1.18.2",
   "guide.versions.31": "Fabric 版需 Fabric API 0.30.0+1.16",
-  "guide.versions.32": "无（无 Fabric 版）",
-  "guide.versions.33": "无（无 Fabric 版）",
-  "guide.versions.34": "无（无 Fabric 版）",
-  "guide.versions.35": "无（无 Fabric 版）",
+  "guide.versions.32": "需在 <code>mods/</code> 另放 Mixin provider（推荐 MixinBooter 11.17）",
+  "guide.versions.33": "需在 <code>mods/</code> 另放 <b>MixinBooter ≥ 11.17</b>",
+  "guide.versions.34": "需在 <code>mods/</code> 另放 <b>MixinBooter ≥ 11.17</b>",
+  "guide.versions.35": "需在 <code>mods/</code> 另放 <b>UniMixins 0.3.1</b>",
   "guide.versions.36": "所有版本线使用同一个模组版本号（0.8.9），并内置同一份手柄桥 <code>cfx-gamepadjni 0.9.6.1</code>。Java 版本由该 MC 版本本身决定，不是由平台决定。",
   "guide.versions.37": "三代的差别",
   "guide.versions.38": "Forge 时代：1.7.10 – 1.12.2",
@@ -990,5 +990,9 @@
   "guide.versions.__title": "MC 版本支持",
   "home.__title": "Control Flex Wiki",
   "modpack.compat.__title": "模组兼容性",
-  "modpack.index.__title": "配置文件与整合包"
+  "modpack.index.__title": "配置文件与整合包",
+  "guide.versions.79": "Forge 自身不内置 Mixin，这四条线都需要在 <code>mods/</code> 里另放一个 Mixin 运行时，缺了模组无法启动：<b>1.8.9 / 1.10.2 硬依赖 MixinBooter ≥ 11.17</b>（内含 Mixin 0.8.7 + MixinExtras）；<b>1.7.10 硬依赖 UniMixins 0.3.1</b>（MixinBooter 不支持 1.7.10，UniMixins 内含 Mixin 0.8.7 + MixinExtras 0.5.0）；1.12.2 走运行时探测，MixinBooter 11.17、MixinBootstrap 1.1.0 等多代 provider 均可用，推荐 MixinBooter 11.17。",
+  "guide.versions.80": "1.7.10 – 1.12.2 的 Forge 线还要按依赖表在 <code>mods/</code> 里补 Mixin 运行时（MixinBooter 或 UniMixins），缺了会直接启动失败。",
+  "guide.versions.81": "1.7.10 – 1.12.2 的 <code>mods/</code> 里没放 Mixin 运行时",
+  "guide.versions.82": "启动即崩溃（找不到 Mixin）—— Forge 1.7.10–1.12.2 不自带 Mixin，按依赖表放入 MixinBooter 11.17 或 UniMixins 0.3.1"
 }

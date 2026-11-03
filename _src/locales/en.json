@@ -757,10 +757,10 @@
   "guide.versions.29": "Fabric API 0.58.6+1.19.2 on Fabric",
   "guide.versions.30": "Fabric API 0.47.8+1.18.2 on Fabric",
   "guide.versions.31": "Fabric API 0.30.0+1.16 on Fabric",
-  "guide.versions.32": "None (no Fabric build)",
-  "guide.versions.33": "None (no Fabric build)",
-  "guide.versions.34": "None (no Fabric build)",
-  "guide.versions.35": "None (no Fabric build)",
+  "guide.versions.32": "A Mixin provider in <code>mods/</code> (MixinBooter 11.17 recommended)",
+  "guide.versions.33": "<b>MixinBooter ≥ 11.17</b> in <code>mods/</code>",
+  "guide.versions.34": "<b>MixinBooter ≥ 11.17</b> in <code>mods/</code>",
+  "guide.versions.35": "<b>UniMixins 0.3.1</b> in <code>mods/</code>",
   "guide.versions.36": "Every line ships the same mod version (0.8.9) and the same bundled controller bridge, <code>cfx-gamepadjni 0.9.6.1</code>. The Java version is dictated by that Minecraft version, not by your OS.",
   "guide.versions.37": "Three Generations",
   "guide.versions.38": "Forge era: 1.7.10 – 1.12.2",
@@ -991,5 +991,9 @@
   "guide.versions.__title": "Minecraft Versions",
   "home.__title": "Control Flex Wiki",
   "modpack.compat.__title": "Mod Compatibility",
-  "modpack.index.__title": "Configuration for Modpacks"
+  "modpack.index.__title": "Configuration for Modpacks",
+  "guide.versions.79": "Forge ships no Mixin runtime, so all four lines need a Mixin provider in <code>mods/</code> or the mod will not start: <b>1.8.9 / 1.10.2 hard-require MixinBooter ≥ 11.17</b> (bundles Mixin 0.8.7 + MixinExtras); <b>1.7.10 hard-requires UniMixins 0.3.1</b> (MixinBooter does not exist below 1.8.9; UniMixins bundles Mixin 0.8.7 + MixinExtras 0.5.0); 1.12.2 probes at runtime and accepts several provider generations — MixinBooter 11.17, MixinBootstrap 1.1.0 — with MixinBooter 11.17 recommended.",
+  "guide.versions.80": "Forge lines 1.7.10 – 1.12.2 also need the Mixin runtime from the dependency table in <code>mods/</code> (MixinBooter or UniMixins); without it the game will not start.",
+  "guide.versions.81": "No Mixin runtime in <code>mods/</code> on 1.7.10 – 1.12.2",
+  "guide.versions.82": "Crash at startup (missing Mixin) — Forge 1.7.10–1.12.2 ships none; add MixinBooter 11.17 or UniMixins 0.3.1 per the dependency table"
 }

@@ -51,10 +51,10 @@
         <tr><td>1.19.2</td><td>Forge · Fabric</td><td>17</td><td><span data-i18n="guide.versions.29">Fabric API 0.58.6+1.19.2 on Fabric</span></td></tr>
         <tr><td>1.18.2</td><td>Forge · Fabric</td><td>17</td><td><span data-i18n="guide.versions.30">Fabric API 0.47.8+1.18.2 on Fabric</span></td></tr>
         <tr><td>1.16.5</td><td>Forge · Fabric</td><td>8</td><td><span data-i18n="guide.versions.31">Fabric API 0.30.0+1.16 on Fabric</span></td></tr>
-        <tr><td>1.12.2</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.32">None (no Fabric build)</span></td></tr>
-        <tr><td>1.10.2</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.33">None (no Fabric build)</span></td></tr>
-        <tr><td>1.8.9</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.34">None (no Fabric build)</span></td></tr>
-        <tr><td>1.7.10</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.35">None (no Fabric build)</span></td></tr>
+        <tr><td>1.12.2</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.32">A Mixin provider in mods/ (MixinBooter 11.17 recommended)</span></td></tr>
+        <tr><td>1.10.2</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.33">MixinBooter ≥ 11.17 in mods/</span></td></tr>
+        <tr><td>1.8.9</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.34">MixinBooter ≥ 11.17 in mods/</span></td></tr>
+        <tr><td>1.7.10</td><td>Forge</td><td>8</td><td><span data-i18n="guide.versions.35">UniMixins 0.3.1 in mods/</span></td></tr>
       </tbody>
     </table>
   </div>
@@ -69,6 +69,7 @@
     <li><span data-i18n="guide.versions.39"><b>Forge only.</b> These four predate Fabric's adoption, so no Fabric build exists.</span></li>
     <li><span data-i18n="guide.versions.40">Runs on Java 8; the mod bytecode targets Java 8 as well.</span></li>
     <li><span data-i18n="guide.versions.41">Metadata uses the legacy <code>mcmod.info</code>; Mixin configs differ from newer versions, but bindings, layers, radial menus, and the rest behave the same.</span></li>
+    <li><span data-i18n="guide.versions.79">Forge ships no Mixin runtime, so all four lines need a Mixin provider in mods/ or the mod will not start.</span></li>
   </ul>
 
   <h3><span data-i18n="guide.versions.42">Dual-loader era: 1.16.5 – 1.20.1</span></h3>
@@ -122,6 +123,7 @@
     <li><span data-i18n="guide.versions.53">Pin down three things first: MC version → loader (Forge / NeoForge / Fabric) → matching Java version.</span></li>
     <li><span data-i18n="guide.versions.54">In <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge Files</a>, choose the file matching both (filenames carry the MC version and the loader).</span></li>
     <li><span data-i18n="guide.versions.55">On Fabric lines, add Fabric API; on Forge / NeoForge lines, do not.</span></li>
+    <li><span data-i18n="guide.versions.80">Forge lines 1.7.10 – 1.12.2 also need the Mixin runtime from the dependency table in mods/ (MixinBooter or UniMixins); without it the game will not start.</span></li>
     <li><span data-i18n="guide.versions.56">Drop the JAR into <code>mods/</code> and launch; SDL3 needs no separate install (see <a href="platforms.html">Platform Support</a>).</span></li>
   </ol>
 
@@ -167,6 +169,10 @@
         <tr>
           <td><span data-i18n="guide.versions.73">JAR missing on the server</span></td>
           <td><span data-i18n="guide.versions.74">No problem — it is client-side only and the server does not need it</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.versions.81">No Mixin runtime in mods/ on 1.7.10 – 1.12.2</span></td>
+          <td><span data-i18n="guide.versions.82">Crash at startup (missing Mixin) — Forge 1.7.10–1.12.2 ships none; add MixinBooter 11.17 or UniMixins 0.3.1 per the dependency table</span></td>
         </tr>
       </tbody>
     </table>
