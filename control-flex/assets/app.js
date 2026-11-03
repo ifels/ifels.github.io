@@ -24,15 +24,21 @@
   function closeNav() {
     if (sidebar) sidebar.classList.remove('open');
     backdrop.classList.remove('show');
+    document.body.classList.remove('nav-open');
   }
   if (navToggle && sidebar) {
     navToggle.addEventListener('click', function () {
-      sidebar.classList.toggle('open');
-      backdrop.classList.toggle('show');
+      var open = sidebar.classList.toggle('open');
+      backdrop.classList.toggle('show', open);
+      /* freeze the page behind the drawer so wheel/touch never scrolls it */
+      document.body.classList.toggle('nav-open', open);
     });
   }
   backdrop.addEventListener('click', closeNav);
   window.addEventListener('hashchange', closeNav);
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 940) closeNav();
+  });
 
   /* ---------- highlight the current page in the sidebar ---------- */
   function normPath(p) {

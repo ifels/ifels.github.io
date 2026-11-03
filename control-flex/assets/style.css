@@ -261,6 +261,7 @@ body {
   top: 86px;
   max-height: calc(100vh - 108px);
   overflow-y: auto;
+  overscroll-behavior: contain; /* wheel/touch at the top/bottom edge stays here */
   padding-right: 4px;
   scrollbar-width: thin;
 }
@@ -767,15 +768,24 @@ a.card:hover {
     bottom: 0;
     z-index: 70;
     width: 272px;
+    /* the desktop column's flex sizing leaks into the fixed drawer and makes
+       it grow to its content height (unscrollable), so reset it */
+    flex: none;
+    align-self: auto;
     max-height: none;
     background: var(--panel);
     padding: 74px 14px 24px;
     transform: translateX(-103%);
     transition: transform .2s ease;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain; /* dragging past the ends must not scroll the page */
     box-shadow: 0 0 40px rgba(8, 12, 18, .35);
   }
   .sidebar.open { transform: translateX(0); }
+
+  /* freeze the page behind the drawer while it is open */
+  body.nav-open { overflow: hidden; }
 
   .hero { padding: 30px 24px; border-radius: 14px; }
   .hero h1 { font-size: 28px; }
