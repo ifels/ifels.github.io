@@ -37,6 +37,11 @@
       <a href="settings.html"><span data-lang="zh">设置与键位</span><span data-lang="en">Settings &amp; Controls</span></a>
     </div>
     <div class="nav-group">
+      <div class="nav-label"><span data-lang="zh">平台与版本</span><span data-lang="en">Platforms &amp; Versions</span></div>
+      <a href="../guide/platforms.html"><span data-lang="zh">平台支持</span><span data-lang="en">Platform Support</span></a>
+      <a href="../guide/versions.html"><span data-lang="zh">MC 版本支持</span><span data-lang="en">Minecraft Versions</span></a>
+    </div>
+    <div class="nav-group">
       <div class="nav-label"><span data-lang="zh">整合包与兼容</span><span data-lang="en">Modpacks &amp; Compat</span></div>
       <a href="../modpack/index.html"><span data-lang="zh">配置文件</span><span data-lang="en">Configuration</span></a>
       <a href="../modpack/compat.html"><span data-lang="zh">模组兼容性</span><span data-lang="en">Mod Compatibility</span></a>
@@ -76,11 +81,11 @@
       <tbody>
         <tr>
           <td>Minecraft</td>
-          <td><span data-lang="zh">1.20.1（Forge / Fabric）；1.21.1、1.21.11、26.x（NeoForge / Fabric）</span><span data-lang="en">1.20.1 (Forge / Fabric); 1.21.1, 1.21.11, 26.x (NeoForge / Fabric)</span></td>
+          <td><span data-lang="zh">1.7.10 – 26.3，共 13 个版本：1.20.1 / 1.19.2 / 1.18.2（Forge / Fabric）；1.21.1、1.21.11、26.x（NeoForge / Fabric）；1.16.5 及更早为 Forge 版（1.16.5 另有 Fabric 版）—— 详见 <a href="versions.html">MC 版本支持</a></span><span data-lang="en">1.7.10 – 26.3, 13 versions: 1.20.1 / 1.19.2 / 1.18.2 (Forge / Fabric); 1.21.1, 1.21.11, 26.x (NeoForge / Fabric); 1.16.5 and older are Forge builds (1.16.5 also has Fabric) — see <a href="versions.html">Minecraft Versions</a></span></td>
         </tr>
         <tr>
           <td>Java</td>
-          <td><span data-lang="zh">17+（1.20.1）；21+（1.21.x 及以上）</span><span data-lang="en">17+ (1.20.1); 21+ (1.21.x and newer)</span></td>
+          <td><span data-lang="zh">8（1.16.5 及更早）；17（1.18.2 – 1.20.1）；21（1.21.x）；25（26.x）</span><span data-lang="en">8 (1.16.5 and older); 17 (1.18.2 – 1.20.1); 21 (1.21.x); 25 (26.x)</span></td>
         </tr>
         <tr>
           <td>Fabric API</td>
@@ -88,7 +93,11 @@
         </tr>
         <tr>
           <td>SDL3</td>
-          <td><span data-lang="zh">已内置（Windows / macOS / Linux），无需单独安装</span><span data-lang="en">Bundled for Windows / macOS / Linux — no separate install</span></td>
+          <td><span data-lang="zh">桌面三平台已内置，无需单独安装；Android 上由启动器提供 —— 详见 <a href="platforms.html">平台支持</a></span><span data-lang="en">Bundled on all three desktop platforms; on Android it comes from the launcher — see <a href="platforms.html">Platform Support</a></span></td>
+        </tr>
+        <tr>
+          <td><span data-lang="zh">运行平台</span><span data-lang="en">Platform</span></td>
+          <td><span data-lang="zh">Windows（x86_64 / ARM64）、macOS（Intel / Apple Silicon）、Linux（x86_64 / aarch64）；Android 通过启动器运行（FCL / Zalith Launcher 2 / Mojo / Amethyst）—— 详见 <a href="platforms.html">平台支持</a></span><span data-lang="en">Windows (x86_64 / ARM64), macOS (Intel / Apple Silicon), Linux (x86_64 / aarch64); on Android it runs inside a launcher (FCL / Zalith Launcher 2 / Mojo / Amethyst) — see <a href="platforms.html">Platform Support</a></span></td>
         </tr>
         <tr>
           <td><span data-lang="zh">安装侧</span><span data-lang="en">Side</span></td>
@@ -122,6 +131,13 @@
     <p>
       <span data-lang="zh">多手柄（热插拔）：Control Flex 通过 SDL3 热插拔事件自动识别手柄，按手柄身份（名称 / 类型 / 序列号）分别记忆配置；当前手柄断开后会自动切换到下一个可用手柄。</span>
       <span data-lang="en">Multiple controllers (hotplug): Control Flex detects pads via SDL3 hotplug events and tracks them by identity (name / type / serial). If the active pad disconnects, the first available one is selected automatically.</span>
+    </p>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span data-lang="zh">在 Android 上（Fold Craft Launcher、Zalith Launcher 2、Mojo、Amethyst 等启动器）：把 JAR 放进该实例的 <code>mods/</code> 即可，<b>不需要</b>另外安装 SDL3 —— 它来自启动器本身。唯一要留意的坑是启动器的 <code>-Dos.version</code> 不能被自定义 JVM 参数覆盖，否则模组会把环境当成桌面 Linux，手柄始终不显示。详见 <a href="platforms.html">平台支持</a>。</span>
+      <span data-lang="en">On Android (Fold Craft Launcher, Zalith Launcher 2, Mojo, Amethyst, and similar): just drop the JAR into that instance's <code>mods/</code>. There is <b>no</b> SDL3 to install — it comes from the launcher itself. The one pitfall is that the launcher's <code>-Dos.version</code> must not be overridden by custom JVM arguments, or the mod treats the JVM as desktop Linux and no controller ever appears. See <a href="platforms.html">Platform Support</a>.</span>
     </p>
   </div>
 

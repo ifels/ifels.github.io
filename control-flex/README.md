@@ -21,6 +21,8 @@ control-flex/
 ├── index.html               # Landing page (hero, three audiences, versions, quick start)
 ├── guide/                   # Player Guide
 │   ├── getting-started.html #   Install, first launch, templates, default bindings
+│   ├── platforms.html       #   Platform Support (desktop OSes, Android launchers, ABIs, SDL3)
+│   ├── versions.html        #   Minecraft Versions (loader / Java / dependency matrix)
 │   ├── features.html        #   Feature overview (cards linking to feature/*)
 │   ├── feature/             #   One page per feature (12 pages, breadcrumb + prev/next)
 │   └── settings.html        #   Settings UI, rebinding, calibration, config paths, FAQ
@@ -82,6 +84,11 @@ python -m http.server 8080
 ## Content sources
 
 - Player-facing features: `cfx` repo `docs/publish/mod-intro.md` (current as of 0.8.9)
+- Supported platforms / launchers: `cfx-gamepad-jni` repo `docs/android/` and
+  `docs/superpowers/specs/2026-09-19-android-platform-and-sdl-load-design.*.md`
+- Supported MC versions / loaders / Java: per-version `cfx-<mc>` repos
+  (`gradle.properties`, `versions/*/gradle.properties`, `mcmod.info` / `mods.toml` /
+  `fabric.mod.json`)
 - Default bindings: `cfx` repo `src/main/resources/controlflex/templates/basic.json`
 - Trigger-mode / button tokens: `cfx` repo `TriggerMode.java`, `ButtonId.java`
 - Developer docs: `control-flex-api` repo `docs/{en,zh}/` (getting-started, api-reference,
