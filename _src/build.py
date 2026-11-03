@@ -255,26 +255,6 @@ a{color:#1f9d55}
 """
 
 
-def write_redirect(path, page_path, langs, default_code, site, message, manual):
-    depth = page_path.count("/")
-    prefix = "../" * depth
-    absolute = "%s%s/%s/%s" % (site["siteUrl"], site["basePath"], default_code, page_path)
-    body = REDIRECT_TMPL % {
-        "lang": default_code,
-        "absolute": absolute,
-        "path": json.dumps(page_path),
-        "path_attr": page_path,
-        "codes": json.dumps([l["code"] for l in langs]),
-        "default": json.dumps(default_code),
-        "prefix": json.dumps(prefix),
-        "message": message,
-        "manual": manual,
-    }
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, "w", encoding="utf-8", newline="\n") as f:
-        f.write(body)
-
-
 def main():
     site = load_site()
     langs = load_locales()
@@ -287,7 +267,7 @@ def main():
     fallback = next(l for l in langs if l["code"] == FALLBACK)["strings"]
 
     # wipe previously generated output, but keep assets/ and hand-written files
-    # such as README.md
+    # such as README.md. Directories left empty (e.g. an old guide/ tree) go too.
     for entry in os.listdir(OUT):
         p = os.path.join(OUT, entry)
         if entry == "assets":
@@ -295,11 +275,17 @@ def main():
         if os.path.isdir(p):
             if entry in codes:
                 shutil.rmtree(p)
-            else:
-                for dirpath, _, filenames in os.walk(p):
-                    for fn in filenames:
-                        if fn.endswith(".html"):
-                            os.remove(os.path.join(dirpath, fn))
+                continue
+            keep = []
+            for dirpath, _, filenames in os.walk(p):
+                for fn in filenames:
+                    full = os.path.join(dirpath, fn)
+                    if fn.endswith(".html"):
+                        os.remove(full)
+                    else:
+                        keep.append(full)
+            if not keep:
+                shutil.rmtree(p)
         elif entry.endswith(".html"):
             os.remove(p)
 
@@ -356,25 +342,9 @@ def main():
     with open(os.path.join(OUT, "index.html"), "w", encoding="utf-8", newline="\n") as f:
         f.write(picker)
 
-    # stubs for every legacy path so old links keep resolving
-    stubs = 0
-    for page_path in pages:
-        if page_path == "index.html":
-            continue
-        write_redirect(
-            os.path.join(OUT, page_path.replace("/", os.sep)),
-            page_path,
-            langs,
-            default["code"],
-            site,
-            "正在载入 Control Flex Wiki · Loading Control Flex Wiki",
-            "Continue",
-        )
-        stubs += 1
-
     print("languages : %s" % ", ".join("%s(%s)" % (l["code"], l["meta"].get("name", "")) for l in langs))
     print("pages     : %d x %d = %d rendered" % (len(pages), len(langs), written))
-    print("redirects : %d legacy stubs + 1 picker" % stubs)
+    print("entry     : control-flex/index.html (language picker)")
     if missing:
         print("MISSING   : %d keys" % len(missing))
         for page, key in missing[:15]:

@@ -42,7 +42,6 @@ control-flex/                # generated
 ├── index.html               # language picker / auto redirect
 ├── en/**                    # complete English tree
 ├── zh/**                    # complete Chinese tree
-├── guide/ dev/ modpack/     # redirect stubs for legacy URLs (no language segment)
 ├── assets/
 │   ├── style.css            # all styling (light + dark via prefers-color-scheme)
 │   └── app.js               # mobile sidebar, active nav, copy buttons, language memory
@@ -68,14 +67,17 @@ is no CI step.
 | URL | Behaviour |
 |-----|-----------|
 | `/control-flex/zh/guide/getting-started.html` | canonical form |
-| `/control-flex/guide/getting-started.html` | legacy stub → redirects to the right language |
-| `/control-flex/guide/…?lang=en` | explicit language, wins over everything |
+| `/control-flex/…?lang=en` | explicit language, wins over everything |
 | `/control-flex/` | picks a language: `?lang` → `localStorage` → `navigator.language` → `en` |
 
-`?lang=` is an entry shortcut, not a content switch: the stub redirects to the
+`?lang=` is an entry shortcut, not a content switch: it redirects to the
 matching static tree, so the canonical URL always carries the language segment.
-Every page also carries `hreflang` alternates, an `x-default`, and a self
-`canonical`.
+Every page carries `hreflang` alternates, an `x-default`, and a self `canonical`.
+
+Paths without a language segment (`/control-flex/guide/…`) are **not** kept
+alive — they return 404, and only the entry point above survives. If old deep
+links ever matter, add a `404.html` at the repository root that rewrites the
+incoming path onto `/<lang>/…`.
 
 ## Editing text
 
