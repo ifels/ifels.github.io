@@ -251,19 +251,30 @@ body {
   gap: 40px;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 30px 22px 72px;
+  /* The sidebar is fixed (see below), so its column is reserved here instead:
+     22px page padding + 240px column + 40px gap. */
+  padding: 30px 22px 72px 302px;
 }
 
+/* Fixed rather than sticky: a sticky sidebar is clamped by the bottom of
+   .layout, so once the footer comes into view at the end of a long page it
+   would be pushed up and its first items (Home) could no longer be reached —
+   scrolling the sidebar itself cannot bring them back, the box is clipped.
+   Fixed keeps it pinned to the viewport for the whole scroll range. */
 .sidebar {
-  flex: 0 0 240px;
-  align-self: flex-start;
-  position: sticky;
+  position: fixed;
   top: 86px;
+  /* Centre it on the same column as .layout: 1240 / 2 - 22, and fall back to
+     the page padding once the viewport is narrower than the layout. */
+  left: max(22px, calc(50% - 598px));
+  width: 240px;
   max-height: calc(100vh - 108px);
   overflow-y: auto;
   overscroll-behavior: contain; /* wheel/touch at the top/bottom edge stays here */
   padding-right: 4px;
   scrollbar-width: thin;
+  /* the footer paints over the last few pixels of the column (see .footer) */
+  z-index: 2;
 }
 
 .sidebar::-webkit-scrollbar { width: 8px; }
@@ -760,6 +771,10 @@ a.card:hover {
    Footer
    ============================================================ */
 .footer {
+  /* paints above the fixed sidebar, so the menu slides under it at page end
+     instead of spilling over the footer band */
+  position: relative;
+  z-index: 3;
   border-top: 1px solid var(--line);
   background: var(--panel);
   color: var(--muted);
@@ -839,4 +854,18 @@ a.card:hover {
 @media (max-width: 480px) {
   .hero { padding: 26px 20px; }
   .btn { padding: 9px 16px; font-size: 13.5px; }
+}
+
+/* ============================================================
+   Print
+   ============================================================ */
+/* The sidebar is fixed on desktop, so it would be stamped over the first
+   printed page; drop the chrome and let the article use the full width. */
+@media print {
+  .topbar,
+  .sidebar,
+  .backdrop { display: none; }
+  .layout { display: block; max-width: none; padding: 0; }
+  .content { max-width: none; }
+  .footer { position: static; }
 }
