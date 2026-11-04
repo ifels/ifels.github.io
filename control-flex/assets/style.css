@@ -198,9 +198,11 @@ body {
 .topnav a:hover { color: #fff; text-decoration: none; }
 
 /* ---------- language-specific entries ----------
-   Some channels only exist for one language (KOOK is a Chinese chat app), so
-   those links are marked in the markup and hidden everywhere else. */
+   Some channels only exist for one language (Kook is a Chinese chat app,
+   Discord is kept for the English pages), so those links are marked in the
+   markup and hidden everywhere else. */
 html:not([lang^="zh"]) .zh-only { display: none; }
+html[lang^="zh"] .en-only { display: none; }
 
 .lang-switch {
   display: flex;
