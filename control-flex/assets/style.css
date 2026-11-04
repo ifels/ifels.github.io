@@ -695,6 +695,14 @@ td:first-child { font-weight: 560; }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
 
+/* Wide screens repeat nothing: the top bar already links to every destination
+   in this row, so it is dropped there. Below 941px the top bar collapses into
+   the menu button, and these buttons become the only way in — keep them. */
+@media (min-width: 941px) {
+  .hero .btn-row { display: none; }
+  .hero .badges { margin-bottom: 0; }
+}
+
 /* The CurseForge button drops its "Download on" prefix on narrow screens so it
    lines up with the plain GitHub / Discord buttons instead of wrapping alone. */
 .cta-short { display: none; }
