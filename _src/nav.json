@@ -99,21 +99,16 @@
         "key": "nav.compat-overview"
       },
       {
-        "type": "sub",
-        "items": [
-          {
-            "href": "modpack/compat/json.html",
-            "key": "nav.compat-json"
-          },
-          {
-            "href": "modpack/compat/bridge.html",
-            "key": "nav.compat-bridge"
-          },
-          {
-            "href": "modpack/compat/manual.html",
-            "key": "nav.compat-manual"
-          }
-        ]
+        "href": "modpack/compat/json.html",
+        "key": "nav.compat-json"
+      },
+      {
+        "href": "modpack/compat/bridge.html",
+        "key": "nav.compat-bridge"
+      },
+      {
+        "href": "modpack/compat/manual.html",
+        "key": "nav.compat-manual"
       }
     ]
   },
