@@ -276,9 +276,12 @@ html:not([lang^="zh"]) .zh-only { display: none; }
   max-height: calc(100vh - 108px);
   overflow-y: auto;
   overscroll-behavior: contain; /* wheel/touch at the top/bottom edge stays here */
-  padding-right: 4px;
+  /* The last 80px are a safety strip: the footer band (62px, see .footer)
+     paints over the bottom of this fixed column at the end of a page, and this
+     padding pushes the last links above it when the menu is scrolled down. */
+  padding: 0 4px 80px 0;
   scrollbar-width: thin;
-  /* the footer paints over the last few pixels of the column (see .footer) */
+  /* below the footer band */
   z-index: 2;
 }
 
@@ -784,7 +787,9 @@ a.card:hover {
   background: var(--panel);
   color: var(--muted);
   font-size: 13px;
-  padding: 26px 22px 34px;
+  /* kept short on purpose: the shorter the band, the less of the fixed column
+     it covers (the sidebar reserves an 80px strip for it, see .sidebar) */
+  padding: 18px 22px 20px;
 }
 
 .footer-inner {
