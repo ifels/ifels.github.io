@@ -647,7 +647,14 @@ td:first-child { font-weight: 560; }
   max-width: 620px;
 }
 
-.hero .badges { margin-bottom: 24px; }
+.hero .badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 6px;
+  margin-bottom: 24px;
+}
+
+.hero .badges .badge { margin-right: 0; }
 
 .hero .badge {
   background: rgba(255, 255, 255, .1);
@@ -661,6 +668,15 @@ td:first-child { font-weight: 560; }
 }
 
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* The CurseForge button drops its "Download on" prefix on narrow screens so it
+   lines up with the plain GitHub / Discord buttons instead of wrapping alone. */
+.cta-short { display: none; }
+
+@media (max-width: 560px) {
+  .cta-long { display: none; }
+  .cta-short { display: inline; }
+}
 
 .btn {
   display: inline-block;

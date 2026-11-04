@@ -179,7 +179,7 @@ def render_footer(strings, fallback, base):
     configs = text("_ui.footer.community-configs")
     return """<footer class="footer">
   <div class="footer-inner">
-    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
     <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">%s ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
     <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">%s ↗</a>
