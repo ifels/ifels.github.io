@@ -27,7 +27,8 @@ _src/
 │   ├── guide/               #   getting-started, platforms, versions, features, settings
 │   │   └── feature/         #   one page per feature (12 pages, breadcrumb + prev/next)
 │   ├── modpack/             #   config layout, override rules, compatibility
-│   └── dev/                 #   API quick start, reference, plugin examples
+│   │   └── compat/          #   overview, compat JSON, bridge mods, by hand
+│   └── dev/                 #   redirect stubs: the old developer pages moved
 ├── locales/
 │   ├── en.json              # one file per language; add a file = add a language
 │   └── zh.json
@@ -136,8 +137,9 @@ python -m http.server 8080
   `fabric.mod.json`)
 - Default bindings: `cfx` repo `src/main/resources/controlflex/templates/basic.json`
 - Trigger-mode / button tokens: `cfx` repo `TriggerMode.java`, `ButtonId.java`
-- Developer docs: `control-flex-api` repo `docs/{en,zh}/` (getting-started, api-reference,
-  plugin-guide, examples)
+- Bridge-mod development lives on the wiki page `/modpack/compat/bridge.html`; the source of
+  truth for the API itself is the `control-flex-api` repo `docs/{en,zh}/` (getting-started,
+  api-reference, plugin-guide, examples)
 - Compat JSON field reference: [ControlFlexMC/cfx-compat-configs](https://github.com/ControlFlexMC/cfx-compat-configs)
 
 When the mod's features change, keep this site in sync — the `mod-intro.md` file is the

@@ -68,12 +68,6 @@
       </div>
     </div>
     <div class="nav-group">
-      <div class="nav-label">开发者</div>
-      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
-      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
-      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
-    </div>
-    <div class="nav-group">
       <div class="nav-label">链接</div>
       <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
       <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
@@ -175,8 +169,8 @@
   <p>
     <span>官方源是 <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>：一棵纯静态目录树，按 MC 版本与加载器分目录，每个模组一份 JSON，外加一份 <code>manifest.json</code> 记录路径与 sha256。</span>
   </p>
-  <pre><code>&lt;repo-root&gt;/                   # 这个目录的 URL 就是玩家要填的 baseUrl
-├── 1.20.1/                   # MC 版本目录（必须与游戏版本名完全一致）
+  <pre><code>&lt;repo-root&gt;/                   # this directory's URL is the baseUrl players add
+├── 1.20.1/                   # MC version dir (must match the game version name exactly)
 │   ├── forge/
 │   │   ├── manifest.json
 │   │   └── mods/
@@ -196,6 +190,70 @@
   </p>
   <p class="small muted">
     <span>同一个 <code>mod_id</code> 但内容不同 = 并行变体，由玩家挑选；同一个 sha256 出现在多个源 = 互为镜像，按源列表顺序回退重试。内容按 sha256 缓存到 <code>compat/repo/content/&lt;mod_id&gt;/&lt;sha256&gt;.json</code>，文件不可变。</span>
+  </p>
+
+  <h3><span>官方源是怎么钉版本的</span></h3>
+  <ul>
+    <li><span>内置两个源，指向同一个 ref：<code>cdn.jsdelivr.net/gh/ControlFlexMC/cfx-compat-configs@&lt;ref&gt;</code> 与 <code>raw.githubusercontent.com/ControlFlexMC/cfx-compat-configs/refs/heads/&lt;ref&gt;</code>。前者快、后者稳，互为镜像。</span></li>
+    <li><span><code>&lt;ref&gt;</code> 是一个<b>版本 tag</b>，跟着 ControlFlex 的发版走（本版是 <code>0.8.8</code>），不是 <code>main</code> —— 所以老版本玩家同步到的永远是那套格式能吃的配置，不会被上游新格式搞坏。</span></li>
+    <li><span>仓库里为此保留了一条版本线一支分支 / tag：<code>0.8.4</code>、<code>0.8.5</code>、<code>0.8.7</code>、<code>0.8.8</code>…。你要给某个旧版本补配置，就切到对应分支，别往 <code>main</code> 上放旧格式文件。</span></li>
+    <li><span>两个内置源可以禁用、可以调序，但<b>不能删除</b>；「恢复默认源」只重置它们。自己加的源随便增删。</span></li>
+  </ul>
+
+  <h3><span>仓库里现在覆盖了什么</span></h3>
+  <p>
+    <span>按「MC 版本 / 加载器」分目录，目前已收录 12 个模组的配置。同一份配置通常会复制到适用的每个加载器目录，所以不同版本线的覆盖并不一致：</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>MC 版本</span></th>
+          <th><span>加载器</span></th>
+          <th><span>已收录模组</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>1.20.1</code></td>
+          <td>Forge</td>
+          <td><code>create</code> · <code>dragonminez</code> · <code>emi</code> · <code>epicfight</code> · <code>exposure</code> · <code>irons_spellbooks</code> · <code>jei</code> · <code>minemenu</code> · <code>mts</code> · <code>nightfall</code> · <code>superior_tweaks</code> · <code>tacz</code></td>
+        </tr>
+        <tr>
+          <td><code>1.20.1</code></td>
+          <td>Fabric</td>
+          <td><code>create</code> · <code>emi</code> · <code>exposure</code> · <code>jei</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.1</code></td>
+          <td>NeoForge</td>
+          <td><code>create</code> · <code>dragonminez</code> · <code>emi</code> · <code>epicfight</code> · <code>exposure</code> · <code>irons_spellbooks</code> · <code>jei</code> · <code>minemenu</code> · <code>mts</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.1</code></td>
+          <td>Fabric</td>
+          <td><code>emi</code> · <code>exposure</code> · <code>jei</code> · <code>minemenu</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.11</code> · <code>26.1.2</code> · <code>26.2</code></td>
+          <td>NeoForge / Fabric</td>
+          <td><code>jei</code> · <code>minemenu</code></td>
+        </tr>
+        <tr>
+          <td><code>1.18.2</code> · <code>1.19.2</code></td>
+          <td>Fabric / Forge</td>
+          <td><span><code>emi</code>（仅 Fabric 与 1.19.2 Forge）· <code>mts</code></span></td>
+        </tr>
+        <tr>
+          <td><code>1.16.5</code> · <code>1.12.2</code></td>
+          <td>Forge</td>
+          <td><code>mts</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>这张表会随仓库变，以目录树为准；<code>create</code> / <code>emi</code> 的配置还通过 <code>dependencies</code> 要求对应桥接模组已安装 —— 它们的键位是桥接提供的。</span>
   </p>
 
   <h2 id="fields"><span>四、字段说明</span></h2>
@@ -252,6 +310,22 @@
     </table>
   </div>
 
+  <h3><span>dependencies 的实际用法</span></h3>
+  <p>
+    <span>它不是「自动装依赖」，而是一道<b>激活闸门</b>：数组里每个 <code>mod_id</code> 都已加载，这份配置才生效。真实配置里主要用在两种场景 —— 配置依赖某个桥接模组提供的键位，或者这份配置本身就属于一个独立兼容 mod。</span>
+  </p>
+  <pre><code>{
+  "mod_id": "emi",
+  "dependencies": [
+    { "mod_id": "cfx_compat_emi", "mod_name": "Control Flex x EMI",
+      "home_pages": ["https://www.curseforge.com/minecraft/mc-mods/cfx-x-emi"] }
+  ],
+  "mod_versions": [ { "version": "", "screenKeys": { "key.emi.view_recipes": {} } } ]
+}</code></pre>
+  <p class="small muted">
+    <span>只读 <code>mod_id</code>（大小写不敏感），<code>mod_name</code> / <code>home_pages</code> 只在社区配置预览页展示。写成字符串数组或非数组会被整段忽略。目标模组就是自己的配置不需要它。</span>
+  </p>
+
   <h3><span>mod_versions 与版本匹配</span></h3>
   <p>
     <span>数组按顺序求值，<b>首个匹配生效</b>；如果没有任何一条匹配当前模组版本，<b>整份配置不生效</b>（日志会给警告）。</span>
@@ -268,7 +342,7 @@
       <tbody>
         <tr>
           <td><span>通配</span></td>
-          <td><code>""</code>（或 <code>"(,)"</code>）</td>
+          <td><span><code>""</code>（或 <code>"(,)"</code>）</span></td>
           <td><span>匹配所有版本</span></td>
         </tr>
         <tr>
@@ -480,6 +554,43 @@
     <span>条目还支持 <code>cursorStyle</code>（<code>system</code> / <code>bedrock</code> / <code>hand</code>）与 <code>disabled: true</code>（完全退出，不再回退）。解析顺序：user 层优先于内置，具体叠层条目优先于同模组的 <code>"*"</code>，命中但缺所需那一侧（左 / 右）就继续往下一个配置找。</span>
   </p>
 
+  <h3><span>从旧格式迁移（≤ 0.8.5）</span></h3>
+  <p>
+    <span>0.8.7 起启动时会自动迁移旧文件（先备份再改字段）。如果你在手工维护配置，或者要读一份老配置，对照这张表：</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>旧格式</span></th>
+          <th><span>现在</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>versions</code></td><td><code>mod_versions</code></td></tr>
+        <tr><td><code>guiKeys: ["k"]</code></td><td><code>screenKeys: { "k": {} }</code></td></tr>
+        <tr><td><code>required_mod: "x"</code></td><td><code>dependencies: [{ "mod_id": "x" }]</code></td></tr>
+        <tr><td><span><code>loader</code> 字段</span></td><td><span>删除，改由源目录（<code>forge</code> / <code>fabric</code> / <code>neoforge</code>）区分</span></td></tr>
+        <tr><td><span><code>GLFW_COMPAT</code> 标记</span></td><td><code>channels: ["glfwPoll"]</code></td></tr>
+        <tr><td><span><code>PHASE_PERSISTENT</code> 标记</span></td><td><code>phasePersistentKeys</code> + <span>在游戏内 / 目标分区各声明一次</span></td></tr>
+        <tr><td><span>旧摇杆数组（<code>screens</code> + <code>mode</code>）</span></td><td><span><code>screen</code> 对象（按类名）+ <code>behavior</code>；<code>RADIAL_CURSOR</code> → <code>RADIAL_PATH</code>、<code>returnToCenter: false</code> → <code>keepLastPosition: true</code></span></td></tr>
+        <tr><td><span>——</span></td><td><code>overlayKeys</code> · <span>按叠层的 <code>overlay</code> 配置 · overlay 目标端的相位保持</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span>写完先自查这几条</span></h3>
+  <ol>
+    <li><span>三个分区必须是<b>对象</b>，写成数组会被整段丢弃（只留一条警告）。</span></li>
+    <li><span>分区里的 <code>channels</code> 是<b>保留键</b>（分区默认值），不要拿它当键名。</span></li>
+    <li><span>每键的 <code>channels: []</code> 与 <code>extraBehaviors: []</code> 是<b>有意义的显式空</b>，不等于省略。</span></li>
+    <li><span><code>mod_versions</code> 首个匹配生效：具体区间放前面，<code>""</code> 兜底放最后；没有一条匹配 = 整份配置不生效。</span></li>
+    <li><span>写坏的 <code>version</code> 会丢掉<b>整条 entry</b>，不只是这个字段。</span></li>
+    <li><span>身份来自 JSON 里的 <code>mod_id</code>，但 user 层文件名必须叫 <code>&lt;mod_id&gt;.json</code>。</span></li>
+    <li><span><code>phasePersistentKeys</code> 必须两边都声明才生效；只写配对会被忽略。</span></li>
+    <li><span>UTF-8、无 trailing comma；只有默认行为不对时才去加 <code>channels</code> 覆盖。</span></li>
+  </ol>
+
   <h3><span>最小模板</span></h3>
   <pre><code>{
   "mod_id": "examplemod",
@@ -621,7 +732,7 @@
   <h3><span>本地测试</span></h3>
   <pre><code>cd &lt;your-source-root&gt;
 python3 -m http.server 8000
-# 然后在「编辑源列表」里加 http://127.0.0.1:8000</code></pre>
+# then add http://127.0.0.1:8000 in "Edit source list"</code></pre>
   <p class="small muted">
     <span>允许 <code>http://</code> 源（只拒绝 https → http 的重定向降级），本地测试不需要证书。改完文件点一次「同步最新配置」即可。</span>
   </p>

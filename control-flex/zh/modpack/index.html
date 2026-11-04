@@ -68,12 +68,6 @@
       </div>
     </div>
     <div class="nav-group">
-      <div class="nav-label">开发者</div>
-      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
-      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
-      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
-    </div>
-    <div class="nav-group">
       <div class="nav-label">链接</div>
       <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
       <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
@@ -121,16 +115,16 @@
 
   <h2><span>配置目录结构</span></h2>
   <pre><code>config/controlflex/
-├── templates/          <span># 模板 JSON（内置 + 自定义）</span>
-├── profiles/           <span># 每个模板对应的用户修改</span>
-├── compat/             <span># 模组兼容配置</span>
-│   ├── default/        <span># 内置（从 JAR 释放，只读）</span>
-│   ├── mods/           <span># 桥接模组安装（只读）</span>
-│   └── user/           <span># 你的修改（优先级最高）</span>
-├── guides/             <span># 引导资源，分层同 compat/</span>
-├── radial_menu/        <span># 径向菜单布局与图标</span>
-├── backup/             <span># 升级迁移时的自动备份</span>
-└── cfx-client.json     <span># 客户端全局状态</span></code></pre>
+├── templates/          # template JSON (built-in + custom)
+├── profiles/           # per-template user modifications
+├── compat/             # mod compatibility configs
+│   ├── default/        # packaged (extracted from the JAR, read-only)
+│   ├── mods/           # installed by bridge mods (read-only)
+│   └── user/           # your edits (highest priority)
+├── guides/             # guide assets, same default/mods/user layering
+├── radial_menu/        # radial menu layouts and icons
+├── backup/             # automatic backups from migrations
+└── cfx-client.json     # global client state</code></pre>
 
   <h2><span>覆盖规则</span></h2>
   <ul>

@@ -122,23 +122,6 @@
     ]
   },
   {
-    "label": "nav.developers",
-    "items": [
-      {
-        "href": "dev/index.html",
-        "key": "nav.api-quick-start"
-      },
-      {
-        "href": "dev/api-reference.html",
-        "key": "nav.api-reference"
-      },
-      {
-        "href": "dev/examples.html",
-        "key": "nav.plugin-and-examples"
-      }
-    ]
-  },
-  {
     "label": "nav.links",
     "items": [
       {

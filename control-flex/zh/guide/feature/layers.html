@@ -68,12 +68,6 @@
       </div>
     </div>
     <div class="nav-group">
-      <div class="nav-label">开发者</div>
-      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
-      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
-      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
-    </div>
-    <div class="nav-group">
       <div class="nav-label">链接</div>
       <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
       <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
@@ -191,7 +185,7 @@
   </p>
   <ul>
     <li><span><b>不继承 Main</b>：没配置的动作在 Overlay 相位保持静默，避免 HUD 打开时误触发战斗键位。HUD 打开期间层切换也会被抑制。</span></li>
-    <li><span><b>需要把 HUD 声明为交互式上下文</b>：游戏内在<a href="mod-adaptation.html">模组适配</a>里为它添加 Overlay 规则；模组作者可以用 Control Flex API 的 <code>IInteractiveContextRegistrar</code> 主动声明（见<a href="../../dev/api-reference.html">API 参考</a>）。需要跨界面保持按住的按键可用相位锁定延续到解锁。</span></li>
+    <li><span><b>需要把 HUD 声明为交互式上下文</b>：游戏内在<a href="mod-adaptation.html">模组适配</a>里为它添加 Overlay 规则；模组作者可以用 Control Flex API 的 <code>IInteractiveContextRegistrar</code> 主动声明（见<a href="../../modpack/compat/bridge.html#ref">API 参考</a>）。需要跨界面保持按住的按键可用相位锁定延续到解锁。</span></li>
   </ul>
 
   <h2><span>层归属在哪里改</span></h2>
@@ -211,10 +205,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Shift 1 / 2</td><td><span class="kbd">LB</span> / <span class="kbd">RB</span>（Hold）</td></tr>
+        <tr><td>Shift 1 / 2</td><td><span class="kbd">LB</span> / <span class="kbd">RB</span><span>（按住）</span></td></tr>
         <tr><td>Shift 3 / 4</td><td><span>未绑定 —— 需要时自己指定（背键适合放这里）</span></td></tr>
-        <tr><td><span>Overlay 返回</span></td><td><span class="kbd">B</span>（Press）</td></tr>
-        <tr><td><span>打开设置</span></td><td><span class="kbd">Back</span> + <span class="kbd">Start</span>（Press）</td></tr>
+        <tr><td><span>Overlay 返回</span></td><td><span class="kbd">B</span><span>（点按）</span></td></tr>
+        <tr><td><span>打开设置</span></td><td><span class="kbd">Back</span> + <span class="kbd">Start</span><span>（点按）</span></td></tr>
       </tbody>
     </table>
   </div>

@@ -68,12 +68,6 @@
       </div>
     </div>
     <div class="nav-group">
-      <div class="nav-label">Developers</div>
-      <a href="/control-flex/en/dev/index.html">API Quick Start</a>
-      <a href="/control-flex/en/dev/api-reference.html">API Reference</a>
-      <a href="/control-flex/en/dev/examples.html">Plugin &amp; Examples</a>
-    </div>
-    <div class="nav-group">
       <div class="nav-label">Links</div>
       <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs</a>
       <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
@@ -175,8 +169,8 @@
   <p>
     <span>The official source is <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>: a purely static directory tree, split by MC version and loader, one JSON per mod, plus a <code>manifest.json</code> recording each path and sha256.</span>
   </p>
-  <pre><code>&lt;repo-root&gt;/                   # 这个目录的 URL 就是玩家要填的 baseUrl
-├── 1.20.1/                   # MC 版本目录（必须与游戏版本名完全一致）
+  <pre><code>&lt;repo-root&gt;/                   # this directory's URL is the baseUrl players add
+├── 1.20.1/                   # MC version dir (must match the game version name exactly)
 │   ├── forge/
 │   │   ├── manifest.json
 │   │   └── mods/
@@ -196,6 +190,70 @@
   </p>
   <p class="small muted">
     <span>Same <code>mod_id</code> with different content = parallel variants for the player to choose from; the same sha256 in several sources = mirrors, retried in source-list order. Content is cached by sha256 at <code>compat/repo/content/&lt;mod_id&gt;/&lt;sha256&gt;.json</code>; those files are immutable.</span>
+  </p>
+
+  <h3><span>How the official source pins versions</span></h3>
+  <ul>
+    <li><span>Two built-in sources point at the same ref: <code>cdn.jsdelivr.net/gh/ControlFlexMC/cfx-compat-configs@&lt;ref&gt;</code> and <code>raw.githubusercontent.com/ControlFlexMC/cfx-compat-configs/refs/heads/&lt;ref&gt;</code>. The first is fast, the second is dependable; they mirror each other.</span></li>
+    <li><span><code>&lt;ref&gt;</code> is a <b>version tag</b> (currently <code>0.8.8</code>), bumped with every ControlFlex release — not <code>main</code> — so players on older builds always sync configs their format can read and never get broken by an upstream format change.</span></li>
+    <li><span>That is why the repo keeps one branch / tag per version line: <code>0.8.4</code>, <code>0.8.5</code>, <code>0.8.7</code>, <code>0.8.8</code>… To backfill configs for an old version, switch to that branch instead of dropping old-format files on <code>main</code>.</span></li>
+    <li><span>The two built-in sources can be disabled and reordered but <b>not deleted</b>; "Restore default sources" only resets those two. Your own sources can be added and removed freely.</span></li>
+  </ul>
+
+  <h3><span>What the repo covers today</span></h3>
+  <p>
+    <span>Directories are split by MC version / loader, and 12 mods have configs so far. The same config is usually copied into every loader directory it applies to, so coverage differs between version lines:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>MC version</span></th>
+          <th><span>Loader</span></th>
+          <th><span>Mods covered</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>1.20.1</code></td>
+          <td>Forge</td>
+          <td><code>create</code> · <code>dragonminez</code> · <code>emi</code> · <code>epicfight</code> · <code>exposure</code> · <code>irons_spellbooks</code> · <code>jei</code> · <code>minemenu</code> · <code>mts</code> · <code>nightfall</code> · <code>superior_tweaks</code> · <code>tacz</code></td>
+        </tr>
+        <tr>
+          <td><code>1.20.1</code></td>
+          <td>Fabric</td>
+          <td><code>create</code> · <code>emi</code> · <code>exposure</code> · <code>jei</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.1</code></td>
+          <td>NeoForge</td>
+          <td><code>create</code> · <code>dragonminez</code> · <code>emi</code> · <code>epicfight</code> · <code>exposure</code> · <code>irons_spellbooks</code> · <code>jei</code> · <code>minemenu</code> · <code>mts</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.1</code></td>
+          <td>Fabric</td>
+          <td><code>emi</code> · <code>exposure</code> · <code>jei</code> · <code>minemenu</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.11</code> · <code>26.1.2</code> · <code>26.2</code></td>
+          <td>NeoForge / Fabric</td>
+          <td><code>jei</code> · <code>minemenu</code></td>
+        </tr>
+        <tr>
+          <td><code>1.18.2</code> · <code>1.19.2</code></td>
+          <td>Fabric / Forge</td>
+          <td><span><code>emi</code> (Fabric and 1.19.2 Forge only) · <code>mts</code></span></td>
+        </tr>
+        <tr>
+          <td><code>1.16.5</code> · <code>1.12.2</code></td>
+          <td>Forge</td>
+          <td><code>mts</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>This table follows the repo; the directory tree is authoritative. The <code>create</code> / <code>emi</code> configs also require their bridge mod through <code>dependencies</code> — the keys come from the bridge.</span>
   </p>
 
   <h2 id="fields"><span>4. Field reference</span></h2>
@@ -252,6 +310,22 @@
     </table>
   </div>
 
+  <h3><span>How dependencies is actually used</span></h3>
+  <p>
+    <span>It is not "install dependencies for you" but an <b>activation gate</b>: the config only applies when every <code>mod_id</code> in the array is loaded. Real configs use it in two situations — the config depends on keys a bridge mod provides, or the config belongs to a standalone compat mod.</span>
+  </p>
+  <pre><code>{
+  "mod_id": "emi",
+  "dependencies": [
+    { "mod_id": "cfx_compat_emi", "mod_name": "Control Flex x EMI",
+      "home_pages": ["https://www.curseforge.com/minecraft/mc-mods/cfx-x-emi"] }
+  ],
+  "mod_versions": [ { "version": "", "screenKeys": { "key.emi.view_recipes": {} } } ]
+}</code></pre>
+  <p class="small muted">
+    <span>Only <code>mod_id</code> is read (case-insensitive); <code>mod_name</code> / <code>home_pages</code> are display-only on the community preview page. An array of plain strings, or a non-array value, is ignored wholesale. A config whose target is the mod itself does not need it.</span>
+  </p>
+
   <h3><span>mod_versions and version matching</span></h3>
   <p>
     <span>The array is evaluated in order and the <b>first match wins</b>; if nothing matches the installed mod version, <b>the entire config has no effect</b> (a warning is logged).</span>
@@ -268,7 +342,7 @@
       <tbody>
         <tr>
           <td><span>Wildcard</span></td>
-          <td><code>""</code>（或 <code>"(,)"</code>）</td>
+          <td><span><code>""</code> (or <code>"(,)"</code>)</span></td>
           <td><span>Matches every version</span></td>
         </tr>
         <tr>
@@ -480,6 +554,43 @@
     <span>Entries also accept <code>cursorStyle</code> (<code>system</code> / <code>bedrock</code> / <code>hand</code>) and <code>disabled: true</code> (opt out entirely, no fallback). Resolution: user layer before built-ins, a specific overlay entry before the same mod's <code>"*"</code>, and a hit that lacks the requested side (left / right) falls through to the next config.</span>
   </p>
 
+  <h3><span>Migrating from the legacy format (≤ 0.8.5)</span></h3>
+  <p>
+    <span>Since 0.8.7 old files are migrated automatically on startup (backed up, then rewritten). If you maintain configs by hand, or have to read an old one, use this table:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Legacy</span></th>
+          <th><span>Now</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>versions</code></td><td><code>mod_versions</code></td></tr>
+        <tr><td><code>guiKeys: ["k"]</code></td><td><code>screenKeys: { "k": {} }</code></td></tr>
+        <tr><td><code>required_mod: "x"</code></td><td><code>dependencies: [{ "mod_id": "x" }]</code></td></tr>
+        <tr><td><span>the <code>loader</code> field</span></td><td><span>Removed; the source directory (<code>forge</code> / <code>fabric</code> / <code>neoforge</code>) separates loaders</span></td></tr>
+        <tr><td><span><code>GLFW_COMPAT</code> flag</span></td><td><code>channels: ["glfwPoll"]</code></td></tr>
+        <tr><td><span><code>PHASE_PERSISTENT</code> flag</span></td><td><code>phasePersistentKeys</code> + <span>declared once in the game section and once in the destination section</span></td></tr>
+        <tr><td><span>legacy stick arrays (<code>screens</code> + <code>mode</code>)</span></td><td><span><code>screen</code> object keyed by class name + <code>behavior</code>; <code>RADIAL_CURSOR</code> → <code>RADIAL_PATH</code>, <code>returnToCenter: false</code> → <code>keepLastPosition: true</code></span></td></tr>
+        <tr><td><span>—</span></td><td><code>overlayKeys</code> · <span>per-overlay <code>overlay</code> config · phase persistence with an overlay destination</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span>Self-check before you ship a config</span></h3>
+  <ol>
+    <li><span>The three sections must be <b>objects</b>; the array form is dropped wholesale, with a single warning.</span></li>
+    <li><span><code>channels</code> inside a section is a <b>reserved key</b> (section defaults) — never use it as a key name.</span></li>
+    <li><span>Per-key <code>channels: []</code> and <code>extraBehaviors: []</code> are <b>meaningful explicit empties</b>, not the same as omitting the field.</span></li>
+    <li><span><code>mod_versions</code> is first-match-wins: specific intervals first, a <code>""</code> fallback last; no matching entry means the whole config is inert.</span></li>
+    <li><span>A malformed <code>version</code> discards <b>the whole entry</b>, not just the field.</span></li>
+    <li><span>Identity comes from the JSON's <code>mod_id</code>, but user-layer files must be named <code>&lt;mod_id&gt;.json</code>.</span></li>
+    <li><span><code>phasePersistentKeys</code> only works when the key is declared in both sections; the pairing alone is ignored.</span></li>
+    <li><span>UTF-8, no trailing commas; add <code>channels</code> overrides only when the default behavior misbehaves.</span></li>
+  </ol>
+
   <h3><span>Minimal template</span></h3>
   <pre><code>{
   "mod_id": "examplemod",
@@ -621,7 +732,7 @@
   <h3><span>Local testing</span></h3>
   <pre><code>cd &lt;your-source-root&gt;
 python3 -m http.server 8000
-# 然后在「编辑源列表」里加 http://127.0.0.1:8000</code></pre>
+# then add http://127.0.0.1:8000 in "Edit source list"</code></pre>
   <p class="small muted">
     <span><code>http://</code> sources are allowed (only https → http redirect downgrades are rejected), so local testing needs no certificate. Edit files, then hit “Sync latest configs” once.</span>
   </p>
