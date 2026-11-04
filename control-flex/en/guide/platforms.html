@@ -212,7 +212,7 @@
       <span>In Zalith Launcher 2 and Fold Craft Launcher, Gamepad Input Mode defaults to Mapped (Virtual Keys): buttons and sticks are first translated into virtual keyboard/mouse events, and only then handed to the game. ControlFlex never sees the raw device — no pad in settings, and deadzone, trigger travel, and rumble are all decided by the launcher.</span>
     </p>
     <p>
-      <span>Pick <b>SDL Direct</b> instead (the Chinese UI calls it <b>SDL 直通</b>). In ZL2 the path is <b>Settings → Gamepad → Gamepad Input Mode</b>, and the option describes itself: raw gamepad input is delivered to the game through the SDL/GLFW gamepad API with button remapping bypassed — exactly what is needed here. SDL3 opens the device directly and the mod reads raw axes and buttons through <code>libgamepadjni</code>, which is the only reason multiple pads, hotplug, and rumble work at all.</span>
+      <span>Pick <b>SDL Direct</b> instead. In ZL2 the path is <b>Settings → Gamepad → Gamepad Input Mode</b>, and the option describes itself: raw gamepad input is delivered to the game through the SDL/GLFW gamepad API with button remapping bypassed — exactly what is needed here. SDL3 opens the device directly and the mod reads raw axes and buttons through <code>libgamepadjni</code>, which is the only reason multiple pads, hotplug, and rumble work at all.</span>
     </p>
     <ul>
       <li><span>First make sure the <b>Gamepad Control</b> master switch at the top of the same page is on — turn it off only when some other device is being mistaken for a gamepad.</span></li>
