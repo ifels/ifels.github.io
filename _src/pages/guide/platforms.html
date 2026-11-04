@@ -93,6 +93,44 @@
     <span data-i18n="guide.platforms.43">On Android, Minecraft: Java Edition runs on a JVM provided by a launcher, so the controller path is split in two: SDL3 comes from the launcher APK (the launcher already installed the SDL glue on the ART side), while <code>libgamepadjni.so</code> ships with the mod and is extracted per <code>os.arch</code>. The order is fixed — SDL3 first, then the JNI bridge — or the dynamic linker binds to a different copy.</span>
   </p>
 
+  <h3><span data-i18n="guide.platforms.83">Two Launcher Settings to Change First</span></h3>
+  <p>
+    <span data-i18n="guide.platforms.84">Both live in the launcher, not in the mod, and both have to be redone whenever you switch launchers or the instance directory gets reset. Skipping them does not stop the game from starting — it just looks broken: a stray pointer floating over the screen, or a pad that never appears in settings.</span>
+  </p>
+
+  <div class="callout tip">
+    <p><b><span data-i18n="guide.platforms.85">1 · Hide the on-screen virtual mouse pointer</span></b></p>
+    <p>
+      <span data-i18n="guide.platforms.86">The pointer the launcher draws is its own overlay and has nothing to do with the mod's virtual cursor — the two do not track each other, so you end up with two pointers on screen, or with one that sits wherever you last touched while the actual click lands somewhere else.</span>
+    </p>
+    <p>
+      <span data-i18n="guide.platforms.87">Three equivalent ways to get rid of it; pick whichever your launcher exposes:</span>
+    </p>
+    <ul>
+      <li><span data-i18n="guide.platforms.88">turn the pointer display off (hide the virtual mouse cursor);</span></li>
+      <li><span data-i18n="guide.platforms.89">set the pointer size to <code>0</code>;</span></li>
+      <li><span data-i18n="guide.platforms.90">set the pointer opacity to <code>0</code> (fully transparent).</span></li>
+    </ul>
+    <p>
+      <span data-i18n="guide.platforms.91">After that only the mod's own cursor is on screen and its position matches where clicks land. Style and scale are set in game under Cursor Style: <code>System</code> / <code>Bedrock</code> / <code>Hand</code>, scale <code>0.1</code>–<code>1.0</code>.</span>
+    </p>
+  </div>
+
+  <div class="callout warn">
+    <p><b><span data-i18n="guide.platforms.92">2 · Set gamepad input to SDL passthrough (ZL2 / FCL)</span></b></p>
+    <p>
+      <span data-i18n="guide.platforms.93">In Zalith Launcher 2 and Fold Craft Launcher the gamepad input mode defaults to the launcher taking the pad itself: it translates sticks and buttons into key/mouse events and feeds those to the game. ControlFlex then never sees the raw device — no pad in settings, and deadzone, trigger travel, and rumble are all decided by the launcher.</span>
+    </p>
+    <p>
+      <span data-i18n="guide.platforms.94">Switch it to <b>SDL passthrough</b> (the label varies: <i>SDL</i>, <i>passthrough</i>, <i>native SDL</i>). SDL3 then opens the device directly and the mod reads raw axes and buttons through <code>libgamepadjni</code> — which is the only reason multiple pads, hotplug, and rumble work at all.</span>
+    </p>
+    <ul>
+      <li><span data-i18n="guide.platforms.95">Check: in game, <b>Settings → Gamepad Selection</b> lists the device by name and reacts to any button.</span></li>
+      <li><span data-i18n="guide.platforms.96">Trade-off: the launcher's own button mapping no longer applies to that pad. That is expected — bind everything in the mod's key mapping panel instead.</span></li>
+      <li><span data-i18n="guide.platforms.97">Quit the game and relaunch after changing it, so the launcher re-enumerates devices.</span></li>
+    </ul>
+  </div>
+
   <h3><span data-i18n="guide.platforms.44">Launchers Verified</span></h3>
   <div class="table-wrap">
     <table>
@@ -179,7 +217,7 @@
         </tr>
         <tr>
           <td>Android</td>
-          <td><span data-i18n="guide.platforms.68">None (SDL3 comes from the launcher; the launcher must be covered by one of the mechanisms above)</span></td>
+          <td><span data-i18n="guide.platforms.68">None (SDL3 comes from the launcher; the launcher must be covered by one of the mechanisms above) — plus the two launcher settings above</span></td>
           <td><span data-i18n="guide.platforms.69"><code>config/controlflex/</code> under the launcher's instance dir</span></td>
         </tr>
       </tbody>
@@ -203,6 +241,14 @@
         <tr>
           <td><span data-i18n="guide.platforms.75">On Android the game runs but no controller is ever visible</span></td>
           <td><span data-i18n="guide.platforms.76">Is <code>os.version</code> overridden? Is the launcher one of the verified ones? Do the logs show <code>POJAV_NATIVEDIR</code> and the SDL3 path?</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.platforms.98">Two pointers on screen, or the pointer sits away from where clicks land</span></td>
+          <td><span data-i18n="guide.platforms.99">The launcher's virtual mouse pointer is still visible — hide it, or set its size / opacity to 0</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.platforms.100">The pad works through the launcher's own key mapping, but never appears in Settings → Gamepad Selection</span></td>
+          <td><span data-i18n="guide.platforms.101">Gamepad input mode is not SDL passthrough (ZL2 / FCL) — see the two settings above</span></td>
         </tr>
         <tr>
           <td><span data-i18n="guide.platforms.77"><code>UnsatisfiedLinkError</code> in the log</span></td>

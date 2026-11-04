@@ -183,6 +183,44 @@
     <span>Android 版 Minecraft: Java Edition 由启动器提供的 JVM 运行，手柄链路因此分成两段：SDL3 来自启动器 APK（启动器已经在 ART 侧装好 SDL 的 glue），<code>libgamepadjni.so</code> 由模组自带并按 <code>os.arch</code> 解压加载。两者顺序固定 —— 先 SDL3，再 JNI 桥，否则动态链接器绑不到同一份库。</span>
   </p>
 
+  <h3><span>先改两项启动器设置</span></h3>
+  <p>
+    <span>这两项都在启动器里改，不在模组里；换启动器、或实例目录被重置之后要重新设一次。不改也能进游戏，只是看起来像坏了：屏幕上多出一个乱飘的指针，或者手柄在设置里根本不出现。</span>
+  </p>
+
+  <div class="callout tip">
+    <p><b><span>1 · 隐藏屏幕上的虚拟鼠标指针</span></b></p>
+    <p>
+      <span>启动器画的指针是它自己的覆盖层，和模组的虚拟光标没有关系，两者不会互相同步 —— 结果就是屏幕上出现两个指针，或者指针停在上一次触屏的位置、和真正的点击热点差一截。</span>
+    </p>
+    <p>
+      <span>三种做法效果一样，看你用的启动器提供哪一种，任选其一：</span>
+    </p>
+    <ul>
+      <li><span>把指针显示关掉（隐藏虚拟鼠标光标）</span></li>
+      <li><span>把指针大小设为 <code>0</code></span></li>
+      <li><span>把指针不透明度设为 <code>0</code>（即全透明）</span></li>
+    </ul>
+    <p>
+      <span>之后屏幕上只剩模组自己的光标，位置和点击判定一致。样式与缩放在游戏内的「光标样式」里改：<code>System</code> / <code>Bedrock</code> / <code>Hand</code>，缩放 <code>0.1</code>–<code>1.0</code>。</span>
+    </p>
+  </div>
+
+  <div class="callout warn">
+    <p><b><span>2 · 手柄输入模式改成 SDL 直通（ZL2 / FCL）</span></b></p>
+    <p>
+      <span>ZL2 与 FCL 的「手柄输入模式」默认由启动器自己接手柄：它把摇杆和按键翻译成键鼠事件再喂给游戏。这样 ControlFlex 拿不到原始设备 —— 设置里看不到手柄，死区、扳机行程、震动也全由启动器说了算。</span>
+    </p>
+    <p>
+      <span>改成 <b>SDL 直通</b>（不同版本叫法不一：<i>SDL</i>、<i>直通</i>、<i>原生 SDL</i>）之后，手柄由 SDL3 直接打开，模组经 <code>libgamepadjni</code> 读到原始轴与按键 —— 多手柄、热插拔、震动全靠这一步才能生效。</span>
+    </p>
+    <ul>
+      <li><span>校验：进游戏后 <b>设置 → 手柄选择</b> 里能按名字看到设备，按任意键有反应。</span></li>
+      <li><span>代价：切到 SDL 直通后，启动器自带的按键映射对这个手柄不再生效。这是预期行为，映射全部交给模组的键位面板。</span></li>
+      <li><span>改完退出游戏重新启动一次，让启动器重新枚举设备。</span></li>
+    </ul>
+  </div>
+
   <h3><span>已验证的启动器</span></h3>
   <div class="table-wrap">
     <table>
@@ -269,7 +307,7 @@
         </tr>
         <tr>
           <td>Android</td>
-          <td><span>无（SDL3 由启动器提供；启动器需被本页列出的机制覆盖）</span></td>
+          <td><span>无（SDL3 由启动器提供；启动器需被本页列出的机制覆盖）—— 另外还要改上文那两项启动器设置</span></td>
           <td><span>启动器实例目录下的 <code>config/controlflex/</code></span></td>
         </tr>
       </tbody>
@@ -293,6 +331,14 @@
         <tr>
           <td><span>Android 上游戏正常但手柄始终不可见</span></td>
           <td><span><code>os.version</code> 是否被覆盖；启动器是否属于已验证的那几种；日志里 <code>POJAV_NATIVEDIR</code> 与 SDL3 路径是否打印出来</span></td>
+        </tr>
+        <tr>
+          <td><span>屏幕上出现两个指针，或指针位置和实际点击位置对不上</span></td>
+          <td><span>启动器的虚拟鼠标指针还开着 —— 隐藏它，或把大小 / 不透明度设为 0</span></td>
+        </tr>
+        <tr>
+          <td><span>手柄在启动器自带的按键映射里能用，但「设置 → 手柄选择」里始终没有它</span></td>
+          <td><span>手柄输入模式不是 SDL 直通（ZL2 / FCL）—— 见上文那两项设置</span></td>
         </tr>
         <tr>
           <td><span>日志出现 <code>UnsatisfiedLinkError</code></span></td>
