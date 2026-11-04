@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+  <h1><span data-i18n="compat.bridge.setup.h1">接入与生命周期</span></h1>
+  <p class="lead">
+    <span data-i18n="compat.bridge.setup.lead">从 gradle 依赖到第一个能跑的回调：怎么拿到 API、怎么让 Control Flex 发现你的插件、六个回调各在什么时机调用、装进去的 JSON 落在哪一层；最后是多加载器工程布局与发布前的检查表。</span>
+  </p>
+
+  <p class="small muted">
+    <span data-i18n="compat.bridge.sn.label">本节：</span>
+    <a href="index.html"><span data-i18n="compat.bridge.sn.overview">概览</span></a> · <b><span data-i18n="compat.bridge.sn.setup">接入与生命周期</span></b> · <a href="api.html"><span data-i18n="compat.bridge.sn.api">接口速查</span></a> · <a href="implementations.html"><span data-i18n="compat.bridge.sn.impl">官方实现</span></a> · <a href="ecosystem.html"><span data-i18n="compat.bridge.sn.eco">谁在用这套 API</span></a>
+  </p>
+
+  <h2 id="api"><span data-i18n="compat.bridge.api.h2">二、接入 control-flex-api</span></h2>
+  <ul>
+    <li><span data-i18n="compat.bridge.api.1">独立仓库 <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>，经 JitPack 发布，当前 <b>0.9.0</b>。</span></li>
+    <li><span data-i18n="compat.bridge.api.2">编译产物是 Java 8 字节码（class 52），JVM 8+ 都能加载，桥接模组不必跟主模组用同一套工具链。</span></li>
+    <li><span data-i18n="compat.bridge.api.3">只做 <code>compileOnly</code>：运行时由 Control Flex 本体提供，<b>不要</b>把 API 打进你的 jar。</span></li>
+    <li><span data-i18n="compat.bridge.api.4">能力范围：读手柄、查动作状态、推模组状态、声明交互式叠层、接管视角、安装 compat / guide 资源。</span></li>
+  </ul>
+  <pre><code>// build.gradle
+repositories { maven { url 'https://jitpack.io' } }
+
+dependencies {
+    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.9.2'
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+}</code></pre>
+  <pre><code># mods.toml (Forge / NeoForge)
+[[dependencies.your_mod_id]]
+    modId = "controlflex"
+    mandatory = true
+    versionRange = "[0.8.8,)"
+    ordering = "AFTER"
+    side = "CLIENT"
+
+# fabric.mod.json (Fabric)
+{ "depends": { "controlflex": ">=0.8.8" } }</code></pre>
+  <div class="callout">
+    <p>
+      <span data-i18n="compat.bridge.api.callout">第一行永远是可用性检查 —— Control Flex 可能没装，SDL3 也可能初始化失败。所有 provider 拿到的都可能是 <code>null</code>。</span>
+    </p>
+  </div>
+  <pre><code>if (!ControlFlexApi.isAvailable()) {
+    return;   // Control Flex missing or not initialized: skip every controller path
+}</code></pre>
+
+  <h2 id="skeleton"><span data-i18n="compat.bridge.skeleton.h2">三、插件骨架：IControlFlexPlugin</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.bridge.skeleton.col.cb">回调</span></th>
+          <th><span data-i18n="compat.bridge.skeleton.col.when">什么时候调用 / 干什么</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>getModId()</code></td>
+          <td><span data-i18n="compat.bridge.skeleton.modid">插件标识，用于日志与去重。</span></td>
+        </tr>
+        <tr>
+          <td><code>onInstallCompatConfigs()</code></td>
+          <td><span data-i18n="compat.bridge.skeleton.compat">在 ready 之前调用，用 <code>installer.install()</code> 把 compat JSON 装到 <code>compat/mods/</code>。</span></td>
+        </tr>
+        <tr>
+          <td><code>onInstallGuideAssets()</code></td>
+          <td><span data-i18n="compat.bridge.skeleton.guide">同上，装到 <code>guides/mods/</code>。</span></td>
+        </tr>
+        <tr>
+          <td><code>onControlFlexReady()</code></td>
+          <td><span data-i18n="compat.bridge.skeleton.ready">唯一的初始化回调，此时所有 provider 已就绪。</span></td>
+        </tr>
+        <tr>
+          <td><code>onControllerConnectionChanged()</code></td>
+          <td><span data-i18n="compat.bridge.skeleton.conn">手柄插拔时触发。</span></td>
+        </tr>
+        <tr>
+          <td><code>cameraLookConsumer()</code></td>
+          <td><span data-i18n="compat.bridge.skeleton.camera">返回 <code>ICameraLookConsumer</code> 可接管每帧视角增量（0.8.8+，见<a href="#camera">相机接管</a>）；返回 <code>null</code> 表示不接管。</span></td>
+        </tr>
+        <tr>
+          <td><code>requireApiVersion()</code></td>
+          <td><span data-i18n="compat.bridge.skeleton.version">默认方法，检查最小 API 版本，不满足返回 <code>false</code>。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pre><code>package com.example.mymod;
+
+import com.ifels.controlflex.api.*;
+
+public class MyPlugin implements IControlFlexPlugin {
+
+    @Override
+    public String getModId() { return "my_bridge_mod"; }
+
+    @Override
+    public void onInstallCompatConfigs(ICompatAssetInstaller installer) {
+        installer.install("/assets/my_bridge_mod/compat/targetmod.json", "targetmod.json");
+    }
+
+    @Override
+    public void onControlFlexReady() {
+        if (!requireApiVersion("0.8.8")) return;
+        if (!ControlFlexApi.isAvailable()) return;
+
+        ControlFlexApi.getPlayerStateRegistry().setState("mymod:initialized", true);
+    }
+}</code></pre>
+  <p>
+    <span data-i18n="compat.bridge.skeleton.spi">注册靠 SPI 服务文件，Control Flex 会自动发现：</span>
+  </p>
+  <pre><code>src/main/resources/META-INF/services/com.ifels.controlflex.api.IControlFlexPlugin
+
+com.example.mymod.MyPlugin</code></pre>
+  <p>
+    <span data-i18n="compat.bridge.skeleton.timing">发现与回调的顺序（决定了你在哪个回调里能干什么）：</span>
+  </p>
+  <pre><code>Control Flex startup
+  └── initializeClient()
+        ├── providers injected  → isAvailable() becomes true
+        └── built-in configs extracted to default/
+
+  └── onKeyMappingsReady()
+        └── discover SPI plugins
+              ├── new CompatAssetInstaller(plugin.class, compatDir)
+              ├── plugin.onInstallCompatConfigs(installer)
+              ├── new CompatAssetInstaller(plugin.class, guideDir)
+              ├── plugin.onInstallGuideAssets(installer)
+              └── plugin.onControlFlexReady()
+
+  runtime
+        ├── plugin.onControllerConnectionChanged(connected)
+        └── plugin.cameraLookConsumer().consumeLook(yaw, pitch)   // per frame, if non-null</code></pre>
+  <p class="small muted">
+    <span data-i18n="compat.bridge.skeleton.layers">安装的 JSON 落在 <code>compat/mods/</code>：优先级在 <code>default/</code> 之上、<code>user/</code> 之下 —— 所以玩家仍然可以用 user 层覆盖你装的默认值，不会被桥接锁死。同名文件按内容整体覆盖，不会做字段级合并。</span>
+  </p>
+
+  <h2><span data-i18n="compat.bridge.layout.h2">多加载器工程布局</span></h2>
+  <p>
+    <span data-i18n="compat.bridge.layout.p">官方五个桥接都用同一套三模块布局：逻辑只写一遍放 <code>common/</code>，加载器差异（mixin 配置、mod 元数据、事件总线）各自留在 <code>forge/</code> 与 <code>fabric/</code>。这样加一条 MC 版本线时只需要动元数据，不用把逻辑抄第二遍。</span>
+  </p>
+  <pre><code>cfx-compat-mymod/
+├── common/
+│   ├── build.gradle               # compileOnly control-flex-api + the target mod
+│   └── src/main/
+│       ├── java/com/ifels/cfx/mymod/
+│       │   ├── CfxMyModPlugin.java        # implements IControlFlexPlugin
+│       │   └── MyModBridge.java           # the only place that imports the target mod
+│       └── resources/
+│           ├── META-INF/services/com.ifels.controlflex.api.IControlFlexPlugin
+│           └── assets/cfx_compat_mymod/compat/mymod.json
+├── forge/                          # mods.toml, mixin config, Forge events
+└── fabric/                         # fabric.mod.json, mixin config, Fabric events</code></pre>
+  <p class="small muted">
+    <span data-i18n="compat.bridge.layout.note">两个容易踩的点：一是 SPI 服务文件必须放在 <b>common</b> 的 <code>resources/META-INF/services</code>，只放加载器模块里 Fabric 会读不到；二是目标模组的依赖要么全用 <code>compileOnly</code>，要么把「目标缺失就静默退出」写成显式分支 —— 否则你的桥接会连带把整个游戏拖进崩溃。</span>
+  </p>
+
+  <h2 id="ship"><span data-i18n="compat.bridge.ship.h2">七、调试与发布</span></h2>
+  <ul>
+    <li><span data-i18n="compat.bridge.ship.1">日志前缀 <code>[ModCompat]</code>：配置加载、覆盖、跳过原因都在这里；桥接自己的日志另开一个 logger（<code>LogManager.getLogger("my-mod-id")</code>）。</span></li>
+    <li><span data-i18n="compat.bridge.ship.2">用 <code>requireApiVersion("0.8.8")</code> 守住最低 API 版本，并在 <code>mods.toml</code> / <code>fabric.mod.json</code> 里把 Control Flex 声明为 <code>mandatory</code> 依赖。</span></li>
+    <li><span data-i18n="compat.bridge.ship.3">API 只 <code>compileOnly</code>；打包成独立 JAR，不要 shade 进去，否则会跟本体重复。</span></li>
+    <li><span data-i18n="compat.bridge.ship.4">目标模组尽量也 <code>compileOnly</code>（CurseForge Maven / Modrinth Maven），并在 <code>mandatory</code> 之外留一条「目标模组缺失就静默退出」的路径 —— 载具桥接就是这么做成「可有可无」的。</span></li>
+    <li><span data-i18n="compat.bridge.ship.5">多加载器项目用 <code>common/</code> + <code>forge/</code> + <code>fabric/</code> 三模块：逻辑放 common，mixin 配置与 mod 元数据各写各的。</span></li>
+    <li><span data-i18n="compat.bridge.ship.6">发布时写清：解决什么、测试过哪些模组版本与加载器、有没有可选的 JSON 默认值、与哪些模组互斥。</span></li>
+  </ul>
+
+  <h2><span data-i18n="compat.bridge.err.h2">常见错误</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.bridge.err.col.sym">现象</span></th>
+          <th><span data-i18n="compat.bridge.err.col.cause">原因 / 处置</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="compat.bridge.err.1.sym">插件回调一个都没触发</span></td>
+          <td><span data-i18n="compat.bridge.err.1.cause">SPI 文件路径或类名写错；或 <code>getPluginId()</code> 返回了空串被去重丢掉。用 <code>[ModCompat]</code> 日志确认发现阶段。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.err.2.sym"><code>onControlFlexReady</code> 里拿到 null</span></td>
+          <td><span data-i18n="compat.bridge.err.2.cause">Control Flex 的 provider 是分阶段注册的，只有 ready 之后才全量就绪；更早的回调里先只做资源安装。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.err.3.sym">装了 JSON 但键位没出现</span></td>
+          <td><span data-i18n="compat.bridge.err.3.cause">文件必须落在 <code>compat/mods/</code> 且文件名与 <code>mod_id</code> 一致；<code>mod_versions[].version</code> 不匹配当前模组版本也会被跳过。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.err.4.sym">Fabric 上 mixin 不生效</span></td>
+          <td><span data-i18n="compat.bridge.err.4.cause">mixin 配置要分别登记在 <code>xxx.mixins.json</code> 并写进 <code>fabric.mod.json</code> 的 <code>mixins</code> 字段；NeoForge 1.20.5+ 之后走 <code>META-INF/neoforge.mods.toml</code>。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.err.5.sym">和别的 pad 模组打架</span></td>
+          <td><span data-i18n="compat.bridge.err.5.cause">同一个目标模组只允许一个手柄后端。Epic Fight 桥接与 Controlify 互斥，发布说明里必须写清。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="compat.bridge.next.h2">继续读</span></h2>
+  <div class="cards">
+    <a class="card" href="api.html">
+      <h3><span data-i18n="compat.bridge.card.setup.api.title">接口速查</span></h3>
+      <p><span data-i18n="compat.bridge.card.setup.api.desc">六个回调能调什么、每个类型的方法签名。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.setup.api.arrow">查接口 →</span></p>
+    </a>
+    <a class="card" href="implementations.html">
+      <h3><span data-i18n="compat.bridge.card.setup.impl.title">官方实现解剖</span></h3>
+      <p><span data-i18n="compat.bridge.card.setup.impl.desc">五个真实桥接的源码结构与手法。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.setup.impl.arrow">看实现 →</span></p>
+    </a>
+    <a class="card" href="ecosystem.html">
+      <h3><span data-i18n="compat.bridge.card.setup.eco.title">谁在用这套 API</span></h3>
+      <p><span data-i18n="compat.bridge.card.setup.eco.desc">现有 5 个桥接各自依赖了哪些接口。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.setup.eco.arrow">看清单 →</span></p>
+    </a>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

@@ -61,7 +61,13 @@
       <div class="nav-label">Mod Compatibility</div>
       <a href="/control-flex/en/modpack/compat/index.html">Overview</a>
       <a href="/control-flex/en/modpack/compat/json.html">Compat JSON</a>
-      <a href="/control-flex/en/modpack/compat/bridge.html">Bridge Mods</a>
+      <a href="/control-flex/en/modpack/compat/bridge/index.html">Bridge Mods</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/modpack/compat/bridge/setup.html">Setup</a>
+        <a href="/control-flex/en/modpack/compat/bridge/api.html">Interfaces</a>
+        <a href="/control-flex/en/modpack/compat/bridge/implementations.html">Implementations</a>
+        <a href="/control-flex/en/modpack/compat/bridge/ecosystem.html">Consumers</a>
+      </div>
       <a href="/control-flex/en/modpack/compat/manual.html">By hand</a>
     </div>
     <div class="nav-group">
@@ -186,7 +192,7 @@
   </p>
   <ul>
     <li><span><b>No Main inheritance</b>: unconfigured actions stay silent during an overlay, so a HUD cannot misfire combat keys. Layer switches are suppressed while an overlay is open.</span></li>
-    <li><span><b>The HUD must be declared</b>: add an Overlay rule for it in <a href="mod-adaptation.html">Mod Adaptation</a>, or use the Control Flex API's <code>IInteractiveContextRegistrar</code> from a bridge mod (see the <a href="../../modpack/compat/bridge.html#ref">API Reference</a>). Keys that must stay held across an overlay can be phase-locked until you unlock them.</span></li>
+    <li><span><b>The HUD must be declared</b>: add an Overlay rule for it in <a href="mod-adaptation.html">Mod Adaptation</a>, or use the Control Flex API's <code>IInteractiveContextRegistrar</code> from a bridge mod (see the <a href="../../modpack/compat/bridge/api.html">API Reference</a>). Keys that must stay held across an overlay can be phase-locked until you unlock them.</span></li>
   </ul>
 
   <h2><span>Editing Layers</span></h2>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+  <h1><span data-i18n="compat.bridge.h1">桥接模组</span></h1>
+  <p class="lead">
+    <span data-i18n="compat.bridge.lead">compat JSON 只能调整「已经存在的东西」—— 已注册的 KeyMapping、已派发的按键、已打开的界面。模组要是自己造了一套输入系统，就得在 Java 侧接进来，这就是<b>桥接模组</b>。这一页先回答「到底该不该写代码」，再给一张手法速查表；接入步骤、接口细节、五个官方实现的源码、生态清单各占一页。</span>
+  </p>
+
+  <p class="small muted">
+    <span data-i18n="compat.bridge.sn.label">本节：</span>
+    <b><span data-i18n="compat.bridge.sn.overview">概览</span></b> · <a href="setup.html"><span data-i18n="compat.bridge.sn.setup">接入与生命周期</span></a> · <a href="api.html"><span data-i18n="compat.bridge.sn.api">接口速查</span></a> · <a href="implementations.html"><span data-i18n="compat.bridge.sn.impl">官方实现</span></a> · <a href="ecosystem.html"><span data-i18n="compat.bridge.sn.eco">谁在用这套 API</span></a>
+  </p>
+
+  <div class="cards cards-2">
+    <a class="card" href="setup.html">
+      <h3><span data-i18n="compat.bridge.card.setup.title">接入与生命周期</span></h3>
+      <p><span data-i18n="compat.bridge.card.setup.desc">gradle 依赖、SPI 注册、六个回调的时序、资源装到哪一层，以及多加载器工程怎么摆。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.setup.arrow">从零搭一个 →</span></p>
+    </a>
+    <a class="card" href="api.html">
+      <h3><span data-i18n="compat.bridge.card.api.title">接口速查</span></h3>
+      <p><span data-i18n="compat.bridge.card.api.desc">13 个公开类型的方法签名、线程约定、动作 ID 写法与版本变更。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.api.arrow">查接口 →</span></p>
+    </a>
+    <a class="card" href="implementations.html">
+      <h3><span data-i18n="compat.bridge.card.impl.title">官方实现解剖</span></h3>
+      <p><span data-i18n="compat.bridge.card.impl.desc">Epic Fight / Create / Exposure / EMI / 载具五个桥接逐个拆，附五种手法的代码。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.impl.arrow">看实现 →</span></p>
+    </a>
+    <a class="card" href="ecosystem.html">
+      <h3><span data-i18n="compat.bridge.card.eco.title">谁在用这套 API</span></h3>
+      <p><span data-i18n="compat.bridge.card.eco.desc">哪些模组真的依赖 control-flex-api、哪些只是被适配，各自的版本要求。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.eco.arrow">看清单 →</span></p>
+    </a>
+  </div>
+
+  <h2 id="decide"><span data-i18n="compat.bridge.decide.h2">一、先判断：到底该不该写代码</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.bridge.decide.col.json">compat JSON 能做到</span></th>
+          <th><span data-i18n="compat.bridge.decide.col.java">只有桥接模组能做到</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="compat.bridge.decide.json.1">把已注册的键位归到 Main / Screen / Overlay</span></td>
+          <td><span data-i18n="compat.bridge.decide.java.1">让<b>没有注册 KeyMapping</b> 的按键出现在绑定列表里</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.decide.json.2">选择派发通道（含 GLFW 轮询镜像）</span></td>
+          <td><span data-i18n="compat.bridge.decide.java.2">接住直接调 <code>GLFW.glfwGetKey</code> 的模组（GLFW 层不可注入）</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.decide.json.3">按主手物品 + 玩家状态压制动作</span></td>
+          <td><span data-i18n="compat.bridge.decide.java.3">把模组的运行时状态<b>推给</b> Control Flex 当条件用</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.decide.json.4">相位保持、忽略键、提示文案、每页摇杆参数</span></td>
+          <td><span data-i18n="compat.bridge.decide.java.4">声明「某个叠层 / 相机现在被模组接管了」，切换摇杆与视角行为</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.decide.json.5">用虚拟键鼠兜底只认物理键的模组</span></td>
+          <td><span data-i18n="compat.bridge.decide.java.5">读摇杆轴做完全自定义的逻辑（载具转向、镜头），或把动作转发回模组自己的函数</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout tip">
+    <p>
+      <span data-i18n="compat.bridge.decide.rule">一句话判断：目标模组的按键能在「按键映射 → 该模组」里看到，就不需要桥接；看不到，才需要。三种手段是递进的 —— 自动发现 → compat JSON → 桥接，别跳过前两级直接写代码。</span>
+    </p>
+  </div>
+
+  <h2><span data-i18n="compat.bridge.quick.h2">五种手法速览</span></h2>
+  <p>
+    <span data-i18n="compat.bridge.quick.p">桥接不是一种写法，而是五类问题的五种答案。先认出目标模组属于哪一类，再跳到<a href="implementations.html">官方实现</a>看对应的完整代码。</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.bridge.quick.col.signal">目标模组的信号</span></th>
+          <th><span data-i18n="compat.bridge.quick.col.move">桥接要做什么</span></th>
+          <th><span data-i18n="compat.bridge.quick.col.example">代表实现</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="compat.bridge.quick.r1.signal">键位存在自己的配置里，从不注册 KeyMapping</span></td>
+          <td><span data-i18n="compat.bridge.quick.r1.move">注册一组伪 KeyMapping 让自动发现看见，按下时转发回模组自己的函数</span></td>
+          <td><span data-i18n="compat.bridge.quick.r1.example">cfx-compat-emi</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.quick.r2.signal">直接读 <code>InputConstants</code> / <code>ControlsUtil</code> 这类键态查询</span></td>
+          <td><span data-i18n="compat.bridge.quick.r2.move">在它的判定方法上注入一次，把模拟移动的脉冲并进结果</span></td>
+          <td><span data-i18n="compat.bridge.quick.r2.example">cfx-compat-create</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.quick.r3.signal">直接调 <code>GLFW.glfwGetKey</code>，连 <code>InputConstants</code> 都不过</span></td>
+          <td><span data-i18n="compat.bridge.quick.r3.move">mixin 落到它自己的读取入口上，回答「现在按着没有」</span></td>
+          <td><span data-i18n="compat.bridge.quick.r3.example">cfx-compat-vehicles</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.quick.r4.signal">有运行时状态会改变按键语义（战斗模式、载具模式）</span></td>
+          <td><span data-i18n="compat.bridge.quick.r4.move">把状态推成 <code>modId:state</code>，让 compat JSON 当条件用</span></td>
+          <td><span data-i18n="compat.bridge.quick.r4.example">cfx-compat-epicfight</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.bridge.quick.r5.signal">自绘叠层抢走镜头与光标，但不是 Screen</span></td>
+          <td><span data-i18n="compat.bridge.quick.r5.move">打开 / 关闭时成对通报前台与后台</span></td>
+          <td><span data-i18n="compat.bridge.quick.r5.example">cfx-compat-exposure</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="compat.bridge.quick.note">还有一种情况是模组接管了渲染相机（TPR 战斗视角、锁定目标）：这时要额外实现 <code>ICameraLookConsumer</code>，把视角增量交给接管方，否则手柄转不动画面。Epic Fight 桥接同时用了第 4 与这一类。</span>
+  </p>
+
+  <h2><span data-i18n="compat.bridge.next.h2">继续读</span></h2>
+  <div class="cards">
+    <a class="card" href="../json.html">
+      <h3><span data-i18n="compat.bridge.card.ov.json.title">兼容配置字段</span></h3>
+      <p><span data-i18n="compat.bridge.card.ov.json.desc">多数桥接自己也会装一份 JSON —— 先看看那份 JSON 能写什么。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.ov.json.arrow">看字段 →</span></p>
+    </a>
+    <a class="card" href="../manual.html">
+      <h3><span data-i18n="compat.bridge.card.ov.manual.title">手动修改配置</span></h3>
+      <p><span data-i18n="compat.bridge.card.ov.manual.desc">改哪一层、怎么回退、怎么随整合包分发。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.ov.manual.arrow">动手改 →</span></p>
+    </a>
+    <a class="card" href="https://github.com/ControlFlexMC/control-flex-api">
+      <h3><span data-i18n="compat.bridge.card.ov.repo.title">control-flex-api ↗</span></h3>
+      <p><span data-i18n="compat.bridge.card.ov.repo.desc">源码、接口文档与示例工程。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.bridge.card.ov.repo.arrow">看源码 →</span></p>
+    </a>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

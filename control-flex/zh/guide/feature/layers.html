@@ -61,7 +61,13 @@
       <div class="nav-label">模组兼容</div>
       <a href="/control-flex/zh/modpack/compat/index.html">概览</a>
       <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
-      <a href="/control-flex/zh/modpack/compat/bridge.html">桥接模组</a>
+      <a href="/control-flex/zh/modpack/compat/bridge/index.html">桥接模组</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/bridge/setup.html">接入与生命周期</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/api.html">接口速查</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/implementations.html">官方实现</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/ecosystem.html">谁在用 API</a>
+      </div>
       <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
     </div>
     <div class="nav-group">
@@ -186,7 +192,7 @@
   </p>
   <ul>
     <li><span><b>不继承 Main</b>：没配置的动作在 Overlay 相位保持静默，避免 HUD 打开时误触发战斗键位。HUD 打开期间层切换也会被抑制。</span></li>
-    <li><span><b>需要把 HUD 声明为交互式上下文</b>：游戏内在<a href="mod-adaptation.html">模组适配</a>里为它添加 Overlay 规则；模组作者可以用 Control Flex API 的 <code>IInteractiveContextRegistrar</code> 主动声明（见<a href="../../modpack/compat/bridge.html#ref">API 参考</a>）。需要跨界面保持按住的按键可用相位锁定延续到解锁。</span></li>
+    <li><span><b>需要把 HUD 声明为交互式上下文</b>：游戏内在<a href="mod-adaptation.html">模组适配</a>里为它添加 Overlay 规则；模组作者可以用 Control Flex API 的 <code>IInteractiveContextRegistrar</code> 主动声明（见<a href="../../modpack/compat/bridge/api.html">API 参考</a>）。需要跨界面保持按住的按键可用相位锁定延续到解锁。</span></li>
   </ul>
 
   <h2><span>层归属在哪里改</span></h2>

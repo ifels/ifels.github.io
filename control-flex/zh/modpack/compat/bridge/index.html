@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桥接模组 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/modpack/compat/bridge/index.html", "zh": "/control-flex/zh/modpack/compat/bridge/index.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/modpack/compat/bridge/index.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/modpack/compat/bridge/index.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/modpack/compat/bridge/index.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/modpack/compat/bridge/index.html">
+<meta property="og:title" content="桥接模组 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/modpack/compat/bridge/index.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">模组兼容</div>
+      <a href="/control-flex/zh/modpack/compat/index.html">概览</a>
+      <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+      <a href="/control-flex/zh/modpack/compat/bridge/index.html">桥接模组</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/bridge/setup.html">接入与生命周期</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/api.html">接口速查</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/implementations.html">官方实现</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/ecosystem.html">谁在用 API</a>
+      </div>
+      <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包配置</div>
+      <a href="/control-flex/zh/modpack/index.html">配置与模板</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+  <h1><span>桥接模组</span></h1>
+  <p class="lead">
+    <span>compat JSON 只能调整「已经存在的东西」—— 已注册的 KeyMapping、已派发的按键、已打开的界面。模组要是自己造了一套输入系统，就得在 Java 侧接进来，这就是<b>桥接模组</b>。这一页先回答「到底该不该写代码」，再给一张手法速查表；接入步骤、接口细节、五个官方实现的源码、生态清单各占一页。</span>
+  </p>
+
+  <p class="small muted">
+    <span>本节：</span>
+    <b><span>概览</span></b> · <a href="setup.html"><span>接入与生命周期</span></a> · <a href="api.html"><span>接口速查</span></a> · <a href="implementations.html"><span>官方实现</span></a> · <a href="ecosystem.html"><span>谁在用这套 API</span></a>
+  </p>
+
+  <div class="cards cards-2">
+    <a class="card" href="setup.html">
+      <h3><span>接入与生命周期</span></h3>
+      <p><span>gradle 依赖、SPI 注册、六个回调的时序、资源装到哪一层，以及多加载器工程怎么摆。</span></p>
+      <p class="card-arrow"><span>从零搭一个 →</span></p>
+    </a>
+    <a class="card" href="api.html">
+      <h3><span>接口速查</span></h3>
+      <p><span>13 个公开类型的方法签名、线程约定、动作 ID 写法与版本变更。</span></p>
+      <p class="card-arrow"><span>查接口 →</span></p>
+    </a>
+    <a class="card" href="implementations.html">
+      <h3><span>官方实现解剖</span></h3>
+      <p><span>Epic Fight / Create / Exposure / EMI / 载具五个桥接逐个拆，附五种手法的代码。</span></p>
+      <p class="card-arrow"><span>看实现 →</span></p>
+    </a>
+    <a class="card" href="ecosystem.html">
+      <h3><span>谁在用这套 API</span></h3>
+      <p><span>哪些模组真的依赖 control-flex-api、哪些只是被适配，各自的版本要求。</span></p>
+      <p class="card-arrow"><span>看清单 →</span></p>
+    </a>
+  </div>
+
+  <h2 id="decide"><span>先判断：到底该不该写代码</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>compat JSON 能做到</span></th>
+          <th><span>只有桥接模组能做到</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>把已注册的键位归到 Main / Screen / Overlay</span></td>
+          <td><span>让<b>没有注册 KeyMapping</b> 的按键出现在绑定列表里</span></td>
+        </tr>
+        <tr>
+          <td><span>选择派发通道（含 GLFW 轮询镜像）</span></td>
+          <td><span>接住直接调 <code>GLFW.glfwGetKey</code> 的模组（GLFW 层不可注入）</span></td>
+        </tr>
+        <tr>
+          <td><span>按主手物品 + 玩家状态压制动作</span></td>
+          <td><span>把模组的运行时状态<b>推给</b> Control Flex 当条件用</span></td>
+        </tr>
+        <tr>
+          <td><span>相位保持、忽略键、提示文案、每页摇杆参数</span></td>
+          <td><span>声明「某个叠层 / 相机现在被模组接管了」，切换摇杆与视角行为</span></td>
+        </tr>
+        <tr>
+          <td><span>用虚拟键鼠兜底只认物理键的模组</span></td>
+          <td><span>读摇杆轴做完全自定义的逻辑（载具转向、镜头），或把动作转发回模组自己的函数</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout tip">
+    <p>
+      <span>一句话判断：目标模组的按键能在「按键映射 → 该模组」里看到，就不需要桥接；看不到，才需要。三种手段是递进的 —— 自动发现 → compat JSON → 桥接，别跳过前两级直接写代码。</span>
+    </p>
+  </div>
+
+  <h2><span>五种手法速览</span></h2>
+  <p>
+    <span>桥接不是一种写法，而是五类问题的五种答案。先认出目标模组属于哪一类，再跳到<a href="implementations.html">官方实现</a>看对应的完整代码。</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>目标模组的信号</span></th>
+          <th><span>桥接要做什么</span></th>
+          <th><span>代表实现</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>键位存在自己的配置里，从不注册 KeyMapping</span></td>
+          <td><span>注册一组伪 KeyMapping 让自动发现看见，按下时转发回模组自己的函数</span></td>
+          <td><span>cfx-compat-emi</span></td>
+        </tr>
+        <tr>
+          <td><span>直接读 <code>InputConstants</code> / <code>ControlsUtil</code> 这类键态查询</span></td>
+          <td><span>在它的判定方法上注入一次，把模拟移动的脉冲并进结果</span></td>
+          <td><span>cfx-compat-create</span></td>
+        </tr>
+        <tr>
+          <td><span>直接调 <code>GLFW.glfwGetKey</code>，连 <code>InputConstants</code> 都不过</span></td>
+          <td><span>mixin 落到它自己的读取入口上，回答「现在按着没有」</span></td>
+          <td><span>cfx-compat-vehicles</span></td>
+        </tr>
+        <tr>
+          <td><span>有运行时状态会改变按键语义（战斗模式、载具模式）</span></td>
+          <td><span>把状态推成 <code>modId:state</code>，让 compat JSON 当条件用</span></td>
+          <td><span>cfx-compat-epicfight</span></td>
+        </tr>
+        <tr>
+          <td><span>自绘叠层抢走镜头与光标，但不是 Screen</span></td>
+          <td><span>打开 / 关闭时成对通报前台与后台</span></td>
+          <td><span>cfx-compat-exposure</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>还有一种情况是模组接管了渲染相机（TPR 战斗视角、锁定目标）：这时要额外实现 <code>ICameraLookConsumer</code>，把视角增量交给接管方，否则手柄转不动画面。Epic Fight 桥接同时用了第 4 与这一类。</span>
+  </p>
+
+  <h2><span>继续读</span></h2>
+  <div class="cards">
+    <a class="card" href="../json.html">
+      <h3><span>兼容配置字段</span></h3>
+      <p><span>多数桥接自己也会装一份 JSON —— 先看看那份 JSON 能写什么。</span></p>
+      <p class="card-arrow"><span>看字段 →</span></p>
+    </a>
+    <a class="card" href="../manual.html">
+      <h3><span>手动修改配置</span></h3>
+      <p><span>改哪一层、怎么回退、怎么随整合包分发。</span></p>
+      <p class="card-arrow"><span>动手改 →</span></p>
+    </a>
+    <a class="card" href="https://github.com/ControlFlexMC/control-flex-api">
+      <h3><span>control-flex-api ↗</span></h3>
+      <p><span>源码、接口文档与示例工程。</span></p>
+      <p class="card-arrow"><span>看源码 →</span></p>
+    </a>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../../../assets/app.js" defer></script>
+</body>
+</html>

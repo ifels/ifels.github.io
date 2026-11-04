@@ -448,6 +448,15 @@ code {
   white-space: nowrap;
 }
 
+/* Long identifiers (Maven coordinates, class names) must wrap inside running
+   text, otherwise a single token widens the whole page on narrow screens. */
+.content p code,
+.content li code,
+.content td code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 pre {
   position: relative;
   background: var(--code-bg);
@@ -687,6 +696,11 @@ td:first-child { font-weight: 560; }
   grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
   gap: 16px;
   margin: 20px 0;
+}
+
+/* four entry cards would otherwise wrap 3 + 1 at desktop width */
+.cards.cards-2 {
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 }
 
 .card {
