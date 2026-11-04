@@ -269,15 +269,22 @@ body {
 .sidebar::-webkit-scrollbar { width: 8px; }
 .sidebar::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 8px; }
 
-.nav-group { margin-bottom: 20px; }
+.nav-group { margin: 0 0 4px; }
+
+/* hairline between groups so a label never floats on top of the previous list */
+.nav-group + .nav-group {
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+}
 
 .nav-label {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: .1em;
+  letter-spacing: .05em;
   text-transform: uppercase;
-  color: var(--muted);
-  padding: 0 11px 7px;
+  color: var(--ink);
+  padding: 0 11px 8px;
 }
 
 .sidebar a {
