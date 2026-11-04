@@ -794,8 +794,7 @@
   "nav.platforms-and-versions": "平台与版本",
   "nav.platform-support": "平台支持",
   "nav.minecraft-versions": "MC 版本支持",
-  "nav.modpacks-and-compat": "整合包与兼容",
-  "nav.configuration": "配置文件",
+  "nav.configuration": "配置与模板",
   "nav.mod-compatibility": "模组兼容",
   "nav.links": "链接",
   "nav.community-configs": "社区兼容配置库",
@@ -1351,5 +1350,7 @@
   "dev.examples.__title": "已迁移 · 官方实现",
   "compat.bridge.official.target.create": "Create 列车控制台",
   "compat.bridge.official.target.exposure": "Exposure 取景器",
-  "compat.json.cover.cell.old": "<code>emi</code>（仅 Fabric 与 1.19.2 Forge）· <code>mts</code>"
+  "compat.json.cover.cell.old": "<code>emi</code>（仅 Fabric 与 1.19.2 Forge）· <code>mts</code>",
+  "nav.compat-overview": "概览",
+  "nav.modpack-config": "整合包配置"
 }

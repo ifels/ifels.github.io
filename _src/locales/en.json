@@ -795,8 +795,7 @@
   "nav.platforms-and-versions": "Platforms &amp; Versions",
   "nav.platform-support": "Platform Support",
   "nav.minecraft-versions": "Minecraft Versions",
-  "nav.modpacks-and-compat": "Modpacks &amp; Compat",
-  "nav.configuration": "Configuration",
+  "nav.configuration": "Config &amp; Templates",
   "nav.mod-compatibility": "Mod Compatibility",
   "nav.links": "Links",
   "nav.community-configs": "Community Configs",
@@ -1352,5 +1351,7 @@
   "dev.examples.__title": "Moved · Official implementations",
   "compat.bridge.official.target.create": "Create train console",
   "compat.bridge.official.target.exposure": "Exposure viewfinder",
-  "compat.json.cover.cell.old": "<code>emi</code> (Fabric and 1.19.2 Forge only) · <code>mts</code>"
+  "compat.json.cover.cell.old": "<code>emi</code> (Fabric and 1.19.2 Forge only) · <code>mts</code>",
+  "nav.compat-overview": "Overview",
+  "nav.modpack-config": "Modpack Config"
 }

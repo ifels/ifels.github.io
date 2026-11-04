@@ -92,15 +92,11 @@
     ]
   },
   {
-    "label": "nav.modpacks-and-compat",
+    "label": "nav.mod-compatibility",
     "items": [
       {
-        "href": "modpack/index.html",
-        "key": "nav.configuration"
-      },
-      {
         "href": "modpack/compat/index.html",
-        "key": "nav.mod-compatibility"
+        "key": "nav.compat-overview"
       },
       {
         "type": "sub",
@@ -118,6 +114,15 @@
             "key": "nav.compat-manual"
           }
         ]
+      }
+    ]
+  },
+  {
+    "label": "nav.modpack-config",
+    "items": [
+      {
+        "href": "modpack/index.html",
+        "key": "nav.configuration"
       }
     ]
   },
