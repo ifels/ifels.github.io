@@ -123,12 +123,51 @@
 
   <h2><span>你需要准备</span></h2>
   <ul>
-    <li><span>两个以上的 Minecraft 账号。</span></li>
+    <li><span>两个以上的 Minecraft 账号 —— <b>离线账号也行</b>，同一启动器里建两个不同的离线用户名就够了，不用再买一个正版账号。</span></li>
     <li><span>两把手柄，<b>或者</b>一把手柄 + 一套键鼠。</span></li>
-    <li><span>一个能同时开两个实例的启动器。</span></li>
+    <li><span>一个能同时开两个实例的启动器（<a href="#launchers">见下</a>）。</span></li>
     <li><span>每一个“用手柄”的实例都安装 Control Flex。</span></li>
     <li><span>可选：<a href="https://modrinth.com/mod/splitscreen" target="_blank" rel="noopener">Splitscreen Support</a>（只做窗口平铺，不处理输入）。</span></li>
   </ul>
+
+  <h2 id="launchers"><span>支持多实例的启动器</span></h2>
+  <p>
+    <span>关键是实例要真正隔离 —— 每个实例有自己的 <code>mods/</code>、<code>config/</code> 和存档。下面这些启动器天生就是这种结构，两个客户端并排跑不会抢同一份文件。</span>
+  </p>
+  <div class="table-wrap">
+    <table class="tbl-names">
+      <thead>
+        <tr>
+          <th><span>启动器</span></th>
+          <th><span>说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Prism Launcher</td>
+          <td><span><b>Windows · macOS · Linux</b> —— 开源的 MultiMC 分支，实例天然隔离：每个实例有自己的 <code>mods/</code>、<code>config/</code>、存档与 Java 版本；离线账户直接在账户页添加。</span></td>
+        </tr>
+        <tr>
+          <td>ATLauncher</td>
+          <td><span><b>Windows · macOS · Linux</b> —— 有独立的实例列表，每个实例一个目录，可从 CurseForge / Modrinth 导入整合包。</span></td>
+        </tr>
+        <tr>
+          <td>HMCL</td>
+          <td><span><b>Windows · macOS · Linux</b> —— 「版本隔离」把每个版本的游戏目录分开，支持离线登录，界面有中文。</span></td>
+        </tr>
+        <tr>
+          <td>Modrinth App</td>
+          <td><span><b>Windows · macOS</b> —— 实例彼此隔离；Linux 支持仍属实验阶段。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span>离线账号有两点要注意：<b>两个实例要用不同的用户名</b> —— 这个名字就是游戏内的玩家名，重名会在局域网里撞车；<b>对局域网开放不验证正版</b>，离线客户端可以直接加入，只有专门搭的服务器才需要在 <code>server.properties</code> 里把 <code>online-mode</code> 设为 <code>false</code>。</span>
+    </p>
+  </div>
 
   <h2><span>步骤</span></h2>
   <ol>

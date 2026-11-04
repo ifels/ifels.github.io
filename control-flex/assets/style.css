@@ -548,6 +548,11 @@ tbody tr:hover { background: var(--hover-row); }
 
 td:first-child { font-weight: 560; }
 
+/* Short first-column labels (launcher names, option names): keep them on one
+   line and let the description column take the remaining width. */
+.tbl-names td:first-child,
+.tbl-names th:first-child { white-space: nowrap; width: 1%; }
+
 /* ============================================================
    kbd
    ============================================================ */

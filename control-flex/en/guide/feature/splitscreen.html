@@ -123,12 +123,51 @@
 
   <h2><span>What You Need</span></h2>
   <ul>
-    <li><span>Two or more Minecraft accounts.</span></li>
+    <li><span>Two or more Minecraft accounts — <b>offline accounts are fine</b>. Two different offline usernames in the same launcher are enough; you do not need a second Microsoft account.</span></li>
     <li><span>Two gamepads, <b>or</b> one gamepad plus keyboard and mouse.</span></li>
-    <li><span>A launcher that can run two instances at once.</span></li>
+    <li><span>A launcher that can run two instances at once (<a href="#launchers">see below</a>).</span></li>
     <li><span>Control Flex installed in <b>each</b> instance that uses a gamepad.</span></li>
     <li><span>Optional: <a href="https://modrinth.com/mod/splitscreen" target="_blank" rel="noopener">Splitscreen Support</a> (window tiling only, no input handling).</span></li>
   </ul>
+
+  <h2 id="launchers"><span>Launchers That Can Do This</span></h2>
+  <p>
+    <span>What matters is real instance isolation — one folder of <code>mods/</code>, <code>config/</code> and saves per instance. These launchers give you that out of the box, so two clients can run side by side without fighting over the same files.</span>
+  </p>
+  <div class="table-wrap">
+    <table class="tbl-names">
+      <thead>
+        <tr>
+          <th><span>Launcher</span></th>
+          <th><span>Notes</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Prism Launcher</td>
+          <td><span><b>Windows · macOS · Linux</b> — open-source MultiMC fork with true instance isolation: each instance has its own <code>mods/</code>, <code>config/</code>, saves and Java version. Offline accounts are added right on the Accounts page.</span></td>
+        </tr>
+        <tr>
+          <td>ATLauncher</td>
+          <td><span><b>Windows · macOS · Linux</b> — keeps an explicit instance list with one folder each, and can import CurseForge / Modrinth packs.</span></td>
+        </tr>
+        <tr>
+          <td>HMCL</td>
+          <td><span><b>Windows · macOS · Linux</b> — its version isolation keeps one game directory per version, offline login is supported, and the interface is available in Chinese.</span></td>
+        </tr>
+        <tr>
+          <td>Modrinth App</td>
+          <td><span><b>Windows · macOS</b> — instances are kept apart from each other; Linux support is still experimental.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span>Two things about offline accounts: <b>give each instance a different username</b> — that name is the in-game player name, and duplicates collide on the LAN — and <b>Open to LAN does not verify accounts</b>, so offline clients join directly. Only a dedicated server needs <code>online-mode=false</code> in <code>server.properties</code>.</span>
+    </p>
+  </div>
 
   <h2><span>Steps</span></h2>
   <ol>
