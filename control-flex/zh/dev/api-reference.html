@@ -60,7 +60,12 @@
     <div class="nav-group">
       <div class="nav-label">整合包与兼容</div>
       <a href="/control-flex/zh/modpack/index.html">配置文件</a>
-      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+      <a href="/control-flex/zh/modpack/compat/index.html">模组兼容</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+        <a href="/control-flex/zh/modpack/compat/bridge.html">桥接模组</a>
+        <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+      </div>
     </div>
     <div class="nav-group">
       <div class="nav-label">开发者</div>
@@ -111,7 +116,7 @@
 
   <h1><span>API 参考</span></h1>
   <p class="lead">
-    <span>包路径 <code>com.ifels.controlflex.api</code> · 版本 0.8.9 · 除特别标注外，所有方法必须在客户端主线程调用。</span>
+    <span>包路径 <code>com.ifels.controlflex.api</code> · 版本 0.9.0 · 除特别标注外，所有方法必须在客户端主线程调用。</span>
   </p>
 
   <h2><span>类型清单</span></h2>
@@ -133,12 +138,17 @@
         <tr><td><code>IControllerState</code></td><td><span>控制器硬件状态（实时视图）</span></td></tr>
         <tr><td><code>IControllerCapabilities</code></td><td><span>控制器硬件能力</span></td></tr>
         <tr><td><code>IPlayerStateRegistry</code></td><td><span>第三方模组状态推送</span></td></tr>
-        <tr><td><code>IInputInjector</code></td><td><span>虚拟手柄输入注入（测试工具）</span></td></tr>
         <tr><td><code>IInteractiveContextRegistrar</code></td><td><span>交互式 Overlay 前后台声明</span></td></tr>
         <tr><td><code>InputMode</code></td><td><span>输入模式（KEYBOARD_MOUSE / MIXED）</span></td></tr>
         <tr><td><code>ControllerType</code></td><td><span>控制器类型枚举</span></td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="callout warn">
+    <p>
+      <span><b>0.9.0 移除了输入注入</b>：<code>IInputInjector</code> 与 <code>getInputInjector()</code> 已删除；需要合成手柄输入的测试工具请留在 0.8.x。</span>
+    </p>
   </div>
 
   <h2>ControlFlexApi</h2>
@@ -155,11 +165,10 @@ boolean isControllerConnected()     // a controller is connected
 IActionStateProvider getActionStateProvider()
 IInputProvider getInputProvider()
 IPlayerStateRegistry getPlayerStateRegistry()
-IInputInjector getInputInjector()
 IInteractiveContextRegistrar getInteractiveContextRegistrar()
 
 // Utilities
-String getApiVersion()              // e.g. "0.8.9"
+String getApiVersion()              // e.g. "0.9.0"
 void reloadGuides()                 // reload guide configs</code></pre>
 
   <h2>ButtonName</h2>
@@ -176,7 +185,7 @@ ButtonName.BACK, ButtonName.START, ButtonName.GUIDE
 ButtonName.PADDLE_1 ~ ButtonName.PADDLE_4
 ButtonName.TOUCHPAD
 
-// Stick directions (for isButtonPressed / IInputInjector.pressButton)
+// Stick directions (for isButtonPressed)
 ButtonName.LEFT_STICK_UP / DOWN / LEFT / RIGHT
 ButtonName.RIGHT_STICK_UP / DOWN / LEFT / RIGHT
 
@@ -319,17 +328,6 @@ void clearState(String stateKey)                // remove the registration</code
     <span><b>stateKey 格式</b>：<code>"modId:stateName"</code>，例如 <code>"epicfight:battle_mode"</code>。</span>
   </p>
 
-  <h2>IInputInjector</h2>
-  <p>
-    <span>虚拟手柄输入注入，供测试工具与桥接模组使用。注入状态是<b>粘性</b>的（按钮按下后保持，直到释放或清除），并与真实手柄输入一样走正常的按键绑定流水线。</span>
-  </p>
-  <pre><code>void pressButton(String buttonName, boolean pressed)  // ButtonName constants; stick directions map to axes
-void setAxis(String axisName, float value)            // -1.0..1.0; 0 clears the override
-void clearAll()                                       // release all buttons, zero all axes</code></pre>
-  <p class="small muted">
-    <span><b>线程安全</b>：实现必须可跨线程调用；状态在客户端 tick 上原子应用。</span>
-  </p>
-
   <h2>IInteractiveContextRegistrar</h2>
   <p>
     <span>声明交互式 Overlay：<b>前台</b>表示交互式 Overlay 打开，<b>后台</b>表示其关闭。Control Flex 据此将该类名记为当前活跃 Overlay，并在 OVERLAY 相位期间切换摇杆行为；场景退出时也会自动清除作为兜底。</span>
@@ -362,7 +360,6 @@ void clearAll()                                   // fallback for mod unload / l
         <tr><td><code>IControllerCapabilities</code></td><td><span>客户端主线程</span></td></tr>
         <tr><td><code>IPlayerStateRegistry.setState()</code></td><td><span><b>任意线程</b></span></td></tr>
         <tr><td><code>IPlayerStateRegistry.getState()</code></td><td><span>客户端主线程</span></td></tr>
-        <tr><td><code>IInputInjector</code></td><td><span><b>任意线程</b>（在客户端 tick 上原子应用）</span></td></tr>
         <tr><td><code>IInteractiveContextRegistrar</code></td><td><span>客户端主线程</span></td></tr>
       </tbody>
     </table>

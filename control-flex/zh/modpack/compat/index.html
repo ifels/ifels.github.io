@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模组兼容 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/modpack/compat/index.html", "zh": "/control-flex/zh/modpack/compat/index.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/modpack/compat/index.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/modpack/compat/index.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/modpack/compat/index.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/modpack/compat/index.html">
+<meta property="og:title" content="模组兼容 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/modpack/compat/index.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包与兼容</div>
+      <a href="/control-flex/zh/modpack/index.html">配置文件</a>
+      <a href="/control-flex/zh/modpack/compat/index.html">模组兼容</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+        <a href="/control-flex/zh/modpack/compat/bridge.html">桥接模组</a>
+        <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">开发者</div>
+      <a href="/control-flex/zh/dev/index.html">API 快速开始</a>
+      <a href="/control-flex/zh/dev/api-reference.html">API 参考</a>
+      <a href="/control-flex/zh/dev/examples.html">插件与示例</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>模组兼容</span></h1>
+  <p class="lead">
+    <span>Control Flex 是为中大型整合包设计的：默认零配置，只有当某个模组的输入不按常理出牌时才逐级加码。这一页讲清五种手段各自能做什么、什么时候该升级到下一层，以及产物最终落在哪。</span>
+  </p>
+
+  <h2 id="ladder"><span>一、适配阶梯：五种手段的关系</span></h2>
+  <p>
+    <span>从零成本到写代码，这是一个「能用就不往上走」的阶梯：越往下越精确，维护成本也越高。</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>手段</span></th>
+          <th><span>需要什么</span></th>
+          <th><span>能覆盖什么</span></th>
+          <th><span>产物在哪</span></th>
+          <th><span>成本</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b><span>自动发现</span></b></td>
+          <td><span>什么都不用</span></td>
+          <td><span>用 KeyMapping 正常注册键位的模组</span></td>
+          <td><span>无（运行时注册）</span></td>
+          <td><span>零</span></td>
+        </tr>
+        <tr>
+          <td><b><span>游戏内模组适配</span></b></td>
+          <td><span>一个手柄，几分钟</span></td>
+          <td><span>按键分层、界面 / 叠层的摇杆与光标行为</span></td>
+          <td><code>compat/user/&lt;mod_id&gt;.json</code></td>
+          <td><span>低</span></td>
+        </tr>
+        <tr>
+          <td><b><span>兼容配置</span></b></td>
+          <td><span>联网，或一个现成文件</span></td>
+          <td><span>上面两层的可分享版本，外加派发通道、按键抑制、提示文案</span></td>
+          <td><code>compat/{default,mods,user}/</code></td>
+          <td><span>低</span></td>
+        </tr>
+        <tr>
+          <td><b><span>手写 compat JSON</span></b></td>
+          <td><span>文本编辑器 + 字段表</span></td>
+          <td><span>精细规则：每键派发通道、按物品抑制、相位保持、每页摇杆参数</span></td>
+          <td><code>compat/user/&lt;mod_id&gt;.json</code></td>
+          <td><span>中</span></td>
+        </tr>
+        <tr>
+          <td><b><span>桥接模组</span></b></td>
+          <td><span>Java + Gradle</span></td>
+          <td><span>绕开 KeyMapping 的自绘输入、运行时状态、自绘 UI</span></td>
+          <td><span>独立 JAR + <code>compat/mods/*.json</code></span></td>
+          <td><span>高</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>大多数整合包停在 1–3 层就够了。真正需要桥接的模组不多，通常是「自带一套输入系统」的那几个：EMI、Create 的列车控制台、沉浸车辆、Epic Fight。</span>
+  </p>
+
+  <h2 id="escalate"><span>二、什么时候该升级到下一层</span></h2>
+  <ol>
+    <li><span>先看「按键映射」里有没有它 —— 有 key，说明是标准的 KeyMapping 模组，第 2 / 3 层就能解决。</span></li>
+    <li><span>有 key，但界面里没反应 —— 多半是「在哪里生效」或「怎么派发」不对：先用第 2 层加界面 / 叠层规则，再用第 3 层换派发通道。</span></li>
+    <li><span>按了没反应，或按一下触发两次 —— 派发通道选错了（eventBus / keyMapping 重复触发），用第 4 层精确指定。</span></li>
+    <li><span>连 key 都不出现 —— 模组把键位存在自己的配置里、直接读原始键态、或直接读手柄，只有第 5 层桥接能接。</span></li>
+    <li><span>模组有「战斗模式」这类运行时状态 —— 桥接推状态（<code>IPlayerStateRegistry</code>），JSON 用 <code>itemSuppressKeys</code> 的 <code>playerState</code> 条件去消费它。</span></li>
+  </ol>
+
+  <h2 id="model"><span>三、五种手段共用一套数据模型</span></h2>
+  <p>
+    <span>不管用哪一层，落到磁盘上都是同一份 compat JSON，核心只有三个按键分区，加上一个「派发」概念：</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>分区</span></th>
+          <th><span>什么时候生效</span></th>
+          <th><span>典型用法</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>inGameKeys</code></td>
+          <td><span>没有界面、也没有叠层时</span></td>
+          <td><span>战斗键、技能键、变身键</span></td>
+        </tr>
+        <tr>
+          <td><code>screenKeys</code></td>
+          <td><span>有界面（Screen / GUI）打开时</span></td>
+          <td><span>背包、合成、查看配方</span></td>
+        </tr>
+        <tr>
+          <td><code>overlayKeys</code></td>
+          <td><span>有叠层打开时（画在 HUD 之上的轮盘、法阵等）</span></td>
+          <td><span>法术轮盘、径向菜单、拍照 HUD</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <span>按键最终怎么送进模组，由派发通道决定：<code>keyMapping</code>、<code>eventBus</code>、<code>glfwPoll</code>、<code>screenInput</code>、<code>virtualKbm</code>。同一份 JSON 可以给不同按键配不同通道，这也是「同一个键按一下触发两次」这类问题的解法。</span>
+  </p>
+
+  <h2 id="layers"><span>四、产物落在哪：三层目录</span></h2>
+  <p>
+    <span>compat 配置按三层加载，优先级 <code>user</code> &gt; <code>mods</code> &gt; <code>default</code>，同一个 <code>mod_id</code> 整份覆盖、不做字段合并。改哪一层、会不会被后续操作覆盖，在<a href="manual.html">手动修改配置</a>里讲清楚。</span>
+  </p>
+
+  <h2 id="read"><span>五、按你的身份继续读</span></h2>
+  <div class="cards">
+    <a class="card" href="json.html">
+      <h3><span>兼容配置（compat JSON）</span></h3>
+      <p><span>文件放哪、字段全解、怎么贡献一份配置、怎么自建一个配置源。</span></p>
+      <p class="card-arrow"><span>读字段说明 →</span></p>
+    </a>
+    <a class="card" href="bridge.html">
+      <h3><span>桥接模组</span></h3>
+      <p><span>JSON 兜不住的模组怎么写 Java 侧适配，官方兼容实现与源码在哪。</span></p>
+      <p class="card-arrow"><span>看桥接方案 →</span></p>
+    </a>
+    <a class="card" href="manual.html">
+      <h3><span>手动修改配置</span></h3>
+      <p><span>直接改文件、写时复制、常见坑，以及改坏了怎么退回去。</span></p>
+      <p class="card-arrow"><span>动手改配置 →</span></p>
+    </a>
+    <a class="card" href="../../guide/feature/mod-adaptation.html">
+      <h3><span>游戏内模组适配</span></h3>
+      <p><span>适配中心的界面操作：按键分层、界面 / 叠层规则、社区配置应用。</span></p>
+      <p class="card-arrow"><span>看界面操作 →</span></p>
+    </a>
+  </div>
+
+  <h2 id="troubleshoot"><span>还是不正常？按这个顺序查</span></h2>
+  <ol>
+    <li><span>看「按键映射」—— 这个动作绑到正确的层了吗（Main / Screen / Overlay）？</span></li>
+    <li><span>打开该模组的模组适配 —— 加一条界面 / 叠层规则，或应用一份社区配置。</span></li>
+    <li><span>如果模组只监听物理键，用虚拟键鼠绑定。</span></li>
+    <li><span>日志里搜 <code>[ModCompat]</code>，看这份配置到底加载了没有、被什么门槛拦住了。</span></li>
+  </ol>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

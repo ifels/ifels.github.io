@@ -39,7 +39,7 @@
   <pre><code>@Override
 public void onInstallCompatConfigs(ICompatAssetInstaller installer) {
     installer.install(
-        "/{{ROOT}}assets/mymod/compat/targetmod_keys.json",
+        "/assets/mymod/compat/targetmod_keys.json",
         "targetmod_keys.json"
     );
 }</code></pre>
@@ -51,7 +51,7 @@ public void onInstallCompatConfigs(ICompatAssetInstaller installer) {
   <pre><code>@Override
 public void onInstallGuideAssets(ICompatAssetInstaller installer) {
     installer.install(
-        "/{{ROOT}}assets/mymod/guides/targetmod_guid.json",
+        "/assets/mymod/guides/targetmod_guid.json",
         "targetmod_guid.json"
     );
 }</code></pre>
@@ -101,7 +101,7 @@ Priority: user &gt; mods &gt; default</code></pre>
 
   <h2><span data-i18n="dev.examples.25">Thread Safety &amp; Logging</span></h2>
   <ul>
-    <li><span data-i18n="dev.examples.26">Except for <code>IPlayerStateRegistry.setState()</code> and <code>IInputInjector</code>, every API call must happen on the client main thread.</span></li>
+    <li><span data-i18n="dev.examples.26">Except for <code>IPlayerStateRegistry.setState()</code>, every API call must happen on the client main thread.</span></li>
     <li><span data-i18n="dev.examples.27"><code>IControllerState</code> and <code>getActiveGameActions()</code> are live views — <b>do not cache references across ticks</b>.</span></li>
     <li><span data-i18n="dev.examples.28">Log through your own logger:</span></li>
   </ul>
@@ -252,7 +252,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.8.9'
+    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.9.0'
     compileOnly 'curse.maven:epicfight-405076:7789099'
     compileOnly 'org.jetbrains:annotations:24.0.1'
 }</code></pre>

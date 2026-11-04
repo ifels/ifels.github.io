@@ -60,7 +60,12 @@
     <div class="nav-group">
       <div class="nav-label">Modpacks &amp; Compat</div>
       <a href="/control-flex/en/modpack/index.html">Configuration</a>
-      <a href="/control-flex/en/modpack/compat.html">Mod Compatibility</a>
+      <a href="/control-flex/en/modpack/compat/index.html">Mod Compatibility</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/modpack/compat/json.html">Compat JSON</a>
+        <a href="/control-flex/en/modpack/compat/bridge.html">Bridge Mods</a>
+        <a href="/control-flex/en/modpack/compat/manual.html">By hand</a>
+      </div>
     </div>
     <div class="nav-group">
       <div class="nav-label">Developers</div>
@@ -133,6 +138,10 @@
     <li><span>In-game edits are copy-on-write: packaged and community files stay read-only and your changes land in <code>compat/user/</code>. <b>Reset Config</b> restores a mod to its packaged or applied community default.</span></li>
     <li><span>A compat file only activates when its target <code>mod_id</code> (and any declared <code>dependencies</code>) are actually loaded; configs for absent mods are skipped cleanly.</span></li>
   </ul>
+
+  <p class="small muted">
+    <span>Compat config details — which layer to edit, how to edit it, and how to roll back — live in <a href="compat/manual.html">Editing configs by hand</a>; how the adaptation tools relate is on <a href="compat/index.html">Mod Compatibility</a>.</span>
+  </p>
 
   <h2><span>Shipping Defaults with a Pack</span></h2>
   <ol>
@@ -236,7 +245,7 @@
 
   <div class="callout tip">
     <p>
-      <span>Next: the full toolbox for multi-mod compatibility on the <a href="compat.html">Mod Compatibility</a> page.</span>
+      <span>Next: the full toolbox for multi-mod compatibility on the <a href="compat/index.html">Mod Compatibility</a> page.</span>
     </p>
   </div>
 

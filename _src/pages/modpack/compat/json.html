@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="compat.json.h1">兼容配置（compat JSON）</span></h1>
+  <p class="lead">
+    <span data-i18n="compat.json.lead">compat JSON 是整套适配体系的可分享载体：游戏内界面写出来的是它，社区配置库分发的是它，桥接模组安装的也是它。这一页从「文件放哪」讲到「字段怎么写」，再到「怎么贡献一份、怎么自建一个配置源」。</span>
+  </p>
+
+  <p class="small muted">
+    <span data-i18n="compat.json.toc">本页内容：</span>
+    <a href="#files"><span data-i18n="compat.json.toc.files">文件与生效规则</span></a> ·
+    <a href="#builtin"><span data-i18n="compat.json.toc.builtin">内置配置</span></a> ·
+    <a href="#repo"><span data-i18n="compat.json.toc.repo">社区配置库</span></a> ·
+    <a href="#fields"><span data-i18n="compat.json.toc.fields">字段说明</span></a> ·
+    <a href="#contribute"><span data-i18n="compat.json.toc.contribute">贡献配置</span></a> ·
+    <a href="#source"><span data-i18n="compat.json.toc.source">自建配置源</span></a> ·
+    <a href="#troubleshoot"><span data-i18n="compat.json.toc.troubleshoot">排障</span></a>
+  </p>
+
+  <h2 id="files"><span data-i18n="compat.json.files.h2">一、文件放在哪，什么情况下才会生效</span></h2>
+  <ul>
+    <li><span data-i18n="compat.json.files.1">三个目录：<code>compat/default/</code>（从 JAR 释放，只读）、<code>compat/mods/</code>（桥接模组安装，只读）、<code>compat/user/</code>（你的改动，优先级最高）。</span></li>
+    <li><span data-i18n="compat.json.files.2">身份来自 JSON 里的 <code>mod_id</code>，不是文件名；但 <code>user/</code> 层的文件必须叫 <code>&lt;mod_id&gt;.json</code>，游戏内界面与热重载都按这个名字找文件。</span></li>
+    <li><span data-i18n="compat.json.files.3">三个门槛全过才会加载：目标 <code>mod_id</code> 已安装、<code>dependencies</code> 里每个 mod 都已加载、<code>mod_versions</code> 里有一条匹配当前模组版本。任一不满足，整份文件跳过（日志会区分「模组未加载」和「依赖未加载」）。</span></li>
+    <li><span data-i18n="compat.json.files.4">以点开头的文件（如 <code>.applied.json</code>）不会被当成配置解析。</span></li>
+    <li><span data-i18n="compat.json.files.5">旧格式 <code>{modid}_keys.json</code> 会在启动时自动迁移：原文件备份改名，字段转换到新格式。</span></li>
+  </ul>
+
+  <h2 id="builtin"><span data-i18n="compat.json.builtin.h2">二、内置了什么</span></h2>
+  <p>
+    <span data-i18n="compat.json.builtin.p">JAR 内只带三份配置，每次启动释放到 <code>config/controlflex/compat/default/</code>：</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.builtin.col.mod">模组</span></th>
+          <th><span data-i18n="compat.json.builtin.col.what">内置了什么</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Just Enough Items (JEI)</td>
+          <td><span data-i18n="compat.json.builtin.jei">配方 / 用途键位落在界面层，一批不需要暴露的内部按键加入 <code>ignoreKeys</code></span></td>
+        </tr>
+        <tr>
+          <td>Epic Fight</td>
+          <td><span data-i18n="compat.json.builtin.epicfight">战斗模式相关的键位与界面规则，并指向官方桥接模组 <code>cfx-compat-epicfight</code></span></td>
+        </tr>
+        <tr>
+          <td>Nightfall</td>
+          <td><span data-i18n="compat.json.builtin.nightfall">该模组的按键与界面适配</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="compat.json.builtin.note">同目录下的 <code>exempt_mods.json</code> 不是兼容配置，它声明「库类模组」名单，让 Fabric API、Kotlin 语言支持这类库不进入适配列表。其余模组靠自动发现或社区配置库补充。</span>
+  </p>
+
+  <h2 id="repo"><span data-i18n="compat.json.repo.h2">三、社区配置库</span></h2>
+  <p>
+    <span data-i18n="compat.json.repo.p1">官方源是 <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>：一棵纯静态目录树，按 MC 版本与加载器分目录，每个模组一份 JSON，外加一份 <code>manifest.json</code> 记录路径与 sha256。</span>
+  </p>
+  <pre><code>&lt;repo-root&gt;/                   # 这个目录的 URL 就是玩家要填的 baseUrl
+├── 1.20.1/                   # MC 版本目录（必须与游戏版本名完全一致）
+│   ├── forge/
+│   │   ├── manifest.json
+│   │   └── mods/
+│   │       ├── jei.json
+│   │       └── epicfight.json
+│   └── fabric/
+│       ├── manifest.json
+│       └── mods/
+│           └── jei.json
+└── 1.21.1/
+    └── neoforge/</code></pre>
+  <p>
+    <span data-i18n="compat.json.repo.p2">客户端只会请求两种 URL：<code>{baseUrl}/{mcVersion}/{loader}/manifest.json</code> 与 manifest 里 <code>path</code> 指向的内容文件。只读当前加载器目录，某个版本 / 加载器没做就是 404 —— 这是正常情况，不算失败，也不影响其他源。</span>
+  </p>
+  <p>
+    <span data-i18n="compat.json.repo.p3">游戏内路径：<b>设置 → 模组适配 → 右上「更多」→ 同步最新配置</b>。模组详情页会出现「找到 N 个社区适配配置」横幅 → 选变体 → 只读预览 → <b>应用</b>。应用会先备份旧的 user 文件、原子覆盖、写入 <code>.applied.json</code>，再热重载该模组，<b>无需重启</b>。</span>
+  </p>
+  <p class="small muted">
+    <span data-i18n="compat.json.repo.p4">同一个 <code>mod_id</code> 但内容不同 = 并行变体，由玩家挑选；同一个 sha256 出现在多个源 = 互为镜像，按源列表顺序回退重试。内容按 sha256 缓存到 <code>compat/repo/content/&lt;mod_id&gt;/&lt;sha256&gt;.json</code>，文件不可变。</span>
+  </p>
+
+  <h2 id="fields"><span data-i18n="compat.json.fields.h2">四、字段说明</span></h2>
+
+  <h3><span data-i18n="compat.json.top.h3">顶层字段</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.col.field">字段</span></th>
+          <th><span data-i18n="compat.json.col.type">类型</span></th>
+          <th><span data-i18n="compat.json.col.req">必填</span></th>
+          <th><span data-i18n="compat.json.col.desc">说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>mod_id</code></td>
+          <td>string</td>
+          <td><span data-i18n="compat.json.yes">是</span></td>
+          <td><span data-i18n="compat.json.top.mod_id">配置所属的模组 ID（如 <code>jei</code>、<code>epicfight</code>）。为空、或该模组未安装 → 整份跳过，它本身就是激活门槛的一部分。</span></td>
+        </tr>
+        <tr>
+          <td><code>dependencies</code></td>
+          <td>object[]</td>
+          <td><span data-i18n="compat.json.no">否</span></td>
+          <td><span data-i18n="compat.json.top.dependencies">附加门槛：<code>{ "mod_id": "...", "mod_name": "...", "home_pages": [...] }</code>，运行时只读 <code>mod_id</code>，全部已加载才激活。</span></td>
+        </tr>
+        <tr>
+          <td><code>contributors</code></td>
+          <td>string[]</td>
+          <td><span data-i18n="compat.json.no">否</span></td>
+          <td><span data-i18n="compat.json.top.contributors">作者名，显示在社区配置预览页。</span></td>
+        </tr>
+        <tr>
+          <td><code>config_version</code></td>
+          <td>string</td>
+          <td><span data-i18n="compat.json.no">否</span></td>
+          <td><span data-i18n="compat.json.top.config_version">这份配置自身的版本号，只做展示，不参与逻辑。</span></td>
+        </tr>
+        <tr>
+          <td><code>mod_versions</code></td>
+          <td>array</td>
+          <td><span data-i18n="compat.json.yes">是</span></td>
+          <td><span data-i18n="compat.json.top.mod_versions">按模组版本分的规则集合，见下。<b>旧名 <code>versions</code> 已不再接受。</b></span></td>
+        </tr>
+        <tr>
+          <td><code>mod_name</code> · <code>home_page</code></td>
+          <td>string</td>
+          <td><span data-i18n="compat.json.no">否</span></td>
+          <td><span data-i18n="compat.json.top.meta">纯元数据，给 manifest 生成器和预览界面用，运行时忽略。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span data-i18n="compat.json.mv.h3">mod_versions 与版本匹配</span></h3>
+  <p>
+    <span data-i18n="compat.json.mv.p">数组按顺序求值，<b>首个匹配生效</b>；如果没有任何一条匹配当前模组版本，<b>整份配置不生效</b>（日志会给警告）。</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.mv.col.form">写法</span></th>
+          <th><span data-i18n="compat.json.mv.col.example">示例</span></th>
+          <th><span data-i18n="compat.json.mv.col.meaning">含义</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="compat.json.mv.wild">通配</span></td>
+          <td><code>""</code>（或 <code>"(,)"</code>）</td>
+          <td><span data-i18n="compat.json.mv.wild.m">匹配所有版本</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.mv.exact">精确</span></td>
+          <td><code>"1.21.1"</code></td>
+          <td><span data-i18n="compat.json.mv.exact.m">完全相等</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.mv.range">区间</span></td>
+          <td><code>"[1.0,2.0)"</code></td>
+          <td><span data-i18n="compat.json.mv.range.m"><code>1.0 ≤ v &lt; 2.0</code>（方括号包含，圆括号不包含）</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.mv.unbounded">单边</span></td>
+          <td><code>"[21.1,)"</code> / <code>"(,1.20]"</code></td>
+          <td><span data-i18n="compat.json.mv.unbounded.m"><code>v ≥ 21.1</code> / <code>v ≤ 1.20</code></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><span data-i18n="compat.json.mv.1">比较按点分段做数值比较：缺的段补 0，非数字前缀会被剥掉（<code>v1.0</code> → <code>1.0</code>，<code>0-beta</code> → <code>0</code>）。</span></li>
+    <li><span data-i18n="compat.json.mv.2">区间写坏（缺括号 / 逗号、边界无法解析、下界大于上界）→ <b>整条 entry 被丢弃</b>，不只是这个字段。</span></li>
+    <li><span data-i18n="compat.json.mv.3">把具体的区间放前面，最后用一条 <code>""</code> 通配兜底。</span></li>
+  </ul>
+
+  <h3><span data-i18n="compat.json.sections.h3">三个按键分区与派发通道</span></h3>
+  <p>
+    <span data-i18n="compat.json.sections.p">三个分区都是「裸键名 → 每键设置」的对象。裸键名 = <code>KeyMapping.getName()</code> 去掉 <code>modid:</code> 前缀；内部动作 ID 仍是 <code>{modid}:{keyName}</code>。一个键出现在多个分区就是多分区的成员（并集）；<b>一个都没写</b>的键默认只在游戏内生效。</span>
+  </p>
+  <pre><code>"inGameKeys": {
+  "channels": ["keyMapping"],
+  "key.epicfight.dodge": {},
+  "key.epicfight.attack": { "channels": ["keyMapping", "eventBus"],
+                            "extraBehaviors": ["suppressLayerSwitch"] }
+}</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.ch.col.channel">通道</span></th>
+          <th><span data-i18n="compat.json.ch.col.meaning">含义</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>keyMapping</code></td>
+          <td><span data-i18n="compat.json.ch.keyMapping">写 <code>KeyMapping.setPressed()</code> / <code>isDown</code> 状态（原版同款路径）。</span></td>
+        </tr>
+        <tr>
+          <td><code>eventBus</code></td>
+          <td><span data-i18n="compat.json.ch.eventBus">广播一个 Forge <code>InputEvent.Key</code>（每 tick 合并）。</span></td>
+        </tr>
+        <tr>
+          <td><code>glfwPoll</code></td>
+          <td><span data-i18n="compat.json.ch.glfwPoll">把按住状态镜像进合成的 <code>InputConstants.isKeyDown()</code>，伺候那些自己轮询 GLFW 的模组。</span></td>
+        </tr>
+        <tr>
+          <td><code>screenInput</code></td>
+          <td><span data-i18n="compat.json.ch.screenInput">界面打开时喂 <code>screen.keyPressed/keyReleased</code>（鼠标键则合成一次点击）。</span></td>
+        </tr>
+        <tr>
+          <td><code>virtualKbm</code></td>
+          <td><span data-i18n="compat.json.ch.virtualKbm">走虚拟键鼠，当作真实硬件输入注入。<b>独占</b>：替换其他所有通道，玩家不可覆盖。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <span data-i18n="compat.json.ch.defaults.p">分区没写 <code>channels</code> 时的默认值：</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.ch.col.section">分区</span></th>
+          <th><span data-i18n="compat.json.ch.col.defaults">默认通道</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>inGameKeys</code></td><td><code>keyMapping</code>, <code>eventBus</code></td></tr>
+        <tr><td><code>screenKeys</code></td><td><code>keyMapping</code>, <code>screenInput</code></td></tr>
+        <tr><td><code>overlayKeys</code></td><td><code>keyMapping</code>, <code>eventBus</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><span data-i18n="compat.json.ch.fix1">模组<b>触发两次</b>（两条路径都在监听）→ 只留 <code>keyMapping</code>。</span></li>
+    <li><span data-i18n="compat.json.ch.fix2">模组<b>只听 Forge 事件</b> → <code>["eventBus"]</code>。</span></li>
+    <li><span data-i18n="compat.json.ch.fix3"><b>按住打开的菜单</b>自己轮询 GLFW → 加 <code>glfwPoll</code>。</span></li>
+  </ul>
+
+  <h3><span data-i18n="compat.json.extra.h3">extraBehaviors</span></h3>
+  <p>
+    <span data-i18n="compat.json.extra.p">每键行为开关，目前只有一个取值：<code>suppressLayerSwitch</code> —— 该动作的绑定被按住期间，压制层级切换动作；保存时这个绑定会被强制成 HOLD 模式。用于模组自带的「修饰键式」按键（例如 Iron's Spells 的 <code>key.irons_spellbooks.spell_bar_modifier</code>）。显式写 <code>[]</code> 表示明确关闭。</span>
+  </p>
+
+  <h3><span data-i18n="compat.json.phase.h3">phasePersistentKeys</span></h3>
+  <p>
+    <span data-i18n="compat.json.phase.p">声明某个键的绑定要跨相位切换保持一致：</span>
+  </p>
+  <pre><code>"inGameKeys":  { "key.irons_spellbooks.spell_wheel": {} },
+"overlayKeys": { "key.irons_spellbooks.spell_wheel": {} },
+"phasePersistentKeys": { "key.irons_spellbooks.spell_wheel": ["inGame", "overlay"] }</code></pre>
+  <ul>
+    <li><span data-i18n="compat.json.phase.1">只允许 <code>["inGame", "overlay"]</code> 与 <code>["inGame", "screen"]</code> 两种配对，源必须是 <code>inGame</code>，目标恰好一个。</span></li>
+    <li><span data-i18n="compat.json.phase.2"><b>必须同时在两个分区里声明这个键</b>，只写配对不算数（会警告并忽略）——靠并集隐式获得成员资格也不行。</span></li>
+    <li><span data-i18n="compat.json.phase.3">运行时目标层的绑定是被软锁定的，值从游戏层实时派生（不落盘复制）：按住不放的按钮跨过切换仍然按住，界面 / 叠层弹出时不会把菜单「抖」关掉。</span></li>
+    <li><span data-i18n="compat.json.phase.4">这类动作的绑定会被物化为 HOLD，并且跳过物品抑制。在绑定界面里编辑目标层会写入一份快照绑定并解锁；重置该键可恢复锁定与派生。</span></li>
+  </ul>
+
+  <h3><span data-i18n="compat.json.ignore.h3">ignoreKeys</span></h3>
+  <p>
+    <span data-i18n="compat.json.ignore.p">把动作从绑定界面里藏掉（调试键、作弊键、重复键）：<code>"ignoreKeys": ["key.epicfight.config"]</code>。匹配动作 ID 时会自动补 <code>modid:</code> 前缀。</span>
+  </p>
+
+  <h3><span data-i18n="compat.json.suppress.h3">itemSuppressKeys</span></h3>
+  <p>
+    <span data-i18n="compat.json.suppress.p">主手物品匹配时压制指定动作。典型场景：模组对特定物品接管了输入（战斗模式下普攻 / 交互由模组的连招与武器技能系统处理），把通用动作压掉避免打架。</span>
+  </p>
+  <pre><code>"itemSuppressKeys": [
+  { "item": "efn:yamato_dmc*", "playerState": ["epicfight:battle_mode"], "suppressActions": ["use"] },
+  { "tag": "minecraft:swords", "playerState": ["epicfight:battle_mode"], "suppressActions": ["attack", "use"] }
+]</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.col.field">字段</span></th>
+          <th><span data-i18n="compat.json.col.desc">说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>item</code></td><td><span data-i18n="compat.json.suppress.item">物品 ID（<code>modid:item_id</code>），支持 <code>*</code> 通配。与 <code>tag</code> 互斥。</span></td></tr>
+        <tr><td><code>tag</code></td><td><span data-i18n="compat.json.suppress.tag">物品标签。与 <code>item</code> 互斥。</span></td></tr>
+        <tr><td><code>playerState</code></td><td><span data-i18n="compat.json.suppress.state">可选的 <code>modId:state</code> 列表（OR 关系），空 = 只要物品匹配就压制。未知状态会警告并按不匹配处理。</span></td></tr>
+        <tr><td><code>suppressActions</code></td><td><span data-i18n="compat.json.suppress.actions">动作短名（<code>attack</code>、<code>use</code>）或完整动作 ID。</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="compat.json.suppress.note">每 tick 对主手物品求值一次；被 <code>phasePersistentKeys</code> 命中的动作豁免。</span>
+  </p>
+
+  <h3><span data-i18n="compat.json.tips.h3">tips</span></h3>
+  <p>
+    <span data-i18n="compat.json.tips.p">绑定行上的提示文案：</span>
+  </p>
+  <pre><code>"tips": [
+  { "key": "key.epicfight.weapon_innate_skill",
+    "text": { "en_us": "Bind to the same button as Attack; use HOLD mode.",
+              "zh_cn": "请绑定为与「攻击」相同的按键，并使用 HOLD 模式。" } }
+]</code></pre>
+  <p class="small muted">
+    <span data-i18n="compat.json.tips.note">语言码没有白名单，运行时按玩家语言取，回落 <code>en_us</code>；连 <code>en_us</code> 都没有就不显示。<b>至少写 <code>en_us</code></b>。</span>
+  </p>
+
+  <h3><span data-i18n="compat.json.screen.h3">界面与叠层的摇杆、光标</span></h3>
+  <p>
+    <span data-i18n="compat.json.screen.p">键是<b>全限定类名</b>：界面用 <code>screen.getClass().getName()</code>；叠层用「打开者」类名，<code>"*"</code> 表示该模组的兜底。</span>
+  </p>
+  <pre><code>"screen": {
+  "com.dragonminez.client.gui.UtilityMenuScreen": {
+    "leftStick":  { "behavior": "VIRTUAL_MOUSE" },
+    "rightStick": { "behavior": "RADIAL_PATH", "threshold": 0.5, "cursorRadius": 90 }
+  }
+},
+"overlay": {
+  "io.redspace.ironsspellbooks.gui.overlays.SpellWheelOverlay": {
+    "rightStick": { "behavior": "RADIAL_PATH", "threshold": 0.3, "cursorRadius": 40, "showCursor": false }
+  }
+}</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><code>behavior</code></th>
+          <th><span data-i18n="compat.json.screen.col.meaning">含义</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>DEFAULT</code></td><td><span data-i18n="compat.json.screen.default">引擎默认：左摇杆增量虚拟鼠标，右摇杆在界面里不做事</span></td></tr>
+        <tr><td><code>VIRTUAL_MOUSE</code></td><td><span data-i18n="compat.json.screen.mouse">摇杆驱动增量虚拟光标</span></td></tr>
+        <tr><td><code>RADIAL_PATH</code></td><td><span data-i18n="compat.json.screen.radial">以屏幕中心为原点的极坐标光标（轮盘类界面）</span></td></tr>
+        <tr><td><code>DISABLED</code></td><td><span data-i18n="compat.json.screen.disabled">忽略该轴；摇杆按下的绑定仍然有效</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.screen.col.param">参数</span></th>
+          <th><span data-i18n="compat.json.screen.col.default">默认</span></th>
+          <th><span data-i18n="compat.json.col.desc">说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>threshold</code></td><td><code>0.5</code></td><td><span data-i18n="compat.json.screen.threshold">摇杆死区</span></td></tr>
+        <tr><td><code>cursorRadius</code></td><td><code>100</code></td><td><span data-i18n="compat.json.screen.radius">离屏幕中心的距离（逻辑像素 × GUI 缩放）</span></td></tr>
+        <tr><td><code>cursorSpeed</code></td><td><code>1.0</code></td><td><span data-i18n="compat.json.screen.speed">光标速度（夹在 0.1–3.0）</span></td></tr>
+        <tr><td><code>showCursor</code></td><td><code>true</code></td><td><span data-i18n="compat.json.screen.show">是否画出光标（<code>false</code> 仍跟踪位置，只是不画）</span></td></tr>
+        <tr><td><code>keepLastPosition</code></td><td><code>true</code></td><td><span data-i18n="compat.json.screen.keep">松开摇杆后停在原地</span></td></tr>
+        <tr><td><code>angleBias</code></td><td><code>1.0</code></td><td><span data-i18n="compat.json.screen.angle">角度灵敏度</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="compat.json.screen.note">条目还支持 <code>cursorStyle</code>（<code>system</code> / <code>bedrock</code> / <code>hand</code>）与 <code>disabled: true</code>（完全退出，不再回退）。解析顺序：user 层优先于内置，具体叠层条目优先于同模组的 <code>"*"</code>，命中但缺所需那一侧（左 / 右）就继续往下一个配置找。</span>
+  </p>
+
+  <h3><span data-i18n="compat.json.min.h3">最小模板</span></h3>
+  <pre><code>{
+  "mod_id": "examplemod",
+  "contributors": ["yourname"],
+  "config_version": "1.0.0",
+  "mod_versions": [
+    {
+      "version": "",
+      "inGameKeys": {},
+      "screenKeys": {},
+      "overlayKeys": {},
+      "ignoreKeys": [],
+      "tips": [],
+      "screen": {},
+      "overlay": {}
+    }
+  ]
+}</code></pre>
+  <div class="callout">
+    <p>
+      <span data-i18n="compat.json.min.callout">上文是速查版；字段全集、每个通道的真实行为、以及从 ≤ 0.8.5 旧格式迁移的对照表，以官方字段参考为准：<a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference.md" target="_blank" rel="noopener">英文</a> / <a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference_ZH.md" target="_blank" rel="noopener">中文</a>。</span>
+    </p>
+  </div>
+
+  <h2 id="contribute"><span data-i18n="compat.json.contribute.h2">五、如何贡献一份配置</span></h2>
+  <ol>
+    <li><span data-i18n="compat.json.contribute.1"><b>Fork 仓库，并切到匹配分支。</b>配置格式随 ControlFlex 版本变化，源是按分支消费的；只 fork 到默认分支时要先把对应版本分支拉下来。</span></li>
+    <li><span data-i18n="compat.json.contribute.2"><b>新建 <code>&lt;mc-version&gt;/&lt;loader&gt;/mods/&lt;mod_id&gt;.json</code>。</b>键名用模组 Controls 分类里的裸键名（不带 <code>modid:</code> 前缀），找不到就开日志里的 <code>[ModCompat]</code> 行。</span></li>
+    <li><span data-i18n="compat.json.contribute.3"><b>重新生成 manifest：<code>python3 generate_manifest.py</code>。</b>改了内容不重算 sha256，是玩家侧「内容下载失败」的头号原因。</span></li>
+    <li><span data-i18n="compat.json.contribute.4"><b>游戏内验证。</b>把你的 fork 当源加进源列表，或直接把文件丢进 <code>compat/user/</code> 重启。加载是否成功看 <code>[ModCompat]</code> 日志。</span></li>
+    <li><span data-i18n="compat.json.contribute.5"><b>提 PR</b>，写清测试过的模组版本、加载器，以及这份配置修好了什么。</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-i18n="compat.json.contribute.note">只影响某个加载器就只放那个目录；两边行为一致就复制一份进另一个目录。文件大小上限 2 MB（实际配置通常只有几 KB）。</span>
+  </p>
+
+  <h2 id="source"><span data-i18n="compat.json.source.h2">六、如何添加其他配置源</span></h2>
+  <p>
+    <span data-i18n="compat.json.source.p">一个「源」就是一棵静态 HTTP 目录树：<code>{baseUrl}/{mcVersion}/{loader}/manifest.json</code> 加内容文件。没有服务端逻辑，任何静态托管都能当源。</span>
+  </p>
+
+  <h3><span data-i18n="compat.json.source.route.h3">两条路线</span></h3>
+  <ul>
+    <li><span data-i18n="compat.json.source.route.fork"><b>Fork 官方仓库</b>（推荐）：目录布局、manifest 生成器、一批能用的配置都现成，只加自己的配置就行。代价是要跟上游同步。</span></li>
+    <li><span data-i18n="compat.json.source.route.scratch"><b>从零搭一棵</b>：自控发布节奏、放私有或实验性配置，按下面的规范建目录即可。</span></li>
+  </ul>
+
+  <h3><span data-i18n="compat.json.source.manifest.h3">manifest.json 关键字段</span></h3>
+  <pre><code>{
+  "schemaVersion": 1,
+  "name": "My Pack Configs",
+  "items": [
+    {
+      "mod_id": "jei",
+      "mod_name": "Just Enough Items (JEI)",
+      "path": "mods/jei.json",
+      "sha256": "a4dcfadbca3d0a8b19be2ec5d191fc12801d199583393ef0fec13007e06b927f",
+      "home_pages": ["https://www.curseforge.com/minecraft/mc-mods/jei"]
+    }
+  ]
+}</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.col.field">字段</span></th>
+          <th><span data-i18n="compat.json.col.desc">说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>schemaVersion</code></td><td><span data-i18n="compat.json.source.schema">数字；<b>大于 1 会被拒绝</b>（客户端提示升级），缺失或 0 可接受。</span></td></tr>
+        <tr><td><code>items[].mod_id</code></td><td><span data-i18n="compat.json.source.mod_id">需匹配 <code>^[a-z0-9_-]+$</code>，且<b>在 manifest 内唯一</b>；重复会让整份 manifest 解析失败。</span></td></tr>
+        <tr><td><code>items[].path</code></td><td><span data-i18n="compat.json.source.path">相对 manifest 所在目录；禁止绝对路径、反斜杠、空段与 <code>..</code>。惯例是 <code>mods/&lt;file&gt;.json</code>。</span></td></tr>
+        <tr><td><code>items[].sha256</code></td><td><span data-i18n="compat.json.source.sha">内容文件的 SHA-256，64 位小写十六进制。下载后校验，不匹配就换下一个镜像。<b>它是变体的唯一身份。</b></span></td></tr>
+        <tr><td><code>home_pages</code> · <code>description</code> · <code>dependencies</code></td><td><span data-i18n="compat.json.source.meta">纯展示字段（<code>dependencies</code> 只用来显示，客户端<b>不会</b>自动装依赖）。</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="compat.json.source.manifest.note">官方仓库的 <code>generate_manifest.py</code> 可以照搬到自己的源：扫描 <code>&lt;mc-version&gt;/&lt;loader&gt;/mods/*.json</code>，抽出 <code>mod_id</code> / <code>mod_name</code> / <code>home_page</code>，算 sha256，幂等写回 manifest。</span>
+  </p>
+
+  <h3><span data-i18n="compat.json.source.host.h3">托管选择与硬性限制</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.source.col.host">托管</span></th>
+          <th><span data-i18n="compat.json.source.col.url">baseUrl 示例</span></th>
+          <th><span data-i18n="compat.json.source.col.cache">缓存</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GitHub raw</td>
+          <td><code>https://raw.githubusercontent.com/&lt;user&gt;/&lt;repo&gt;/refs/heads/&lt;branch&gt;</code></td>
+          <td><span data-i18n="compat.json.source.cache.raw">约 5 分钟；官方内置源用的就是这种</span></td>
+        </tr>
+        <tr>
+          <td>jsDelivr</td>
+          <td><code>https://cdn.jsdelivr.net/gh/&lt;user&gt;/&lt;repo&gt;@&lt;branch&gt;</code></td>
+          <td><span data-i18n="compat.json.source.cache.cdn">分支引用约 12 小时，建议打 tag</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.source.host.self">自建 / 对象存储</span></td>
+          <td><code>https://files.example.com/cfx-source/</code></td>
+          <td><span data-i18n="compat.json.source.cache.self">自己定</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.source.col.limit">项目</span></th>
+          <th><span data-i18n="compat.json.source.col.value">限制</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>baseUrl</td><td><span data-i18n="compat.json.source.limit.url">必须是带主机名的 <code>http://</code> 或 <code>https://</code></span></td></tr>
+        <tr><td><span data-i18n="compat.json.source.limit.size.k">单文件大小</span></td><td><span data-i18n="compat.json.source.limit.size.v">≤ 2 MB（manifest 与内容文件都算）</span></td></tr>
+        <tr><td><span data-i18n="compat.json.source.limit.timeout.k">超时</span></td><td><span data-i18n="compat.json.source.limit.timeout.v">连接 5 秒 / 读取 30 秒</span></td></tr>
+        <tr><td><span data-i18n="compat.json.source.limit.redirect.k">重定向</span></td><td><span data-i18n="compat.json.source.limit.redirect.v">跟随 301/302/303/307/308，最多 5 跳；拒绝 https → http 降级</span></td></tr>
+        <tr><td><span data-i18n="compat.json.source.limit.encoding.k">编码</span></td><td><span data-i18n="compat.json.source.limit.encoding.v">UTF-8 JSON</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span data-i18n="compat.json.source.add.h3">在游戏里添加源</span></h3>
+  <ol>
+    <li><span data-i18n="compat.json.source.add.1">进 <b>设置 → 模组适配 → 右上「更多」→ 编辑源列表</b>。</span></li>
+    <li><span data-i18n="compat.json.source.add.2">把 baseUrl 粘到下方输入框 → 添加 → 完成；列表有变化时关闭对话框会触发一次后台同步。</span></li>
+    <li><span data-i18n="compat.json.source.add.3">打开「同步最新配置」，确认你这个源同步成功（有分源进度与日志）；之后模组卡片会出现社区配置角标。</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-i18n="compat.json.source.add.note">源列表行为：内置源可以禁用 / 调序但不能删除；你自己的源可增删调序；「恢复默认源」只重置那两个内置源。每个源缓存在 <code>compat/repo/manifest/&lt;source-id&gt;/</code>，id 由 URL 派生（小写，冲突时加 <code>-1</code> / <code>-2</code>）。</span>
+  </p>
+  <h3><span data-i18n="compat.json.source.local.h3">本地测试</span></h3>
+  <pre><code>cd &lt;your-source-root&gt;
+python3 -m http.server 8000
+# 然后在「编辑源列表」里加 http://127.0.0.1:8000</code></pre>
+  <p class="small muted">
+    <span data-i18n="compat.json.source.local.note">允许 <code>http://</code> 源（只拒绝 https → http 的重定向降级），本地测试不需要证书。改完文件点一次「同步最新配置」即可。</span>
+  </p>
+
+  <h2 id="troubleshoot"><span data-i18n="compat.json.troubleshoot.h2">七、排障</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.json.troubleshoot.col.symptom">现象</span></th>
+          <th><span data-i18n="compat.json.troubleshoot.col.check">检查</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="compat.json.troubleshoot.1.s">源显示「从未同步」/ 同步失败</span></td>
+          <td><span data-i18n="compat.json.troubleshoot.1.c">浏览器打开 <code>{baseUrl}/{mcVersion}/{loader}/manifest.json</code> 能不能看到；目录名必须与游戏版本名、加载器名<b>完全一致</b>（<code>1.20.1</code> 不是 <code>1.20</code>）。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.troubleshoot.2.s">manifest 解析报错</span></td>
+          <td><span data-i18n="compat.json.troubleshoot.2.c">重复的 <code>mod_id</code>、<code>path</code> 带绝对路径 / 反斜杠 / <code>..</code>、<code>sha256</code> 不是 64 位小写十六进制、<code>schemaVersion</code> &gt; 1、JSON 语法错误。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.troubleshoot.3.s">manifest 同步了，内容下载失败</span></td>
+          <td><span data-i18n="compat.json.troubleshoot.3.c">内容字节与 manifest 里的 <code>sha256</code> 对不上（<b>改了 JSON 忘了重新生成 manifest</b> 是最常见原因）、文件超过 2 MB、或本轮所有镜像都失败。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.troubleshoot.4.s">应用了但没变化</span></td>
+          <td><span data-i18n="compat.json.troubleshoot.4.c">配置自己的门槛没过：<code>mod_id</code> 模组没装、<code>dependencies</code> 没全加载、<code>mod_versions</code> 没有一条匹配当前版本（首个匹配生效，注意区间写法与顺序）、键名写错。搜 <code>[ModCompat]</code> 日志。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.troubleshoot.5.s">玩家看不到更新</span></td>
+          <td><span data-i18n="compat.json.troubleshoot.5.c">jsDelivr 的 <code>@branch</code> 缓存约 12 小时；换 raw 地址、打 tag，或者等缓存过期。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.json.troubleshoot.6.s">中文乱码</span></td>
+          <td><span data-i18n="compat.json.troubleshoot.6.c">文件必须是 UTF-8（建议无 BOM）。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

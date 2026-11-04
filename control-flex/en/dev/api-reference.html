@@ -60,7 +60,12 @@
     <div class="nav-group">
       <div class="nav-label">Modpacks &amp; Compat</div>
       <a href="/control-flex/en/modpack/index.html">Configuration</a>
-      <a href="/control-flex/en/modpack/compat.html">Mod Compatibility</a>
+      <a href="/control-flex/en/modpack/compat/index.html">Mod Compatibility</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/modpack/compat/json.html">Compat JSON</a>
+        <a href="/control-flex/en/modpack/compat/bridge.html">Bridge Mods</a>
+        <a href="/control-flex/en/modpack/compat/manual.html">By hand</a>
+      </div>
     </div>
     <div class="nav-group">
       <div class="nav-label">Developers</div>
@@ -111,7 +116,7 @@
 
   <h1><span>API Reference</span></h1>
   <p class="lead">
-    <span>Package <code>com.ifels.controlflex.api</code> · version 0.8.9 · all methods must be called on the client main thread unless noted otherwise.</span>
+    <span><code>com.ifels.controlflex.api</code> · version 0.9.0 · all methods must be called on the client main thread unless noted otherwise.</span>
   </p>
 
   <h2><span>Type Index</span></h2>
@@ -133,12 +138,17 @@
         <tr><td><code>IControllerState</code></td><td><span>Controller hardware state (live view)</span></td></tr>
         <tr><td><code>IControllerCapabilities</code></td><td><span>Controller hardware capabilities</span></td></tr>
         <tr><td><code>IPlayerStateRegistry</code></td><td><span>Third-party mod state push</span></td></tr>
-        <tr><td><code>IInputInjector</code></td><td><span>Virtual controller input injection (testing)</span></td></tr>
         <tr><td><code>IInteractiveContextRegistrar</code></td><td><span>Interactive overlay foreground/background declaration</span></td></tr>
         <tr><td><code>InputMode</code></td><td><span>Input mode (KEYBOARD_MOUSE / MIXED)</span></td></tr>
         <tr><td><code>ControllerType</code></td><td><span>Controller type enum</span></td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="callout warn">
+    <p>
+      <span><b>0.9.0 removed input injection</b>: <code>IInputInjector</code> and <code>getInputInjector()</code> are gone; harnesses that need synthetic gamepad input must stay on 0.8.x.</span>
+    </p>
   </div>
 
   <h2>ControlFlexApi</h2>
@@ -155,11 +165,10 @@ boolean isControllerConnected()     // a controller is connected
 IActionStateProvider getActionStateProvider()
 IInputProvider getInputProvider()
 IPlayerStateRegistry getPlayerStateRegistry()
-IInputInjector getInputInjector()
 IInteractiveContextRegistrar getInteractiveContextRegistrar()
 
 // Utilities
-String getApiVersion()              // e.g. "0.8.9"
+String getApiVersion()              // e.g. "0.9.0"
 void reloadGuides()                 // reload guide configs</code></pre>
 
   <h2>ButtonName</h2>
@@ -176,7 +185,7 @@ ButtonName.BACK, ButtonName.START, ButtonName.GUIDE
 ButtonName.PADDLE_1 ~ ButtonName.PADDLE_4
 ButtonName.TOUCHPAD
 
-// Stick directions (for isButtonPressed / IInputInjector.pressButton)
+// Stick directions (for isButtonPressed)
 ButtonName.LEFT_STICK_UP / DOWN / LEFT / RIGHT
 ButtonName.RIGHT_STICK_UP / DOWN / LEFT / RIGHT
 
@@ -319,17 +328,6 @@ void clearState(String stateKey)                // remove the registration</code
     <span><b>stateKey format</b>: <code>"modId:stateName"</code>, e.g. <code>"epicfight:battle_mode"</code>.</span>
   </p>
 
-  <h2>IInputInjector</h2>
-  <p>
-    <span>Virtual controller input injection for test tools and bridge mods. Injected state is <b>sticky</b> (a pressed button stays pressed until released or cleared) and flows through the normal binding pipeline like real input.</span>
-  </p>
-  <pre><code>void pressButton(String buttonName, boolean pressed)  // ButtonName constants; stick directions map to axes
-void setAxis(String axisName, float value)            // -1.0..1.0; 0 clears the override
-void clearAll()                                       // release all buttons, zero all axes</code></pre>
-  <p class="small muted">
-    <span><b>Thread safety</b>: implementations must be callable from any thread; state is applied atomically on the client tick.</span>
-  </p>
-
   <h2>IInteractiveContextRegistrar</h2>
   <p>
     <span>Declare interactive overlays: <b>foreground</b> means the overlay is open, <b>background</b> means it closed. Control Flex records the class name as the active overlay, switches stick behavior during the OVERLAY phase, and clears it automatically when the scene unloads as a fallback.</span>
@@ -362,7 +360,6 @@ void clearAll()                                   // fallback for mod unload / l
         <tr><td><code>IControllerCapabilities</code></td><td><span>Client main thread</span></td></tr>
         <tr><td><code>IPlayerStateRegistry.setState()</code></td><td><span><b>Any thread</b></span></td></tr>
         <tr><td><code>IPlayerStateRegistry.getState()</code></td><td><span>Client main thread</span></td></tr>
-        <tr><td><code>IInputInjector</code></td><td><span><b>Any thread</b> (applied atomically on the client tick)</span></td></tr>
         <tr><td><code>IInteractiveContextRegistrar</code></td><td><span>Client main thread</span></td></tr>
       </tbody>
     </table>

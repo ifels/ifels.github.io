@@ -27,7 +27,7 @@
 
   <h1><span data-i18n="dev.index.18">API Quick Start</span></h1>
   <p class="lead">
-    <span data-i18n="dev.index.19">The Control Flex API (currently 0.8.9) is for <b>bridge mod</b> developers: read controller input, query action states, push mod states, and export compat configs. Repository: <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>.</span>
+    <span data-i18n="dev.index.19">The Control Flex API (currently 0.9.0) is for <b>bridge mod</b> developers: read controller input, query action states, push mod states, and export compat configs. Repository: <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>.</span>
   </p>
 
   <h2><span data-i18n="dev.index.20">1. Project Setup</span></h2>
@@ -38,7 +38,7 @@ repositories {
 
 dependencies {
     // compileOnly — provided by the Control Flex mod at runtime
-    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.8.9'
+    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.9.0'
     compileOnly 'org.jetbrains:annotations:24.0.1'
 }</code></pre>
   <p>
@@ -79,7 +79,6 @@ dependencies {
 │                                          ├── getControllerState()    → IControllerState
 │                                          └── getCapabilities()       → IControllerCapabilities
 ├── getPlayerStateRegistry()            → IPlayerStateRegistry          push mod states
-├── getInputInjector()                  → IInputInjector                inject virtual input
 ├── getInteractiveContextRegistrar()    → IInteractiveContextRegistrar overlay foreground/background
 └── isAvailable() / isControllerConnected() / getApiVersion() / reloadGuides()</code></pre>
 

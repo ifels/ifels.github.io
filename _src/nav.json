@@ -99,8 +99,25 @@
         "key": "nav.configuration"
       },
       {
-        "href": "modpack/compat.html",
+        "href": "modpack/compat/index.html",
         "key": "nav.mod-compatibility"
+      },
+      {
+        "type": "sub",
+        "items": [
+          {
+            "href": "modpack/compat/json.html",
+            "key": "nav.compat-json"
+          },
+          {
+            "href": "modpack/compat/bridge.html",
+            "key": "nav.compat-bridge"
+          },
+          {
+            "href": "modpack/compat/manual.html",
+            "key": "nav.compat-manual"
+          }
+        ]
       }
     ]
   },

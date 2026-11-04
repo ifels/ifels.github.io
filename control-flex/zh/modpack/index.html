@@ -60,7 +60,12 @@
     <div class="nav-group">
       <div class="nav-label">整合包与兼容</div>
       <a href="/control-flex/zh/modpack/index.html">配置文件</a>
-      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+      <a href="/control-flex/zh/modpack/compat/index.html">模组兼容</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+        <a href="/control-flex/zh/modpack/compat/bridge.html">桥接模组</a>
+        <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+      </div>
     </div>
     <div class="nav-group">
       <div class="nav-label">开发者</div>
@@ -133,6 +138,10 @@
     <li><span>游戏内编辑是“写时复制”：内置与社区文件保持只读，你的改动落到 <code>compat/user/</code>。<b>Reset Config</b> 会把某个模组恢复为内置或已应用的社区默认。</span></li>
     <li><span>兼容文件只在目标 <code>mod_id</code>（及其声明的 <code>dependencies</code>）实际加载时生效，未安装的模组配置会被干净跳过。</span></li>
   </ul>
+
+  <p class="small muted">
+    <span>兼容配置的细节（改哪一层、怎么改、怎么回退）见<a href="compat/manual.html">手动修改配置</a>；各种适配手段之间的关系见<a href="compat/index.html">模组兼容</a>。</span>
+  </p>
 
   <h2><span>作为整合包分发默认配置</span></h2>
   <ol>
@@ -236,7 +245,7 @@
 
   <div class="callout tip">
     <p>
-      <span>下一步：处理多模组兼容的完整手段，见<a href="compat.html">模组兼容性</a>。</span>
+      <span>下一步：处理多模组兼容的完整手段，见<a href="compat/index.html">模组兼容性</a>。</span>
     </p>
   </div>
 

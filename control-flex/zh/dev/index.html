@@ -60,7 +60,12 @@
     <div class="nav-group">
       <div class="nav-label">整合包与兼容</div>
       <a href="/control-flex/zh/modpack/index.html">配置文件</a>
-      <a href="/control-flex/zh/modpack/compat.html">模组兼容性</a>
+      <a href="/control-flex/zh/modpack/compat/index.html">模组兼容</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+        <a href="/control-flex/zh/modpack/compat/bridge.html">桥接模组</a>
+        <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+      </div>
     </div>
     <div class="nav-group">
       <div class="nav-label">开发者</div>
@@ -111,7 +116,7 @@
 
   <h1><span>API 快速开始</span></h1>
   <p class="lead">
-    <span>Control Flex API（当前 0.8.9）面向<b>桥接模组</b>开发者：读取手柄输入、查询动作状态、推送模组状态、导出兼容配置。仓库：<a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>。</span>
+    <span>Control Flex API（当前 0.9.0）面向<b>桥接模组</b>开发者：读取手柄输入、查询动作状态、推送模组状态、导出兼容配置。仓库：<a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>。</span>
   </p>
 
   <h2><span>1. 项目配置</span></h2>
@@ -122,7 +127,7 @@ repositories {
 
 dependencies {
     // compileOnly — provided by the Control Flex mod at runtime
-    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.8.9'
+    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.9.0'
     compileOnly 'org.jetbrains:annotations:24.0.1'
 }</code></pre>
   <p>
@@ -163,7 +168,6 @@ dependencies {
 │                                          ├── getControllerState()    → IControllerState
 │                                          └── getCapabilities()       → IControllerCapabilities
 ├── getPlayerStateRegistry()            → IPlayerStateRegistry          push mod states
-├── getInputInjector()                  → IInputInjector                inject virtual input
 ├── getInteractiveContextRegistrar()    → IInteractiveContextRegistrar overlay foreground/background
 └── isAvailable() / isControllerConnected() / getApiVersion() / reloadGuides()</code></pre>
 
@@ -202,7 +206,7 @@ dependencies {
     </table>
   </div>
   <p class="small muted">
-    <span>Compat JSON 的完整字段见<a href="../modpack/compat.html">模组兼容性</a>与 <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">cfx-compat-configs</a> 字段参考。</span>
+    <span>Compat JSON 的完整字段见<a href="../modpack/compat/index.html">模组兼容性</a>与 <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">cfx-compat-configs</a> 字段参考。</span>
   </p>
 
   <h2><span>5. 第一个桥接模组</span></h2>

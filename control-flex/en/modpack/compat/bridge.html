@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge Mods · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/modpack/compat/bridge.html", "zh": "/control-flex/zh/modpack/compat/bridge.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="en")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/modpack/compat/bridge.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/modpack/compat/bridge.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/modpack/compat/bridge.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/modpack/compat/bridge.html">
+<meta property="og:title" content="Bridge Mods · Control Flex Wiki">
+<meta property="og:locale" content="en">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current" aria-current="true">English</span><a href="/control-flex/zh/modpack/compat/bridge.html" hreflang="zh" lang="zh" data-set-lang="zh">中文</a></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/en/index.html">Home</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Player Guide</div>
+      <a href="/control-flex/en/guide/getting-started.html">Getting Started</a>
+      <a href="/control-flex/en/guide/features.html">Features</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/guide/feature/layers.html">Seven Layers</a>
+        <a href="/control-flex/en/guide/feature/trigger-modes.html">Trigger Modes</a>
+        <a href="/control-flex/en/guide/feature/combo-keys.html">Combo Keys</a>
+        <a href="/control-flex/en/guide/feature/radial-menus.html">Radial Menus</a>
+        <a href="/control-flex/en/guide/feature/analog-movement.html">Analog Movement</a>
+        <a href="/control-flex/en/guide/feature/camera.html">Camera &amp; Aim</a>
+        <a href="/control-flex/en/guide/feature/cursor.html">Cursor &amp; GUI</a>
+        <a href="/control-flex/en/guide/feature/rumble.html">Rumble</a>
+        <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
+        <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
+        <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
+      </div>
+      <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Platforms &amp; Versions</div>
+      <a href="/control-flex/en/guide/platforms.html">Platform Support</a>
+      <a href="/control-flex/en/guide/versions.html">Minecraft Versions</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Modpacks &amp; Compat</div>
+      <a href="/control-flex/en/modpack/index.html">Configuration</a>
+      <a href="/control-flex/en/modpack/compat/index.html">Mod Compatibility</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/modpack/compat/json.html">Compat JSON</a>
+        <a href="/control-flex/en/modpack/compat/bridge.html">Bridge Mods</a>
+        <a href="/control-flex/en/modpack/compat/manual.html">By hand</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Developers</div>
+      <a href="/control-flex/en/dev/index.html">API Quick Start</a>
+      <a href="/control-flex/en/dev/api-reference.html">API Reference</a>
+      <a href="/control-flex/en/dev/examples.html">Plugin &amp; Examples</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Links</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>When JSON is not enough: bridge mods</span></h1>
+  <p class="lead">
+    <span>Compat JSON can only adjust things that already exist — registered KeyMappings, dispatched keys, opened screens. If a mod ships its own input system, you have to plug in on the Java side. That is a bridge mod.</span>
+  </p>
+
+  <h2 id="decide"><span>1. First: do you actually need code?</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Compat JSON can</span></th>
+          <th><span>Only a bridge mod can</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>Place registered keys on Main / Screen / Overlay</span></td>
+          <td><span>Make keys that <b>never registered a KeyMapping</b> appear in the binding list</span></td>
+        </tr>
+        <tr>
+          <td><span>Choose the dispatch channel (including the GLFW polling mirror)</span></td>
+          <td><span>Reach mods that call <code>GLFW.glfwGetKey</code> directly (the GLFW layer cannot be injected)</span></td>
+        </tr>
+        <tr>
+          <td><span>Suppress actions by main-hand item plus player state</span></td>
+          <td><span>Push the mod's runtime state <b>into</b> Control Flex for use as a condition</span></td>
+        </tr>
+        <tr>
+          <td><span>Phase persistence, ignored keys, tips, per-screen stick parameters</span></td>
+          <td><span>Read stick axes for fully custom logic (vehicle steering, camera)</span></td>
+        </tr>
+        <tr>
+          <td><span>Fall back to virtual keyboard / mouse for mods that only see physical keys</span></td>
+          <td><span>Tell Control Flex "this overlay is in the foreground now" and switch stick behavior</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout tip">
+    <p>
+      <span>One-line test: if the mod's keys show up under Key Mapping → that mod, you do not need a bridge. If they do not, you do.</span>
+    </p>
+  </div>
+
+  <h2 id="api"><span>2. What control-flex-api is</span></h2>
+  <ul>
+    <li><span>A separate repository, <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">ControlFlexMC/control-flex-api</a>, published through JitPack; currently <b>0.9.0</b>.</span></li>
+    <li><span>It ships Java 8 bytecode and loads on any JVM 8+, so a bridge mod does not have to share the main mod's toolchain.</span></li>
+    <li><span><code>compileOnly</code> only: Control Flex provides it at runtime. Do <b>not</b> bundle the API into your jar.</span></li>
+    <li><span>Scope: read controller input, query action states, push mod states, declare interactive overlays, install compat / guide assets.</span></li>
+  </ul>
+  <pre><code>// build.gradle
+repositories { maven { url 'https://jitpack.io' } }
+
+dependencies {
+    compileOnly 'com.github.ControlFlexMC:control-flex-api:0.9.0'
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+}</code></pre>
+  <pre><code># mods.toml（Forge / NeoForge）
+[[dependencies.your_mod_id]]
+    modId = "controlflex"
+    mandatory = true
+    versionRange = "[0.8.7,)"
+    ordering = "AFTER"
+    side = "CLIENT"
+
+# fabric.mod.json
+{ "depends": { "controlflex": ">=0.8.7" } }</code></pre>
+  <div class="callout">
+    <p>
+      <span>The first line is always an availability check — Control Flex may not be installed, and SDL3 may have failed to initialize. Every provider can be <code>null</code>.</span>
+    </p>
+  </div>
+  <pre><code>if (!ControlFlexApi.isAvailable()) {
+    return;   // fall back: skip every controller-related path
+}</code></pre>
+
+  <h2 id="skeleton"><span>3. Plugin skeleton: IControlFlexPlugin</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Callback</span></th>
+          <th><span>When it runs / what it is for</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>getModId()</code></td>
+          <td><span>Plugin identifier, used for logging and de-duplication.</span></td>
+        </tr>
+        <tr>
+          <td><code>onInstallCompatConfigs()</code></td>
+          <td><span>Called before ready; use <code>installer.install()</code> to install compat JSON into <code>compat/mods/</code>.</span></td>
+        </tr>
+        <tr>
+          <td><code>onInstallGuideAssets()</code></td>
+          <td><span>Same idea, into <code>guides/mods/</code>.</span></td>
+        </tr>
+        <tr>
+          <td><code>onControlFlexReady()</code></td>
+          <td><span>The single initialization callback; every provider is ready at this point.</span></td>
+        </tr>
+        <tr>
+          <td><code>onControllerConnectionChanged()</code></td>
+          <td><span>Fires when a controller connects or disconnects.</span></td>
+        </tr>
+        <tr>
+          <td><code>requireApiVersion()</code></td>
+          <td><span>Default method that checks the minimum API version and returns <code>false</code> when unmet.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pre><code>package com.example.mymod;
+
+import com.ifels.controlflex.api.*;
+
+public class MyPlugin implements IControlFlexPlugin {
+
+    @Override
+    public String getModId() { return "my_bridge_mod"; }
+
+    @Override
+    public void onInstallCompatConfigs(ICompatAssetInstaller installer) {
+        installer.install("/assets/my_bridge_mod/compat/targetmod.json", "targetmod.json");
+    }
+
+    @Override
+    public void onControlFlexReady() {
+        if (!requireApiVersion("0.8.7")) return;
+        if (!ControlFlexApi.isAvailable()) return;
+
+        ControlFlexApi.getPlayerStateRegistry().setState("mymod:initialized", true);
+    }
+}</code></pre>
+  <p>
+    <span>Registration goes through an SPI services file; Control Flex discovers plugins automatically:</span>
+  </p>
+  <pre><code>src/main/resources/META-INF/services/com.ifels.controlflex.api.IControlFlexPlugin
+
+com.example.mymod.MyPlugin</code></pre>
+  <p class="small muted">
+    <span>Installed JSON lands in <code>compat/mods/</code>: above <code>default/</code>, below <code>user/</code> — so players can still override your defaults instead of being locked in.</span>
+  </p>
+
+  <h2 id="providers"><span>4. What you can reach</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Interface</span></th>
+          <th><span>Use</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>IInputProvider</code> · <code>IControllerState</code></td>
+          <td><span>Read stick axes, triggers and buttons. <code>IControllerState</code> is a live view — caching it across ticks gives you stale values.</span></td>
+        </tr>
+        <tr>
+          <td><code>IControllerCapabilities</code></td>
+          <td><span>Controller hardware capabilities (model, rumble support, …) for deciding fallbacks.</span></td>
+        </tr>
+        <tr>
+          <td><code>IActionStateProvider</code></td>
+          <td><span>Query whether an action (built-in or modded) is active; IDs look like <code>attack</code> / <code>modid:key.name</code>.</span></td>
+        </tr>
+        <tr>
+          <td><code>IPlayerStateRegistry</code></td>
+          <td><span>Push <code>modId:stateName</code> states for JSON <code>playerState</code> conditions. <code>setState</code> is the only call allowed from any thread.</span></td>
+        </tr>
+        <tr>
+          <td><code>IInteractiveContextRegistrar</code></td>
+          <td><span>Declare a custom-drawn overlay foreground / background so Control Flex switches to the Overlay phase while it is up.</span></td>
+        </tr>
+        <tr>
+          <td><code>ICompatAssetInstaller</code></td>
+          <td><span>Install compat / guide assets (available only inside the matching callbacks).</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>Threading: everything except <code>setState()</code> runs on the client main thread; both <code>getActiveGameActions()</code> and <code>IControllerState</code> are live views — never hold them across ticks.</span>
+  </p>
+
+  <h2 id="official"><span>5. The official compatibility implementations</span></h2>
+  <p>
+    <span>They fall into three groups, all under the <a href="https://github.com/ControlFlexMC" target="_blank" rel="noopener">ControlFlexMC</a> organisation:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Repository</span></th>
+          <th><span>Type</span></th>
+          <th><span>What it solves</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">control-flex</a></td>
+          <td><span>Core</span></td>
+          <td><span>Built-in compat JSON + dispatch channels + three-layer override — covers the vast majority of standard KeyMapping mods. The built-in JSON lives in <code>src/main/resources/controlflex/compat/</code>.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">cfx-compat-configs</a></td>
+          <td><span>Config source</span></td>
+          <td><span>Distribution and sharing of community configs, organised by MC version / loader — the ceiling of the "no code" route.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/ControlFlexMC/cfx-compat-epicfight" target="_blank" rel="noopener">cfx-compat-epicfight</a></td>
+          <td><span>Bridge</span></td>
+          <td><span>Epic Fight's battle-mode state and dedicated keys; also the most complete example of state pushing plus asset installation.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/ControlFlexMC/cfx-compat-emi" target="_blank" rel="noopener">cfx-compat-emi</a></td>
+          <td><span>Bridge</span></td>
+          <td><span>EMI keeps its bindings in its own config and registers no KeyMapping; the bridge registers 22 pseudo KeyMappings and forwards presses back into EMI's interaction functions.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/ControlFlexMC/cfx-compat-create" target="_blank" rel="noopener">cfx-compat-create</a></td>
+          <td><span>Bridge</span></td>
+          <td><span>Create's train console polls raw key state (<code>InputConstants.isKeyDown</code>); once analog movement takes over, nothing publishes key state, so the bridge has to.</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/ControlFlexMC/cfx-compat-vehicles" target="_blank" rel="noopener">cfx-compat-vehicles</a></td>
+          <td><span>Bridge</span></td>
+          <td><span>Immersive Vehicles (MTS) calls <code>GLFW.glfwGetKey</code> directly; the bridge puts its mixin inside the vehicle mod's own read path (MTS only for now).</span></td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/ControlFlexMC/cfx-compat-exposure" target="_blank" rel="noopener">cfx-compat-exposure</a></td>
+          <td><span>Bridge</span></td>
+          <td><span>Key and screen adaptation for the Exposure camera mod.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>Bridges and JSON are not either-or: most bridges also install a JSON into the <code>mods/</code> layer through <code>onInstallCompatConfigs</code> — letting JSON decide where keys sit, and Java decide what happens at runtime.</span>
+  </p>
+
+  <h2 id="patterns"><span>6. Three typical failures, three approaches</span></h2>
+
+  <h3><span>1) Nothing is registered: add pseudo KeyMappings</span></h3>
+  <p>
+    <span>The mod stores bindings in its own config and matches them inside its own screens (EMI does exactly this), so the keys appear neither in vanilla Controls nor in auto-discovery. The fix is to register ordinary KeyMappings and forward "pressed" back into the mod's own entry points — no fake input, and the mod's key settings stay untouched.</span>
+  </p>
+  <pre><code>// 示意：注册一组伪 KeyMapping（注册 API 随 MC 版本 / 加载器不同）
+new KeyMapping("key.cfx_target.open", GLFW.GLFW_KEY_K, "key.categories.cfx_target");
+
+// 每 tick 把 Control Flex 的动作状态转发回模组自己的入口
+if (ControlFlexApi.getActionStateProvider()
+        .isGameActionActive("cfx_target:key.cfx_target.open")) {
+    TargetMod.openPanel();   // 调用模组自己的函数，而不是模拟按键
+}</code></pre>
+
+  <h3><span>2) The mod polls raw key state: mixin its read path</span></h3>
+  <p>
+    <span>The <code>glfwPoll</code> channel covers polling through <code>InputConstants.isKeyDown</code>, but mods that call <code>GLFW.glfwGetKey</code> never see it — GLFW is loaded by the system class loader and never passes through ModLauncher's transformer. Instead, put a mixin on the mod's own read entry point and answer "is it held right now".</span>
+  </p>
+  <pre><code>// 示意：只回答四个移动键，其余交还原逻辑
+@Mixin(TargetInput.class)
+public abstract class TargetInputMixin {
+
+    @Inject(method = "isKeyPressed", at = @At("HEAD"), cancellable = true)
+    private void cfx$steering(int keyCode, CallbackInfoReturnable&lt;Boolean&gt; cir) {
+        if (ControlFlexApi.isAvailable()
+                && ControlFlexApi.getActionStateProvider().isGameActionActive("move_forward")) {
+            cir.setReturnValue(true);
+        }
+    }
+}</code></pre>
+  <p class="small muted">
+    <span>Keeping that mixin inside a separate bridge mod keeps the core free of third-party dependencies, and a failure only affects that one compat package.</span>
+  </p>
+
+  <h3><span>3) The mod has runtime state: push it, let JSON consume it</span></h3>
+  <p>
+    <span>Epic Fight's battle mode decides which keys the mod should own. Java only pushes the state; which actions get suppressed is written in JSON — so players and pack authors can change it.</span>
+  </p>
+  <pre><code>// Java：状态变化时推一次
+ControlFlexApi.getPlayerStateRegistry()
+    .setState("epicfight:battle_mode", inBattle);</code></pre>
+  <pre><code>// JSON：条件消费（主手拿武士刀且处于战斗模式时，压制通用 use）
+"itemSuppressKeys": [
+  { "item": "efn:yamato_dmc*",
+    "playerState": ["epicfight:battle_mode"],
+    "suppressActions": ["use"] }
+]</code></pre>
+
+  <h2 id="ship"><span>7. Debugging and shipping</span></h2>
+  <ul>
+    <li><span>Log prefix <code>[ModCompat]</code>: loading, overriding and skip reasons all land there; give your bridge its own logger.</span></li>
+    <li><span>Guard the minimum API version with <code>requireApiVersion("0.8.7")</code>, and declare Control Flex as a <code>mandatory</code> dependency in <code>mods.toml</code> / <code>fabric.mod.json</code>.</span></li>
+    <li><span>API is <code>compileOnly</code>; ship a separate JAR and do not shade it in, or you duplicate the core.</span></li>
+    <li><span>In the release notes, say what it fixes, which mod versions and loaders you tested, and whether it ships optional JSON defaults.</span></li>
+  </ul>
+
+  <h2 id="next"><span>Keep reading</span></h2>
+  <div class="cards">
+    <a class="card" href="../../dev/index.html">
+      <h3><span>API quick start</span></h3>
+      <p><span>Project setup, availability checks, your first bridge mod.</span></p>
+      <p class="card-arrow"><span>Start from zero →</span></p>
+    </a>
+    <a class="card" href="../../dev/api-reference.html">
+      <h3><span>API reference</span></h3>
+      <p><span>Full signatures, action ID formats, threading model.</span></p>
+      <p class="card-arrow"><span>Look up signatures →</span></p>
+    </a>
+    <a class="card" href="../../dev/examples.html">
+      <h3><span>Plugin guide & examples</span></h3>
+      <p><span>Lifecycle details, asset installation, the end-to-end Epic Fight example.</span></p>
+      <p class="card-arrow"><span>Read the code →</span></p>
+    </a>
+    <a class="card" href="json.html">
+      <h3><span>Compat config fields</span></h3>
+      <p><span>What the JSON your bridge installs actually looks like.</span></p>
+      <p class="card-arrow"><span>See the fields →</span></p>
+    </a>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — MIT License · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">Report issues ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community configs ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>
