@@ -207,16 +207,17 @@
   </div>
 
   <div class="callout warn">
-    <p><b><span>2 · Set gamepad input to SDL passthrough (ZL2 / FCL)</span></b></p>
+    <p><b><span>2 · Set Gamepad Input Mode to SDL Direct (ZL2 / FCL)</span></b></p>
     <p>
-      <span>In Zalith Launcher 2 and Fold Craft Launcher the gamepad input mode defaults to the launcher taking the pad itself: it translates sticks and buttons into key/mouse events and feeds those to the game. ControlFlex then never sees the raw device — no pad in settings, and deadzone, trigger travel, and rumble are all decided by the launcher.</span>
+      <span>In Zalith Launcher 2 and Fold Craft Launcher, Gamepad Input Mode defaults to Mapped (Virtual Keys): buttons and sticks are first translated into virtual keyboard/mouse events, and only then handed to the game. ControlFlex never sees the raw device — no pad in settings, and deadzone, trigger travel, and rumble are all decided by the launcher.</span>
     </p>
     <p>
-      <span>Switch it to <b>SDL passthrough</b> (the label varies: <i>SDL</i>, <i>passthrough</i>, <i>native SDL</i>). SDL3 then opens the device directly and the mod reads raw axes and buttons through <code>libgamepadjni</code> — which is the only reason multiple pads, hotplug, and rumble work at all.</span>
+      <span>Pick <b>SDL Direct</b> instead (the Chinese UI calls it <b>SDL 直通</b>). In ZL2 the path is <b>Settings → Gamepad → Gamepad Input Mode</b>, and the option describes itself: raw gamepad input is delivered to the game through the SDL/GLFW gamepad API with button remapping bypassed — exactly what is needed here. SDL3 opens the device directly and the mod reads raw axes and buttons through <code>libgamepadjni</code>, which is the only reason multiple pads, hotplug, and rumble work at all.</span>
     </p>
     <ul>
+      <li><span>First make sure the <b>Gamepad Control</b> master switch at the top of the same page is on — turn it off only when some other device is being mistaken for a gamepad.</span></li>
       <li><span>Check: in game, <b>Settings → Gamepad Selection</b> lists the device by name and reacts to any button.</span></li>
-      <li><span>Trade-off: the launcher's own button mapping no longer applies to that pad. That is expected — bind everything in the mod's key mapping panel instead.</span></li>
+      <li><span>Trade-off: once SDL Direct is on, Mapped (Virtual Keys) no longer applies to that pad. That is expected — bind everything in the mod's key mapping panel instead.</span></li>
       <li><span>Quit the game and relaunch after changing it, so the launcher re-enumerates devices.</span></li>
     </ul>
   </div>
@@ -338,7 +339,7 @@
         </tr>
         <tr>
           <td><span>The pad works through the launcher's own key mapping, but never appears in Settings → Gamepad Selection</span></td>
-          <td><span>Gamepad input mode is not SDL passthrough (ZL2 / FCL) — see the two settings above</span></td>
+          <td><span>Gamepad Input Mode is set to Mapped (Virtual Keys) instead of SDL Direct — see the two settings above</span></td>
         </tr>
         <tr>
           <td><span><code>UnsatisfiedLinkError</code> in the log</span></td>
