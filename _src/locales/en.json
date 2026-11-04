@@ -732,7 +732,6 @@
   "guide.versions.77": "Next →",
   "guide.versions.78": "Getting Started",
   "home.18": "Flexible controller mapping for Minecraft Java Edition, built for modpacks.",
-  "home.20": "Download on CurseForge",
   "home.21": "<p class=\"lead\">Control Flex turns a limited set of buttons into broad coverage of modded content through a seven-layer binding architecture, ten trigger modes, combo keys, radial menus, and cross-layer mappings. Its mod adaptation system auto-discovers mod keys, adapts stick behavior per screen or overlay, and supports a community config repo plus a bridge-mod API.</p>",
   "home.22": "Start Here",
   "home.23": "🚀 Quick Start",

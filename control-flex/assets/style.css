@@ -703,15 +703,6 @@ td:first-child { font-weight: 560; }
   .hero .badges { margin-bottom: 0; }
 }
 
-/* The CurseForge button drops its "Download on" prefix on narrow screens so it
-   lines up with the plain GitHub / Discord buttons instead of wrapping alone. */
-.cta-short { display: none; }
-
-@media (max-width: 560px) {
-  .cta-long { display: none; }
-  .cta-short { display: inline; }
-}
-
 .btn {
   display: inline-block;
   padding: 10px 20px;
@@ -835,6 +826,14 @@ a.card:hover {
 @media (max-width: 940px) {
   .nav-toggle { display: block; }
   .topnav { display: none; }
+  /* the top nav carried the `margin-left: auto` that pushed the right-hand group
+     across, so once it is gone the switcher has to take that job over and stay
+     flush with the right edge like it is on wide screens */
+  .lang-switch { margin-left: auto; flex: none; }
+  /* on very narrow phones the brand is the only thing that can give way, so it
+     truncates instead of shoving the switcher past the padding */
+  .brand { min-width: 0; }
+  .brand-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   .layout { padding: 20px 16px 60px; gap: 0; }
 
@@ -874,6 +873,11 @@ a.card:hover {
 @media (max-width: 480px) {
   .hero { padding: 26px 20px; }
   .btn { padding: 9px 16px; font-size: 13.5px; }
+  /* phones: tighten the bar so the brand keeps its full name next to the switcher */
+  .topbar { padding: 0 16px; gap: 10px; }
+  .brand-text { font-size: 14.5px; }
+  .lang-switch { font-size: 12.5px; }
+  .lang-switch a, .lang-switch .lang-current { padding: 2px 7px; }
 }
 
 /* ============================================================
