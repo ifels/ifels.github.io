@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{TITLE}}</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
 {{HEAD_META}}
 <link rel="stylesheet" href="{{ROOT}}assets/style.css">
 </head>
 <body>
 <header class="topbar">
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
-  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <a class="brand" href="../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
   <nav class="topnav">
     <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
@@ -44,7 +44,7 @@
       <tbody>
         <tr>
           <td>Windows</td>
-          <td>x86_64 · ARM64</td>
+          <td>x86_64</td>
           <td><span data-i18n="guide.platforms.25">Bundled in the JAR (<code>SDL3.dll</code>)</span></td>
           <td><span class="badge green"><span data-i18n="guide.platforms.26">Supported</span></span></td>
         </tr>
@@ -82,7 +82,7 @@
   <h2><span data-i18n="guide.platforms.36">Desktop</span></h2>
   <ul>
     <li><span data-i18n="guide.platforms.37">No SDL3, driver, or extra runtime to install — the mod always uses the SDL3 packaged in the JAR, so it neither conflicts with a system SDL nor searches system paths.</span></li>
-    <li><span data-i18n="guide.platforms.38">Both Windows x86_64 and ARM64 ship native binaries (<code>gamepadjni.dll</code> + <code>SDL3.dll</code>).</span></li>
+    <li><span data-i18n="guide.platforms.38">Windows ships x86_64 natives only (<code>gamepadjni.dll</code> + <code>SDL3.dll</code>); there is no ARM64 build in the JAR yet, so on Windows on ARM run an x64 JVM — an arm64 JVM fails with <code>UnsatisfiedLinkError</code>.</span></li>
     <li><span data-i18n="guide.platforms.39">macOS ships both Intel and Apple Silicon <code>libgamepadjni.dylib</code> builds, so it works with or without Rosetta.</span></li>
     <li><span data-i18n="guide.platforms.40">Linux ships x86_64 and aarch64 <code>libgamepadjni.so</code> builds, covering aarch64 devices such as Steam Deck.</span></li>
     <li><span data-i18n="guide.platforms.41">Hotplug, multi-controller detection, and per-controller identity (name / type / serial) behave the same across the three desktop platforms.</span></li>
@@ -253,7 +253,7 @@
         </tr>
         <tr>
           <td><span data-i18n="guide.platforms.77"><code>UnsatisfiedLinkError</code> in the log</span></td>
-          <td><span data-i18n="guide.platforms.78">On Android, either an unsupported ABI (e.g. 32-bit x86) or the launcher APK lacks SDL3; on desktop, the native does not match the OS architecture</span></td>
+          <td><span data-i18n="guide.platforms.78">On Android, either an unsupported ABI (e.g. 32-bit x86) or the launcher APK lacks SDL3; on desktop, the native does not match the OS architecture — note that Windows only carries x86_64 natives, so ARM64 machines need an x64 JVM.</span></td>
         </tr>
         <tr>
           <td><span data-i18n="guide.platforms.79">Nothing available on iOS</span></td>

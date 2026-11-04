@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>平台支持 · Control Flex Wiki</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='22' font-size='15' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECF%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
 <script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/platforms.html", "zh": "/control-flex/zh/guide/platforms.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
 <link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/platforms.html">
 <link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/platforms.html">
@@ -17,7 +17,7 @@
 <body>
 <header class="topbar">
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
-  <a class="brand" href="../index.html"><span class="brand-mark">CF</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <a class="brand" href="../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
   <nav class="topnav">
     <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
     <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
@@ -134,7 +134,7 @@
       <tbody>
         <tr>
           <td>Windows</td>
-          <td>x86_64 · ARM64</td>
+          <td>x86_64</td>
           <td><span>JAR 内置（<code>SDL3.dll</code>）</span></td>
           <td><span class="badge green"><span>支持</span></span></td>
         </tr>
@@ -172,7 +172,7 @@
   <h2><span>桌面平台</span></h2>
   <ul>
     <li><span>无需安装 SDL3、驱动或额外运行库 —— 模组固定使用 JAR 内打包的 SDL3，不与系统里已有的 SDL 冲突，也不会去搜索系统路径。</span></li>
-    <li><span>Windows 的 x86_64 与 ARM64 都随包提供原生库（<code>gamepadjni.dll</code> + <code>SDL3.dll</code>）。</span></li>
+    <li><span>Windows 只随包提供 x86_64 的原生库（<code>gamepadjni.dll</code> + <code>SDL3.dll</code>），没有 ARM64 版本 —— 在 ARM64 Windows（如骁龙 X 机型）上要用 x64 版 Java 运行，用 arm64 的 JVM 会报 <code>UnsatisfiedLinkError</code>。</span></li>
     <li><span>macOS 同时提供 Intel 与 Apple Silicon 两份 <code>libgamepadjni.dylib</code>，Rosetta 与否都能用。</span></li>
     <li><span>Linux 提供 x86_64 与 aarch64 两份 <code>libgamepadjni.so</code>；Steam Deck 之类的 aarch64 设备同样在列。</span></li>
     <li><span>手柄热插拔、多手柄识别、按手柄身份（名称 / 类型 / 序列号）记忆配置，在三个桌面平台上行为一致。</span></li>
@@ -343,7 +343,7 @@
         </tr>
         <tr>
           <td><span>日志出现 <code>UnsatisfiedLinkError</code></span></td>
-          <td><span>Android 上是 ABI 不被支持（如 32 位 x86）或启动器 APK 缺 SDL3；桌面上则是原生库与系统架构不符</span></td>
+          <td><span>Android 上要么是不支持的 ABI（如 32 位 x86），要么启动器 APK 没带 SDL3；桌面上是原生库与系统架构不匹配 —— 注意 Windows 只有 x86_64 版本，ARM64 机器上要换 x64 版 Java。</span></td>
         </tr>
         <tr>
           <td><span>iOS 设备上找不到入口</span></td>
