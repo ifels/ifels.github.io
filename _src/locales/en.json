@@ -319,7 +319,6 @@
   "guide.feature.splitscreen.41": "Install the mods: Control Flex in the gamepad instances, optionally Splitscreen Support too.",
   "guide.feature.splitscreen.42": "Launch both. Two pads: pick a <b>different</b> controller in each game's <b>Gamepad Selection</b>. Pad + keyboard: assign the pad in the gamepad instance only.",
   "guide.feature.splitscreen.43": "Press <span class=\"kbd\">F3</span>+<span class=\"kbd\">P</span> in each window to disable Pause on Lost Focus (or change it in video options) — the unfocused window must keep running; the pause screen also shows a hint.",
-  "guide.feature.splitscreen.44": "With Splitscreen Support, press <span class=\"kbd\">F11</span> to cycle half- and quarter-screen layouts; the last position is remembered.",
   "guide.feature.splitscreen.45": "Host on one instance (<b>Open to LAN</b>); join from the others from the multiplayer list, or via <code>localhost</code> plus the port shown.",
   "guide.feature.splitscreen.46": "Picking a Look Mode",
   "guide.feature.splitscreen.47": "Use <b>Direct Turn</b> or <b>Smooth Turn</b> in background windows.",
