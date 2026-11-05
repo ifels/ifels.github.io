@@ -339,7 +339,6 @@
   "guide.feature.splitscreen.65": "<b>Windows</b> — version isolation keeps one game directory per version; launching a second version prompts once, and confirming it starts the second client.",
   "guide.feature.splitscreen.66": "<b>Windows · macOS · Linux</b> — manages everything as instances, each with its own mods and settings, and supports offline accounts.",
   "guide.feature.splitscreen.63": "<b>Windows · macOS</b> — instances are kept apart from each other; Linux support is still experimental.",
-  "guide.feature.splitscreen.64": "Two things about offline accounts: <b>give each instance a different username</b> — that name is the in-game player name, and duplicates collide on the LAN — and <b>Open to LAN does not verify accounts</b>, so offline clients join directly. Only a dedicated server needs <code>online-mode=false</code> in <code>server.properties</code>.",
   "guide.feature.trigger-modes.30": "Features",
   "guide.feature.trigger-modes.31": "Trigger Modes",
   "guide.feature.trigger-modes.32": "Every binding pairs which button with how it fires. Control Flex offers ten trigger modes, so one button can tap, hold, latch, and double-press for different actions.",
