@@ -471,7 +471,7 @@
   "guide.basics.45": "完整默认值、编辑规则与常见误区：<a href=\"feature/layers.html\">七层按键架构</a>。",
   "guide.basics.46": "界面（Screen）与叠层（Overlay）",
   "guide.basics.47": "<b>Screen（界面）</b>：游戏停止操控的状态 —— 容器、合成、设置、模组自己的界面。打开期间玩家<b>不能移动、不能转视角</b>，输入切到 Screen 层。以 Screen 类的全限定类名标识，例如 <code>net.minecraft.client.gui.screens.inventory.InventoryScreen</code>。",
-  "guide.basics.48": "<b>Overlay（叠层）</b>：游戏继续进行的状态 —— 打开期间玩家<b>仍可移动、转视角</b>。它可以只是一小块 HUD（法术轮盘、第三方径向菜单、照片 HUD），也可以铺满全屏；关键在于底下的游戏还在运行。以「打开它的一方」的类名声明，模组可以用 <code>\"*\"</code> 作兜底。",
+  "guide.basics.48": "<b>Overlay（叠层）</b>：游戏继续进行的状态 —— 打开期间玩家<b>仍可移动、转视角</b>。它可以只是一小块 HUD（法术轮盘、第三方径向菜单、照片 HUD），也可以铺满全屏；关键在于底下的游戏还在运行。以「打开它的一方」的类名声明。",
   "guide.basics.49": "<b>输入行为不同</b>：Screen 层自带完整默认绑定（虚拟光标、槽位、翻页、滚动）；Overlay 层<b>不继承</b> Main —— 未配置的动作保持安静，HUD 不会误触战斗键。",
   "guide.basics.50": "在 compat JSON 里它们对应 <code>screen</code> / <code>overlay</code> 两段（overlay 段不支持 <code>menus</code>）。见<a href=\"feature/mod-adaptation.html\">模组适配</a>与 <a href=\"../modpack/compat/json.html\">compat JSON 速查</a>。",
   "guide.basics.51": "快速判断：打开后还能走路的就是 Overlay；一打开就不能动的是 Screen。最终以 compat 声明为准。",
