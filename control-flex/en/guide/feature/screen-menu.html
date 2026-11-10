@@ -120,13 +120,13 @@
 
 <h1><span>Screen Menu</span></h1>
   <p class="lead">
-    <span>A Screen Menu is a bindable, radial-style list of actions that opens on top of any screen Control Flex knows about — inventories, quest books, mod GUIs — without closing the screen underneath. Open it with a button, pick an entry, and the action fires as if you had navigated there yourself. <b>Requires Control Flex 0.9+.</b></span>
+    <span>A Screen Menu is a bindable list of actions that opens on top of any screen Control Flex knows about — inventories, quest books, mod GUIs — without closing the screen underneath. Open it with a button, pick an entry, and the action fires as if you had navigated there yourself. <b>Requires Control Flex 0.9+.</b></span>
   </p>
 
   <h2><span>How It Works</span></h2>
   <ul>
     <li><span><b>Five menus, five bindings</b>: <code>screen_menu_open_1</code> – <code>screen_menu_open_5</code> are regular rebindable actions, bound out of the box.</span></li>
-    <li><span><b>Drawn over the screen</b>: the menu renders as a radial-style panel on top of whatever screen is open; while it is up, a modal input mask keeps clicks and keys away from the screen underneath.</span></li>
+    <li><span><b>Drawn over the screen</b>: the menu renders as a list panel on top of whatever screen is open; while it is up, a modal input mask keeps clicks and keys away from the screen underneath.</span></li>
     <li><span><b>Slots come from compat + config</b>: a mod's compat entry (or your own config) can prefill a menu with actions; unusable slots are filtered out at load.</span></li>
     <li><span><b>One action per slot</b>: hand-edited JSON gets the same validation as the in-game editor.</span></li>
   </ul>
