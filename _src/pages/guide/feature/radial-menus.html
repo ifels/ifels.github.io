@@ -29,7 +29,7 @@
 
 <h1><span data-i18n="guide.feature.radial-menus.31">Radial Menus</span></h1>
   <p class="lead">
-    <span data-i18n="guide.feature.radial-menus.32">Up to five independent wheels, each with as many as eight slots around the stick: open a wheel, aim with the stick, confirm with A. Food, torches, <code>/home</code> — frequent actions that do not deserve a dedicated face button belong on a wheel.</span>
+    <span data-i18n="guide.feature.radial-menus.32">Up to five independent wheels, each with as many as twelve slots around the stick: open a wheel, aim with the stick, confirm with A. Food, torches, <code>/home</code> — frequent actions that do not deserve a dedicated face button belong on a wheel.</span>
   </p>
 
   <h2><span data-i18n="guide.feature.radial-menus.33">What a Slot Can Do</span></h2>
@@ -73,6 +73,15 @@
   <ul>
     <li><span data-i18n="guide.feature.radial-menus.50">Icon modes: <b>auto</b> (inferred from the slot's content, e.g. item icons), <b>random</b>, <b>default</b>, <b>item ID</b>, or a custom texture path.</span></li>
     <li><span data-i18n="guide.feature.radial-menus.51">The in-game editor lets you pick icons, reorder slots, and set the trigger mode per menu.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.radial-menus.68">New in 0.9: More Slots, Slot Status, Stick Selection</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.radial-menus.69">Each wheel grows from eight to <b>twelve slots</b>; the bundled menus still start with eight. <b>Requires Control Flex 0.9+.</b></span></li>
+    <li><span data-i18n="guide.feature.radial-menus.70"><code>use_item</code> slots show the item's inventory count; missing or unregistered items stay visible as placeholder slots so layouts never silently shrink.</span></li>
+    <li><span data-i18n="guide.feature.radial-menus.71">Vanilla item cooldowns draw as a hotbar-style water-level fill with the remaining seconds above it — counts cap at 99+, seconds hide above 90.</span></li>
+    <li><span data-i18n="guide.feature.radial-menus.72">Stick selection tracks partial deflection with a 10% sector hysteresis instead of a hard 0.5 gate, so selection follows the stick smoothly and never flickers on a boundary.</span></li>
+    <li><span data-i18n="guide.feature.radial-menus.73">Menu and slot names can be localized per language.</span></li>
   </ul>
 
   <h2><span data-i18n="guide.feature.radial-menus.52">Config Files</span></h2>

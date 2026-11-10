@@ -49,6 +49,7 @@
         <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
         <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
         <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/screen-menu.html">Screen Menu</a>
         <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
       </div>
       <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
@@ -155,7 +156,7 @@
           <td><b><span>Compat configs</span></b></td>
           <td><span>A network connection, or a ready-made file</span></td>
           <td><span>The shareable form of the two rungs above, plus dispatch channels, key suppression and tips</span></td>
-          <td><code>compat/{default,mods,user}/</code></td>
+          <td><code>compat/{default,mods,pack,user}/</code></td>
           <td><span>Low</span></td>
         </tr>
         <tr>
@@ -226,7 +227,7 @@
 
   <h2 id="layers"><span>4. Where the result lives: three layers</span></h2>
   <p>
-    <span>Compat configs load from three layers, priority <code>user</code> &gt; <code>mods</code> &gt; <code>default</code>; the same <code>mod_id</code> is replaced wholesale, never merged field by field. Which layer to edit — and what can overwrite it — is covered in <a href="manual.html">Editing configs by hand</a>.</span>
+    <span>Compat configs load in four layers, priority <code>user</code> &gt; <code>pack</code> &gt; <code>mods</code> &gt; <code>default</code>; a <code>mod_id</code> overrides whole-file, never field-merged. Since 0.9 the <code>pack</code> layer is hand-placed by modpack authors and read-only for Control Flex. Which layer to edit, and what later operations may overwrite, is covered in <a href="manual.html">manual config editing</a>.</span>
   </p>
 
   <h2 id="read"><span>5. Where to go next</span></h2>

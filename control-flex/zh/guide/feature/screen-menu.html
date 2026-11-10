@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>界面菜单 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/feature/screen-menu.html", "zh": "/control-flex/zh/guide/feature/screen-menu.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/feature/screen-menu.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/feature/screen-menu.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/feature/screen-menu.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/feature/screen-menu.html">
+<meta property="og:title" content="界面菜单 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/feature/screen-menu.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">相机与瞄准</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/screen-menu.html">界面菜单</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">模组兼容</div>
+      <a href="/control-flex/zh/modpack/compat/index.html">概览</a>
+      <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+      <a href="/control-flex/zh/modpack/compat/bridge/index.html">桥接模组</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/bridge/setup.html">接入与生命周期</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/api.html">接口速查</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/implementations.html">官方实现</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/ecosystem.html">谁在用 API</a>
+      </div>
+      <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包配置</div>
+      <a href="/control-flex/zh/modpack/index.html">配置与模板</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span>功能</span></a></p>
+
+<h1><span>界面菜单</span></h1>
+  <p class="lead">
+    <span>界面菜单（Screen Menu）是一份可绑定、径向式的动作列表，能在 Control Flex 认识的任意界面上方弹出 —— 容器、任务书、模组 GUI —— 而不必关掉底下的界面。按一个键打开，选一项执行，就像你亲手在界面里点过一样。<b>需要 Control Flex 0.9+。</b></span>
+  </p>
+
+  <h2><span>它是怎么工作的</span></h2>
+  <ul>
+    <li><span><b>五个菜单、五个绑定</b>：<code>screen_menu_open_1</code> – <code>screen_menu_open_5</code> 是普通的可重绑动作，开箱即有默认键位。</span></li>
+    <li><span><b>画在界面之上</b>：菜单以径向式面板覆盖在当前界面上；打开期间有一层输入遮罩，点击和按键不会漏进底下的界面。</span></li>
+    <li><span><b>槽位来自适配配置</b>：模组的 compat 条目（或你自己的配置）可以预填菜单动作；不可用的槽位在加载时就被过滤掉。</span></li>
+    <li><span><b>每槽一个动作</b>：手改 JSON 与游戏内编辑器走同一套校验。</span></li>
+  </ul>
+
+  <h2><span>在设置里编辑</span></h2>
+  <ul>
+    <li><span>每界面的设置页新增 <b>菜单（Menu）</b> 标签：菜单列表、可拖拽排序的编辑器、名称 / 位置 / 高度 / 缩放，以及实时预览。</span></li>
+    <li><span>重复点击会以 toast 提示，而不是之后悄悄丢掉槽位。</span></li>
+    <li><span>层级映射新增「隐藏未激活动作」：表格只列出当前界面真正能触发的行；重置仍按未过滤的全集执行。</span></li>
+  </ul>
+
+  <p class="small muted">
+    <span>相关页面：<a href="mod-adaptation.html">模组适配</a>（每界面 compat 条目）、<a href="radial-menus.html">径向菜单</a>（游戏内转盘）、<a href="cursor.html">光标与界面</a>。</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/mod-adaptation.html"><span class="dir"><span>← 上一个</span></span><span class="name"><span>模组适配</span></span></a>
+  <a class="pager-next" href="../../guide/feature/guide-hud.html"><span class="dir"><span>下一个 →</span></span><span class="name"><span>游戏内引导</span></span></a>
+</nav>
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

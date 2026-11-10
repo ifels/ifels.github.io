@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+<p class="crumbs"><a href="../../guide/features.html"><span data-i18n="guide.feature.screen-menu.30">Features</span></a></p>
+
+<h1><span data-i18n="guide.feature.screen-menu.31">Screen Menu</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.feature.screen-menu.32">A Screen Menu is a bindable, radial-style list of actions that opens on top of any screen Control Flex knows about — inventories, quest books, mod GUIs — without closing the screen underneath. Open it with a button, pick an entry, and the action fires as if you had navigated there yourself. <b>Requires Control Flex 0.9+.</b></span>
+  </p>
+
+  <h2><span data-i18n="guide.feature.screen-menu.33">How It Works</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.screen-menu.34"><b>Five menus, five bindings</b>: <code>screen_menu_open_1</code> – <code>screen_menu_open_5</code> are regular rebindable actions, bound out of the box.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.35"><b>Drawn over the screen</b>: the menu renders as a radial-style panel on top of whatever screen is open; while it is up, a modal input mask keeps clicks and keys away from the screen underneath.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.36"><b>Slots come from compat + config</b>: a mod's compat entry (or your own config) can prefill a menu with actions; unusable slots are filtered out at load.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.37"><b>One action per slot</b>: hand-edited JSON gets the same validation as the in-game editor.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.screen-menu.38">Editing in Settings</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.screen-menu.39">The per-screen settings page gains a <b>Menu</b> tab: menu list, an editor with drag reorder, name / position / height / scale, and a live preview.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.40">A duplicate click answers with a toast instead of silently dropping the slot later.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.41">Layer Mapping gains <b>Hide inactive actions</b>: the table lists only the rows that can fire on this screen; Reset still walks the unfiltered set.</span></li>
+  </ul>
+
+  <p class="small muted">
+    <span data-i18n="guide.feature.screen-menu.42">Related: <a href="mod-adaptation.html">Mod Adaptation</a> (per-screen compat entries), <a href="radial-menus.html">Radial Menus</a> (in-game wheels), and <a href="cursor.html">Cursor &amp; GUI</a>.</span>
+  </p>
+
+<nav class="pager">
+  <a class="pager-prev" href="../../guide/feature/mod-adaptation.html"><span class="dir"><span data-i18n="guide.feature.screen-menu.43">← Previous</span></span><span class="name"><span data-i18n="guide.feature.screen-menu.44">Mod Adaptation</span></span></a>
+  <a class="pager-next" href="../../guide/feature/guide-hud.html"><span class="dir"><span data-i18n="guide.feature.screen-menu.45">Next →</span></span><span class="name"><span data-i18n="guide.feature.screen-menu.46">In-Game Guide</span></span></a>
+</nav>
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

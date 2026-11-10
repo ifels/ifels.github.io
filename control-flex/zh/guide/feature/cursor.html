@@ -49,6 +49,7 @@
         <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
         <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
         <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/screen-menu.html">界面菜单</a>
         <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
       </div>
       <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
@@ -141,6 +142,16 @@
   <p>
     <span>不需要精确移动光标时，用 D-Pad 在格子之间直接跳转：采用扇形 / 锥形瞄靶，横向长条与不规则格网（如自定义容器）也能可靠跳格。跳格与虚拟光标并存 —— 左摇杆随时可以接管自由移动。</span>
   </p>
+
+  <h2><span>四档光标速度（需要 Control Flex 0.9+）</span></h2>
+  <p>
+    <span>光标速度不再只有一个固定值，而是沿摇杆死区归一化后的偏移量分四档 —— <b>慢 / 中 / 快 / 全速</b>。全速档在 95% 偏转时进入、92% 时退出，摇杆老化也不必非顶到 1.0。</span>
+  </p>
+  <ul>
+    <li><span><b>卡片式设置</b>：光标设置重做成相机风格的卡片 —— 每档一行、标注各自的摇杆偏移区间，相邻行互相钳制、不会级联。</span></li>
+    <li><span><b>可调分档点</b>：档位之间的分界可以自己调。</span></li>
+    <li><span><b>配置迁移</b>：旧配置继续用固定速度模式，全新安装默认启用四档。</span></li>
+  </ul>
 
   <h2><span>界面默认键位（Basic 模板）</span></h2>
   <div class="table-wrap">

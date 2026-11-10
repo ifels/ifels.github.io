@@ -67,6 +67,10 @@
             "key": "nav.mod-adaptation"
           },
           {
+            "href": "guide/feature/screen-menu.html",
+            "key": "nav.screen-menu"
+          },
+          {
             "href": "guide/feature/guide-hud.html",
             "key": "nav.in-game-guide"
           }

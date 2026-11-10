@@ -49,6 +49,7 @@
         <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
         <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
         <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/screen-menu.html">界面菜单</a>
         <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
       </div>
       <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
@@ -119,7 +120,7 @@
 
 <h1><span>径向菜单</span></h1>
   <p class="lead">
-    <span>最多 5 个独立轮盘，每个环绕摇杆至多 8 个槽位：打开轮盘、用摇杆瞄准、按 A 确认。食物、火把、<code>/home</code> 这类高频但不值得占用面键的操作，都适合放进轮盘。</span>
+    <span>最多五个独立转盘，每个沿摇杆一周最多 12 个槽位：打开转盘、摇杆瞄准、A 键确认。食物、火把、<code>/home</code> —— 不值得单独占一个脸键的高频操作，都放进转盘。</span>
   </p>
 
   <h2><span>槽位能做什么</span></h2>
@@ -163,6 +164,15 @@
   <ul>
     <li><span>图标模式：<b>自动</b>（按槽位内容推断，如物品图标）、<b>随机</b>、<b>默认</b>、<b>物品 ID</b>、或自定义纹理路径。</span></li>
     <li><span>游戏内编辑器可以调整图标、槽位顺序，以及每个菜单自己的触发方式。</span></li>
+  </ul>
+
+  <h2><span>0.9 新增：更多槽位、槽位状态、摇杆选择</span></h2>
+  <ul>
+    <li><span>每个转盘的槽位上限从 8 提升到 <b>12</b>；内置菜单默认仍是 8 个。<b>需要 Control Flex 0.9+。</b></span></li>
+    <li><span><code>use_item</code> 槽位会显示物品的库存数量；缺失或未注册的物品以占位槽位保留，布局不会悄悄缩水。</span></li>
+    <li><span>原版冷却以热键栏式的水位填充呈现，上方显示剩余秒数 —— 数量封顶 99+，超过 90 秒不再显示秒数。</span></li>
+    <li><span>摇杆选择按扇区 + 10% 迟滞跟踪部分偏转，替代原来 0.5 的方形阈值，选择更顺滑、边界不抖动。</span></li>
+    <li><span>转盘与槽位名称支持按语言各自命名。</span></li>
   </ul>
 
   <h2><span>配置文件</span></h2>

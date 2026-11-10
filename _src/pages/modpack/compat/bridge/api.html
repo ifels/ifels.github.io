@@ -37,7 +37,7 @@
 
   <h2 id="ref"><span data-i18n="compat.bridge.ref.h2">四、接口速查</span></h2>
   <p>
-    <span data-i18n="compat.bridge.ref.p">包名 <code>com.ifels.controlflex.api</code>，共 13 个公开类型。除 <code>IPlayerStateRegistry.setState()</code> 外，全部要求在<b>客户端主线程</b>调用。</span>
+    <span data-i18n="compat.bridge.ref.p">包名 <code>com.ifels.controlflex.api</code>，共 28 个公开类型（其中 0.9 新增 13 个，见下表标注）。除 <code>IPlayerStateRegistry.setState()</code> 外，全部要求在<b>客户端主线程</b>调用。</span>
   </p>
   <div class="table-wrap">
     <table>
@@ -59,6 +59,11 @@
         <tr><td><code>IPlayerStateRegistry</code></td><td><span data-i18n="compat.bridge.ref.registry">推送 <code>modId:state</code> 状态给 JSON 消费</span></td></tr>
         <tr><td><code>IInteractiveContextRegistrar</code></td><td><span data-i18n="compat.bridge.ref.context">声明交互式叠层的前台 / 后台</span></td></tr>
         <tr><td><code>ICameraLookConsumer</code></td><td><span data-i18n="compat.bridge.ref.camera">接管每帧视角增量（相机被模组接管的场景）</span></td></tr>
+        <tr><td><code>IScreenHandler</code> · <code>IScreenHandlerRegistry</code></td><td><span data-i18n="compat.bridge.ref.screenhandler">每界面处理器：接管返回键、接收 HUD 可见性推送（0.9.2.1+）</span></td></tr>
+        <tr><td><code>IActionBindingProvider</code> · <code>IActionBindingInfo</code> · <code>IControllerGlyph</code></td><td><span data-i18n="compat.bridge.ref.bindingquery">解析某动作此刻绑定的按键与手柄图案（0.9.2.1+）</span></td></tr>
+        <tr><td><code>IActionRegistrar</code> · <code>ActionRegistration</code> · <code>IControlFlexAction</code></td><td><span data-i18n="compat.bridge.ref.actionreg">原生动作注册：桥接声明自己的动作，不经过 KeyMapping（0.9.2.2+）</span></td></tr>
+        <tr><td><code>ActionLayer</code> · <code>ActionTrigger</code> · <code>DefaultBinding</code> · <code>BindingLayer</code></td><td><span data-i18n="compat.bridge.ref.regenums">注册相关枚举与默认绑定描述（0.9.2.x）</span></td></tr>
+        <tr><td><code>HudStateReason</code></td><td><span data-i18n="compat.bridge.ref.hudreason">HUD 状态推送的原因枚举（0.9.2.1+）</span></td></tr>
         <tr><td><code>ControllerType</code> · <code>InputMode</code></td><td><span data-i18n="compat.bridge.ref.enums">手柄型号 / 当前输入模式枚举</span></td></tr>
       </tbody>
     </table>
@@ -66,6 +71,11 @@
   <div class="callout warn">
     <p>
       <span data-i18n="compat.bridge.ref.injector"><b>0.9.0 移除了输入注入</b>：<code>IInputInjector</code> 与 <code>getInputInjector()</code> 已删除，需要合成手柄输入的测试工具请留在 0.8.x。</span>
+    </p>
+  </div>
+  <div class="callout tip">
+    <p>
+      <span data-i18n="compat.bridge.ref.newcallout"><b>0.9 新增的接口需要 Control Flex 0.9+（control-flex-api 0.9.2）</b>：下表的每界面处理器、绑定查询、原生动作注册在 0.8.x 上拿不到实现 —— <code>ControlFlexApi.isAvailable()</code> 为 true 不代表这些 provider 存在，取到后先判空。</span>
     </p>
   </div>
 
@@ -145,6 +155,54 @@ void clearAll()                                  // fallback: world unload / mod
   <p class="small muted">
     <span data-i18n="compat.bridge.ref.context.note"><code>className</code> 是全限定类名 —— Control Flex 拿它去 compat JSON 的 <code>overlay</code> 表里查摇杆与光标行为。调用前先判空：<code>getInteractiveContextRegistrar()</code> 可能是 <code>null</code>。</span>
   </p>
+
+  <h3><span data-i18n="compat.bridge.ref.screen.h3">IScreenHandler · IScreenHandlerRegistry（0.9.2.1+）</span></h3>
+  <pre><code>// IScreenHandlerRegistry — one handler per exact screen class
+void register(String className, IScreenHandler handler)
+boolean isHudVisible(String className)   // diagnostic only: state is pushed, not polled
+
+// IScreenHandler
+boolean onBack()        // return true to consume the back press; false falls through to Escape
+boolean ownsHud()       // explicit opt-in; a back-only handler is not a HUD owner
+boolean onHudState(boolean visible, HudStateReason reason)
+// reason: DEFAULT / RESTORED / USER_TOGGLE
+// applied=false keeps the stored value at the last good state
+// HUD state persists in config/controlflex/screen_hud_state.json</code></pre>
+  <p class="small muted">
+    <span data-i18n="compat.bridge.ref.screen.note">返回键只分发给当前焦点类；HUD 状态在前台切换、注册时已在前台、玩家手动开关三种时机推送，先应用后落盘 —— 应用失败不持久化。</span>
+  </p>
+
+  <h3><span data-i18n="compat.bridge.ref.binding.h3">IActionBindingProvider —— 查动作绑定了哪个键（0.9.2.1+）</span></h3>
+  <pre><code>IActionBindingInfo getEffectiveBinding(String actionId)
+// resolves against the layer the dispatcher would use,
+// including per-screen and per-overlay tables
+
+// IActionBindingInfo
+List&lt;? extends IControllerGlyph&gt; glyphs()   // bound buttons + their glyphs
+// configured-but-unreachable reads as unbound:
+// a hint cannot advertise a button that cannot fire</code></pre>
+  <p class="small muted">
+    <span data-i18n="compat.bridge.ref.binding.note">配套地，<code>ICursorController</code> 新增 <code>warpToGui(x, y)</code>：把虚拟指针按 GUI 坐标挪到自绘高亮上，再用 <code>gui_press</code> 激活。另外暴露了光标位置的只读窥视，供纯界面 UI 使用。</span>
+  </p>
+
+  <h3><span data-i18n="compat.bridge.ref.register.h3">原生动作注册 onRegisterActions（0.9.2.2+）</span></h3>
+  <pre><code>// IControlFlexPlugin — runs before the profile loads, so defaults still apply
+default void onRegisterActions(IActionRegistrar registrar)
+
+registrar.register(ActionRegistration.builder()
+    .id("mymod:my_action")            // must live in your own namespace
+    .displayName("My Action")
+    .layers(ActionLayer.SCREEN)       // IN_GAME / SCREEN / OVERLAY; none = all three
+    .defaultBinding(new DefaultBinding("button.name", TriggerMode.PRESS))
+    .build());
+
+// IControlFlexAction — level handle for hold-style usage;
+// ActionTrigger arrives on the activation edge with mode + matching class</code></pre>
+  <ul>
+    <li><span data-i18n="compat.bridge.ref.register.1">注册的动作不会出现在原版控制设置里，也不会被 compat 配置重新归因；<code>getActionIds()</code> 与 <code>getEffectiveBinding()</code> 会包含它们。</span></li>
+    <li><span data-i18n="compat.bridge.ref.register.2">Screen / Overlay 绑定写入编辑器已用的 <code>user_screen_overrides.json</code>，不存在第二套存储。</span></li>
+    <li><span data-i18n="compat.bridge.ref.register.3">注册窗口从 discoverPlugins 开始、到 onControlFlexReady 之前关闭；窗口外调用注册器会抛异常。回调走事件流而非逐帧派发 —— HOLD 只触发一次、释放一次。</span></li>
+  </ul>
 
   <h3><span data-i18n="compat.bridge.ref.installer.h3">ICompatAssetInstaller</span></h3>
   <pre><code>boolean install(String resourcePath, String fileName)

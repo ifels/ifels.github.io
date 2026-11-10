@@ -49,6 +49,7 @@
         <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
         <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
         <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/screen-menu.html">Screen Menu</a>
         <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
       </div>
       <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
@@ -134,11 +135,12 @@
 
   <h2 id="files"><span>1. Where files go, and when they load</span></h2>
   <ul>
-    <li><span>Three directories: <code>compat/default/</code> (extracted from the JAR, read-only), <code>compat/mods/</code> (installed by bridge mods, read-only), <code>compat/user/</code> (your changes, highest priority).</span></li>
+    <li><span>Four directories: <code>compat/default/</code> (shipped from the JAR, read-only), <code>compat/mods/</code> (installed by bridge mods, read-only), <code>compat/pack/</code> (hand-placed by modpack authors, read-only for Control Flex, 0.9+), <code>compat/user/</code> (your edits, highest priority).</span></li>
     <li><span>Identity comes from the <code>mod_id</code> inside the JSON, not the filename — but files in <code>user/</code> must be named <code>&lt;mod_id&gt;.json</code>, because the UI and hot-reload look them up by that name.</span></li>
     <li><span>Three gates must all pass: the target <code>mod_id</code> is installed, every mod listed in <code>dependencies</code> is loaded, and one entry in <code>mod_versions</code> matches the installed mod version. If any fails, the whole file is skipped (the log distinguishes "mod not loaded" from "dependencies not loaded").</span></li>
     <li><span>Files starting with a dot (such as <code>.applied.json</code>) are never parsed as configs.</span></li>
     <li><span>Legacy <code>{modid}_keys.json</code> files are migrated automatically on startup: the original is backed up and renamed, the fields converted.</span></li>
+    <li><span><b>The pack layer (0.9+)</b>: files must be named strictly <code>compat/pack/&lt;mod_id&gt;.json</code> and override lower layers whole-file. Reset deletes the user file and falls back to the nearest lower layer (pack → mods → default); layers whose <code>mod_versions</code> do not match are dropped instead of shadowing lower ones; community auto-apply treats pack as occupied. The mod detail page shows which config file is actually in effect.</span></li>
   </ul>
 
   <h2 id="builtin"><span>2. What ships in the JAR</span></h2>

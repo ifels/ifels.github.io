@@ -44,11 +44,12 @@
 
   <h2 id="files"><span data-i18n="compat.json.files.h2">一、文件放在哪，什么情况下才会生效</span></h2>
   <ul>
-    <li><span data-i18n="compat.json.files.1">三个目录：<code>compat/default/</code>（从 JAR 释放，只读）、<code>compat/mods/</code>（桥接模组安装，只读）、<code>compat/user/</code>（你的改动，优先级最高）。</span></li>
+    <li><span data-i18n="compat.json.files.1">四个目录：<code>compat/default/</code>（从 JAR 释放，只读）、<code>compat/mods/</code>（桥接模组安装，只读）、<code>compat/pack/</code>（整合包作者手工放置，Control Flex 只读，0.9+）、<code>compat/user/</code>（你的改动，优先级最高）。</span></li>
     <li><span data-i18n="compat.json.files.2">身份来自 JSON 里的 <code>mod_id</code>，不是文件名；但 <code>user/</code> 层的文件必须叫 <code>&lt;mod_id&gt;.json</code>，游戏内界面与热重载都按这个名字找文件。</span></li>
     <li><span data-i18n="compat.json.files.3">三个门槛全过才会加载：目标 <code>mod_id</code> 已安装、<code>dependencies</code> 里每个 mod 都已加载、<code>mod_versions</code> 里有一条匹配当前模组版本。任一不满足，整份文件跳过（日志会区分「模组未加载」和「依赖未加载」）。</span></li>
     <li><span data-i18n="compat.json.files.4">以点开头的文件（如 <code>.applied.json</code>）不会被当成配置解析。</span></li>
     <li><span data-i18n="compat.json.files.5">旧格式 <code>{modid}_keys.json</code> 会在启动时自动迁移：原文件备份改名，字段转换到新格式。</span></li>
+    <li><span data-i18n="compat.json.files.6"><b>pack 层（0.9+）</b>：文件必须是严格的 <code>compat/pack/&lt;mod_id&gt;.json</code>，整份覆盖下层。重置会删掉 user 文件并回退到最近一层（pack → mods → default）；<code>mod_versions</code> 不匹配的层会被直接丢弃，不再遮蔽下层；社区配置自动应用把 pack 视为已占用。模组详情页会显示实际生效的配置文件路径。</span></li>
   </ul>
 
   <h2 id="builtin"><span data-i18n="compat.json.builtin.h2">二、内置了什么</span></h2>

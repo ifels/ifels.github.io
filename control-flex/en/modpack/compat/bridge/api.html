@@ -49,6 +49,7 @@
         <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
         <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
         <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/screen-menu.html">Screen Menu</a>
         <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
       </div>
       <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
@@ -127,7 +128,7 @@
 
   <h2 id="ref"><span>Type overview</span></h2>
   <p>
-    <span>Package <code>com.ifels.controlflex.api</code>, 13 public types. Everything except <code>IPlayerStateRegistry.setState()</code> must be called on the <b>client main thread</b>.</span>
+    <span>Package <code>com.ifels.controlflex.api</code>, 28 public types in total (13 of them new in 0.9, marked below). Everything except <code>IPlayerStateRegistry.setState()</code> must be called on the <b>client main thread</b>.</span>
   </p>
   <div class="table-wrap">
     <table>
@@ -149,6 +150,11 @@
         <tr><td><code>IPlayerStateRegistry</code></td><td><span>Push <code>modId:state</code> states for JSON to consume</span></td></tr>
         <tr><td><code>IInteractiveContextRegistrar</code></td><td><span>Declare an interactive overlay's foreground / background</span></td></tr>
         <tr><td><code>ICameraLookConsumer</code></td><td><span>Take over each frame's look delta (when a mod owns the camera)</span></td></tr>
+        <tr><td><code>IScreenHandler</code> · <code>IScreenHandlerRegistry</code></td><td><span>Per-screen handlers: take over the back press and receive HUD visibility pushes (0.9.2.1+)</span></td></tr>
+        <tr><td><code>IActionBindingProvider</code> · <code>IActionBindingInfo</code> · <code>IControllerGlyph</code></td><td><span>Resolve which buttons an action is bound to right now, with their glyphs (0.9.2.1+)</span></td></tr>
+        <tr><td><code>IActionRegistrar</code> · <code>ActionRegistration</code> · <code>IControlFlexAction</code></td><td><span>Native action registration: bridges declare actions without KeyMapping (0.9.2.2+)</span></td></tr>
+        <tr><td><code>ActionLayer</code> · <code>ActionTrigger</code> · <code>DefaultBinding</code> · <code>BindingLayer</code></td><td><span>Registration enums and the default-binding description (0.9.2.x)</span></td></tr>
+        <tr><td><code>HudStateReason</code></td><td><span>Why a HUD state was pushed (0.9.2.1+)</span></td></tr>
         <tr><td><code>ControllerType</code> · <code>InputMode</code></td><td><span>Controller type / current input mode enums</span></td></tr>
       </tbody>
     </table>
@@ -156,6 +162,11 @@
   <div class="callout warn">
     <p>
       <span><b>Input injection was removed in 0.9.0</b>: <code>IInputInjector</code> and <code>getInputInjector()</code> are gone, so tooling that needs synthetic gamepad input has to stay on 0.8.x.</span>
+    </p>
+  </div>
+  <div class="callout tip">
+    <p>
+      <span><b>Interfaces added in 0.9 need Control Flex 0.9+ (control-flex-api 0.9.2)</b>: the per-screen handlers, binding queries and native action registration below have no implementation on 0.8.x — a true <code>ControlFlexApi.isAvailable()</code> does not mean these providers exist, so null-check after fetching.</span>
     </p>
   </div>
 
@@ -235,6 +246,54 @@ void clearAll()                                  // fallback: world unload / mod
   <p class="small muted">
     <span><code>className</code> is the fully qualified class name — Control Flex looks it up in the compat JSON <code>overlay</code> table to resolve stick and cursor behavior. Null-check first: <code>getInteractiveContextRegistrar()</code> may be <code>null</code>.</span>
   </p>
+
+  <h3><span>IScreenHandler · IScreenHandlerRegistry (0.9.2.1+)</span></h3>
+  <pre><code>// IScreenHandlerRegistry — one handler per exact screen class
+void register(String className, IScreenHandler handler)
+boolean isHudVisible(String className)   // diagnostic only: state is pushed, not polled
+
+// IScreenHandler
+boolean onBack()        // return true to consume the back press; false falls through to Escape
+boolean ownsHud()       // explicit opt-in; a back-only handler is not a HUD owner
+boolean onHudState(boolean visible, HudStateReason reason)
+// reason: DEFAULT / RESTORED / USER_TOGGLE
+// applied=false keeps the stored value at the last good state
+// HUD state persists in config/controlflex/screen_hud_state.json</code></pre>
+  <p class="small muted">
+    <span>The back press is dispatched only to the focused class. HUD state is pushed on foreground change, on registration while already foreground, and on user toggle — applied first, persisted after, so a failed apply is not stored.</span>
+  </p>
+
+  <h3><span>IActionBindingProvider — which button fires this action (0.9.2.1+)</span></h3>
+  <pre><code>IActionBindingInfo getEffectiveBinding(String actionId)
+// resolves against the layer the dispatcher would use,
+// including per-screen and per-overlay tables
+
+// IActionBindingInfo
+List&lt;? extends IControllerGlyph&gt; glyphs()   // bound buttons + their glyphs
+// configured-but-unreachable reads as unbound:
+// a hint cannot advertise a button that cannot fire</code></pre>
+  <p class="small muted">
+    <span>Alongside it, <code>ICursorController</code> gains <code>warpToGui(x, y)</code>: park the virtual pointer on a hand-drawn highlight in GUI coordinates, then activate it with <code>gui_press</code>. A read-only cursor-position peek is exposed for screen-only UIs.</span>
+  </p>
+
+  <h3><span>Native action registration — onRegisterActions (0.9.2.2+)</span></h3>
+  <pre><code>// IControlFlexPlugin — runs before the profile loads, so defaults still apply
+default void onRegisterActions(IActionRegistrar registrar)
+
+registrar.register(ActionRegistration.builder()
+    .id("mymod:my_action")            // must live in your own namespace
+    .displayName("My Action")
+    .layers(ActionLayer.SCREEN)       // IN_GAME / SCREEN / OVERLAY; none = all three
+    .defaultBinding(new DefaultBinding("button.name", TriggerMode.PRESS))
+    .build());
+
+// IControlFlexAction — level handle for hold-style usage;
+// ActionTrigger arrives on the activation edge with mode + matching class</code></pre>
+  <ul>
+    <li><span>Registered actions never reach the vanilla controls screen and are never re-attributed by a compat config; <code>getActionIds()</code> and <code>getEffectiveBinding()</code> include them.</span></li>
+    <li><span>Screen / Overlay bindings are written to the <code>user_screen_overrides.json</code> table the editor already owns — there is no second store.</span></li>
+    <li><span>The registration window opens around discoverPlugins and closes before onControlFlexReady; calling the registrar later throws. Callbacks fire from the event stream, not per-frame dispatch — a HOLD triggers once and releases once.</span></li>
+  </ul>
 
   <h3><span>ICompatAssetInstaller</span></h3>
   <pre><code>boolean install(String resourcePath, String fileName)

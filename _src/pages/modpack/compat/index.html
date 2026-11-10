@@ -65,7 +65,7 @@
           <td><b><span data-i18n="compat.overview.ladder.r3.tool">兼容配置</span></b></td>
           <td><span data-i18n="compat.overview.ladder.r3.need">联网，或一个现成文件</span></td>
           <td><span data-i18n="compat.overview.ladder.r3.covers">上面两层的可分享版本，外加派发通道、按键抑制、提示文案</span></td>
-          <td><code>compat/{default,mods,user}/</code></td>
+          <td><code>compat/{default,mods,pack,user}/</code></td>
           <td><span data-i18n="compat.overview.ladder.r3.cost">低</span></td>
         </tr>
         <tr>
@@ -136,7 +136,7 @@
 
   <h2 id="layers"><span data-i18n="compat.overview.layers.h2">四、产物落在哪：三层目录</span></h2>
   <p>
-    <span data-i18n="compat.overview.layers.p">compat 配置按三层加载，优先级 <code>user</code> &gt; <code>mods</code> &gt; <code>default</code>，同一个 <code>mod_id</code> 整份覆盖、不做字段合并。改哪一层、会不会被后续操作覆盖，在<a href="manual.html">手动修改配置</a>里讲清楚。</span>
+    <span data-i18n="compat.overview.layers.p">compat 配置按四层加载，优先级 <code>user</code> &gt; <code>pack</code> &gt; <code>mods</code> &gt; <code>default</code>，同一个 <code>mod_id</code> 整份覆盖、不做字段合并。0.9 起新增的 <code>pack</code> 层由整合包作者手工放置、Control Flex 对其只读。改哪一层、会不会被后续操作覆盖，在<a href="manual.html">手动修改配置</a>里讲清楚。</span>
   </p>
 
   <h2 id="read"><span data-i18n="compat.overview.read.h2">五、按你的身份继续读</span></h2>

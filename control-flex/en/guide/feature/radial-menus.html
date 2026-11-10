@@ -49,6 +49,7 @@
         <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
         <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
         <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/screen-menu.html">Screen Menu</a>
         <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
       </div>
       <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
@@ -119,7 +120,7 @@
 
 <h1><span>Radial Menus</span></h1>
   <p class="lead">
-    <span>Up to five independent wheels, each with as many as eight slots around the stick: open a wheel, aim with the stick, confirm with A. Food, torches, <code>/home</code> — frequent actions that do not deserve a dedicated face button belong on a wheel.</span>
+    <span>Up to five independent wheels, each with as many as twelve slots around the stick: open a wheel, aim with the stick, confirm with A. Food, torches, <code>/home</code> — frequent actions that do not deserve a dedicated face button belong on a wheel.</span>
   </p>
 
   <h2><span>What a Slot Can Do</span></h2>
@@ -163,6 +164,15 @@
   <ul>
     <li><span>Icon modes: <b>auto</b> (inferred from the slot's content, e.g. item icons), <b>random</b>, <b>default</b>, <b>item ID</b>, or a custom texture path.</span></li>
     <li><span>The in-game editor lets you pick icons, reorder slots, and set the trigger mode per menu.</span></li>
+  </ul>
+
+  <h2><span>New in 0.9: More Slots, Slot Status, Stick Selection</span></h2>
+  <ul>
+    <li><span>Each wheel grows from eight to <b>twelve slots</b>; the bundled menus still start with eight. <b>Requires Control Flex 0.9+.</b></span></li>
+    <li><span><code>use_item</code> slots show the item's inventory count; missing or unregistered items stay visible as placeholder slots so layouts never silently shrink.</span></li>
+    <li><span>Vanilla item cooldowns draw as a hotbar-style water-level fill with the remaining seconds above it — counts cap at 99+, seconds hide above 90.</span></li>
+    <li><span>Stick selection tracks partial deflection with a 10% sector hysteresis instead of a hard 0.5 gate, so selection follows the stick smoothly and never flickers on a boundary.</span></li>
+    <li><span>Menu and slot names can be localized per language.</span></li>
   </ul>
 
   <h2><span>Config Files</span></h2>
