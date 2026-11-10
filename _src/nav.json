@@ -9,6 +9,15 @@
     ]
   },
   {
+    "label": "nav.basics",
+    "items": [
+      {
+        "href": "guide/basics.html",
+        "key": "nav.basics"
+      }
+    ]
+  },
+  {
     "label": "nav.player-guide",
     "items": [
       {
