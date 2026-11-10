@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings &amp; Controls · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/settings.html", "zh": "/control-flex/zh/guide/settings.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="en")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/guide/settings.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/settings.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/settings.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/settings.html">
+<meta property="og:title" content="Settings &amp; Controls · Control Flex Wiki">
+<meta property="og:locale" content="en">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current" aria-current="true">English</span><a href="/control-flex/zh/guide/settings.html" hreflang="zh" lang="zh" data-set-lang="zh">中文</a></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/en/index.html">Home</a>
+      <a href="/control-flex/en/guide/concepts.html">Concepts</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Player Guide</div>
+      <a href="/control-flex/en/guide/getting-started.html">Getting Started</a>
+      <a href="/control-flex/en/guide/features.html">Features</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/guide/feature/layers.html">Seven Layers</a>
+        <a href="/control-flex/en/guide/feature/trigger-modes.html">Trigger Modes</a>
+        <a href="/control-flex/en/guide/feature/combo-keys.html">Combo Keys</a>
+        <a href="/control-flex/en/guide/feature/radial-menus.html">Radial Menus</a>
+        <a href="/control-flex/en/guide/feature/analog-movement.html">Analog Movement</a>
+        <a href="/control-flex/en/guide/feature/camera.html">Camera Look</a>
+        <a href="/control-flex/en/guide/feature/cursor.html">Cursor &amp; GUI</a>
+        <a href="/control-flex/en/guide/feature/rumble.html">Rumble</a>
+        <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
+        <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
+        <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/screen-menu.html">Screen Menu</a>
+        <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
+      </div>
+      <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Platforms &amp; Versions</div>
+      <a href="/control-flex/en/guide/platforms.html">Platform Support</a>
+      <a href="/control-flex/en/guide/versions.html">Minecraft Versions</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Mod Compatibility</div>
+      <a href="/control-flex/en/modpack/compat/index.html">Overview</a>
+      <a href="/control-flex/en/modpack/compat/json.html">Compat JSON</a>
+      <a href="/control-flex/en/modpack/compat/bridge/index.html">Bridge Mods</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/modpack/compat/bridge/integration.html">Integration</a>
+        <a href="/control-flex/en/modpack/compat/bridge/api.html">Interfaces</a>
+        <a href="/control-flex/en/modpack/compat/bridge/implementations.html">Implementations</a>
+        <a href="/control-flex/en/modpack/compat/bridge/ecosystem.html">Who Uses It</a>
+      </div>
+      <a href="/control-flex/en/modpack/compat/manual.html">By hand</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Modpack Config</div>
+      <a href="/control-flex/en/modpack/index.html">Config &amp; Templates</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Links</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>Settings &amp; Controls</span></h1>
+  <p class="lead">
+    <span>Open settings with <span class="kbd">F9</span> (keyboard) or <span class="kbd">Back</span> + <span class="kbd">Start</span> (controller). This page covers what is in the UI, how to rebind, how to calibrate, where configs live, and what to check when something misbehaves.</span>
+  </p>
+
+  <h2><span>Inside the Settings Screen</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Area</span></th>
+          <th><span>What you do there</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>Key Mapping</span></td>
+          <td><span>View and edit every binding per layer (Main / Shift 1–4 / Screen / Overlay); searchable, including pinyin search</span></td>
+        </tr>
+        <tr>
+          <td><span>Mod Adaptation</span></td>
+          <td><span>Per-mod discovered keys, Screen / Overlay rules, and community config sync — see <a href="../modpack/compat/index.html">Mod Compatibility</a></span></td>
+        </tr>
+        <tr>
+          <td><span>Calibration</span></td>
+          <td><span>Stick deadzones and movement / camera response curves; auto or per-axis calibration</span></td>
+        </tr>
+        <tr>
+          <td><span>Other Settings</span></td>
+          <td><span>Tap / Long Press thresholds, Analog Movement (360°) and the server whitelist, and other global options</span></td>
+        </tr>
+        <tr>
+          <td><span>Gamepad Selection</span></td>
+          <td><span>Detected controllers (name / type / serial); pick which one is active when several are connected</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span>Rebinding</span></h2>
+  <ol>
+    <li><span>Find the action's layer and category in Key Mapping (search by name, or by Chinese pinyin).</span></li>
+    <li><span>Select the row to start capture, then press a controller button — the resolved input appears live.</span></li>
+    <li><span>For a chord: press the first button, then add the rest within <b>500 ms</b> until the chord is complete.</span></li>
+    <li><span>Some actions restrict their mode (layer switches are fixed to Hold; Shift-layer return-to-Main to Release) and the UI only offers valid modes.</span></li>
+  </ol>
+  <p class="small muted">
+    <span>Edited entries are marked “User modified”, keeping them distinct from template defaults; reset per page or restore the whole template default.</span>
+  </p>
+
+  <h2><span>Stick &amp; Trigger Calibration</span></h2>
+  <ul>
+    <li><span>Deadzones are per-axis: left stick X/Y, right stick X/Y, left trigger, right trigger.</span></li>
+    <li><span>Both one-click auto calibration (all axes) and single-axis calibration are available, with live axis readouts so you can spot drift.</span></li>
+    <li><span>Movement and camera response curves live here too; the Analog Movement policy (360° / keyboard-like 8-way) is under Other Settings.</span></li>
+  </ul>
+
+  <h2><span>Templates, Profiles &amp; Reset</span></h2>
+  <ul>
+    <li><span>Templates (Basic / Bedrock / Recommend) are complete default layouts; custom templates can be dropped in as JSON under <code>config/controlflex/templates/</code>.</span></li>
+    <li><span>Your edits live in profiles, separate from the template — switching templates neither loses them nor rewrites the template file.</span></li>
+    <li><span>Reset per page, or restore everything to template defaults.</span></li>
+    <li><span>Upgrading from 0.8.6.x migrates profiles, compat files, and client settings automatically on first launch; originals are backed up under <code>config/controlflex/backup/</code>.</span></li>
+  </ul>
+
+  <h2><span>Key Detection (Debug)</span></h2>
+  <p>
+    <span>To debug “why did that button do nothing”, open the tick-by-tick detection log. It shows physical keys, virtual keys, the resolved action, the layer, and timing, with separate In-Game and GUI test modes matching the different input paths. While active, controller input is dedicated to logging.</span>
+  </p>
+
+  <h2><span>Where Configs Live</span></h2>
+  <pre><code>config/controlflex/
+├── templates/      # template JSON files
+├── profiles/       # your edits (profiles)
+├── compat/         # mod compat configs (default / mods / user)
+├── radial_menu/    # radial menu layouts and icons
+├── backup/         # automatic backups from migrations
+└── cfx-client.json # client state</code></pre>
+  <p class="small muted">
+    <span>Layer priority and override rules for pack authors are on the <a href="../modpack/index.html">Configuration</a> page.</span>
+  </p>
+
+  <h2><span>Troubleshooting</span></h2>
+
+  <h3><span>Controller not detected</span></h3>
+  <p>
+    <span>First check Gamepad Selection for a detected device (name / type). If the list is empty: try another USB port or re-pair Bluetooth, verify the pad works system-wide, and make sure the JAR matches your MC version and loader; on Fabric, confirm Fabric API is installed.</span>
+  </p>
+
+  <h3><span>A mod's key is bound but does nothing</span></h3>
+  <p>
+    <span>Check in order: (1) which layer the screen belongs to (Screen / Overlay / Main) and bind there; (2) add a rule for that mod's screen in Mod Adaptation, or sync a community config; (3) if the mod only listens to physical keys, bind it via Virtual KBM. Full flow on <a href="../modpack/compat/index.html">Mod Compatibility</a>.</span>
+  </p>
+
+  <h3><span>Movement looks abnormal to a server</span></h3>
+  <p>
+    <span>Switch the Analog Movement policy to keyboard-like 8-way (the default for public servers and Realms); whitelist a server if it should still get smooth movement. See <a href="feature/analog-movement.html">Analog Movement</a>.</span>
+  </p>
+
+  <h3><span>Character freezes when the window loses focus</span></h3>
+  <p>
+    <span>That is vanilla Pause on Lost Focus. Press <span class="kbd">F3</span>+<span class="kbd">P</span> to disable it (required for couch co-op; the pause screen also shows a hint).</span>
+  </p>
+
+  <h3><span>Starting over from scratch</span></h3>
+  <p>
+    <span>Back up and rename the whole <code>config/controlflex/</code> directory; the game regenerates defaults on the next launch, and community/packaged configs are re-extracted at startup.</span>
+  </p>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">Report issues ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community configs ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

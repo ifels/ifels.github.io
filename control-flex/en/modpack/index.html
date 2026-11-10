@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configuration for Modpacks · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/modpack/index.html", "zh": "/control-flex/zh/modpack/index.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="en")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/modpack/index.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/modpack/index.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/modpack/index.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/modpack/index.html">
+<meta property="og:title" content="Configuration for Modpacks · Control Flex Wiki">
+<meta property="og:locale" content="en">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current" aria-current="true">English</span><a href="/control-flex/zh/modpack/index.html" hreflang="zh" lang="zh" data-set-lang="zh">中文</a></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/en/index.html">Home</a>
+      <a href="/control-flex/en/guide/concepts.html">Concepts</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Player Guide</div>
+      <a href="/control-flex/en/guide/getting-started.html">Getting Started</a>
+      <a href="/control-flex/en/guide/features.html">Features</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/guide/feature/layers.html">Seven Layers</a>
+        <a href="/control-flex/en/guide/feature/trigger-modes.html">Trigger Modes</a>
+        <a href="/control-flex/en/guide/feature/combo-keys.html">Combo Keys</a>
+        <a href="/control-flex/en/guide/feature/radial-menus.html">Radial Menus</a>
+        <a href="/control-flex/en/guide/feature/analog-movement.html">Analog Movement</a>
+        <a href="/control-flex/en/guide/feature/camera.html">Camera Look</a>
+        <a href="/control-flex/en/guide/feature/cursor.html">Cursor &amp; GUI</a>
+        <a href="/control-flex/en/guide/feature/rumble.html">Rumble</a>
+        <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
+        <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
+        <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/screen-menu.html">Screen Menu</a>
+        <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
+      </div>
+      <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Platforms &amp; Versions</div>
+      <a href="/control-flex/en/guide/platforms.html">Platform Support</a>
+      <a href="/control-flex/en/guide/versions.html">Minecraft Versions</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Mod Compatibility</div>
+      <a href="/control-flex/en/modpack/compat/index.html">Overview</a>
+      <a href="/control-flex/en/modpack/compat/json.html">Compat JSON</a>
+      <a href="/control-flex/en/modpack/compat/bridge/index.html">Bridge Mods</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/modpack/compat/bridge/integration.html">Integration</a>
+        <a href="/control-flex/en/modpack/compat/bridge/api.html">Interfaces</a>
+        <a href="/control-flex/en/modpack/compat/bridge/implementations.html">Implementations</a>
+        <a href="/control-flex/en/modpack/compat/bridge/ecosystem.html">Who Uses It</a>
+      </div>
+      <a href="/control-flex/en/modpack/compat/manual.html">By hand</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Modpack Config</div>
+      <a href="/control-flex/en/modpack/index.html">Config &amp; Templates</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Links</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>Configuration for Modpacks</span></h1>
+  <p class="lead">
+    <span>For players and pack authors who want to change defaults and ship them with a pack: where configs live, how overrides resolve, and how template JSON is written.</span>
+  </p>
+
+  <h2><span>Config Directory Layout</span></h2>
+  <pre><code>config/controlflex/
+├── templates/          # template JSON (built-in + custom)
+├── profiles/           # per-template user modifications
+├── compat/             # mod compatibility configs
+│   ├── default/        # packaged (extracted from the JAR, read-only)
+│   ├── mods/           # installed by bridge mods (read-only)
+│   └── user/           # your edits (highest priority)
+├── guides/             # guide assets, same default/mods/user layering
+├── radial_menu/        # radial menu layouts and icons
+├── backup/             # automatic backups from migrations
+└── cfx-client.json     # global client state</code></pre>
+
+  <h2><span>Override Rules</span></h2>
+  <ul>
+    <li><span>Compat configs resolve in three layers with priority <b>user &gt; mods &gt; default</b>; files with the same <code>mod_id</code> override wholesale by layer.</span></li>
+    <li><span>In-game edits are copy-on-write: packaged and community files stay read-only and your changes land in <code>compat/user/</code>. <b>Reset Config</b> restores a mod to its packaged or applied community default.</span></li>
+    <li><span>A compat file only activates when its target <code>mod_id</code> (and any declared <code>dependencies</code>) are actually loaded; configs for absent mods are skipped cleanly.</span></li>
+  </ul>
+
+  <p class="small muted">
+    <span>Compat config details — which layer to edit, how to edit it, and how to roll back — live in <a href="compat/manual.html">Editing configs by hand</a>; how the adaptation tools relate is on <a href="compat/index.html">Mod Compatibility</a>.</span>
+  </p>
+
+  <h2><span>Shipping Defaults with a Pack</span></h2>
+  <ol>
+    <li>
+      <span>Tune the bindings in-game until you are happy, then take the matching file from <code>config/controlflex/profiles/</code>.</span>
+    </li>
+    <li>
+      <span>For an optional layout, package it as a custom template at <code>config/controlflex/templates/&lt;name&gt;.json</code> — it appears in the in-game template switcher.</span>
+    </li>
+    <li>
+      <span>Put the relevant files from <code>config/controlflex/</code> into your pack's overrides (e.g. <code>overrides/config/controlflex/</code> on CurseForge / Modrinth packs). Player edits still go to <code>profiles/</code> and <code>compat/user/</code> and are preserved.</span>
+    </li>
+  </ol>
+
+  <h2><span>Template JSON Format</span></h2>
+  <p>
+    <span>A template maps “action → button|mode” per layer. This is the structure of the built-in Basic template (excerpt):</span>
+  </p>
+  <pre><code>{
+  "templateMeta": {
+    "name": "basic",
+    "displayName": "Basic",
+    "description": "Basic controller bindings for Minecraft Java Edition",
+    "version": 4
+  },
+  "mainActionBindings": {
+    "layer_shift1": "leftBumper|HOLD",
+    "jump": "buttonA|HOLD",
+    "sneak": "rightStickClick|HOLD",
+    "toggle_sneak": "rightStickClick|DOUBLE_TOGGLE",
+    "attack": "rightTrigger|HOLD",
+    "drop_stack": "rightStickClick+dpadDown|PRESS",
+    "sys_pause": "buttonStart|LONG_PRESS",
+    "controlflex:key.controlflex.open_settings": "buttonBack+buttonStart|PRESS"
+  },
+  "shift1ActionBindings": { "controlflex:key.controlflex.open_radial_menu_2": "buttonBack|HOLD" },
+  "shift2ActionBindings": {},
+  "shift3ActionBindings": {},
+  "shift4ActionBindings": {},
+  "guiActionBindings": {
+    "inv_select": "buttonA|PRESS",
+    "inv_quick_move": "buttonY|TAP",
+    "mouse_wheel_up": "rightStickUp|HOLD"
+  },
+  "overlayActionBindings": {
+    "gui_back": "buttonB|PRESS"
+  },
+  "virtualKbmBindings": {
+    "key.keyboard.left.shift": { "guiLayer": { "binding": "leftTrigger", "enabled": true } }
+  },
+  "thresholds": {
+    "tapThresholdMs": 500,
+    "longPressThresholdMs": 1000
+  }
+}</code></pre>
+
+  <h3><span>Button tokens (ButtonId)</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Group</span></th>
+          <th><span>Values</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span>Face buttons</span></td><td><code>buttonA</code> · <code>buttonB</code> · <code>buttonX</code> · <code>buttonY</code></td></tr>
+        <tr><td><span>Bumpers / triggers</span></td><td><code>leftBumper</code> · <code>rightBumper</code> · <code>leftTrigger</code> · <code>rightTrigger</code></td></tr>
+        <tr><td><span>Stick clicks</span></td><td><code>leftStickClick</code> · <code>rightStickClick</code></td></tr>
+        <tr><td><span>Stick directions</span></td><td><code>leftStickUp/Down/Left/Right</code> · <code>rightStickUp/Down/Left/Right</code></td></tr>
+        <tr><td><span>D-Pad</span></td><td><code>dpadUp</code> · <code>dpadDown</code> · <code>dpadLeft</code> · <code>dpadRight</code></td></tr>
+        <tr><td><span>System buttons</span></td><td><code>buttonBack</code> · <code>buttonStart</code> · <code>buttonGuide</code></td></tr>
+        <tr><td><span>Paddles</span></td><td><code>paddle1</code> – <code>paddle4</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span>Mode tokens (TriggerMode)</span></h3>
+  <p class="small muted">
+    <code>PRESS</code> · <code>RELEASE</code> · <code>HOLD</code> · <code>TAP</code> · <code>LONG_PRESS</code> · <code>TOGGLE</code> · <code>DOUBLE_PRESS</code> · <code>DOUBLE_TAP</code> · <code>DOUBLE_HOLD</code> · <code>DOUBLE_TOGGLE</code>
+  </p>
+  <p class="small muted">
+    <span>Chords join buttons with <code>+</code>; the mode follows <code>|</code>. A binding string reads <code>button1+button2|MODE</code>.</span>
+  </p>
+
+  <div class="callout">
+    <p>
+      <span>Action IDs come in four shapes: built-in actions (<code>jump</code>), vanilla keys (<code>key.jump</code>), mod keys (<code>epicfight:key.epicfight.attack</code>, i.e. <code>modId:keyName</code>), and Control Flex's own keys (<code>controlflex:key.controlflex.open_settings</code>). The safest workflow is to edit in-game and export, rather than hand-writing the whole table.</span>
+    </p>
+  </div>
+
+  <h2><span>Radial Menu Config</span></h2>
+  <p>
+    <span>Radial layouts persist in <code>config/controlflex/radial_menu/radial_menus.json</code> with icons alongside them; the in-game editor is easier, and shipping this file in a pack carries the menus along.</span>
+  </p>
+
+  <h2><span>Upgrades &amp; Migration</span></h2>
+  <p>
+    <span>Upgrading from 0.8.6.x to 0.8.7+ migrates profiles, compat files, and client settings on first launch, copying originals to <code>config/controlflex/backup/</code>. When a pack bumps the mod version, players' <code>profiles/</code> and <code>compat/user/</code> are preserved.</span>
+  </p>
+
+  <div class="callout tip">
+    <p>
+      <span>Next: the full toolbox for multi-mod compatibility on the <a href="compat/index.html">Mod Compatibility</a> page.</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">Report issues ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community configs ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>
