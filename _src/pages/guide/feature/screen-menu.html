@@ -40,6 +40,73 @@
     <li><span data-i18n="guide.feature.screen-menu.37"><b>One action per slot</b>: hand-edited JSON gets the same validation as the in-game editor.</span></li>
   </ul>
 
+  <h2><span data-i18n="guide.feature.screen-menu.47">Where Menu Actions Come From</span></h2>
+  <ul>
+    <li><span data-i18n="guide.feature.screen-menu.48"><b>Slots hold key-binding actions only</b>: a slot's <code>actionId</code> points at a rebindable key action, written as <code>modId:key</code> — for example <code>jei:key.jei.showUses</code>. Hover-dependent actions (quick move, take half) cannot be used, because opening the menu clears the item hover.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.49"><b>The key must apply to that screen</b>: a mod key is only offered and usable on screens where it actually fires — the mod's own screens plus <code>addToScreens</code>, minus <code>removeFromScreens</code>. This is exactly the editor's candidate list; there are no built-in menu actions right now.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.50"><b>Load-time filtering</b>: blank ids, <code>gui_press</code> / <code>inv_select</code> (meaningless with the cursor hidden), <code>screen_menu_open_*</code> (no menus inside menus), non-GUI-layer actions, and actions that fail to resolve are all dropped at load, with the original order preserved.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.51"><b>Cross-mod keys are fine</b>: a menu may reference another mod's keys (JEI actions inside a vanilla-inventory menu, say); the menu itself just lives in the compat config of the mod that owns the screen.</span></li>
+  </ul>
+
+  <h2><span data-i18n="guide.feature.screen-menu.52">Adding Actions in Compat JSON</span></h2>
+  <p>
+    <span data-i18n="guide.feature.screen-menu.53">A menu is declared in the <code>screen</code> section of the compat JSON of the mod that owns the screen — vanilla screens belong to <code>minecraft</code>. Two steps: make sure the key fires on that screen, then attach a <code>menus</code> array to that screen entry.</span>
+  </p>
+  <pre><code>{
+  "mod_id": "examplemod",
+  "mod_versions": [
+    {
+      "version": "",
+      "screenKeys": {
+        "key.examplemod.sort": {
+          "addToScreens": [
+            "net.minecraft.client.gui.screens.inventory.*InventoryScreen"
+          ]
+        }
+      },
+      "screen": {
+        "com.examplemod.client.gui.ExampleChestScreen": {
+          "menus": [
+            {
+              "id": 1,
+              "name": "Quick Actions",
+              "translations": { "zh_cn": "快捷操作" },
+              "slots": [
+                { "actionId": "examplemod:key.examplemod.sort" },
+                { "actionId": "jei:key.jei.showUses" }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}</code></pre>
+  <p><span data-i18n="guide.feature.screen-menu.54">Menu object fields:</span></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.feature.screen-menu.55">Field</span></th>
+          <th><span data-i18n="guide.feature.screen-menu.56">Description</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>id</code></td><td><span data-i18n="guide.feature.screen-menu.57"><code>1</code>–<code>5</code>, required. The number is the identity of the open key <code>screen_menu_open_N</code>; duplicate ids keep the last one, out-of-range ids drop the whole menu.</span></td></tr>
+        <tr><td><code>name</code><br><code>translations</code></td><td><span data-i18n="guide.feature.screen-menu.58">Display name; <code>translations</code> maps language codes (<code>zh_cn</code>…), same rules as radial menus. With neither, falls back to a localized "Menu N".</span></td></tr>
+        <tr><td><code>pos</code></td><td><span data-i18n="guide.feature.screen-menu.59">Nine-grid placement: <code>lt</code> <code>lc</code> <code>lb</code> <code>tc</code> <code>cc</code> <code>bc</code> <code>rt</code> <code>rc</code> <code>rb</code>; default <code>cc</code> (center).</span></td></tr>
+        <tr><td><code>height</code></td><td><span data-i18n="guide.feature.screen-menu.60"><code>auto</code> (3–12 rows by content) or a fixed row count <code>3</code>–<code>12</code>; out-of-range values are clamped.</span></td></tr>
+        <tr><td><code>scale</code></td><td><span data-i18n="guide.feature.screen-menu.61"><code>0.5</code>–<code>2.0</code>, snapped to <code>0.05</code>; default <code>1.0</code>.</span></td></tr>
+        <tr><td><code>slots</code></td><td><span data-i18n="guide.feature.screen-menu.62">Up to <code>12</code> entries of <code>{ "actionId": "..." }</code>; array order is the display order; a duplicate action keeps only its first occurrence.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><span data-i18n="guide.feature.screen-menu.63">The <code>overlay</code> section (including the <code>"*"</code> fallback entry) does <b>not</b> support <code>menus</code> — ones found there are dropped with a warning.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.64"><b>Layering</b>: built-in compat config is the base; the user layer <code>config/controlflex/compat/user/&lt;mod_id&gt;.json</code> overrides whole menus by id (a written id replaces that menu, missing ids fall back to built-in). The in-game menu editor saves into that same user file.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.65">The same action in several menus is perfectly fine — it is only deduplicated within one menu.</span></li>
+  </ul>
+
   <h2><span data-i18n="guide.feature.screen-menu.38">Editing in Settings</span></h2>
   <ul>
     <li><span data-i18n="guide.feature.screen-menu.39">The per-screen settings page gains a <b>Menu</b> tab: menu list, an editor with drag reorder, name / position / height / scale, and a live preview.</span></li>
@@ -48,7 +115,7 @@
   </ul>
 
   <p class="small muted">
-    <span data-i18n="guide.feature.screen-menu.42">Related: <a href="mod-adaptation.html">Mod Adaptation</a> (per-screen compat entries), <a href="radial-menus.html">Radial Menus</a> (in-game wheels), and <a href="cursor.html">Cursor &amp; GUI</a>.</span>
+    <span data-i18n="guide.feature.screen-menu.42">Related: <a href="mod-adaptation.html">Mod Adaptation</a> (per-screen compat entries), <a href="../../modpack/compat/json.html">Compat JSON</a> (field reference), <a href="radial-menus.html">Radial Menus</a> (in-game wheels), and <a href="cursor.html">Cursor &amp; GUI</a>.</span>
   </p>
 
 <nav class="pager">
