@@ -118,7 +118,7 @@
         "type": "sub",
         "items": [
           {
-            "href": "modpack/compat/bridge/setup.html",
+            "href": "modpack/compat/bridge/integration.html",
             "key": "nav.bridge-setup"
           },
           {
