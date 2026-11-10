@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting Started · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/getting-started.html", "zh": "/control-flex/zh/guide/getting-started.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="en")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/guide/getting-started.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/getting-started.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/getting-started.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/getting-started.html">
+<meta property="og:title" content="Getting Started · Control Flex Wiki">
+<meta property="og:locale" content="en">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current" aria-current="true">English</span><a href="/control-flex/zh/guide/getting-started.html" hreflang="zh" lang="zh" data-set-lang="zh">中文</a></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/en/index.html">Home</a>
+      <a href="/control-flex/en/guide/concepts.html">Concepts</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Player Guide</div>
+      <a href="/control-flex/en/guide/getting-started.html">Getting Started</a>
+      <a href="/control-flex/en/guide/features.html">Features</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/guide/feature/layers.html">Seven Layers</a>
+        <a href="/control-flex/en/guide/feature/trigger-modes.html">Trigger Modes</a>
+        <a href="/control-flex/en/guide/feature/combo-keys.html">Combo Keys</a>
+        <a href="/control-flex/en/guide/feature/radial-menus.html">Radial Menus</a>
+        <a href="/control-flex/en/guide/feature/analog-movement.html">Analog Movement</a>
+        <a href="/control-flex/en/guide/feature/camera.html">Camera Look</a>
+        <a href="/control-flex/en/guide/feature/cursor.html">Cursor &amp; GUI</a>
+        <a href="/control-flex/en/guide/feature/rumble.html">Rumble</a>
+        <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
+        <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
+        <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/screen-menu.html">Screen Menu</a>
+        <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
+      </div>
+      <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Platforms &amp; Versions</div>
+      <a href="/control-flex/en/guide/platforms.html">Platform Support</a>
+      <a href="/control-flex/en/guide/versions.html">Minecraft Versions</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Mod Compatibility</div>
+      <a href="/control-flex/en/modpack/compat/index.html">Overview</a>
+      <a href="/control-flex/en/modpack/compat/json.html">Compat JSON</a>
+      <a href="/control-flex/en/modpack/compat/bridge/index.html">Bridge Mods</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/modpack/compat/bridge/setup.html">Setup</a>
+        <a href="/control-flex/en/modpack/compat/bridge/api.html">Interfaces</a>
+        <a href="/control-flex/en/modpack/compat/bridge/implementations.html">Implementations</a>
+        <a href="/control-flex/en/modpack/compat/bridge/ecosystem.html">Consumers</a>
+      </div>
+      <a href="/control-flex/en/modpack/compat/manual.html">By hand</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Modpack Config</div>
+      <a href="/control-flex/en/modpack/index.html">Config &amp; Templates</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Links</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>Getting Started</span></h1>
+  <p class="lead">
+    <span>From download to a working controller in about five minutes.</span>
+  </p>
+
+  <h2><span>Requirements</span></h2>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Component</span></th>
+          <th><span>Requirement</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Minecraft</td>
+          <td><span>1.7.10 – 26.3, 13 versions: 1.20.1 / 1.19.2 / 1.18.2 (Forge / Fabric); 1.21.1, 1.21.11, 26.x (NeoForge / Fabric); 1.16.5 and older are Forge builds (1.16.5 also has Fabric) — see <a href="versions.html">Minecraft Versions</a></span></td>
+        </tr>
+        <tr>
+          <td>Java</td>
+          <td><span>8 (1.16.5 and older); 17 (1.18.2 – 1.20.1); 21 (1.21.x); 25 (26.x)</span></td>
+        </tr>
+        <tr>
+          <td>Fabric API</td>
+          <td><span>Required on Fabric (Forge / NeoForge builds have no extra dependencies)</span></td>
+        </tr>
+        <tr>
+          <td>SDL3</td>
+          <td><span>Bundled on all three desktop platforms; on Android it comes from the launcher — see <a href="platforms.html">Platform Support</a></span></td>
+        </tr>
+        <tr>
+          <td><span>Platform</span></td>
+          <td><span>Windows (x86_64), macOS (Intel / Apple Silicon), Linux (x86_64 / aarch64); on Android it runs inside a launcher (FCL / Zalith Launcher 2 / Mojo / Amethyst) — see <a href="platforms.html">Platform Support</a></span></td>
+        </tr>
+        <tr>
+          <td><span>Side</span></td>
+          <td><span>Client-side only; servers do not need it and other players are unaffected</span></td>
+        </tr>
+        <tr>
+          <td><span>Controllers</span></td>
+          <td><span>Xbox One / Series X|S, PS4 / PS5 (DualShock 4, DualSense), Switch Pro, Xbox Elite (paddles), Steam Controller, generic XInput / DirectInput pads</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span>Download &amp; Install</span></h2>
+  <ol>
+    <li>
+      <span>On the <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge project page</a>, pick the file matching your MC version and loader.</span>
+    </li>
+    <li>
+      <span>Put the JAR into the game's <code>mods/</code> folder (on Fabric, make sure Fabric API is installed too).</span>
+    </li>
+    <li>
+      <span>Launch the game. Connection status, name, and type of each controller appear under <b>Control Flex Settings → Gamepad Selection</b>.</span>
+    </li>
+  </ol>
+
+  <div class="callout">
+    <p>
+      <span>Multiple controllers (hotplug): Control Flex detects pads via SDL3 hotplug events and tracks them by identity (name / type / serial). If the active pad disconnects, the first available one is selected automatically.</span>
+    </p>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span>On Android (Fold Craft Launcher, Zalith Launcher 2, Mojo, Amethyst, and similar): just drop the JAR into that instance's <code>mods/</code>. There is <b>no</b> SDL3 to install — it comes from the launcher itself. Three things to watch: the launcher's <code>-Dos.version</code> must not be overridden by custom JVM arguments, or the mod treats the JVM as desktop Linux and no controller ever appears; hide the launcher's own virtual mouse pointer (turn it off, or set its size / opacity to 0); and on ZL2 / FCL set the gamepad input mode to <b>SDL Direct</b>. See <a href="platforms.html">Platform Support</a>.</span>
+    </p>
+  </div>
+
+  <h2><span>Opening Settings</span></h2>
+  <p>
+    <span>Defaults: <span class="kbd">F9</span> on keyboard, <span class="kbd">Back</span> + <span class="kbd">Start</span> on a controller. The open-settings action is itself rebindable and lives in the Control Flex category of Key Mapping.</span>
+  </p>
+
+  <h2><span>Pick a Template</span></h2>
+  <p>
+    <span>Three templates ship with the mod; switch between them in the settings screen at any time:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th><span>Template</span></th><th><span>What it is</span></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Basic</td><td><span>The foundation: A jump, RT attack, LT use, left stick move, right stick look</span></td></tr>
+        <tr><td>Bedrock</td><td><span>Closer to the Bedrock Edition controller feel</span></td></tr>
+        <tr><td>Recommend</td><td><span>The author's modpack-oriented layout with more actions pre-bound</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>A template is a set of default bindings; your edits are stored separately and never modify the template. See <a href="settings.html">Settings &amp; Controls</a>.</span>
+  </p>
+
+  <h2><span>Default Bindings (Basic Template)</span></h2>
+
+  <h3>Main <span>layer (in-game)</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Action</span></th>
+          <th><span>Button</span></th>
+          <th><span>Mode</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span>Move</span></td><td><span>Left stick</span></td><td>Hold</td></tr>
+        <tr><td><span>Look</span></td><td><span>Right stick</span></td><td>Hold</td></tr>
+        <tr><td><span>Jump</span></td><td><span class="kbd">A</span></td><td>Hold</td></tr>
+        <tr><td><span>Sneak (hold)</span></td><td><span class="kbd"><span>R-stick click</span></span></td><td>Hold</td></tr>
+        <tr><td><span>Sneak (latch)</span></td><td><span class="kbd"><span>R-stick click</span></span></td><td>Double Toggle</td></tr>
+        <tr><td><span>Sprint</span></td><td><span class="kbd"><span>L-stick click</span></span></td><td>Hold</td></tr>
+        <tr><td><span>Attack</span></td><td><span class="kbd">RT</span></td><td>Hold</td></tr>
+        <tr><td><span>Use / Place</span></td><td><span class="kbd">LT</span></td><td>Hold</td></tr>
+        <tr><td><span>Drop</span></td><td><span class="kbd">D-Pad ↓</span></td><td>Press</td></tr>
+        <tr><td><span>Drop stack (combo)</span></td><td><span class="kbd"><span>R-stick click</span></span> + <span class="kbd">D-Pad ↓</span></td><td>Press</td></tr>
+        <tr><td><span>Inventory</span></td><td><span class="kbd">D-Pad ↑</span></td><td>Press</td></tr>
+        <tr><td><span>Perspective</span></td><td><span class="kbd">D-Pad →</span></td><td>Tap</td></tr>
+        <tr><td><span>Hotbar prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Tap</td></tr>
+        <tr><td><span>Pause menu</span></td><td><span class="kbd">Start</span></td><td>Long Press</td></tr>
+        <tr><td><span>Open settings</span></td><td><span class="kbd">Back</span> + <span class="kbd">Start</span></td><td>Press</td></tr>
+        <tr><td><span>Radial menus 1–5</span></td><td><span class="kbd">Back</span><span>(on Shift 1–4, hold Back for menus 2–5)</span></td><td>Hold</td></tr>
+        <tr><td><span>Shift layer 1 / 2</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Hold</td></tr>
+        <tr><td><span>Open guide</span></td><td><span class="kbd">Guide</span></td><td>Press</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Screen <span>layer (whenever a screen is open)</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Action</span></th>
+          <th><span>Button</span></th>
+          <th><span>Mode</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span>Cursor move</span></td><td><span>Left stick</span></td><td>Hold</td></tr>
+        <tr><td><span>Slot navigation</span></td><td><span class="kbd">D-Pad</span></td><td>Hold</td></tr>
+        <tr><td><span>Confirm / click</span></td><td><span class="kbd">A</span></td><td>Press</td></tr>
+        <tr><td><span>Back / close</span></td><td><span class="kbd">B</span></td><td>Press</td></tr>
+        <tr><td><span>Tab prev / next</span></td><td><span class="kbd">LB</span> / <span class="kbd">RB</span></td><td>Press</td></tr>
+        <tr><td><span>Quick move (shift-click)</span></td><td><span class="kbd">Y</span></td><td>Tap</td></tr>
+        <tr><td><span>Take half</span></td><td><span class="kbd">X</span></td><td>Press</td></tr>
+        <tr><td><span>Scroll</span></td><td><span class="kbd"><span>R-stick ↑ / ↓</span></span></td><td>Hold</td></tr>
+        <tr><td><span>Cycle options</span></td><td><span class="kbd"><span>R-stick ← / →</span></span></td><td>Tap</td></tr>
+        <tr><td><span>JEI recipe / uses</span></td><td><span class="kbd">RT</span> + <span class="kbd">D-Pad ← / →</span></td><td>Press</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Overlay <span>layer (interactive HUDs)</span></h3>
+  <p class="small muted">
+    <span>The Overlay layer is explicit (no Main inheritance): movement, jump, attack, use, look, and scrolling stay bound, with <span class="kbd">B</span> as back. Unconfigured actions stay silent during overlays so combat keys cannot misfire.</span>
+  </p>
+
+  <h3><span>Virtual KBM &amp; Thresholds</span></h3>
+  <ul>
+    <li><span>Virtual KBM: <span class="kbd">B</span> injects physical <span class="kbd">Esc</span> in screens; <span class="kbd">LT</span> injects Left Shift (GUI layer); Page Up / Page Down are enabled for the GUI layer.</span></li>
+    <li><span>Default thresholds: Tap 500 ms, Long Press 1000 ms (configurable in Other Settings).</span></li>
+  </ul>
+
+  <div class="callout tip">
+    <p>
+      <span>These are the Basic template defaults. Bedrock and Recommend differ slightly, and every binding can be changed — see <a href="settings.html">Settings &amp; Controls</a> for rebinding and calibration.</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">Report issues ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community configs ↗</a>
+  </div>
+</footer>
+
+<script src="../../assets/app.js" defer></script>
+</body>
+</html>

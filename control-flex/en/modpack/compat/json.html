@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compat JSON · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/modpack/compat/json.html", "zh": "/control-flex/zh/modpack/compat/json.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="en")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/en/modpack/compat/json.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/modpack/compat/json.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/modpack/compat/json.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/modpack/compat/json.html">
+<meta property="og:title" content="Compat JSON · Control Flex Wiki">
+<meta property="og:locale" content="en">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><span class="lang-current" aria-current="true">English</span><a href="/control-flex/zh/modpack/compat/json.html" hreflang="zh" lang="zh" data-set-lang="zh">中文</a></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/en/index.html">Home</a>
+      <a href="/control-flex/en/guide/concepts.html">Concepts</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Player Guide</div>
+      <a href="/control-flex/en/guide/getting-started.html">Getting Started</a>
+      <a href="/control-flex/en/guide/features.html">Features</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/guide/feature/layers.html">Seven Layers</a>
+        <a href="/control-flex/en/guide/feature/trigger-modes.html">Trigger Modes</a>
+        <a href="/control-flex/en/guide/feature/combo-keys.html">Combo Keys</a>
+        <a href="/control-flex/en/guide/feature/radial-menus.html">Radial Menus</a>
+        <a href="/control-flex/en/guide/feature/analog-movement.html">Analog Movement</a>
+        <a href="/control-flex/en/guide/feature/camera.html">Camera Look</a>
+        <a href="/control-flex/en/guide/feature/cursor.html">Cursor &amp; GUI</a>
+        <a href="/control-flex/en/guide/feature/rumble.html">Rumble</a>
+        <a href="/control-flex/en/guide/feature/virtual-kbm.html">Virtual Keyboard &amp; Mouse</a>
+        <a href="/control-flex/en/guide/feature/splitscreen.html">Split-Screen Co-op</a>
+        <a href="/control-flex/en/guide/feature/mod-adaptation.html">Mod Adaptation</a>
+        <a href="/control-flex/en/guide/feature/screen-menu.html">Screen Menu</a>
+        <a href="/control-flex/en/guide/feature/guide-hud.html">In-Game Guide</a>
+      </div>
+      <a href="/control-flex/en/guide/settings.html">Settings &amp; Controls</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Platforms &amp; Versions</div>
+      <a href="/control-flex/en/guide/platforms.html">Platform Support</a>
+      <a href="/control-flex/en/guide/versions.html">Minecraft Versions</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Mod Compatibility</div>
+      <a href="/control-flex/en/modpack/compat/index.html">Overview</a>
+      <a href="/control-flex/en/modpack/compat/json.html">Compat JSON</a>
+      <a href="/control-flex/en/modpack/compat/bridge/index.html">Bridge Mods</a>
+      <div class="nav-sub">
+        <a href="/control-flex/en/modpack/compat/bridge/setup.html">Setup</a>
+        <a href="/control-flex/en/modpack/compat/bridge/api.html">Interfaces</a>
+        <a href="/control-flex/en/modpack/compat/bridge/implementations.html">Implementations</a>
+        <a href="/control-flex/en/modpack/compat/bridge/ecosystem.html">Consumers</a>
+      </div>
+      <a href="/control-flex/en/modpack/compat/manual.html">By hand</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Modpack Config</div>
+      <a href="/control-flex/en/modpack/index.html">Config &amp; Templates</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">Links</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community Configs ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>Compat JSON</span></h1>
+  <p class="lead">
+    <span>Compat JSON is the shareable unit behind the whole system: the in-game UI writes it, the community repo distributes it, bridge mods install it. This page covers where files go, how the fields work, how to contribute a config, and how to run your own source.</span>
+  </p>
+
+  <p class="small muted">
+    <span>On this page:</span>
+    <a href="#files"><span>Files and loading rules</span></a> ·
+    <a href="#builtin"><span>Built-in configs</span></a> ·
+    <a href="#repo"><span>Community repo</span></a> ·
+    <a href="#fields"><span>Field reference</span></a> ·
+    <a href="#contribute"><span>Contributing</span></a> ·
+    <a href="#source"><span>Your own source</span></a> ·
+    <a href="#troubleshoot"><span>Troubleshooting</span></a>
+  </p>
+
+  <h2 id="files"><span>1. Where files go, and when they load</span></h2>
+  <ul>
+    <li><span>Four directories: <code>compat/default/</code> (shipped from the JAR, read-only), <code>compat/mods/</code> (installed by bridge mods, read-only), <code>compat/pack/</code> (hand-placed by modpack authors, read-only for Control Flex, 0.9+), <code>compat/user/</code> (your edits, highest priority).</span></li>
+    <li><span>Identity comes from the <code>mod_id</code> inside the JSON, not the filename — but files in <code>user/</code> must be named <code>&lt;mod_id&gt;.json</code>, because the UI and hot-reload look them up by that name.</span></li>
+    <li><span>Three gates must all pass: the target <code>mod_id</code> is installed, every mod listed in <code>dependencies</code> is loaded, and one entry in <code>mod_versions</code> matches the installed mod version. If any fails, the whole file is skipped (the log distinguishes "mod not loaded" from "dependencies not loaded").</span></li>
+    <li><span>Files starting with a dot (such as <code>.applied.json</code>) are never parsed as configs.</span></li>
+    <li><span>Legacy <code>{modid}_keys.json</code> files are migrated automatically on startup: the original is backed up and renamed, the fields converted.</span></li>
+    <li><span><b>The pack layer (0.9+)</b>: files must be named strictly <code>compat/pack/&lt;mod_id&gt;.json</code> and override lower layers whole-file. Reset deletes the user file and falls back to the nearest lower layer (pack → mods → default); layers whose <code>mod_versions</code> do not match are dropped instead of shadowing lower ones; community auto-apply treats pack as occupied. The mod detail page shows which config file is actually in effect.</span></li>
+  </ul>
+
+  <h2 id="builtin"><span>2. What ships in the JAR</span></h2>
+  <p>
+    <span>Only three configs are bundled, extracted to <code>config/controlflex/compat/default/</code> on every launch:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Mod</span></th>
+          <th><span>What it provides</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Just Enough Items (JEI)</td>
+          <td><span>Recipe / uses keys placed on the screen layer, plus a batch of internal keys added to <code>ignoreKeys</code></span></td>
+        </tr>
+        <tr>
+          <td>Epic Fight</td>
+          <td><span>Battle-mode keys and screen rules, pointing at the official bridge <code>cfx-compat-epicfight</code></span></td>
+        </tr>
+        <tr>
+          <td>Nightfall</td>
+          <td><span>Key and screen adaptation for the mod</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span><code>exempt_mods.json</code> in the same directory is not a compat config — it declares library mods (Fabric API, Kotlin language support and friends) so they never clutter the adaptation lists. Everything else is covered by auto-discovery or the community repo.</span>
+  </p>
+
+  <h2 id="repo"><span>3. The community repo</span></h2>
+  <p>
+    <span>The official source is <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">ControlFlexMC/cfx-compat-configs</a>: a purely static directory tree, split by MC version and loader, one JSON per mod, plus a <code>manifest.json</code> recording each path and sha256.</span>
+  </p>
+  <pre><code>&lt;repo-root&gt;/                   # this directory's URL is the baseUrl players add
+├── 1.20.1/                   # MC version dir (must match the game version name exactly)
+│   ├── forge/
+│   │   ├── manifest.json
+│   │   └── mods/
+│   │       ├── jei.json
+│   │       └── epicfight.json
+│   └── fabric/
+│       ├── manifest.json
+│       └── mods/
+│           └── jei.json
+└── 1.21.1/
+    └── neoforge/</code></pre>
+  <p>
+    <span>The client requests exactly two kinds of URL: <code>{baseUrl}/{mcVersion}/{loader}/manifest.json</code> and the content files referenced by <code>path</code> in that manifest. Only the current loader's directory is read; a missing version / loader is a 404 — normal, not a failure, and it does not affect other sources.</span>
+  </p>
+  <p>
+    <span>In game: <b>Settings → Mod Adaptation → “More” (top right) → Sync latest configs</b>. The mod's detail page then shows a “N community adaptation configs found” banner → pick a variant → read-only preview → <b>Apply</b>. Apply backs up the old user file, overwrites atomically, records it in <code>.applied.json</code>, and hot-reloads that mod — <b>no restart</b>.</span>
+  </p>
+  <p class="small muted">
+    <span>Same <code>mod_id</code> with different content = parallel variants for the player to choose from; the same sha256 in several sources = mirrors, retried in source-list order. Content is cached by sha256 at <code>compat/repo/content/&lt;mod_id&gt;/&lt;sha256&gt;.json</code>; those files are immutable.</span>
+  </p>
+
+  <h3><span>How the official source pins versions</span></h3>
+  <ul>
+    <li><span>Two built-in sources point at the same ref: <code>cdn.jsdelivr.net/gh/ControlFlexMC/cfx-compat-configs@&lt;ref&gt;</code> and <code>raw.githubusercontent.com/ControlFlexMC/cfx-compat-configs/refs/heads/&lt;ref&gt;</code>. The first is fast, the second is dependable; they mirror each other.</span></li>
+    <li><span><code>&lt;ref&gt;</code> is a <b>version tag</b> (currently <code>0.8.8</code>), bumped with every ControlFlex release — not <code>main</code> — so players on older builds always sync configs their format can read and never get broken by an upstream format change.</span></li>
+    <li><span>That is why the repo keeps one branch / tag per version line: <code>0.8.4</code>, <code>0.8.5</code>, <code>0.8.7</code>, <code>0.8.8</code>… To backfill configs for an old version, switch to that branch instead of dropping old-format files on <code>main</code>.</span></li>
+    <li><span>The two built-in sources can be disabled and reordered but <b>not deleted</b>; "Restore default sources" only resets those two. Your own sources can be added and removed freely.</span></li>
+  </ul>
+
+  <h3><span>What the repo covers today</span></h3>
+  <p>
+    <span>Directories are split by MC version / loader, and 12 mods have configs so far. The same config is usually copied into every loader directory it applies to, so coverage differs between version lines:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>MC version</span></th>
+          <th><span>Loader</span></th>
+          <th><span>Mods covered</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>1.20.1</code></td>
+          <td>Forge</td>
+          <td><code>create</code> · <code>dragonminez</code> · <code>emi</code> · <code>epicfight</code> · <code>exposure</code> · <code>irons_spellbooks</code> · <code>jei</code> · <code>minemenu</code> · <code>mts</code> · <code>nightfall</code> · <code>superior_tweaks</code> · <code>tacz</code></td>
+        </tr>
+        <tr>
+          <td><code>1.20.1</code></td>
+          <td>Fabric</td>
+          <td><code>create</code> · <code>emi</code> · <code>exposure</code> · <code>jei</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.1</code></td>
+          <td>NeoForge</td>
+          <td><code>create</code> · <code>dragonminez</code> · <code>emi</code> · <code>epicfight</code> · <code>exposure</code> · <code>irons_spellbooks</code> · <code>jei</code> · <code>minemenu</code> · <code>mts</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.1</code></td>
+          <td>Fabric</td>
+          <td><code>emi</code> · <code>exposure</code> · <code>jei</code> · <code>minemenu</code></td>
+        </tr>
+        <tr>
+          <td><code>1.21.11</code> · <code>26.1.2</code> · <code>26.2</code></td>
+          <td>NeoForge / Fabric</td>
+          <td><code>jei</code> · <code>minemenu</code></td>
+        </tr>
+        <tr>
+          <td><code>1.18.2</code> · <code>1.19.2</code></td>
+          <td>Fabric / Forge</td>
+          <td><span><code>emi</code> (Fabric and 1.19.2 Forge only) · <code>mts</code></span></td>
+        </tr>
+        <tr>
+          <td><code>1.16.5</code> · <code>1.12.2</code></td>
+          <td>Forge</td>
+          <td><code>mts</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>This table follows the repo; the directory tree is authoritative. The <code>create</code> / <code>emi</code> configs also require their bridge mod through <code>dependencies</code> — the keys come from the bridge.</span>
+  </p>
+
+  <h2 id="fields"><span>4. Field reference</span></h2>
+
+  <h3><span>Top-level fields</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Field</span></th>
+          <th><span>Type</span></th>
+          <th><span>Required</span></th>
+          <th><span>Description</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>mod_id</code></td>
+          <td>string</td>
+          <td><span>Yes</span></td>
+          <td><span>The mod ID this config belongs to (e.g. <code>jei</code>, <code>epicfight</code>). Empty, or the mod not installed → the whole file is skipped; it is part of the activation gate itself.</span></td>
+        </tr>
+        <tr>
+          <td><code>dependencies</code></td>
+          <td>object[]</td>
+          <td><span>No</span></td>
+          <td><span>Extra gate: <code>{ "mod_id": "...", "mod_name": "...", "home_pages": [...] }</code>. Only <code>mod_id</code> is read at runtime; all of them must be loaded for the config to activate.</span></td>
+        </tr>
+        <tr>
+          <td><code>contributors</code></td>
+          <td>string[]</td>
+          <td><span>No</span></td>
+          <td><span>Author names, shown on the community-config preview page.</span></td>
+        </tr>
+        <tr>
+          <td><code>config_version</code></td>
+          <td>string</td>
+          <td><span>No</span></td>
+          <td><span>Version of this config itself — display only, no runtime logic.</span></td>
+        </tr>
+        <tr>
+          <td><code>mod_versions</code></td>
+          <td>array</td>
+          <td><span>Yes</span></td>
+          <td><span>Version-specific rule sets, see below. <b>The legacy name <code>versions</code> is no longer accepted.</b></span></td>
+        </tr>
+        <tr>
+          <td><code>mod_name</code> · <code>home_page</code></td>
+          <td>string</td>
+          <td><span>No</span></td>
+          <td><span>Pure metadata for the manifest generator and the preview UI; ignored at runtime.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span>How dependencies is actually used</span></h3>
+  <p>
+    <span>It is not "install dependencies for you" but an <b>activation gate</b>: the config only applies when every <code>mod_id</code> in the array is loaded. Real configs use it in two situations — the config depends on keys a bridge mod provides, or the config belongs to a standalone compat mod.</span>
+  </p>
+  <pre><code>{
+  "mod_id": "emi",
+  "dependencies": [
+    { "mod_id": "cfx_compat_emi", "mod_name": "Control Flex x EMI",
+      "home_pages": ["https://www.curseforge.com/minecraft/mc-mods/cfx-x-emi"] }
+  ],
+  "mod_versions": [ { "version": "", "screenKeys": { "key.emi.view_recipes": {} } } ]
+}</code></pre>
+  <p class="small muted">
+    <span>Only <code>mod_id</code> is read (case-insensitive); <code>mod_name</code> / <code>home_pages</code> are display-only on the community preview page. An array of plain strings, or a non-array value, is ignored wholesale. A config whose target is the mod itself does not need it.</span>
+  </p>
+
+  <h3><span>mod_versions and version matching</span></h3>
+  <p>
+    <span>The array is evaluated in order and the <b>first match wins</b>; if nothing matches the installed mod version, <b>the entire config has no effect</b> (a warning is logged).</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Form</span></th>
+          <th><span>Example</span></th>
+          <th><span>Meaning</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>Wildcard</span></td>
+          <td><span><code>""</code> (or <code>"(,)"</code>)</span></td>
+          <td><span>Matches every version</span></td>
+        </tr>
+        <tr>
+          <td><span>Exact</span></td>
+          <td><code>"1.21.1"</code></td>
+          <td><span>Exactly equal</span></td>
+        </tr>
+        <tr>
+          <td><span>Interval</span></td>
+          <td><code>"[1.0,2.0)"</code></td>
+          <td><span><code>1.0 ≤ v &lt; 2.0</code> (brackets inclusive, parens exclusive)</span></td>
+        </tr>
+        <tr>
+          <td><span>Unbounded</span></td>
+          <td><code>"[21.1,)"</code> / <code>"(,1.20]"</code></td>
+          <td><span><code>v ≥ 21.1</code> / <code>v ≤ 1.20</code></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><span>Comparison is numeric per dot-separated segment: missing segments count as 0, non-digit prefixes are stripped (<code>v1.0</code> → <code>1.0</code>, <code>0-beta</code> → <code>0</code>).</span></li>
+    <li><span>A malformed interval (missing bracket / comma, unparseable bound, lower &gt; upper) discards <b>the whole entry</b>, not just the field.</span></li>
+    <li><span>Put specific intervals first and finish with a <code>""</code> wildcard as fallback.</span></li>
+  </ul>
+
+  <h3><span>The three sections and dispatch channels</span></h3>
+  <p>
+    <span>All three sections are objects mapping a bare key name to per-key settings. A bare key name is <code>KeyMapping.getName()</code> without the <code>modid:</code> prefix; the action ID is still <code>{modid}:{keyName}</code>. A key listed in several sections belongs to all of them (union); a key declared in <b>none</b> defaults to in-game only.</span>
+  </p>
+  <pre><code>"inGameKeys": {
+  "channels": ["keyMapping"],
+  "key.epicfight.dodge": {},
+  "key.epicfight.attack": { "channels": ["keyMapping", "eventBus"],
+                            "extraBehaviors": ["suppressLayerSwitch"] }
+}</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Channel</span></th>
+          <th><span>Meaning</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>keyMapping</code></td>
+          <td><span>Writes <code>KeyMapping.setPressed()</code> / <code>isDown</code> state — the same path vanilla uses.</span></td>
+        </tr>
+        <tr>
+          <td><code>eventBus</code></td>
+          <td><span>Broadcasts a Forge <code>InputEvent.Key</code> (merged per tick).</span></td>
+        </tr>
+        <tr>
+          <td><code>glfwPoll</code></td>
+          <td><span>Mirrors the hold into synthetic <code>InputConstants.isKeyDown()</code> state, for mods that poll GLFW themselves.</span></td>
+        </tr>
+        <tr>
+          <td><code>screenInput</code></td>
+          <td><span>While a screen is open, feeds <code>screen.keyPressed/keyReleased</code> (or a synthetic click for mouse-bound keys).</span></td>
+        </tr>
+        <tr>
+          <td><code>virtualKbm</code></td>
+          <td><span>Injected through the virtual keyboard / mouse as real hardware input. <b>Exclusive</b>: replaces every other channel and is not user-overridable.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <span>Defaults when a section declares no <code>channels</code>:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Section</span></th>
+          <th><span>Default channels</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>inGameKeys</code></td><td><code>keyMapping</code>, <code>eventBus</code></td></tr>
+        <tr><td><code>screenKeys</code></td><td><code>keyMapping</code>, <code>screenInput</code></td></tr>
+        <tr><td><code>overlayKeys</code></td><td><code>keyMapping</code>, <code>eventBus</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><span>The mod <b>fires twice</b> (listening on both paths) → keep only <code>keyMapping</code>.</span></li>
+    <li><span>The mod <b>only listens to Forge events</b> → <code>["eventBus"]</code>.</span></li>
+    <li><span>A <b>hold-to-open menu</b> that polls GLFW itself → add <code>glfwPoll</code>.</span></li>
+  </ul>
+
+  <h3><span>extraBehaviors</span></h3>
+  <p>
+    <span>Per-key behavior flags; there is one value today: <code>suppressLayerSwitch</code> — while that action's binding is held, layer switching is suppressed, and the binding is forced to HOLD on save. Use it for modded modifier-style keys (Iron's Spells' <code>key.irons_spellbooks.spell_bar_modifier</code>, for example). An explicit <code>[]</code> means explicitly off.</span>
+  </p>
+
+  <h3><span>phasePersistentKeys</span></h3>
+  <p>
+    <span>Declares that a key's binding should follow it across a phase switch:</span>
+  </p>
+  <pre><code>"inGameKeys":  { "key.irons_spellbooks.spell_wheel": {} },
+"overlayKeys": { "key.irons_spellbooks.spell_wheel": {} },
+"phasePersistentKeys": { "key.irons_spellbooks.spell_wheel": ["inGame", "overlay"] }</code></pre>
+  <ul>
+    <li><span>Only <code>["inGame", "overlay"]</code> and <code>["inGame", "screen"]</code> are allowed: the source must be <code>inGame</code> and exactly one destination.</span></li>
+    <li><span><b>The key must also be declared in both sections</b>; the pairing alone is ignored (and warned about) — implicit membership via the union does not count.</span></li>
+    <li><span>At runtime the destination layer's binding is soft-locked and derived live from the game layers (no copy is persisted): a held button stays held across the transition, so a hold-to-open menu does not flicker shut when a screen or overlay appears.</span></li>
+    <li><span>These bindings are materialized as HOLD and skip item suppression. Editing the destination layer in the binding UI writes a snapshot binding and unlocks it; resetting the key restores the lock and the derivation.</span></li>
+  </ul>
+
+  <h3><span>ignoreKeys</span></h3>
+  <p>
+    <span>Hides actions from the binding UI (debug keys, cheat keys, duplicates): <code>"ignoreKeys": ["key.epicfight.config"]</code>. The <code>modid:</code> prefix is added automatically when matching action IDs.</span>
+  </p>
+
+  <h3><span>itemSuppressKeys</span></h3>
+  <p>
+    <span>Suppresses actions while the main-hand item matches. Typical case: the mod takes over input for specific items (in battle mode, attack / interact are handled by the mod's combo and weapon-skill systems), so the generic actions are suppressed to stop them fighting each other.</span>
+  </p>
+  <pre><code>"itemSuppressKeys": [
+  { "item": "efn:yamato_dmc*", "playerState": ["epicfight:battle_mode"], "suppressActions": ["use"] },
+  { "tag": "minecraft:swords", "playerState": ["epicfight:battle_mode"], "suppressActions": ["attack", "use"] }
+]</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Field</span></th>
+          <th><span>Description</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>item</code></td><td><span>Item ID (<code>modid:item_id</code>); <code>*</code> wildcard supported. Mutually exclusive with <code>tag</code>.</span></td></tr>
+        <tr><td><code>tag</code></td><td><span>Item tag. Mutually exclusive with <code>item</code>.</span></td></tr>
+        <tr><td><code>playerState</code></td><td><span>Optional <code>modId:state</code> list (OR); empty = suppress whenever the item matches. Unknown states warn and count as no-match.</span></td></tr>
+        <tr><td><code>suppressActions</code></td><td><span>Action short names (<code>attack</code>, <code>use</code>) or full action IDs.</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>Evaluated once per tick against the main-hand item; actions matched by <code>phasePersistentKeys</code> are exempt.</span>
+  </p>
+
+  <h3><span>tips</span></h3>
+  <p>
+    <span>Hint text shown on binding rows:</span>
+  </p>
+  <pre><code>"tips": [
+  { "key": "key.epicfight.weapon_innate_skill",
+    "text": { "en_us": "Bind to the same button as Attack; use HOLD mode.",
+              "zh_cn": "请绑定为与「攻击」相同的按键，并使用 HOLD 模式。" } }
+]</code></pre>
+  <p class="small muted">
+    <span>Language codes have no whitelist: the runtime uses the player's language and falls back to <code>en_us</code>; with no <code>en_us</code> nothing is shown. <b>Always include <code>en_us</code></b>.</span>
+  </p>
+
+  <h3><span>Stick and cursor behavior per screen / overlay</span></h3>
+  <p>
+    <span>Keys are <b>fully qualified class names</b>: <code>screen.getClass().getName()</code> for screens; the opener class name for overlays, with <code>"*"</code> as the mod-level fallback.</span>
+  </p>
+  <pre><code>"screen": {
+  "com.dragonminez.client.gui.UtilityMenuScreen": {
+    "leftStick":  { "behavior": "VIRTUAL_MOUSE" },
+    "rightStick": { "behavior": "RADIAL_PATH", "threshold": 0.5, "cursorRadius": 90 }
+  }
+},
+"overlay": {
+  "io.redspace.ironsspellbooks.gui.overlays.SpellWheelOverlay": {
+    "rightStick": { "behavior": "RADIAL_PATH", "threshold": 0.3, "cursorRadius": 40, "showCursor": false }
+  }
+}</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><code>behavior</code></th>
+          <th><span>Meaning</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>DEFAULT</code></td><td><span>Engine default: incremental virtual mouse on the left stick, nothing on the right stick in a GUI</span></td></tr>
+        <tr><td><code>VIRTUAL_MOUSE</code></td><td><span>The stick drives the incremental virtual cursor</span></td></tr>
+        <tr><td><code>RADIAL_PATH</code></td><td><span>Polar cursor from the screen center (wheel-style UIs)</span></td></tr>
+        <tr><td><code>DISABLED</code></td><td><span>The axis is ignored; stick-click bindings still work</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Parameter</span></th>
+          <th><span>Default</span></th>
+          <th><span>Description</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>threshold</code></td><td><code>0.5</code></td><td><span>Stick deadzone</span></td></tr>
+        <tr><td><code>cursorRadius</code></td><td><code>100</code></td><td><span>Distance from the screen center (logical pixels × GUI scale)</span></td></tr>
+        <tr><td><code>cursorSpeed</code></td><td><code>1.0</code></td><td><span>Cursor speed (clamped 0.1–3.0)</span></td></tr>
+        <tr><td><code>showCursor</code></td><td><code>true</code></td><td><span>Whether to draw the cursor (<code>false</code> still tracks position, just does not draw it)</span></td></tr>
+        <tr><td><code>keepLastPosition</code></td><td><code>true</code></td><td><span>Stay in place when the stick is released</span></td></tr>
+        <tr><td><code>angleBias</code></td><td><code>1.0</code></td><td><span>Angle sensitivity</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>Entries also accept <code>cursorStyle</code> (<code>system</code> / <code>bedrock</code> / <code>hand</code>) and <code>disabled: true</code> (opt out entirely, no fallback). Resolution: user layer before built-ins, a specific overlay entry before the same mod's <code>"*"</code>, and a hit that lacks the requested side (left / right) falls through to the next config. A <code>menus</code> array here declares the screen's <a href="../../guide/feature/screen-menu.html">Screen Menus</a>.</span>
+  </p>
+
+  <h3><span>Migrating from the legacy format (≤ 0.8.5)</span></h3>
+  <p>
+    <span>Since 0.8.7 old files are migrated automatically on startup (backed up, then rewritten). If you maintain configs by hand, or have to read an old one, use this table:</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Legacy</span></th>
+          <th><span>Now</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>versions</code></td><td><code>mod_versions</code></td></tr>
+        <tr><td><code>guiKeys: ["k"]</code></td><td><code>screenKeys: { "k": {} }</code></td></tr>
+        <tr><td><code>required_mod: "x"</code></td><td><code>dependencies: [{ "mod_id": "x" }]</code></td></tr>
+        <tr><td><span>the <code>loader</code> field</span></td><td><span>Removed; the source directory (<code>forge</code> / <code>fabric</code> / <code>neoforge</code>) separates loaders</span></td></tr>
+        <tr><td><span><code>GLFW_COMPAT</code> flag</span></td><td><code>channels: ["glfwPoll"]</code></td></tr>
+        <tr><td><span><code>PHASE_PERSISTENT</code> flag</span></td><td><code>phasePersistentKeys</code> + <span>declared once in the game section and once in the destination section</span></td></tr>
+        <tr><td><span>legacy stick arrays (<code>screens</code> + <code>mode</code>)</span></td><td><span><code>screen</code> object keyed by class name + <code>behavior</code>; <code>RADIAL_CURSOR</code> → <code>RADIAL_PATH</code>, <code>returnToCenter: false</code> → <code>keepLastPosition: true</code></span></td></tr>
+        <tr><td><span>—</span></td><td><code>overlayKeys</code> · <span>per-overlay <code>overlay</code> config · phase persistence with an overlay destination</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span>Self-check before you ship a config</span></h3>
+  <ol>
+    <li><span>The three sections must be <b>objects</b>; the array form is dropped wholesale, with a single warning.</span></li>
+    <li><span><code>channels</code> inside a section is a <b>reserved key</b> (section defaults) — never use it as a key name.</span></li>
+    <li><span>Per-key <code>channels: []</code> and <code>extraBehaviors: []</code> are <b>meaningful explicit empties</b>, not the same as omitting the field.</span></li>
+    <li><span><code>mod_versions</code> is first-match-wins: specific intervals first, a <code>""</code> fallback last; no matching entry means the whole config is inert.</span></li>
+    <li><span>A malformed <code>version</code> discards <b>the whole entry</b>, not just the field.</span></li>
+    <li><span>Identity comes from the JSON's <code>mod_id</code>, but user-layer files must be named <code>&lt;mod_id&gt;.json</code>.</span></li>
+    <li><span><code>phasePersistentKeys</code> only works when the key is declared in both sections; the pairing alone is ignored.</span></li>
+    <li><span>UTF-8, no trailing commas; add <code>channels</code> overrides only when the default behavior misbehaves.</span></li>
+  </ol>
+
+  <h3><span>Minimal template</span></h3>
+  <pre><code>{
+  "mod_id": "examplemod",
+  "contributors": ["yourname"],
+  "config_version": "1.0.0",
+  "mod_versions": [
+    {
+      "version": "",
+      "inGameKeys": {},
+      "screenKeys": {},
+      "overlayKeys": {},
+      "ignoreKeys": [],
+      "tips": [],
+      "screen": {},
+      "overlay": {}
+    }
+  ]
+}</code></pre>
+  <div class="callout">
+    <p>
+      <span>The above is the quick-reference version. The complete field set, the real behavior of each channel, and the migration table from the ≤ 0.8.5 format live in the authoritative reference: <a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference.md" target="_blank" rel="noopener">English</a> / <a href="https://github.com/ControlFlexMC/cfx-compat-configs/blob/main/docs/01.config-field-reference_ZH.md" target="_blank" rel="noopener">Chinese</a>.</span>
+    </p>
+  </div>
+
+  <h2 id="contribute"><span>5. Contributing a config</span></h2>
+  <ol>
+    <li><span><b>Fork the repo and switch to the matching branch.</b> The config format changes between ControlFlex versions and sources are consumed per branch; if your fork only has the default branch, pull the version branch down first.</span></li>
+    <li><span><b>Create <code>&lt;mc-version&gt;/&lt;loader&gt;/mods/&lt;mod_id&gt;.json</code>.</b> Use the bare key names from the mod's Controls category (no <code>modid:</code> prefix); the <code>[ModCompat]</code> log lines help you find them.</span></li>
+    <li><span><b>Regenerate the manifest: <code>python3 generate_manifest.py</code>.</b> Editing content without recomputing sha256 is the number one cause of "content download failed" on the player side.</span></li>
+    <li><span><b>Verify in game.</b> Add your fork as a source, or drop the file into <code>compat/user/</code> and restart. Check the <code>[ModCompat]</code> log to confirm it loaded.</span></li>
+    <li><span><b>Open a PR</b> stating the mod version tested, the loader(s), and what the config fixes.</span></li>
+  </ol>
+  <p class="small muted">
+    <span>If a config only matters on one loader, keep it in that loader's directory; if it behaves the same everywhere, copy the file into the other directories. Files are capped at 2 MB (real configs are a few KB).</span>
+  </p>
+
+  <h2 id="source"><span>6. Adding another config source</span></h2>
+  <p>
+    <span>A "source" is just a static HTTP directory tree: <code>{baseUrl}/{mcVersion}/{loader}/manifest.json</code> plus content files. No server-side logic, so any static host will do.</span>
+  </p>
+
+  <h3><span>Two routes</span></h3>
+  <ul>
+    <li><span><b>Fork the official repo</b> (recommended): the layout, the manifest generator and a set of working configs are already there — you only add your own. The cost is keeping up with upstream.</span></li>
+    <li><span><b>Build a tree from scratch</b>: your own release cadence, private or experimental configs — just follow the layout below.</span></li>
+  </ul>
+
+  <h3><span>manifest.json key fields</span></h3>
+  <pre><code>{
+  "schemaVersion": 1,
+  "name": "My Pack Configs",
+  "items": [
+    {
+      "mod_id": "jei",
+      "mod_name": "Just Enough Items (JEI)",
+      "path": "mods/jei.json",
+      "sha256": "a4dcfadbca3d0a8b19be2ec5d191fc12801d199583393ef0fec13007e06b927f",
+      "home_pages": ["https://www.curseforge.com/minecraft/mc-mods/jei"]
+    }
+  ]
+}</code></pre>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Field</span></th>
+          <th><span>Description</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>schemaVersion</code></td><td><span>Number; <b>greater than 1 is rejected</b> (the client shows an upgrade hint); missing or 0 is tolerated.</span></td></tr>
+        <tr><td><code>items[].mod_id</code></td><td><span>Must match <code>^[a-z0-9_-]+$</code> and be <b>unique within the manifest</b>; a duplicate fails the entire manifest parse.</span></td></tr>
+        <tr><td><code>items[].path</code></td><td><span>Relative to the manifest's directory; absolute paths, backslashes, empty segments and <code>..</code> are rejected. The convention is <code>mods/&lt;file&gt;.json</code>.</span></td></tr>
+        <tr><td><code>items[].sha256</code></td><td><span>SHA-256 of the content file, 64 lowercase hex characters. Verified after download; a mismatch tries the next mirror. <b>It is the sole identity of a variant.</b></span></td></tr>
+        <tr><td><code>home_pages</code> · <code>description</code> · <code>dependencies</code></td><td><span>Display-only fields (<code>dependencies</code> is for display; the client <b>never</b> installs dependencies).</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span>The official repo's <code>generate_manifest.py</code> can be reused as is: it scans <code>&lt;mc-version&gt;/&lt;loader&gt;/mods/*.json</code>, extracts <code>mod_id</code> / <code>mod_name</code> / <code>home_page</code>, computes the sha256 and writes the manifest back idempotently.</span>
+  </p>
+
+  <h3><span>Hosting options and hard limits</span></h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Host</span></th>
+          <th><span>baseUrl example</span></th>
+          <th><span>Caching</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GitHub raw</td>
+          <td><code>https://raw.githubusercontent.com/&lt;user&gt;/&lt;repo&gt;/refs/heads/&lt;branch&gt;</code></td>
+          <td><span>About 5 minutes; the official built-in sources use this form</span></td>
+        </tr>
+        <tr>
+          <td>jsDelivr</td>
+          <td><code>https://cdn.jsdelivr.net/gh/&lt;user&gt;/&lt;repo&gt;@&lt;branch&gt;</code></td>
+          <td><span>Branch refs cache for roughly 12 hours; prefer a tag</span></td>
+        </tr>
+        <tr>
+          <td><span>Self-hosted / object storage</span></td>
+          <td><code>https://files.example.com/cfx-source/</code></td>
+          <td><span>Up to you</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Item</span></th>
+          <th><span>Limit</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>baseUrl</td><td><span>Must be <code>http://</code> or <code>https://</code> with a host name</span></td></tr>
+        <tr><td><span>Per file</span></td><td><span>≤ 2 MB (manifests and content files alike)</span></td></tr>
+        <tr><td><span>Timeouts</span></td><td><span>5 s connect / 30 s read</span></td></tr>
+        <tr><td><span>Redirects</span></td><td><span>301/302/303/307/308 followed, max 5 hops; https → http downgrades rejected</span></td></tr>
+        <tr><td><span>Encoding</span></td><td><span>UTF-8 JSON</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3><span>Adding the source in game</span></h3>
+  <ol>
+    <li><span>Go to <b>Settings → Mod Adaptation → “More” (top right) → Edit source list</b>.</span></li>
+    <li><span>Paste the baseUrl into the input at the bottom → Add → Done; closing the dialog with a changed list triggers a background sync.</span></li>
+    <li><span>Open “Sync latest configs” and confirm your source synced (per-source progress and logs); the mod cards then show a community-config badge.</span></li>
+  </ol>
+  <p class="small muted">
+    <span>Source-list behavior: built-ins can be disabled and reordered but not deleted; your own sources can be added, removed and reordered freely; “Restore default sources” only resets the two built-ins. Each source caches under <code>compat/repo/manifest/&lt;source-id&gt;/</code>, where the id is derived from the URL (lowercase, with <code>-1</code> / <code>-2</code> on conflicts).</span>
+  </p>
+  <h3><span>Local testing</span></h3>
+  <pre><code>cd &lt;your-source-root&gt;
+python3 -m http.server 8000
+# then add http://127.0.0.1:8000 in "Edit source list"</code></pre>
+  <p class="small muted">
+    <span><code>http://</code> sources are allowed (only https → http redirect downgrades are rejected), so local testing needs no certificate. Edit files, then hit “Sync latest configs” once.</span>
+  </p>
+
+  <h2 id="troubleshoot"><span>7. Troubleshooting</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span>Symptom</span></th>
+          <th><span>Check</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span>Source shows “Never synced” / sync fails</span></td>
+          <td><span>Open <code>{baseUrl}/{mcVersion}/{loader}/manifest.json</code> in a browser; directory names must <b>exactly</b> match the game version name and loader name (<code>1.20.1</code>, not <code>1.20</code>).</span></td>
+        </tr>
+        <tr>
+          <td><span>Manifest parse error</span></td>
+          <td><span>Duplicate <code>mod_id</code>, <code>path</code> with an absolute path / backslash / <code>..</code>, <code>sha256</code> that is not 64 lowercase hex characters, <code>schemaVersion</code> &gt; 1, or a JSON syntax error.</span></td>
+        </tr>
+        <tr>
+          <td><span>Manifest synced but content download fails</span></td>
+          <td><span>The content bytes do not match the manifest <code>sha256</code> (<b>edited the JSON but forgot to regenerate the manifest</b> is the usual cause), the file exceeds 2 MB, or every mirror failed in that round.</span></td>
+        </tr>
+        <tr>
+          <td><span>Applied but nothing changed</span></td>
+          <td><span>The config's own gates failed: the <code>mod_id</code> mod is missing, <code>dependencies</code> are not all loaded, no <code>mod_versions</code> entry matches (first match wins — mind interval syntax and order), or a key name is wrong. Search the <code>[ModCompat]</code> log.</span></td>
+        </tr>
+        <tr>
+          <td><span>Players never see an update</span></td>
+          <td><span>jsDelivr caches <code>@branch</code> for about 12 hours; switch to the raw URL, cut a tag, or wait for the cache to expire.</span></td>
+        </tr>
+        <tr>
+          <td><span>Garbled non-ASCII text</span></td>
+          <td><span>The file must be UTF-8 (BOM-free preferred).</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">Report issues ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">Community configs ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>
