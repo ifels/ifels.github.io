@@ -168,13 +168,13 @@
 
   <h2><span>Screens vs Overlays</span></h2>
   <ul>
-    <li><span><b>Screen</b>: a GUI that takes over the whole game view — inventories, crafting, settings, mod UIs. While it is open, input switches to the Screen layer. Identified by the screen class's fully qualified name, e.g. <code>net.minecraft.client.gui.screens.inventory.InventoryScreen</code>.</span></li>
-    <li><span><b>Overlay</b>: an interactive HUD drawn <b>on top of</b> the game view without closing it — spell wheels, third-party radial menus, photo HUDs. Not a full screen: it is declared by the class that opens it, and a mod can use <code>"*"</code> as its catch-all.</span></li>
+    <li><span><b>Screen</b>: a state where gameplay stops — inventories, crafting, settings, mod UIs. While it is open the player <b>cannot move or look</b>; input switches to the Screen layer. Identified by the screen class's fully qualified name, e.g. <code>net.minecraft.client.gui.screens.inventory.InventoryScreen</code>.</span></li>
+    <li><span><b>Overlay</b>: a state where gameplay continues — the player <b>can still move and look</b> while it is open. It may be a small HUD (spell wheels, third-party radial menus, photo HUDs) or cover the whole view; what makes it an overlay is that the game keeps running underneath. Declared by the class that opens it, and a mod can use <code>"*"</code> as its catch-all.</span></li>
     <li><span><b>Input differs</b>: the Screen layer ships full defaults (virtual cursor, slots, navigation, scrolling); the Overlay layer does <b>not</b> inherit Main — unconfigured actions stay silent, so a HUD cannot misfire combat keys.</span></li>
     <li><span>In compat JSON they map to the <code>screen</code> / <code>overlay</code> sections (the overlay section does not support <code>menus</code>). See <a href="feature/mod-adaptation.html">Mod Adaptation</a> and <a href="../modpack/compat/json.html">Compat JSON</a>.</span></li>
   </ul>
   <p class="small muted">
-    <span>Unsure which one a HUD is? Open it: if the virtual cursor appears and you click buttons, it behaves as a Screen; if gameplay input continues while only part of the input is taken over, it is likely an Overlay. The authoritative source is its compat declaration.</span>
+    <span>Quick test: if you can still walk around while it is open, it is an Overlay; if world input stops the moment it opens, it is a Screen. The authoritative source is its compat declaration.</span>
   </p>
 
   <h2><span>Where Configs Live &amp; Who Wins</span></h2>
