@@ -5,15 +5,10 @@
       {
         "href": "index.html",
         "key": "nav.home"
-      }
-    ]
-  },
-  {
-    "label": "nav.basics",
-    "items": [
+      },
       {
-        "href": "guide/basics.html",
-        "key": "nav.basics"
+        "href": "guide/concepts.html",
+        "key": "nav.concepts"
       }
     ]
   },
