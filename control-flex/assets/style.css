@@ -504,6 +504,13 @@ pre code {
   white-space: pre;
 }
 
+/* Log excerpts: wrap long single-line messages instead of forcing the reader
+   to scroll sideways to see why a library failed to load. */
+pre.log code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
 .copy-btn {
   position: absolute;
   top: 9px;
@@ -573,6 +580,12 @@ td:first-child { font-weight: 560; }
    line and let the description column take the remaining width. */
 .tbl-names td:first-child,
 .tbl-names th:first-child { white-space: nowrap; width: 1%; }
+
+/* Code labels in that first column must not inherit the wrap rule that
+   applies to inline code in body text, or a 1%-wide cell stacks them
+   one character per line. */
+.tbl-names td:first-child code,
+.tbl-names th:first-child code { white-space: nowrap; }
 
 /* ============================================================
    kbd

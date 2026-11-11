@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="guide.troubleshooting.18">Troubleshooting</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.troubleshooting.19">Nearly every controller problem is one of two things: the native library did not load, or the device never reached SDL. The log tells the two apart in one line — read it before changing any setting.</span>
+  </p>
+
+  <h2><span data-i18n="guide.troubleshooting.20">Start With the Log</span></h2>
+  <p>
+    <span data-i18n="guide.troubleshooting.21">Open <code>logs/latest.log</code> in the instance folder (Prism, HMCL, CurseForge and the vanilla launcher all keep it in the same place) and search for <code>gamepad-jni</code>. Everything this library does — which backend it picked, which file it failed on, whether JNA was even present — is logged under that prefix.</span>
+  </p>
+  <p>
+    <span data-i18n="guide.troubleshooting.22">When both backends fail, the four-line block names each half of the problem instead of a single “failed to load native library”:</span>
+  </p>
+
+  <pre class="log"><code>[gamepad-jni] no usable gamepad backend (binding=auto)
+  JNI: java.lang.UnsatisfiedLinkError: ...\Temp\gamepadjni-1234\gamepadjni.dll: An Application Control policy has blocked this file
+  JNA: unavailable - com.sun.jna.Native not on the classpath (this Minecraft version ships no JNA)
+  hint: this Minecraft version has no JNA, so only the JNI backend is possible</code></pre>
+
+  <div class="table-wrap">
+    <table class="tbl-names">
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.troubleshooting.24">Line</span></th>
+          <th><span data-i18n="guide.troubleshooting.25">What it means</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>binding=auto</code></td>
+          <td><span data-i18n="guide.troubleshooting.26">The policy that was used: JNI first, JNA if that fails. <code>jni</code> / <code>jna</code> here means a diagnostic switch was set.</span></td>
+        </tr>
+        <tr>
+          <td><code>JNI:</code></td>
+          <td><span data-i18n="guide.troubleshooting.27">Why our own <code>gamepadjni.dll</code> did not load. A Smart App Control block shows up on this line as <code>An Application Control policy has blocked this file</code>.</span></td>
+        </tr>
+        <tr>
+          <td><code>JNA:</code></td>
+          <td><span data-i18n="guide.troubleshooting.28">Why the JNA backend did not start — or that this Minecraft version carries no JNA at all.</span></td>
+        </tr>
+        <tr>
+          <td><code>hint:</code></td>
+          <td><span data-i18n="guide.troubleshooting.29">Only present when the cause is recognised. It is the one line worth quoting in a bug report.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2><span data-i18n="guide.troubleshooting.30">Windows 11 Smart App Control Is Blocking gamepadjni.dll</span></h2>
+  <p>
+    <span data-i18n="guide.troubleshooting.31">This load failure comes from Windows, not from a wrong mod version, a missing dependency, or a broken download — and it is the most common report we get from Windows 11 players.</span>
+  </p>
+
+  <h3><span data-i18n="guide.troubleshooting.32">What you see</span></h3>
+  <ul>
+    <li><span data-i18n="guide.troubleshooting.33">Windows Security pops up a message that it cannot verify the publisher of <code>gamepadjni.dll</code>, usually worded as “Part of this app has been blocked”.</span></li>
+    <li><span data-i18n="guide.troubleshooting.34">The controller disappears completely: Settings → Gamepad Selection is empty, and no button does anything.</span></li>
+    <li><span data-i18n="guide.troubleshooting.35">On some setups the game crashes on startup instead; the crash report then mentions <code>UnsatisfiedLinkError</code> or <code>gamepadjni.dll</code>.</span></li>
+    <li><span data-i18n="guide.troubleshooting.36">In the log, the JNI line ends with <code>An Application Control policy has blocked this file</code>.</span></li>
+  </ul>
+
+  <h3><span data-i18n="guide.troubleshooting.37">Why it happens</span></h3>
+  <p>
+    <span data-i18n="guide.troubleshooting.38">Smart App Control (SAC) is a Windows 11 feature, introduced with 22H2. Before a program or a DLL is allowed to run, Windows asks Microsoft's cloud service whether it recognises the file. If the verdict is “safe”, it runs. If the file is unknown and unsigned, it is treated as untrusted and blocked. It is not an antivirus scan and it is not Defender: nothing is quarantined, and no virus is involved.</span>
+  </p>
+  <p>
+    <span data-i18n="guide.troubleshooting.39">Our <code>gamepadjni.dll</code> is unpacked from the mod JAR into <code>%TEMP%\gamepadjni-*</code> at launch. It is a build we compile ourselves, it carries no code-signing certificate, and Microsoft's cloud has never seen that exact hash — so SAC cannot make a positive prediction and refuses to load it.</span>
+  </p>
+  <p>
+    <span data-i18n="guide.troubleshooting.40">Nothing was deleted or moved to quarantine — the file is still in <code>%TEMP%</code>, and the antivirus history is clean. Unsigned does not mean malicious: almost every Minecraft mod is unsigned. It only means Windows has no way to vouch for this one file.</span>
+  </p>
+
+  <div class="callout warn">
+    <p>
+      <span data-i18n="guide.troubleshooting.41"><b>There is no per-file allowlist.</b> Unblocking the file in its Properties, adding the folder to Defender exclusions, or running the launcher as administrator will not help — SAC ignores all three. Its only settings are On, Evaluation and Off, and a blocked file cannot be excepted individually.</span>
+    </p>
+  </div>
+
+  <h3><span data-i18n="guide.troubleshooting.42">From 0.9: the JNA fallback handles it</span></h3>
+  <p>
+    <span data-i18n="guide.troubleshooting.43">Starting with Control Flex 0.9, the bundled <code>cfx-gamepadjni</code> carries two independent backends for the same SDL3 gamepad API: the JNI bridge (our own DLL) and a JNA backend that calls SDL3 directly by symbol name. One JAR, one public API, no setting to change.</span>
+  </p>
+  <p>
+    <span data-i18n="guide.troubleshooting.44">The order is fixed: JNI first. If <code>System.load</code> is refused, the library switches to JNA inside the same <code>initialize()</code> call. JNA's own native library, <code>jnidispatch</code>, has been on Minecraft's classpath since 1.8.9 and is used by thousands of programs, so Microsoft's cloud recognises it; our <code>gamepadjni.dll</code> is never loaded, and SAC has nothing left to block.</span>
+  </p>
+  <p>
+    <span data-i18n="guide.troubleshooting.45">A successful fallback looks like this in the log — no error, just a warning and the backend that took over:</span>
+  </p>
+
+  <pre class="log"><code>[gamepad-jni] JNI backend unavailable: java.lang.UnsatisfiedLinkError: ...\Temp\gamepadjni-1234\gamepadjni.dll: An Application Control policy has blocked this file
+[gamepad-jni] binding=jna (SDL3 from ...\Temp\gamepadjni-1234)</code></pre>
+
+  <p>
+    <span data-i18n="guide.troubleshooting.46">That is not a failure state: <code>gamepadjni.dll</code> will not appear in Task Manager, and the controller works normally. The only thing lost is SDL's own log capture, which is diagnostic-only. Every gamepad feature — enumeration, hotplug, rumble, battery, touchpad, sensors — is identical.</span>
+  </p>
+
+  <h3><span data-i18n="guide.troubleshooting.47">What to do</span></h3>
+  <ol>
+    <li><span data-i18n="guide.troubleshooting.48"><b>Update to Control Flex 0.9 or newer.</b> 0.8.9 and older have a single backend, so a SAC block means no controller at all, and on some versions a crash. Until 0.9 is available, turning SAC off is the only workaround — read the caveat below first.</span></li>
+    <li><span data-i18n="guide.troubleshooting.49"><b>On 1.7.10, do one extra step:</b> that Minecraft version ships no JNA, so the fallback has nothing to bind to — see the next section.</span></li>
+    <li><span data-i18n="guide.troubleshooting.50"><b>To confirm which backend ran,</b> use the diagnostic switch at the end of this page and compare the two log lines.</span></li>
+  </ol>
+
+  <h3><span data-i18n="guide.troubleshooting.51">1.7.10: attach a JNA yourself</span></h3>
+  <p>
+    <span data-i18n="guide.troubleshooting.52">Minecraft 1.7.10 has no JNA on its classpath, so the fallback cannot engage even on 0.9. <code>-Djna.library.path</code> does not fix this — that property tells JNA where native libraries are, and it is only read after JNA's own classes are already loaded.</span>
+  </p>
+  <p>
+    <span data-i18n="guide.troubleshooting.53">On the Java 8 runtime that 1.7.10 uses, put a JNA jar where the game class loader can see it:</span>
+  </p>
+
+  <pre><code>-Xbootclasspath/a:C:\path\to\jna-5.12.1.jar</code></pre>
+
+  <p>
+    <span data-i18n="guide.troubleshooting.54">Prism, HMCL and the vanilla launcher all accept that in their JVM arguments field. Keep the path absolute. The option exists only up to Java 8: a 1.7.10 instance started on Java 9+ rejects it, and the jar has to go on the launcher's class path instead.</span>
+  </p>
+  <p class="small muted">
+    <span data-i18n="guide.troubleshooting.55">Any JNA 5.x release works (it is Java 8 bytecode); the core jar is enough, <code>jna-platform</code> is not needed. If JNA cannot unpack its own <code>jnidispatch</code>, point <code>-Djna.boot.library.path</code> at the folder containing <code>jnidispatch.dll</code>.</span>
+  </p>
+
+  <h3><span data-i18n="guide.troubleshooting.57">If it still fails after updating</span></h3>
+  <p>
+    <span data-i18n="guide.troubleshooting.58">Read the <code>JNA:</code> line. If it reports a failure to load <code>SDL3.dll</code>, SAC is probably blocking that file too — same mechanism, same reason. The JNA fallback only removes our DLL from the picture; it cannot vouch for SDL3.</span>
+  </p>
+  <p>
+    <span data-i18n="guide.troubleshooting.59">In that case there is no client-side workaround left. Send us the log and, if you can, the CodeIntegrity event (see the end of this page): we can confirm which file was blocked, and the long-term fix is signing the natives — not something you can do on your side.</span>
+  </p>
+
+  <div class="callout danger">
+    <p>
+      <span data-i18n="guide.troubleshooting.60"><b>About turning SAC off:</b> it is a device-wide decision, not a per-game switch. On many systems it cannot be turned back on without resetting or reinstalling Windows. It does not disable Defender, but it does remove one protection layer — decide that for yourself, not for a single mod.</span>
+    </p>
+  </div>
+
+  <h2><span data-i18n="guide.troubleshooting.61">Other Common Symptoms</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.troubleshooting.62">Symptom</span></th>
+          <th><span data-i18n="guide.troubleshooting.63">Likely cause</span></th>
+          <th><span data-i18n="guide.troubleshooting.64">What to do</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="guide.troubleshooting.65">Empty gamepad list, and no <code>gamepad-jni</code> error in the log</span></td>
+          <td><span data-i18n="guide.troubleshooting.66">The library loaded fine; the pad never reached SDL. Usually another program is holding it (Steam Input, DS4Windows, remote play), the Bluetooth pairing is stale, or the cable is charge-only.</span></td>
+          <td><span data-i18n="guide.troubleshooting.67">Close the other tool, re-pair the controller, try another cable/port. Check that Windows itself sees the pad in “Set up USB game controllers”.</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.troubleshooting.68"><code>UnsatisfiedLinkError</code> without the Application Control wording</span></td>
+          <td><span data-i18n="guide.troubleshooting.69">Architecture mismatch: a 32-bit x86 JVM, or an ARM64 JVM on Windows. The JAR ships x86_64 natives only, so Windows on ARM needs an x64 JVM; on Android it is an unsupported ABI or a launcher APK without SDL3.</span></td>
+          <td><span data-i18n="guide.troubleshooting.70">Run 64-bit x64 Java on Windows, including Windows on ARM. On Android, see <a href="platforms.html">Platform Support</a> for the ABI and launcher requirements.</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.troubleshooting.71"><code>no usable gamepad backend</code> with <code>JNA: ... not on the classpath</code></span></td>
+          <td><span data-i18n="guide.troubleshooting.72">1.7.10 (or a launcher with a stripped classpath): there is no JNA to fall back to.</span></td>
+          <td><span data-i18n="guide.troubleshooting.73">Attach a JNA jar as shown above — on 1.7.10 this is the only way to survive a SAC block.</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.troubleshooting.74">Buttons work, rumble does not</span></td>
+          <td><span data-i18n="guide.troubleshooting.75">The pad has no rumble motors, is low on battery, or is connected in a mode that drops rumble (some third-party pads over Bluetooth).</span></td>
+          <td><span data-i18n="guide.troubleshooting.76">Try USB, charge it, and check the same pad in another game to see whether the hardware supports it at all.</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.troubleshooting.77">Linux: the pad appears and disappears</span></td>
+          <td><span data-i18n="guide.troubleshooting.78">Permission or udev trouble on <code>/dev/input</code>, or Steam Input claiming the device first.</span></td>
+          <td><span data-i18n="guide.troubleshooting.79">Close Steam, check that your user can read the event device, and confirm the pad shows up in <code>evtest</code> or <code>jstest</code>.</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="guide.troubleshooting.80">Android: the game runs but no controller is ever listed</span></td>
+          <td><span data-i18n="guide.troubleshooting.81">The launcher rewrote <code>os.version</code>, or Gamepad Input Mode is Mapped (Virtual Keys) instead of SDL Direct.</span></td>
+          <td><span data-i18n="guide.troubleshooting.82">Follow the two launcher settings on <a href="platforms.html">Platform Support</a>; they are the usual culprit.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="guide.troubleshooting.83">Platform-specific behaviour is on <a href="platforms.html">Platform Support</a>; a wrong loader, Java version or dependency is covered by <a href="versions.html">Minecraft Versions</a>.</span>
+  </p>
+
+  <h2><span data-i18n="guide.troubleshooting.84">Diagnostic Switch</span></h2>
+  <p>
+    <span data-i18n="guide.troubleshooting.85">The default is <code>auto</code>. For a bug report — or to prove which half is broken — force one backend and compare:</span>
+  </p>
+
+  <pre><code>-Dcfx.gamepadjni.binding=jni     # JNI only, no fallback (reproduces a Smart App Control block)
+-Dcfx.gamepadjni.binding=jna     # JNA only, JNI never attempted
+-Dcfx.gamepadjni.binding=auto    # default: JNI, then JNA</code></pre>
+
+  <p>
+    <span data-i18n="guide.troubleshooting.86"><code>jni</code> fails loudly instead of falling back, which is exactly what you want when reproducing the Windows block. <code>jna</code> skips our DLL entirely and shows whether the fallback path itself is healthy. The system property wins over the <code>CFX_GAMEPADJNI_BINDING</code> environment variable; values are case-insensitive, and an unrecognised value behaves like <code>auto</code>.</span>
+  </p>
+
+  <h2><span data-i18n="guide.troubleshooting.87">What to Include in a Report</span></h2>
+  <ul>
+    <li><span data-i18n="guide.troubleshooting.88">The <code>[gamepad-jni]</code> lines from <code>logs/latest.log</code> — about 30 lines of context, not a screenshot of the game.</span></li>
+    <li><span data-i18n="guide.troubleshooting.89">Your Windows version, and whether Smart App Control is On, Evaluation or Off.</span></li>
+    <li><span data-i18n="guide.troubleshooting.90">Minecraft version, loader, and the exact Control Flex version.</span></li>
+    <li><span data-i18n="guide.troubleshooting.91">Controller model and how it is connected (USB / Bluetooth / dongle).</span></li>
+    <li><span data-i18n="guide.troubleshooting.92">If you can find it: the CodeIntegrity event. Event Viewer → Applications and Services Logs → Microsoft → Windows → CodeIntegrity → Operational, event ID <code>3077</code>, which names the blocked file.</span></li>
+  </ul>
+
+  <div class="callout tip">
+    <p>
+      <span data-i18n="guide.troubleshooting.93">Where to check SAC: Windows Security → App &amp; browser control → Smart App Control settings. Only <b>On</b> blocks; <b>Evaluation</b> watches without blocking, and <b>Off</b> means SAC is not what you are hitting.</span>
+    </p>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

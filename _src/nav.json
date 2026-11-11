@@ -83,6 +83,10 @@
       {
         "href": "guide/settings.html",
         "key": "nav.settings-and-controls"
+      },
+      {
+        "href": "guide/troubleshooting.html",
+        "key": "nav.troubleshooting"
       }
     ]
   },
