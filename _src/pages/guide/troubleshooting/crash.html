@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="guide.troubleshooting.crash.h1">Crashes on Startup</span></h1>
+  <p class="lead">
+    <span data-i18n="guide.troubleshooting.crash.lead">Do not start deleting mods yet. The first lines of the crash report usually say which class this is: a native library, a mod conflict, or Java and memory.</span>
+  </p>
+
+  <h2 id="read"><span data-i18n="guide.troubleshooting.crash.read.h2">Read the Crash Report</span></h2>
+  <p>
+    <span data-i18n="guide.troubleshooting.crash.read.p">Reports live in <code>crash-reports/</code> under the instance folder. Read the <code>Description:</code> line and the first few stack frames — not the whole file.</span>
+  </p>
+
+  <div class="table-wrap">
+    <table class="tbl-names">
+      <thead>
+        <tr>
+          <th><span data-i18n="guide.troubleshooting.crash.keyword">Keyword</span></th>
+          <th><span data-i18n="guide.troubleshooting.crash.meaning">What it means</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>UnsatisfiedLinkError</code><br><code>gamepadjni</code></td>
+          <td><span data-i18n="guide.troubleshooting.crash.row.native">The native library did not load. SAC, architecture and the 1.7.10 JNA step are all on <a href="library-load.html">Library Load Failures</a>.</span></td>
+        </tr>
+        <tr>
+          <td><code>Mixin apply failed</code><br><code>InvalidInjectionException</code></td>
+          <td><span data-i18n="guide.troubleshooting.crash.row.mod">A mod conflict: a mixin target or injection point no longer matches. Bisect the mod list as described on <a href="../../modpack/compat/index.html">Mod Compatibility</a>.</span></td>
+        </tr>
+        <tr>
+          <td><code>OutOfMemoryError</code></td>
+          <td><span data-i18n="guide.troubleshooting.crash.row.memory">Not enough heap. Raise the launcher's <code>-Xmx</code>, or remove mods.</span></td>
+        </tr>
+        <tr>
+          <td><code>UnsupportedClassVersionError</code></td>
+          <td><span data-i18n="guide.troubleshooting.crash.row.java">The Java version does not match the Minecraft version — see <a href="../versions.html">Minecraft Versions</a>.</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="native"><span data-i18n="guide.troubleshooting.crash.native.h2">If It Is the Native Library</span></h2>
+  <p>
+    <span data-i18n="guide.troubleshooting.crash.native.p">If the report names <code>gamepadjni</code>, <code>SDL3</code> or <code>UnsatisfiedLinkError</code>, go to <a href="library-load.html">Library Load Failures</a> first: the Smart App Control block, 32-bit JVMs, Windows on ARM and the 1.7.10 JNA step are all covered there.</span>
+  </p>
+
+  <h2 id="mod"><span data-i18n="guide.troubleshooting.crash.mod.h2">If It Is a Mod Conflict</span></h2>
+  <p>
+    <span data-i18n="guide.troubleshooting.crash.mod.p">Search for <code>Mixin apply failed</code>, <code>InvalidInjectionException</code> or <code>[ModCompat]</code>. Disable half the mods, then half of that half, until the culprit falls out; the full procedure is on <a href="../../modpack/compat/index.html">Mod Compatibility</a>.</span>
+  </p>
+
+  <h2 id="silent"><span data-i18n="guide.troubleshooting.crash.silent.h2">Exits Without a Report</span></h2>
+  <p>
+    <span data-i18n="guide.troubleshooting.crash.silent.p">Check the launcher's own log and exit code. The usual causes are a 32-bit Java, too little memory, or the wrong Java version; confirm the launcher is using 64-bit x64 Java first.</span>
+  </p>
+  <p>
+    <span data-i18n="guide.troubleshooting.crash.silent.report">When reporting, attach the log, the crash report and system details listed on the <a href="../troubleshooting.html#report">overview page</a>.</span>
+  </p>
+
+  <p class="small muted">
+    <span data-i18n="guide.troubleshooting.crash.related">Related: <a href="library-load.html">Library Load Failures</a> · <a href="not-detected.html">Controller Not Detected</a> · <a href="../../modpack/compat/index.html">Mod Compatibility</a></span>
+  </p>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

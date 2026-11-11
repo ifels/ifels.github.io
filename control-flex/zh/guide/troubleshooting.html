@@ -54,7 +54,6 @@
         <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
       </div>
       <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
-      <a href="/control-flex/zh/guide/troubleshooting.html">常见问题排查</a>
     </div>
     <div class="nav-group">
       <div class="nav-label">平台与版本</div>
@@ -77,6 +76,15 @@
     <div class="nav-group">
       <div class="nav-label">整合包配置</div>
       <a href="/control-flex/zh/modpack/index.html">配置与模板</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">问题排查</div>
+      <a href="/control-flex/zh/guide/troubleshooting.html">概览</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/troubleshooting/library-load.html">库加载失败</a>
+        <a href="/control-flex/zh/guide/troubleshooting/not-detected.html">手柄未被识别</a>
+        <a href="/control-flex/zh/guide/troubleshooting/crash.html">启动崩溃</a>
+      </div>
     </div>
     <div class="nav-group">
       <div class="nav-label">链接</div>
@@ -121,199 +129,112 @@
 
   <h1><span>常见问题排查</span></h1>
   <p class="lead">
-    <span>手柄出问题，大多数时候是两件事之一：原生库没加载成功，或者设备根本没到 SDL 手里。日志一行就能分清是哪一种 —— 先看日志，再改设置。</span>
+    <span>手柄出问题，先判断是哪一类：库没加载、设备没被识别，还是游戏崩了。下面按症状分诊，点「详情」进对应的处理步骤。</span>
   </p>
 
-  <h2><span>先看日志</span></h2>
-  <p>
-    <span>打开实例目录下的 <code>logs/latest.log</code>（Prism、HMCL、CurseForge、官方启动器都在同一位置），搜 <code>gamepad-jni</code>。这个库做了什么 —— 选了哪条后端、卡在哪个文件、JNA 在不在 —— 都写在这个前缀下。</span>
-  </p>
-  <p>
-    <span>两套后端都失败时，日志会一次写清两半各自的原因，而不是只有一句「加载原生库失败」：</span>
-  </p>
+  <h2><span>30 秒分诊</span></h2>
+  <div class="cards">
+    <a class="card" href="troubleshooting/library-load.html">
+      <h3><span>完全没有手柄</span></h3>
+      <p><span>设置 → 手柄选择是空的，按键没反应。先看库有没有加载，再看设备有没有到 SDL。</span></p>
+      <p class="card-arrow"><span>库加载失败</span> →</p>
+    </a>
+    <a class="card" href="troubleshooting/crash.html">
+      <h3><span>游戏启动就崩</span></h3>
+      <p><span>崩溃报告里有 gamepadjni / UnsatisfiedLinkError，或 Windows 弹窗说发布者无法验证。</span></p>
+      <p class="card-arrow"><span>启动崩溃</span> →</p>
+    </a>
+    <a class="card" href="settings.html">
+      <h3><span>手柄能用，但不对</span></h3>
+      <p><span>震动、光标、按键映射、模组界面 —— 这类问题不在加载，先查设置与功能页。</span></p>
+      <p class="card-arrow"><span>设置与键位</span> →</p>
+    </a>
+  </div>
 
-  <pre class="log"><code>[gamepad-jni] no usable gamepad backend (binding=auto)
-  JNI: java.lang.UnsatisfiedLinkError: ...\Temp\gamepadjni-1234\gamepadjni.dll: An Application Control policy has blocked this file
-  JNA: unavailable - com.sun.jna.Native not on the classpath (this Minecraft version ships no JNA)
-  hint: this Minecraft version has no JNA, so only the JNI backend is possible</code></pre>
+  <h2><span>常见问题一览</span></h2>
+  <p>
+    <span>按症状找。表格里没有的，先按上面三张卡片分诊。</span>
+  </p>
 
   <div class="table-wrap">
-    <table class="tbl-names">
-      <thead>
-        <tr>
-          <th><span>行</span></th>
-          <th><span>含义</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>binding=auto</code></td>
-          <td><span>这一次用的策略：先 JNI，失败再 JNA。这里显示 <code>jni</code> / <code>jna</code> 说明手动指定过后端。</span></td>
-        </tr>
-        <tr>
-          <td><code>JNI:</code></td>
-          <td><span>我们自己的 <code>gamepadjni.dll</code> 为什么没加载。智能应用控制的拦截就出现在这一行，末尾是 <code>An Application Control policy has blocked this file</code>。</span></td>
-        </tr>
-        <tr>
-          <td><code>JNA:</code></td>
-          <td><span>JNA 后端为什么没起来 —— 或者这一版 Minecraft 根本没有 JNA。</span></td>
-        </tr>
-        <tr>
-          <td><code>hint:</code></td>
-          <td><span>只在认出原因时出现。写报告时，这一行最值得贴。</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2><span>Windows 11 智能应用控制拦截了 gamepadjni.dll</span></h2>
-  <p>
-    <span>这类加载失败来自 Windows，而不是模组版本装错、缺少前置或下载损坏 —— 也是 Windows 11 上最常见的一类报障。</span>
-  </p>
-
-  <h3><span>你会看到什么</span></h3>
-  <ul>
-    <li><span>Windows 安全中心弹窗，说无法确认 <code>gamepadjni.dll</code> 的发布者，措辞通常是「此应用的一部分已被阻止」。</span></li>
-    <li><span>手柄彻底消失：设置 → 手柄选择里是空的，按键也没有任何反应。</span></li>
-    <li><span>有些环境则会启动即崩溃；崩溃报告里会出现 <code>UnsatisfiedLinkError</code> 或 <code>gamepadjni.dll</code> 字样。</span></li>
-    <li><span>日志里，JNI 那一行以 <code>An Application Control policy has blocked this file</code> 结尾。</span></li>
-  </ul>
-
-  <h3><span>为什么会这样</span></h3>
-  <p>
-    <span>智能应用控制（SAC）是 Windows 11 22H2 引入的功能。程序或 DLL 运行之前，Windows 会先问微软的云服务认不认识这个文件：判定安全就放行；文件没名气、又没有签名，就按「不受信任」拦下。它不是杀毒扫描，也不是 Defender —— 没有文件被隔离，更不代表有病毒。</span>
-  </p>
-  <p>
-    <span>我们的 <code>gamepadjni.dll</code> 是启动时从模组 JAR 解压到 <code>%TEMP%&#92;gamepadjni-*</code> 的。它由我们自己编译，没有代码签名证书，微软云端也没见过这个哈希 —— SAC 无法给出正面判断，于是拒绝加载。</span>
-  </p>
-  <p>
-    <span>文件没有被删除，也没有进隔离区 —— 它还在 <code>%TEMP%</code> 里，杀软历史是干净的。未签名不等于有毒：绝大多数 Minecraft 模组都没有签名。它只说明 Windows 没法为这一个文件背书。</span>
-  </p>
-
-  <div class="callout warn">
-    <p>
-      <span><b>没有单文件白名单。</b>在文件属性里「解除锁定」、把目录加进 Defender 排除项、用管理员身份启动 —— 这三样都没用，SAC 都不看。它只有「打开 / 评估 / 关闭」三个状态，被拦的文件不能单独放行。</span>
-    </p>
-  </div>
-
-  <h3><span>0.9 起：自动改用 JNA</span></h3>
-  <p>
-    <span>从 Control Flex 0.9 起，随包的 <code>cfx-gamepadjni</code> 在同一个 JAR 里带了两套独立后端：JNI（我们自己的 DLL）和按符号名直接调用 SDL3 的 JNA。一个 JAR、一套公开 API，不需要改任何设置。</span>
-  </p>
-  <p>
-    <span>顺序是固定的：先试 JNI。如果 <code>System.load</code> 被拒绝，就在同一次 <code>initialize()</code> 里改用 JNA。JNA 自己的原生库 <code>jnidispatch</code> 从 1.8.9 起就在 Minecraft 的 classpath 上，被成千上万的程序用过，微软云端有它的信誉记录；我们的 <code>gamepadjni.dll</code> 根本不会被加载，SAC 也就没有可拦的东西。</span>
-  </p>
-  <p>
-    <span>回退成功时，日志长这样 —— 不是报错，只有一条警告和最终接手的那条后端：</span>
-  </p>
-
-  <pre class="log"><code>[gamepad-jni] JNI backend unavailable: java.lang.UnsatisfiedLinkError: ...\Temp\gamepadjni-1234\gamepadjni.dll: An Application Control policy has blocked this file
-[gamepad-jni] binding=jna (SDL3 from ...\Temp\gamepadjni-1234)</code></pre>
-
-  <p>
-    <span>这不是故障状态：任务管理器里不会出现 <code>gamepadjni.dll</code>，手柄照常工作。唯一少掉的是 SDL 自己的日志捕获，那只是诊断信息。枚举、热插拔、震动、电量、触摸板、传感器，全都一样。</span>
-  </p>
-
-  <h3><span>你该做什么</span></h3>
-  <ol>
-    <li><span><b>更新到 Control Flex 0.9 或更新版本。</b>0.8.9 及更早只有一条后端，被 SAC 拦下就等于完全没有手柄，部分版本还会崩溃。0.9 发布之前，唯一的临时办法是关闭 SAC —— 先看下面的代价。</span></li>
-    <li><span><b>1.7.10 要多做一步：</b>这一版 Minecraft 不带 JNA，回退没有东西可绑 —— 见下一节。</span></li>
-    <li><span><b>想确认实际走的是哪条后端，</b>用本页末尾的诊断开关，对比两行日志。</span></li>
-  </ol>
-
-  <h3><span>1.7.10：自己挂一个 JNA</span></h3>
-  <p>
-    <span>Minecraft 1.7.10 的 classpath 上没有 JNA，所以即使在 0.9 上回退也无法生效。<code>-Djna.library.path</code> 解决不了这个问题 —— 那个属性只是告诉 JNA 原生库在哪，而且要在 JNA 的类已经加载之后才会读。</span>
-  </p>
-  <p>
-    <span>在 1.7.10 使用的 Java 8 上，把 JNA 的 jar 放到游戏类加载器能看见的位置：</span>
-  </p>
-
-  <pre><code>-Xbootclasspath/a:C:\path\to\jna-5.12.1.jar</code></pre>
-
-  <p>
-    <span>Prism、HMCL 和官方启动器都接受把它写进 JVM 参数。路径要用绝对路径。这个选项只存在到 Java 8：用 Java 9+ 启动的 1.7.10 会直接拒绝，只能把 jar 放进启动器的 classpath。</span>
-  </p>
-  <p class="small muted">
-    <span>任意 JNA 5.x 版本都可以（都是 Java 8 字节码）；核心 jar 就够，不需要 <code>jna-platform</code>。如果 JNA 解压不出自己的 <code>jnidispatch</code>，再用 <code>-Djna.boot.library.path</code> 指向存放 <code>jnidispatch.dll</code> 的目录。</span>
-  </p>
-
-  <h3><span>更新后还是失败呢</span></h3>
-  <p>
-    <span>看 <code>JNA:</code> 那一行。如果它报的是 <code>SDL3.dll</code> 加载失败，很可能是 SAC 把 SDL3 也拦了 —— 同一个机制、同一个原因。JNA 回退只是把我们的 DLL 从名单里去掉，它没法替 SDL3 背书。</span>
-  </p>
-  <p>
-    <span>这种情况客户端已经没有绕法了。把日志发给我们，能捞到 CodeIntegrity 事件的话一并附上（见本页末尾）：我们可以确认被拦的是哪个文件；长期解法是给原生库做代码签名，这不是你这边能做的。</span>
-  </p>
-
-  <div class="callout danger">
-    <p>
-      <span><b>关于关闭 SAC：</b>这是设备级的选择，不是给某个游戏开的开关。很多机器关掉之后，要重置或重装 Windows 才能再打开。它不会让 Defender 失效，但确实少了一层防护 —— 这个决定该为整台电脑做，不是为一个模组做。</span>
-    </p>
-  </div>
-
-  <h2><span>其他常见症状</span></h2>
-  <div class="table-wrap">
-    <table>
+    <table class="tbl-issues">
       <thead>
         <tr>
           <th><span>症状</span></th>
           <th><span>可能原因</span></th>
-          <th><span>怎么办</span></th>
+          <th><span>详情</span></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><span>手柄列表是空的，日志里也没有 <code>gamepad-jni</code> 报错</span></td>
-          <td><span>库本身加载正常，是设备没到 SDL：多半被别的程序占着（Steam Input、DS4Windows、远程串流），或者蓝牙配对失效、线只能充电。</span></td>
-          <td><span>关掉那个程序、重新配对、换线换口。先在 Windows 的「设置 USB 游戏控制器」里确认系统自己认不认这个手柄。</span></td>
+          <td><span>Windows 弹窗说无法确认 <code>gamepadjni.dll</code> 的发布者，手柄同时失效</span></td>
+          <td><span>智能应用控制拦截了未签名的 DLL</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#sac"><span>详情 →</span></a></td>
+        </tr>
+        <tr>
+          <td><span>日志出现 <code>no usable gamepad backend</code></span></td>
+          <td><span>JNI 和 JNA 两条后端都没能加载</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#log"><span>详情 →</span></a></td>
         </tr>
         <tr>
           <td><span><code>UnsatisfiedLinkError</code>，但没有 Application Control 字样</span></td>
           <td><span>架构不匹配：32 位 x86 的 JVM，或 Windows 上用 ARM64 的 JVM。JAR 只带 x86_64 原生库，所以 Windows on ARM 也要用 x64 版 Java；Android 上则是 ABI 不支持，或启动器 APK 没带 SDL3。</span></td>
-          <td><span>Windows 上一律用 64 位 x64 Java（含 Windows on ARM）。Android 的 ABI 与启动器要求见<a href="platforms.html">平台支持</a>。</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#arch"><span>详情 →</span></a></td>
         </tr>
         <tr>
           <td><span><code>no usable gamepad backend</code>，且 <code>JNA: ... not on the classpath</code></span></td>
           <td><span>1.7.10（或 classpath 被精简过的启动器）：没有 JNA 可以回退。</span></td>
-          <td><span>按上面那节挂一个 JNA jar —— 在 1.7.10 上，这是 SAC 拦截后唯一的活路。</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#jna"><span>详情 →</span></a></td>
+        </tr>
+        <tr>
+          <td><span>手柄列表是空的，日志里也没有 <code>gamepad-jni</code> 报错</span></td>
+          <td><span>库本身加载正常，是设备没到 SDL：多半被别的程序占着（Steam Input、DS4Windows、远程串流），或者蓝牙配对失效、线只能充电。</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/not-detected.html"><span>详情 →</span></a></td>
+        </tr>
+        <tr>
+          <td><span>Steam 里手柄正常，游戏里完全不认</span></td>
+          <td><span>Steam Input 接管了设备</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/not-detected.html#steam"><span>详情 →</span></a></td>
+        </tr>
+        <tr>
+          <td><span>启动即崩溃，崩溃报告里出现 <code>gamepadjni</code></span></td>
+          <td><span>原生库加载失败，或模组冲突</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/crash.html"><span>详情 →</span></a></td>
         </tr>
         <tr>
           <td><span>按键能用，但没有震动</span></td>
           <td><span>手柄没有马达、电量太低，或者当前连接方式会丢掉震动（部分第三方手柄走蓝牙时如此）。</span></td>
-          <td><span>换 USB、充电，再在别的游戏里试同一个手柄，确认硬件本身支不支持。</span></td>
+          <td><a class="btn btn-sm btn-soft" href="feature/rumble.html"><span>详情 →</span></a></td>
         </tr>
         <tr>
           <td><span>Linux：手柄时有时无</span></td>
           <td><span><code>/dev/input</code> 的权限或 udev 规则有问题，或者 Steam Input 先一步占住了设备。</span></td>
-          <td><span>关掉 Steam，确认当前用户能读事件设备，再用 <code>evtest</code> 或 <code>jstest</code> 看手柄出不出来。</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/not-detected.html#linux"><span>详情 →</span></a></td>
         </tr>
         <tr>
           <td><span>Android：游戏能跑，但手柄永远不出现</span></td>
           <td><span>启动器改写了 <code>os.version</code>，或者 Gamepad Input Mode 还是 Mapped (Virtual Keys)，没切到 SDL Direct。</span></td>
-          <td><span>照<a href="platforms.html">平台支持</a>里那两个启动器设置做，通常就是这两处。</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/not-detected.html#android"><span>详情 →</span></a></td>
+        </tr>
+        <tr>
+          <td><span>屏幕上有两个光标，或光标位置与点击对不上</span></td>
+          <td><span>启动器的虚拟鼠标指针没关</span></td>
+          <td><a class="btn btn-sm btn-soft" href="platforms.html"><span>详情 →</span></a></td>
+        </tr>
+        <tr>
+          <td><span>模组按键绑了却没反应</span></td>
+          <td><span>层不对，或缺少该模组的界面 / 叠层规则</span></td>
+          <td><a class="btn btn-sm btn-soft" href="../modpack/compat/index.html"><span>详情 →</span></a></td>
         </tr>
       </tbody>
     </table>
   </div>
+
   <p class="small muted">
     <span>更细的平台差异见<a href="platforms.html">平台支持</a>；加载器、Java 版本或前置装错，见 <a href="versions.html">MC 版本支持</a>。</span>
   </p>
 
-  <h2><span>诊断开关</span></h2>
-  <p>
-    <span>默认是 <code>auto</code>。写报告时 —— 或者想证明到底哪一半坏了 —— 可以强制走一条后端再对比：</span>
-  </p>
-
-  <pre><code>-Dcfx.gamepadjni.binding=jni     # JNI only, no fallback (reproduces a Smart App Control block)
--Dcfx.gamepadjni.binding=jna     # JNA only, JNI never attempted
--Dcfx.gamepadjni.binding=auto    # default: JNI, then JNA</code></pre>
-
-  <p>
-    <span><code>jni</code> 会直接失败而不是回退，正好用来复现 Windows 的拦截。<code>jna</code> 完全跳过我们的 DLL，用来看回退路径本身是否健康。系统属性优先于 <code>CFX_GAMEPADJNI_BINDING</code> 环境变量；大小写不敏感，不认识的值按 <code>auto</code> 处理。</span>
-  </p>
-
-  <h2><span>报告问题时带上这些</span></h2>
+  <h2 id="report"><span>报告问题时带上这些</span></h2>
   <ul>
     <li><span><code>logs/latest.log</code> 里 <code>[gamepad-jni]</code> 附近的三十行左右 —— 不要只发一张游戏截图。</span></li>
     <li><span>Windows 版本，以及智能应用控制是「打开」「评估」还是「关闭」。</span></li>

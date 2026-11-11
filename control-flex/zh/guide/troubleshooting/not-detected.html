@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>手柄未被识别 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/troubleshooting/not-detected.html", "zh": "/control-flex/zh/guide/troubleshooting/not-detected.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/troubleshooting/not-detected.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/troubleshooting/not-detected.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/troubleshooting/not-detected.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/troubleshooting/not-detected.html">
+<meta property="og:title" content="手柄未被识别 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/troubleshooting/not-detected.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+      <a href="/control-flex/zh/guide/concepts.html">概念</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">视角控制</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/screen-menu.html">界面菜单</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">模组兼容</div>
+      <a href="/control-flex/zh/modpack/compat/index.html">概览</a>
+      <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+      <a href="/control-flex/zh/modpack/compat/bridge/index.html">Control Flex API</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/bridge/integration.html">接入与生命周期</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/api.html">接口速查</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/implementations.html">官方实现</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/ecosystem.html">谁在用 API</a>
+      </div>
+      <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包配置</div>
+      <a href="/control-flex/zh/modpack/index.html">配置与模板</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">问题排查</div>
+      <a href="/control-flex/zh/guide/troubleshooting.html">概览</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/troubleshooting/library-load.html">库加载失败</a>
+        <a href="/control-flex/zh/guide/troubleshooting/not-detected.html">手柄未被识别</a>
+        <a href="/control-flex/zh/guide/troubleshooting/crash.html">启动崩溃</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库 ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>手柄未被识别</span></h1>
+  <p class="lead">
+    <span>日志里没有 <code>gamepad-jni</code> 报错，说明库已经加载成功；问题在设备层 —— 系统没认出来、被别的程序抢走，或连接方式不对。</span>
+  </p>
+
+  <h2 id="os"><span>先确认系统认不认</span></h2>
+  <p>
+    <span>Windows：<code>Win</code>+<code>R</code> 输入 <code>joy.cpl</code>，在「测试」页按几下。这里看不到设备，游戏里也不会有。</span>
+  </p>
+  <p>
+    <span>macOS：无线手柄看系统设置 → 蓝牙是否已连接；有线手柄看「系统信息 → USB」里有没有出现。</span>
+  </p>
+  <p>
+    <span>Linux：<code>evtest</code> 或 <code>jstest /dev/input/js0</code>，设备节点要存在且能产生事件。</span>
+  </p>
+
+  <h2 id="steam"><span>被别的程序占用</span></h2>
+  <p>
+    <span>Steam Input、DS4Windows、BetterJoy、远程串流都会先一步接管手柄。被接管后，游戏看到的是虚拟键鼠或另一个虚拟手柄，Control Flex 读不到真实设备。</span>
+  </p>
+  <p>
+    <span>先把这些程序完全退出（不是最小化），再重启游戏。Steam 里还要在「设置 → 控制器 → Steam 输入」关掉对应手柄的支持。</span>
+  </p>
+  <p>
+    <span>确认方法：关掉程序后，<code>joy.cpl</code> / <code>evtest</code> 里仍然能看到手柄，才算没被独占。</span>
+  </p>
+
+  <h2 id="connection"><span>连接方式</span></h2>
+  <ul>
+    <li><span>USB：用能传数据的线 —— 很多附赠线只能充电。换一个端口，尽量避开 USB Hub。</span></li>
+    <li><span>蓝牙：先在系统里删除配对，再重新配对；配对后按一下手柄的配对键唤醒。</span></li>
+    <li><span>接收器 / 电池：换电池或充电；接收器插主板后置 USB 口，别插前面板。</span></li>
+  </ul>
+  <p>
+    <span>最后在别的游戏或系统面板里试同一个手柄，确认硬件本身没问题。</span>
+  </p>
+
+  <h2 id="linux"><span>Linux：权限与 udev</span></h2>
+  <p>
+    <span>手柄节点在 <code>/dev/input/event*</code> 和 <code>/dev/input/js*</code>，当前用户要能读。Flatpak / Snap 版启动器还多一层沙箱，需要额外给设备权限。</span>
+  </p>
+  <p>
+    <span>关掉 Steam，确认当前用户能读事件设备，再用 <code>evtest</code> 或 <code>jstest</code> 看手柄出不出来。</span>
+  </p>
+  <p>
+    <span>还是不行时，看 <code>ls -l /dev/input/js*</code> 的组权限，或把用户加入 <code>input</code> 组后重新登录。</span>
+  </p>
+
+  <h2 id="android"><span>Android：启动器</span></h2>
+  <p>
+    <span>Android 上手柄能不能出现，几乎完全取决于启动器：Gamepad Input Mode 必须是 SDL Direct，<code>os.version</code> 也不能被改写成普通内核号。</span>
+  </p>
+  <p>
+    <span>具体两个设置见<a href="../platforms.html">平台支持</a>；改完要完全退出游戏再启动。</span>
+  </p>
+  <p class="small muted">
+    <span>另外确认启动器有设备权限；部分系统需要在应用设置里允许「附近设备」。</span>
+  </p>
+
+  <h2 id="still"><span>还是不行</span></h2>
+  <p>
+    <span>日志里搜 <code>gamepad-jni</code> 和 <code>SDL</code>：如果只有加载成功、没有设备行，问题就在这一页；如果出现 <code>UnsatisfiedLinkError</code>，回到<a href="library-load.html">库加载失败</a>。</span>
+  </p>
+  <p>
+    <span>报障时按<a href="../troubleshooting.html#report">概览页的清单</a>带上日志和系统信息。</span>
+  </p>
+
+  <p class="small muted">
+    <span>相关：<a href="library-load.html">库加载失败</a> · <a href="crash.html">启动崩溃</a> · <a href="../platforms.html">平台支持</a></span>
+  </p>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

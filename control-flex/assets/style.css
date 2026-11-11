@@ -258,6 +258,9 @@ html[lang^="zh"] .en-only { display: none; }
   gap: 40px;
   max-width: 1240px;
   margin: 0 auto;
+  /* Keep the footer at the bottom of the viewport on short pages; without it
+     the fixed sidebar keeps painting below the footer band. */
+  min-height: calc(100vh - 119px);
   /* The sidebar is fixed (see below), so its column is reserved here instead:
      22px page padding + 240px column + 40px gap. */
   padding: 30px 22px 72px 302px;
@@ -587,6 +590,13 @@ td:first-child { font-weight: 560; }
 .tbl-names td:first-child code,
 .tbl-names th:first-child code { white-space: nowrap; }
 
+/* Triage table: the symptom column needs enough room for long tokens such as
+   UnsatisfiedLinkError, and the action column must stay on one line. */
+.tbl-issues th:first-child,
+.tbl-issues td:first-child { width: 36%; }
+.tbl-issues th:last-child,
+.tbl-issues td:last-child { width: 12%; white-space: nowrap; }
+
 /* ============================================================
    kbd
    ============================================================ */
@@ -724,6 +734,7 @@ td:first-child { font-weight: 560; }
   font-weight: 650;
   text-decoration: none !important;
   border: 1px solid transparent;
+  white-space: nowrap;
   transition: transform .12s, box-shadow .12s, background .15s;
 }
 .btn:active { transform: translateY(1px); }
@@ -741,6 +752,15 @@ td:first-child { font-weight: 560; }
   background: rgba(255, 255, 255, .04);
 }
 .btn-ghost:hover { background: rgba(255, 255, 255, .1); }
+
+/* Compact table-row action: same affordance as .btn, sized for a cell. */
+.btn-sm { padding: 5px 11px; font-size: 12.5px; border-radius: 7px; }
+.btn-soft {
+  border-color: var(--line-strong);
+  background: var(--panel);
+  color: var(--ink) !important;
+}
+.btn-soft:hover { background: var(--hover-nav); text-decoration: none; }
 
 /* ============================================================
    Cards

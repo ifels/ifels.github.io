@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>启动崩溃 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/troubleshooting/crash.html", "zh": "/control-flex/zh/guide/troubleshooting/crash.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/troubleshooting/crash.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/troubleshooting/crash.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/troubleshooting/crash.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/troubleshooting/crash.html">
+<meta property="og:title" content="启动崩溃 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/troubleshooting/crash.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+      <a href="/control-flex/zh/guide/concepts.html">概念</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">视角控制</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/screen-menu.html">界面菜单</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">模组兼容</div>
+      <a href="/control-flex/zh/modpack/compat/index.html">概览</a>
+      <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+      <a href="/control-flex/zh/modpack/compat/bridge/index.html">Control Flex API</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/bridge/integration.html">接入与生命周期</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/api.html">接口速查</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/implementations.html">官方实现</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/ecosystem.html">谁在用 API</a>
+      </div>
+      <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包配置</div>
+      <a href="/control-flex/zh/modpack/index.html">配置与模板</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">问题排查</div>
+      <a href="/control-flex/zh/guide/troubleshooting.html">概览</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/troubleshooting/library-load.html">库加载失败</a>
+        <a href="/control-flex/zh/guide/troubleshooting/not-detected.html">手柄未被识别</a>
+        <a href="/control-flex/zh/guide/troubleshooting/crash.html">启动崩溃</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库 ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>启动崩溃</span></h1>
+  <p class="lead">
+    <span>先别急着删模组。崩溃报告的第一行通常已经说明是哪一类：原生库、模组冲突，还是 Java / 内存。</span>
+  </p>
+
+  <h2 id="read"><span>先看崩溃报告</span></h2>
+  <p>
+    <span>报告在实例目录的 <code>crash-reports/</code>。看 <code>Description:</code> 和第一段堆栈就够了，不用从头读。</span>
+  </p>
+
+  <div class="table-wrap">
+    <table class="tbl-names">
+      <thead>
+        <tr>
+          <th><span>关键字</span></th>
+          <th><span>说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>UnsatisfiedLinkError</code><br><code>gamepadjni</code></td>
+          <td><span>原生库没加载成功。SAC、架构、1.7.10 的 JNA 都在<a href="library-load.html">库加载失败</a>页。</span></td>
+        </tr>
+        <tr>
+          <td><code>Mixin apply failed</code><br><code>InvalidInjectionException</code></td>
+          <td><span>模组注入冲突：某个 mixin 的目标或注入点对不上。按<a href="../../modpack/compat/index.html">模组兼容</a>页的流程二分排查。</span></td>
+        </tr>
+        <tr>
+          <td><code>OutOfMemoryError</code></td>
+          <td><span>内存不足。调大启动器的 <code>-Xmx</code>，或减少模组。</span></td>
+        </tr>
+        <tr>
+          <td><code>UnsupportedClassVersionError</code></td>
+          <td><span>Java 版本与 Minecraft 不符，对照 <a href="../versions.html">MC 版本支持</a>换 Java。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="native"><span>如果是原生库</span></h2>
+  <p>
+    <span>报告里出现 <code>gamepadjni</code>、<code>SDL3</code> 或 <code>UnsatisfiedLinkError</code>，先去<a href="library-load.html">库加载失败</a>：SAC 拦截、32 位 JVM、Windows on ARM、1.7.10 没有 JNA 都在那里。</span>
+  </p>
+
+  <h2 id="mod"><span>如果是模组冲突</span></h2>
+  <p>
+    <span>搜 <code>Mixin apply failed</code>、<code>InvalidInjectionException</code> 或 <code>[ModCompat]</code>；用二分法禁用一半模组定位，完整流程见<a href="../../modpack/compat/index.html">模组兼容</a>。</span>
+  </p>
+
+  <h2 id="silent"><span>没有崩溃报告就退出</span></h2>
+  <p>
+    <span>看启动器自己的日志和退出码。常见原因是 32 位 Java、内存不足、Java 版本不对；先确认启动器用的是 64 位 x64 Java。</span>
+  </p>
+  <p>
+    <span>报障时按<a href="../troubleshooting.html#report">概览页的清单</a>带上日志、崩溃报告和系统信息。</span>
+  </p>
+
+  <p class="small muted">
+    <span>相关：<a href="library-load.html">库加载失败</a> · <a href="not-detected.html">手柄未被识别</a> · <a href="../../modpack/compat/index.html">模组兼容</a></span>
+  </p>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

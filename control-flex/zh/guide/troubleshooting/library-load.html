@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>库加载失败 · Control Flex Wiki</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+<script>(function(){var q=new URLSearchParams(location.search).get('lang');if(!q)return;var m={"en": "/control-flex/en/guide/troubleshooting/library-load.html", "zh": "/control-flex/zh/guide/troubleshooting/library-load.html"};if(!m[q])return;try{localStorage.setItem('preferredLang',q);}catch(e){}if(q!=="zh")location.replace(m[q]+location.hash);})();</script>
+<link rel="canonical" href="https://ifels.github.io/control-flex/zh/guide/troubleshooting/library-load.html">
+<link rel="alternate" hreflang="en" href="https://ifels.github.io/control-flex/en/guide/troubleshooting/library-load.html">
+<link rel="alternate" hreflang="zh" href="https://ifels.github.io/control-flex/zh/guide/troubleshooting/library-load.html">
+<link rel="alternate" hreflang="x-default" href="https://ifels.github.io/control-flex/en/guide/troubleshooting/library-load.html">
+<meta property="og:title" content="库加载失败 · Control Flex Wiki">
+<meta property="og:locale" content="zh">
+<link rel="stylesheet" href="../../../assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../../../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Language"><a href="/control-flex/en/guide/troubleshooting/library-load.html" hreflang="en" lang="en" data-set-lang="en">English</a><span class="lang-current" aria-current="true">中文</span></div>
+</header>
+
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <nav>
+    <div class="nav-group">
+      <a href="/control-flex/zh/index.html">首页</a>
+      <a href="/control-flex/zh/guide/concepts.html">概念</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">玩家指南</div>
+      <a href="/control-flex/zh/guide/getting-started.html">快速上手</a>
+      <a href="/control-flex/zh/guide/features.html">功能详解</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/feature/layers.html">七层按键架构</a>
+        <a href="/control-flex/zh/guide/feature/trigger-modes.html">触发模式</a>
+        <a href="/control-flex/zh/guide/feature/combo-keys.html">组合键</a>
+        <a href="/control-flex/zh/guide/feature/radial-menus.html">径向菜单</a>
+        <a href="/control-flex/zh/guide/feature/analog-movement.html">模拟移动</a>
+        <a href="/control-flex/zh/guide/feature/camera.html">视角控制</a>
+        <a href="/control-flex/zh/guide/feature/cursor.html">光标与界面操作</a>
+        <a href="/control-flex/zh/guide/feature/rumble.html">震动反馈</a>
+        <a href="/control-flex/zh/guide/feature/virtual-kbm.html">虚拟键鼠</a>
+        <a href="/control-flex/zh/guide/feature/splitscreen.html">分屏双人</a>
+        <a href="/control-flex/zh/guide/feature/mod-adaptation.html">模组适配</a>
+        <a href="/control-flex/zh/guide/feature/screen-menu.html">界面菜单</a>
+        <a href="/control-flex/zh/guide/feature/guide-hud.html">游戏内指南</a>
+      </div>
+      <a href="/control-flex/zh/guide/settings.html">设置与键位</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">平台与版本</div>
+      <a href="/control-flex/zh/guide/platforms.html">平台支持</a>
+      <a href="/control-flex/zh/guide/versions.html">MC 版本支持</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">模组兼容</div>
+      <a href="/control-flex/zh/modpack/compat/index.html">概览</a>
+      <a href="/control-flex/zh/modpack/compat/json.html">兼容配置 JSON</a>
+      <a href="/control-flex/zh/modpack/compat/bridge/index.html">Control Flex API</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/modpack/compat/bridge/integration.html">接入与生命周期</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/api.html">接口速查</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/implementations.html">官方实现</a>
+        <a href="/control-flex/zh/modpack/compat/bridge/ecosystem.html">谁在用 API</a>
+      </div>
+      <a href="/control-flex/zh/modpack/compat/manual.html">手动修改配置</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">整合包配置</div>
+      <a href="/control-flex/zh/modpack/index.html">配置与模板</a>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">问题排查</div>
+      <a href="/control-flex/zh/guide/troubleshooting.html">概览</a>
+      <div class="nav-sub">
+        <a href="/control-flex/zh/guide/troubleshooting/library-load.html">库加载失败</a>
+        <a href="/control-flex/zh/guide/troubleshooting/not-detected.html">手柄未被识别</a>
+        <a href="/control-flex/zh/guide/troubleshooting/crash.html">启动崩溃</a>
+      </div>
+    </div>
+    <div class="nav-group">
+      <div class="nav-label">链接</div>
+      <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置库 ↗</a>
+      <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    </div>
+  </nav>
+</aside>
+<script>
+(function () {
+  var s = document.getElementById('sidebar');
+  var KEY = 'cfxSidebarScroll';
+  var saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  if (saved !== null) {
+    s.scrollTop = +saved || 0;
+  } else {
+    var here = location.pathname.split('/').pop();
+    var links = s.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('href').split('/').pop() === here) {
+        s.scrollTop = Math.max(0, links[i].offsetTop - s.clientHeight / 2);
+        break;
+      }
+    }
+  }
+  function save() {
+    try { sessionStorage.setItem(KEY, String(s.scrollTop)); } catch (e) {}
+  }
+  var t;
+  s.addEventListener('scroll', function () {
+    clearTimeout(t);
+    t = setTimeout(save, 100);
+  }, { passive: true });
+  s.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) save();
+  });
+})();
+</script>
+
+<main class="content">
+
+  <h1><span>库加载失败</span></h1>
+  <p class="lead">
+    <span>日志里出现 <code>[gamepad-jni]</code> 报错，或 Windows 弹窗说无法确认 <code>gamepadjni.dll</code> 的发布者 —— 就是这一类。先读日志，再按顺序往下排查。</span>
+  </p>
+
+  <h2 id="log"><span>先看日志</span></h2>
+  <p>
+    <span>打开实例目录下的 <code>logs/latest.log</code>（Prism、HMCL、CurseForge、官方启动器都在同一位置），搜 <code>gamepad-jni</code>。这个库做了什么 —— 选了哪条后端、卡在哪个文件、JNA 在不在 —— 都写在这个前缀下。</span>
+  </p>
+  <p>
+    <span>两套后端都失败时，日志会一次写清两半各自的原因，而不是只有一句「加载原生库失败」：</span>
+  </p>
+
+  <pre class="log"><code>[gamepad-jni] no usable gamepad backend (binding=auto)
+  JNI: java.lang.UnsatisfiedLinkError: ...\Temp\gamepadjni-1234\gamepadjni.dll: An Application Control policy has blocked this file
+  JNA: unavailable - com.sun.jna.Native not on the classpath (this Minecraft version ships no JNA)
+  hint: this Minecraft version has no JNA, so only the JNI backend is possible</code></pre>
+
+  <div class="table-wrap">
+    <table class="tbl-names">
+      <thead>
+        <tr>
+          <th><span>行</span></th>
+          <th><span>含义</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>binding=auto</code></td>
+          <td><span>这一次用的策略：先 JNI，失败再 JNA。这里显示 <code>jni</code> / <code>jna</code> 说明手动指定过后端。</span></td>
+        </tr>
+        <tr>
+          <td><code>JNI:</code></td>
+          <td><span>我们自己的 <code>gamepadjni.dll</code> 为什么没加载。智能应用控制的拦截就出现在这一行，末尾是 <code>An Application Control policy has blocked this file</code>。</span></td>
+        </tr>
+        <tr>
+          <td><code>JNA:</code></td>
+          <td><span>JNA 后端为什么没起来 —— 或者这一版 Minecraft 根本没有 JNA。</span></td>
+        </tr>
+        <tr>
+          <td><code>hint:</code></td>
+          <td><span>只在认出原因时出现。写报告时，这一行最值得贴。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="sac"><span>Windows 11 智能应用控制拦截了 gamepadjni.dll</span></h2>
+  <p>
+    <span>这类加载失败来自 Windows，而不是模组版本装错、缺少前置或下载损坏 —— 也是 Windows 11 上最常见的一类报障。</span>
+  </p>
+
+  <h3><span>你会看到什么</span></h3>
+  <ul>
+    <li><span>Windows 安全中心弹窗，说无法确认 <code>gamepadjni.dll</code> 的发布者，措辞通常是「此应用的一部分已被阻止」。</span></li>
+    <li><span>手柄彻底消失：设置 → 手柄选择里是空的，按键也没有任何反应。</span></li>
+    <li><span>有些环境则会启动即崩溃；崩溃报告里会出现 <code>UnsatisfiedLinkError</code> 或 <code>gamepadjni.dll</code> 字样。</span></li>
+    <li><span>日志里，JNI 那一行以 <code>An Application Control policy has blocked this file</code> 结尾。</span></li>
+  </ul>
+
+  <h3><span>为什么会这样</span></h3>
+  <p>
+    <span>智能应用控制（SAC）是 Windows 11 22H2 引入的功能。程序或 DLL 运行之前，Windows 会先问微软的云服务认不认识这个文件：判定安全就放行；文件没名气、又没有签名，就按「不受信任」拦下。它不是杀毒扫描，也不是 Defender —— 没有文件被隔离，更不代表有病毒。</span>
+  </p>
+  <p>
+    <span>我们的 <code>gamepadjni.dll</code> 是启动时从模组 JAR 解压到 <code>%TEMP%&#92;gamepadjni-*</code> 的。它由我们自己编译，没有代码签名证书，微软云端也没见过这个哈希 —— SAC 无法给出正面判断，于是拒绝加载。</span>
+  </p>
+  <p>
+    <span>文件没有被删除，也没有进隔离区 —— 它还在 <code>%TEMP%</code> 里，杀软历史是干净的。未签名不等于有毒：绝大多数 Minecraft 模组都没有签名。它只说明 Windows 没法为这一个文件背书。</span>
+  </p>
+
+  <div class="callout warn">
+    <p>
+      <span><b>没有单文件白名单。</b>在文件属性里「解除锁定」、把目录加进 Defender 排除项、用管理员身份启动 —— 这三样都没用，SAC 都不看。它只有「打开 / 评估 / 关闭」三个状态，被拦的文件不能单独放行。</span>
+    </p>
+  </div>
+
+  <h3><span>0.9 起：自动改用 JNA</span></h3>
+  <p>
+    <span>从 Control Flex 0.9 起，随包的 <code>cfx-gamepadjni</code> 在同一个 JAR 里带了两套独立后端：JNI（我们自己的 DLL）和按符号名直接调用 SDL3 的 JNA。一个 JAR、一套公开 API，不需要改任何设置。</span>
+  </p>
+  <p>
+    <span>顺序是固定的：先试 JNI。如果 <code>System.load</code> 被拒绝，就在同一次 <code>initialize()</code> 里改用 JNA。JNA 自己的原生库 <code>jnidispatch</code> 从 1.8.9 起就在 Minecraft 的 classpath 上，被成千上万的程序用过，微软云端有它的信誉记录；我们的 <code>gamepadjni.dll</code> 根本不会被加载，SAC 也就没有可拦的东西。</span>
+  </p>
+  <p>
+    <span>回退成功时，日志长这样 —— 不是报错，只有一条警告和最终接手的那条后端：</span>
+  </p>
+
+  <pre class="log"><code>[gamepad-jni] JNI backend unavailable: java.lang.UnsatisfiedLinkError: ...\Temp\gamepadjni-1234\gamepadjni.dll: An Application Control policy has blocked this file
+[gamepad-jni] binding=jna (SDL3 from ...\Temp\gamepadjni-1234)</code></pre>
+
+  <p>
+    <span>这不是故障状态：任务管理器里不会出现 <code>gamepadjni.dll</code>，手柄照常工作。唯一少掉的是 SDL 自己的日志捕获，那只是诊断信息。枚举、热插拔、震动、电量、触摸板、传感器，全都一样。</span>
+  </p>
+
+  <h3><span>你该做什么</span></h3>
+  <ol>
+    <li><span><b>更新到 Control Flex 0.9 或更新版本。</b>0.8.9 及更早只有一条后端，被 SAC 拦下就等于完全没有手柄，部分版本还会崩溃。0.9 发布之前，唯一的临时办法是关闭 SAC —— 先看下面的代价。</span></li>
+    <li><span><b>1.7.10 要多做一步：</b>这一版 Minecraft 不带 JNA，回退没有东西可绑 —— 见下一节。</span></li>
+    <li><span><b>想确认实际走的是哪条后端，</b>用本页末尾的诊断开关，对比两行日志。</span></li>
+  </ol>
+
+  <h2 id="jna"><span>1.7.10：自己挂一个 JNA</span></h2>
+  <p>
+    <span>Minecraft 1.7.10 的 classpath 上没有 JNA，所以即使在 0.9 上回退也无法生效。<code>-Djna.library.path</code> 解决不了这个问题 —— 那个属性只是告诉 JNA 原生库在哪，而且要在 JNA 的类已经加载之后才会读。</span>
+  </p>
+  <p>
+    <span>在 1.7.10 使用的 Java 8 上，把 JNA 的 jar 放到游戏类加载器能看见的位置：</span>
+  </p>
+
+  <pre><code>-Xbootclasspath/a:C:\path\to\jna-5.12.1.jar</code></pre>
+
+  <p>
+    <span>Prism、HMCL 和官方启动器都接受把它写进 JVM 参数。路径要用绝对路径。这个选项只存在到 Java 8：用 Java 9+ 启动的 1.7.10 会直接拒绝，只能把 jar 放进启动器的 classpath。</span>
+  </p>
+  <p class="small muted">
+    <span>任意 JNA 5.x 版本都可以（都是 Java 8 字节码）；核心 jar 就够，不需要 <code>jna-platform</code>。如果 JNA 解压不出自己的 <code>jnidispatch</code>，再用 <code>-Djna.boot.library.path</code> 指向存放 <code>jnidispatch.dll</code> 的目录。</span>
+  </p>
+
+  <h2 id="arch"><span>架构不匹配</span></h2>
+  <p>
+    <span>日志里出现 <code>UnsatisfiedLinkError</code>、又没有 Application Control 字样时，先怀疑架构：32 位 x86 的 JVM 仍会按 x86_64 去找库；Windows on ARM 上如果用 ARM64 的 JVM，而 JAR 里只有 x86_64 版本，同样找不到。</span>
+  </p>
+  <p>
+    <span>Windows 上一律用 64 位 x64 Java（含 Windows on ARM）。Android 的 ABI 与启动器要求见<a href="../platforms.html">平台支持</a>。</span>
+  </p>
+
+  <h3 id="after"><span>更新后还是失败呢</span></h3>
+  <p>
+    <span>看 <code>JNA:</code> 那一行。如果它报的是 <code>SDL3.dll</code> 加载失败，很可能是 SAC 把 SDL3 也拦了 —— 同一个机制、同一个原因。JNA 回退只是把我们的 DLL 从名单里去掉，它没法替 SDL3 背书。</span>
+  </p>
+  <p>
+    <span>这种情况客户端已经没有绕法了。把日志发给我们，能捞到 CodeIntegrity 事件的话一并附上：我们可以确认被拦的是哪个文件；长期解法是给原生库做代码签名，这不是你这边能做的。报障清单在<a href="../troubleshooting.html#report">概览页</a>。</span>
+  </p>
+
+  <div class="callout danger">
+    <p>
+      <span><b>关于关闭 SAC：</b>这是设备级的选择，不是给某个游戏开的开关。很多机器关掉之后，要重置或重装 Windows 才能再打开。它不会让 Defender 失效，但确实少了一层防护 —— 这个决定该为整台电脑做，不是为一个模组做。</span>
+    </p>
+  </div>
+
+  <h2 id="switch"><span>诊断开关</span></h2>
+  <p>
+    <span>默认是 <code>auto</code>。写报告时 —— 或者想证明到底哪一半坏了 —— 可以强制走一条后端再对比：</span>
+  </p>
+
+  <pre><code>-Dcfx.gamepadjni.binding=jni     # JNI only, no fallback (reproduces a Smart App Control block)
+-Dcfx.gamepadjni.binding=jna     # JNA only, JNI never attempted
+-Dcfx.gamepadjni.binding=auto    # default: JNI, then JNA</code></pre>
+
+  <p>
+    <span><code>jni</code> 会直接失败而不是回退，正好用来复现 Windows 的拦截。<code>jna</code> 完全跳过我们的 DLL，用来看回退路径本身是否健康。系统属性优先于 <code>CFX_GAMEPADJNI_BINDING</code> 环境变量；大小写不敏感，不认识的值按 <code>auto</code> 处理。</span>
+  </p>
+
+  <p class="small muted">
+    <span>手柄根本没被识别？看<a href="not-detected.html">手柄未被识别</a>。游戏启动就崩？看<a href="crash.html">启动崩溃</a>。报障清单在<a href="../troubleshooting.html#report">概览页</a>。</span>
+  </p>
+
+</main>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>Control Flex — LGPL-3.0 · SDL3 (zlib)</span>
+    <a href="https://github.com/ControlFlexMC/control-flex/issues" target="_blank" rel="noopener">报告问题 ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex-api" target="_blank" rel="noopener">control-flex-api ↗</a>
+    <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">社区兼容配置 ↗</a>
+  </div>
+</footer>
+
+<script src="../../../assets/app.js" defer></script>
+</body>
+</html>

@@ -83,10 +83,6 @@
       {
         "href": "guide/settings.html",
         "key": "nav.settings-and-controls"
-      },
-      {
-        "href": "guide/troubleshooting.html",
-        "key": "nav.troubleshooting"
       }
     ]
   },
@@ -151,6 +147,32 @@
       {
         "href": "modpack/index.html",
         "key": "nav.configuration"
+      }
+    ]
+  },
+  {
+    "label": "nav.troubleshooting",
+    "items": [
+      {
+        "href": "guide/troubleshooting.html",
+        "key": "nav.troubleshooting-overview"
+      },
+      {
+        "type": "sub",
+        "items": [
+          {
+            "href": "guide/troubleshooting/library-load.html",
+            "key": "nav.troubleshooting-library"
+          },
+          {
+            "href": "guide/troubleshooting/not-detected.html",
+            "key": "nav.troubleshooting-detection"
+          },
+          {
+            "href": "guide/troubleshooting/crash.html",
+            "key": "nav.troubleshooting-crash"
+          }
+        ]
       }
     ]
   },
