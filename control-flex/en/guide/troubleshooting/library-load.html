@@ -158,7 +158,7 @@
         </tr>
         <tr>
           <td><code>JNI:</code></td>
-          <td><span>Why our own <code>gamepadjni.dll</code> did not load. A Smart App Control block shows up on this line as <code>An Application Control policy has blocked this file</code>.</span></td>
+          <td><span>Why <code>gamepadjni.dll</code> did not load. A Smart App Control block shows up on this line as <code>An Application Control policy has blocked this file</code>.</span></td>
         </tr>
         <tr>
           <td><code>JNA:</code></td>
@@ -174,7 +174,7 @@
 
   <h2 id="sac"><span>Windows 11 Smart App Control Is Blocking gamepadjni.dll</span></h2>
   <p>
-    <span>This load failure comes from Windows, not from a wrong mod version, a missing dependency, or a broken download — and it is the most common report we get from Windows 11 players.</span>
+    <span>This load failure comes from Windows, not from a wrong mod version, a missing dependency, or a broken download — and it is the most common report from Windows 11 players.</span>
   </p>
 
   <h3><span>What you see</span></h3>
@@ -190,7 +190,7 @@
     <span>Smart App Control (SAC) is a Windows 11 feature, introduced with 22H2. Before a program or a DLL is allowed to run, Windows asks Microsoft's cloud service whether it recognises the file. If the verdict is “safe”, it runs. If the file is unknown and unsigned, it is treated as untrusted and blocked. It is not an antivirus scan and it is not Defender: nothing is quarantined, and no virus is involved.</span>
   </p>
   <p>
-    <span>Our <code>gamepadjni.dll</code> is unpacked from the mod JAR into <code>%TEMP%&#92;gamepadjni-*</code> at launch. It is a build we compile ourselves, it carries no code-signing certificate, and Microsoft's cloud has never seen that exact hash — so SAC cannot make a positive prediction and refuses to load it.</span>
+    <span><code>gamepadjni.dll</code> is unpacked from the mod JAR into <code>%TEMP%\gamepadjni-*</code> at launch. It is a build compiled by this project, it carries no code-signing certificate, and Microsoft's cloud has never seen that exact hash — so SAC cannot make a positive prediction and refuses to load it.</span>
   </p>
   <p>
     <span>Nothing was deleted or moved to quarantine — the file is still in <code>%TEMP%</code>, and the antivirus history is clean. Unsigned does not mean malicious: almost every Minecraft mod is unsigned. It only means Windows has no way to vouch for this one file.</span>
@@ -217,10 +217,10 @@
   </div>
 
   <p>
-    <span>Starting with Control Flex 0.9, the bundled <code>cfx-gamepadjni</code> carries two independent backends for the same SDL3 gamepad API: the JNI bridge (our own DLL) and a JNA backend that calls SDL3 directly by symbol name. One JAR, one public API, no setting to change.</span>
+    <span>Starting with Control Flex 0.9, the bundled <code>cfx-gamepadjni</code> carries two independent backends for the same SDL3 gamepad API: the JNI bridge (<code>gamepadjni.dll</code>, built by this project) and a JNA backend that calls SDL3 directly by symbol name. One JAR, one public API, no setting to change.</span>
   </p>
   <p>
-    <span>The order is fixed: JNI first; if <code>System.load</code> is refused, the library switches to JNA inside the same <code>initialize()</code> call. JNA's own native library, <code>jnidispatch</code>, has been on Minecraft's classpath since 1.8.9 and is used by thousands of programs, so Microsoft's cloud recognises it; our <code>gamepadjni.dll</code> is never loaded, and SAC has nothing left to block.</span>
+    <span>The order is fixed: JNI first; if <code>System.load</code> is refused, the library switches to JNA inside the same <code>initialize()</code> call. JNA's own native library, <code>jnidispatch</code>, has been on Minecraft's classpath since 1.8.9 and is used by thousands of programs, so Microsoft's cloud recognises it; <code>gamepadjni.dll</code> is never loaded, and SAC has nothing left to block.</span>
   </p>
   <p>
     <span><b>Why not the other way round?</b> Because JNI is faster. Gamepad state is read every tick, on the hot path: JNI is a compiled native bridge, so a Java call lands directly in the C function, while JNA — even with direct mapping — still goes through JNA's dispatch layer on every call. Trying JNI first keeps the default path exactly as cheap as before; JNA only steps in when JNI cannot load.</span>
@@ -245,7 +245,7 @@
 
   <h3><span>Next Step: Code Signing</span></h3>
   <p>
-    <span>I plan to apply for a free open-source code-signing certificate through <a href="https://signpath.org/" target="_blank" rel="noopener">SignPath Foundation</a> and sign <code>gamepadjni.dll</code> with it. Once signed, the DLL has a verifiable publisher (the certificate is issued to SignPath Foundation), so SAC no longer treats it as unsigned: the JNI path can load normally, and the JNA fallback stays as a safety net. Only <code>gamepadjni.dll</code> is signed; <code>SDL3.dll</code> keeps the same file Minecraft 26.3 ships and is left as is.</span>
+    <span>The plan is to apply for a free open-source code-signing certificate through <a href="https://signpath.org/" target="_blank" rel="noopener">SignPath Foundation</a> and sign <code>gamepadjni.dll</code> with it. Once signed, the DLL has a verifiable publisher (the certificate is issued to SignPath Foundation), so SAC no longer treats it as unsigned: the JNI path can load normally, and the JNA fallback stays as a safety net. Only <code>gamepadjni.dll</code> is signed; <code>SDL3.dll</code> keeps the same file Minecraft 26.3 ships and is left as is.</span>
   </p>
   <p class="small muted">
     <span>Signing is still a plan — it is not done yet, and there is no timeline. SignPath Foundation reviews eligibility (OSI-approved licence, public repository, active maintenance); this page will be updated when there is progress.</span>
@@ -253,7 +253,7 @@
 
   <h2 id="libs"><span>Two Libraries: gamepadjni.dll and SDL3.dll</span></h2>
   <p>
-    <span>Control Flex unpacks two native libraries from the JAR, and SAC decides per file — so either one can be blocked, not only our own.</span>
+    <span>Control Flex unpacks two native libraries from the JAR, and SAC decides per file — so either one can be blocked, not only the one Control Flex builds.</span>
   </p>
 
   <div class="table-wrap">
@@ -329,7 +329,7 @@
     <span>If there is still no controller after updating, check whether the blocked file is SDL3. That case does not produce the two-backend block above; it is a single <code>Failed to load native library: ...SDL3.dll: An Application Control policy has blocked this file</code> line. SDL3 is a precondition for both backends, so the JNA fallback cannot help.</span>
   </p>
   <p>
-    <span>In that case there is no client-side workaround left. Send us the log and, if you can, the CodeIntegrity event: we can confirm which file was blocked, and the long-term fix is signing the natives — not something you can do on your side. The report checklist is on the <a href="../troubleshooting.html#report">overview page</a>.</span>
+    <span>In that case there is no client-side workaround left. Attach the log and, if you can, the CodeIntegrity event: it will show which file was blocked, and the long-term fix is signing the natives — not something you can do on your side. The report checklist is on the <a href="../troubleshooting.html#report">overview page</a>.</span>
   </p>
 
   <div class="callout danger">
@@ -348,7 +348,7 @@
 -Dcfx.gamepadjni.binding=auto    # default: JNI, then JNA</code></pre>
 
   <p>
-    <span><code>jni</code> fails loudly instead of falling back, which is exactly what you want when reproducing the Windows block. <code>jna</code> skips our DLL entirely and shows whether the fallback path itself is healthy. The system property wins over the <code>CFX_GAMEPADJNI_BINDING</code> environment variable; values are case-insensitive, and an unrecognised value behaves like <code>auto</code>.</span>
+    <span><code>jni</code> fails loudly instead of falling back, which is exactly what you want when reproducing the Windows block. <code>jna</code> skips <code>gamepadjni.dll</code> entirely and shows whether the fallback path itself is healthy. The system property wins over the <code>CFX_GAMEPADJNI_BINDING</code> environment variable; values are case-insensitive, and an unrecognised value behaves like <code>auto</code>.</span>
   </p>
 
   <p class="small muted">
