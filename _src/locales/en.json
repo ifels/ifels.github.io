@@ -801,7 +801,7 @@
   "guide.troubleshooting.45": "A successful fallback looks like this in the log — no error, just a warning and the backend that took over:",
   "guide.troubleshooting.46": "That is not a failure state: <code>gamepadjni.dll</code> will not appear in Task Manager, and the controller works normally. The only thing lost is SDL's own log capture, which is diagnostic-only. Every gamepad feature — enumeration, hotplug, rumble, battery, touchpad, sensors — is identical.",
   "guide.troubleshooting.47": "What to do",
-  "guide.troubleshooting.48": "<b>Update to Control Flex 0.9 or newer.</b> 0.8.9 and older have a single backend, so a SAC block means no controller at all, and on some versions a crash. Until 0.9 is available, turning SAC off is the only workaround — read the caveat below first.",
+  "guide.troubleshooting.48": "<b>Update to Control Flex 0.9 or newer.</b> 0.8.9 and older have a single backend, so a SAC block means no controller at all, and on some versions a crash. Until 0.9 is available, turning SAC off is the only workaround — see <a href=\"https://support.microsoft.com/en-us/windows/security/windows-security/app-browser-control-in-the-windows-security-app#bkmk_smart-app-control\" target=\"_blank\" rel=\"noopener\">Microsoft: turn off Smart App Control</a>.",
   "guide.troubleshooting.49": "<b>On 1.7.10, do one extra step:</b> that Minecraft version ships no JNA, so the fallback has nothing to bind to — see the next section.",
   "guide.troubleshooting.50": "<b>To confirm which backend ran,</b> use the diagnostic switch at the end of this page and compare the two log lines.",
   "guide.troubleshooting.51": "1.7.10: attach a JNA yourself",
