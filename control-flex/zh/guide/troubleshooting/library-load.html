@@ -80,11 +80,9 @@
     <div class="nav-group">
       <div class="nav-label">问题排查</div>
       <a href="/control-flex/zh/guide/troubleshooting.html">概览</a>
-      <div class="nav-sub">
-        <a href="/control-flex/zh/guide/troubleshooting/library-load.html">库加载失败</a>
-        <a href="/control-flex/zh/guide/troubleshooting/not-detected.html">手柄未被识别</a>
-        <a href="/control-flex/zh/guide/troubleshooting/crash.html">启动崩溃</a>
-      </div>
+      <a href="/control-flex/zh/guide/troubleshooting/library-load.html">库加载失败</a>
+      <a href="/control-flex/zh/guide/troubleshooting/not-detected.html">手柄未被识别</a>
+      <a href="/control-flex/zh/guide/troubleshooting/crash.html">启动崩溃</a>
     </div>
     <div class="nav-group">
       <div class="nav-label">链接</div>
@@ -197,6 +195,12 @@
   <p>
     <span>文件没有被删除，也没有进隔离区 —— 它还在 <code>%TEMP%</code> 里，杀软历史是干净的。未签名不等于有毒：绝大多数 Minecraft 模组都没有签名。它只说明 Windows 没法为这一个文件背书。</span>
   </p>
+
+  <div class="callout tip">
+    <p>
+      <span><b><code>cfx-gamepadjni</code> 是开源的。</b>源码在 <a href="https://github.com/ControlFlexMC/cfx-gamepad-jni" target="_blank" rel="noopener">github.com/ControlFlexMC/cfx-gamepad-jni</a>，DLL 由 CI 从这份源码构建。你可以直接审计代码，也可以按 README 在本地编译出同一个 DLL 来比对。</span>
+    </p>
+  </div>
 
   <div class="callout warn">
     <p>

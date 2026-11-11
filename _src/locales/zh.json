@@ -720,6 +720,7 @@
   "guide.troubleshooting.overview.row.modkey.s": "模组按键绑了却没反应",
   "guide.troubleshooting.overview.row.modkey.c": "层不对，或缺少该模组的界面 / 叠层规则",
   "guide.troubleshooting.library-load.__title": "库加载失败",
+  "guide.troubleshooting.library-load.open-source": "<b><code>cfx-gamepadjni</code> 是开源的。</b>源码在 <a href=\"https://github.com/ControlFlexMC/cfx-gamepad-jni\" target=\"_blank\" rel=\"noopener\">github.com/ControlFlexMC/cfx-gamepad-jni</a>，DLL 由 CI 从这份源码构建。你可以直接审计代码，也可以按 README 在本地编译出同一个 DLL 来比对。",
   "guide.troubleshooting.library-load.arch.h2": "架构不匹配",
   "guide.troubleshooting.library-load.arch.p": "日志里出现 <code>UnsatisfiedLinkError</code>、又没有 Application Control 字样时，先怀疑架构：32 位 x86 的 JVM 仍会按 x86_64 去找库；Windows on ARM 上如果用 ARM64 的 JVM，而 JAR 里只有 x86_64 版本，同样找不到。",
   "guide.troubleshooting.library-load.related": "手柄根本没被识别？看<a href=\"not-detected.html\">手柄未被识别</a>。游戏启动就崩？看<a href=\"crash.html\">启动崩溃</a>。报障清单在<a href=\"../troubleshooting.html#report\">概览页</a>。",

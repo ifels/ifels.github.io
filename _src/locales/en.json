@@ -721,6 +721,7 @@
   "guide.troubleshooting.overview.row.modkey.s": "A mod's key is bound but does nothing",
   "guide.troubleshooting.overview.row.modkey.c": "Wrong layer, or no screen / overlay rule for that mod",
   "guide.troubleshooting.library-load.__title": "Library Load Failures",
+  "guide.troubleshooting.library-load.open-source": "<b><code>cfx-gamepadjni</code> is open source.</b> The source is at <a href=\"https://github.com/ControlFlexMC/cfx-gamepad-jni\" target=\"_blank\" rel=\"noopener\">github.com/ControlFlexMC/cfx-gamepad-jni</a>, and the DLL is built from it in CI. You can audit the code, or follow the README and build the same DLL yourself.",
   "guide.troubleshooting.library-load.arch.h2": "Architecture Mismatch",
   "guide.troubleshooting.library-load.arch.p": "If the log shows <code>UnsatisfiedLinkError</code> without the Application Control wording, suspect the architecture first: a 32-bit x86 JVM still asks for the x86_64 directory, and on Windows on ARM an ARM64 JVM finds no native because the JAR ships the x86_64 build only.",
   "guide.troubleshooting.library-load.related": "Controller not listed at all? See <a href=\"not-detected.html\">Controller Not Detected</a>. Game dies on startup? See <a href=\"crash.html\">Crashes on Startup</a>. The report checklist is on the <a href=\"../troubleshooting.html#report\">overview</a>.",

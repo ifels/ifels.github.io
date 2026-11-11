@@ -158,21 +158,16 @@
         "key": "nav.troubleshooting-overview"
       },
       {
-        "type": "sub",
-        "items": [
-          {
-            "href": "guide/troubleshooting/library-load.html",
-            "key": "nav.troubleshooting-library"
-          },
-          {
-            "href": "guide/troubleshooting/not-detected.html",
-            "key": "nav.troubleshooting-detection"
-          },
-          {
-            "href": "guide/troubleshooting/crash.html",
-            "key": "nav.troubleshooting-crash"
-          }
-        ]
+        "href": "guide/troubleshooting/library-load.html",
+        "key": "nav.troubleshooting-library"
+      },
+      {
+        "href": "guide/troubleshooting/not-detected.html",
+        "key": "nav.troubleshooting-detection"
+      },
+      {
+        "href": "guide/troubleshooting/crash.html",
+        "key": "nav.troubleshooting-crash"
       }
     ]
   },
