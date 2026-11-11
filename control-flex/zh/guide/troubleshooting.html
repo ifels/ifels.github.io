@@ -175,6 +175,11 @@
           <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#log"><span>详情 →</span></a></td>
         </tr>
         <tr>
+          <td><span>日志只有一行 <code>Failed to load native library</code>，里面提到 <code>SDL3.dll</code></span></td>
+          <td><span>SAC 拦了 SDL3；两套后端都起不来</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#libs"><span>详情 →</span></a></td>
+        </tr>
+        <tr>
           <td><span><code>UnsatisfiedLinkError</code>，但没有 Application Control 字样</span></td>
           <td><span>架构不匹配：32 位 x86 的 JVM，或 Windows 上用 ARM64 的 JVM。JAR 只带 x86_64 原生库，所以 Windows on ARM 也要用 x64 版 Java；Android 上则是 ABI 不支持，或启动器 APK 没带 SDL3。</span></td>
           <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#arch"><span>详情 →</span></a></td>

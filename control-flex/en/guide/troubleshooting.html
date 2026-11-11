@@ -175,6 +175,11 @@
           <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#log"><span>Open →</span></a></td>
         </tr>
         <tr>
+          <td><span>The log has a single <code>Failed to load native library</code> line that names <code>SDL3.dll</code></span></td>
+          <td><span>SAC blocked SDL3, so neither backend can start</span></td>
+          <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#libs"><span>Open →</span></a></td>
+        </tr>
+        <tr>
           <td><span><code>UnsatisfiedLinkError</code> without the Application Control wording</span></td>
           <td><span>Architecture mismatch: a 32-bit x86 JVM, or an ARM64 JVM on Windows. The JAR ships x86_64 natives only, so Windows on ARM needs an x64 JVM; on Android it is an unsupported ABI or a launcher APK without SDL3.</span></td>
           <td><a class="btn btn-sm btn-soft" href="troubleshooting/library-load.html#arch"><span>Open →</span></a></td>

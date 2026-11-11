@@ -127,7 +127,7 @@
 
   <h1><span>库加载失败</span></h1>
   <p class="lead">
-    <span>日志里出现 <code>[gamepad-jni]</code> 报错，或 Windows 弹窗说无法确认 <code>gamepadjni.dll</code> 的发布者 —— 就是这一类。先读日志，再按顺序往下排查。</span>
+    <span>日志里出现 <code>[gamepad-jni]</code> 报错，或 Windows 弹窗说无法确认发布者 —— 就是这一类。这个库由两个原生文件组成：<code>gamepadjni.dll</code> 和 <code>SDL3.dll</code>；先读日志确认是哪一个失败，再按顺序往下排查。</span>
   </p>
 
   <h2 id="log"><span>先看日志</span></h2>
@@ -208,12 +208,22 @@
     </p>
   </div>
 
-  <h3><span>0.9 起：自动改用 JNA</span></h3>
+  <h3><span>0.9 起（开发中）：自动改用 JNA</span></h3>
+
+  <div class="callout warn">
+    <p>
+      <span><b>0.9 仍在开发中，尚未发布。</b>下面这套自动回退只随 Control Flex 0.9 及之后的版本提供。在 0.9 发布之前，0.8.9 及更早版本仍然只有 JNI 一条后端 —— 关闭 SAC 是唯一的临时办法。</span>
+    </p>
+  </div>
+
   <p>
     <span>从 Control Flex 0.9 起，随包的 <code>cfx-gamepadjni</code> 在同一个 JAR 里带了两套独立后端：JNI（我们自己的 DLL）和按符号名直接调用 SDL3 的 JNA。一个 JAR、一套公开 API，不需要改任何设置。</span>
   </p>
   <p>
     <span>顺序是固定的：先试 JNI。如果 <code>System.load</code> 被拒绝，就在同一次 <code>initialize()</code> 里改用 JNA。JNA 自己的原生库 <code>jnidispatch</code> 从 1.8.9 起就在 Minecraft 的 classpath 上，被成千上万的程序用过，微软云端有它的信誉记录；我们的 <code>gamepadjni.dll</code> 根本不会被加载，SAC 也就没有可拦的东西。</span>
+  </p>
+  <p>
+    <span><b>为什么不是反过来？</b>因为 JNI 的性能更好。手柄状态每 tick 都要读，属于热路径：JNI 是编译好的原生桥，Java 调用直接落到 C 函数；JNA 即使走 direct mapping，每次调用仍要经过 JNA 的分发层。让 JNI 先上，默认路径的开销就和以前完全一致；JNA 只在 JNI 加载不了时兜底。</span>
   </p>
   <p>
     <span>回退成功时，日志长这样 —— 不是报错，只有一条警告和最终接手的那条后端：</span>
@@ -228,14 +238,62 @@
 
   <h3><span>你该做什么</span></h3>
   <ol>
-    <li><span><b>更新到 Control Flex 0.9 或更新版本。</b>0.8.9 及更早只有一条后端，被 SAC 拦下就等于完全没有手柄，部分版本还会崩溃。0.9 发布之前，唯一的临时办法是关闭 SAC，具体步骤见<a href="https://support.microsoft.com/zh-cn/windows/security/windows-security/app-browser-control-in-the-windows-security-app#bkmk_smart-app-control" target="_blank" rel="noopener">微软官方：关闭智能应用控制</a>。</span></li>
-    <li><span><b>1.7.10 要多做一步：</b>这一版 Minecraft 不带 JNA，回退没有东西可绑 —— 见下一节。</span></li>
+    <li><span><b>0.9 发布后，更新到 Control Flex 0.9 或更新版本。</b>0.8.9 及更早只有一条后端，被 SAC 拦下就等于完全没有手柄，部分版本还会崩溃。在 0.9 发布之前，关闭 SAC 是唯一的临时办法 —— 具体步骤见<a href="https://support.microsoft.com/zh-cn/windows/security/windows-security/app-browser-control-in-the-windows-security-app#bkmk_smart-app-control" target="_blank" rel="noopener">微软官方：关闭智能应用控制</a>。</span></li>
+    <li><span><b>1.7.10 要多做一步：</b>这一版 Minecraft 不带 JNA，回退没有东西可绑 —— 见下面的 1.7.10 小节。</span></li>
     <li><span><b>想确认实际走的是哪条后端，</b>用本页末尾的诊断开关，对比两行日志。</span></li>
   </ol>
 
+  <h2 id="libs"><span>两个库：gamepadjni.dll 与 SDL3.dll</span></h2>
+  <p>
+    <span>Control Flex 从 JAR 里解压两个原生库。SAC 是按文件逐个判断的，所以被拦的可能是其中任意一个，不一定总是我们自己的那个。</span>
+  </p>
+
+  <div class="table-wrap">
+    <table class="tbl-names">
+      <thead>
+        <tr>
+          <th><span>文件</span></th>
+          <th><span>作用</span></th>
+          <th><span>被 SAC 拦的可能</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>gamepadjni.dll</code></td>
+          <td><span>JNI 桥，把 Java 调用转给 SDL3；由 Control Flex 自己编译</span></td>
+          <td><span>较高 —— 未签名，微软云端没有这个哈希的信誉记录</span></td>
+        </tr>
+        <tr>
+          <td><code>SDL3.dll</code></td>
+          <td><span>SDL3 的手柄 / 输入层；两套后端都绑定它</span></td>
+          <td><span>低很多 —— 与 Minecraft Java 26.3 随包的是同一个文件（LWJGL 3.4.3）；但仍不排除</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout tip">
+    <p>
+      <span><b>为什么 SDL3 被拦的可能性低很多。</b>目前 Windows 包里这份 <code>SDL3.dll</code> 与 Minecraft Java 26.3 加载的 LWJGL 3.4.3 版本字节相同。SAC 的云端信誉按文件哈希累积，几百万个 26.3 客户端已经替这个哈希积累了信誉。但「可能性低」不等于「不会」：云端判断失败或系统策略更严时，仍然可能拦它。</span>
+    </p>
+  </div>
+
+  <p>
+    <span>加载顺序是 SDL3 先、<code>gamepadjni.dll</code> 后。SDL3 是两套后端共同的前置，所以它一旦被拦，JNI 和 JNA 都起不来，0.9 的回退也帮不上。</span>
+  </p>
+  <p>
+    <span>这种失败不会出现上面的双后端失败块，而是单独一行：</span>
+  </p>
+
+  <pre class="log"><code>[gamepad-jni] Failed to load native library: ...\Temp\gamepadjni-1234\SDL3.dll: An Application Control policy has blocked this file</code></pre>
+
+  <p class="small muted">
+    <span>看到这一行，说明被拦的是 SDL3，不是 <code>gamepadjni.dll</code>。</span>
+  </p>
+
   <h2 id="jna"><span>1.7.10：自己挂一个 JNA</span></h2>
   <p>
-    <span>Minecraft 1.7.10 的 classpath 上没有 JNA，所以即使在 0.9 上回退也无法生效。<code>-Djna.library.path</code> 解决不了这个问题 —— 那个属性只是告诉 JNA 原生库在哪，而且要在 JNA 的类已经加载之后才会读。</span>
+    <span>Minecraft 1.7.10 的 classpath 上没有 JNA，所以即使 0.9 发布，回退也无法生效。<code>-Djna.library.path</code> 解决不了这个问题 —— 那个属性只是告诉 JNA 原生库在哪，而且要在 JNA 的类已经加载之后才会读。</span>
   </p>
   <p>
     <span>在 1.7.10 使用的 Java 8 上，把 JNA 的 jar 放到游戏类加载器能看见的位置：</span>
@@ -260,7 +318,7 @@
 
   <h3 id="after"><span>更新后还是失败呢</span></h3>
   <p>
-    <span>看 <code>JNA:</code> 那一行。如果它报的是 <code>SDL3.dll</code> 加载失败，很可能是 SAC 把 SDL3 也拦了 —— 同一个机制、同一个原因。JNA 回退只是把我们的 DLL 从名单里去掉，它没法替 SDL3 背书。</span>
+    <span>如果更新后还是没有手柄，先看日志里被拦的是不是 SDL3。这种情况不会出现上面的双后端失败块，而是只有一行 <code>Failed to load native library: ...SDL3.dll: An Application Control policy has blocked this file</code>。SDL3 是两套后端共同的前置，JNA 回退也帮不上。</span>
   </p>
   <p>
     <span>这种情况客户端已经没有绕法了。把日志发给我们，能捞到 CodeIntegrity 事件的话一并附上：我们可以确认被拦的是哪个文件；长期解法是给原生库做代码签名，这不是你这边能做的。报障清单在<a href="../troubleshooting.html#report">概览页</a>。</span>
