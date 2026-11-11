@@ -726,7 +726,7 @@
   "guide.troubleshooting.library-load.why-jni-first": "<b>为什么不是反过来？</b>因为 JNI 的性能更好。手柄状态每 tick 都要读，属于热路径：JNI 是编译好的原生桥，Java 调用直接落到 C 函数；JNA 即使走 direct mapping，每次调用仍要经过 JNA 的分发层。让 JNI 先上，默认路径的开销就和以前完全一致；JNA 只在 JNI 加载不了时兜底。",
   "guide.troubleshooting.library-load.dev-note": "<b>0.9 仍在开发中，尚未发布。</b>下面这套自动回退只随 Control Flex 0.9 及之后的版本提供。在 0.9 发布之前，0.8.9 及更早版本仍然只有 JNI 一条后端 —— 关闭 SAC 是唯一的临时办法。",
   "guide.troubleshooting.library-load.signing.h3": "下一步计划：代码签名",
-  "guide.troubleshooting.library-load.signing.p": "我们准备通过 <a href=\"https://signpath.org/\" target=\"_blank\" rel=\"noopener\">SignPath Foundation</a> 申请免费的开源代码签名证书，用它对 <code>gamepadjni.dll</code> 签名。签名之后，这个 DLL 有可验证的发布者（证书签发给 SignPath Foundation），SAC 不再把它当成未签名文件，JNI 路径就能正常加载，JNA 回退只留作兜底。只签我们自己的 DLL；<code>SDL3.dll</code> 继续保持与 Minecraft 26.3 相同的文件，不动它。",
+  "guide.troubleshooting.library-load.signing.p": "我准备通过 <a href=\"https://signpath.org/\" target=\"_blank\" rel=\"noopener\">SignPath Foundation</a> 申请免费的开源代码签名证书，用它对 <code>gamepadjni.dll</code> 签名。签名之后，这个 DLL 有可验证的发布者（证书签发给 SignPath Foundation），SAC 不再把它当成未签名文件，JNI 路径就能正常加载，JNA 回退只留作兜底。只签 <code>gamepadjni.dll</code> 本身；<code>SDL3.dll</code> 继续保持与 Minecraft 26.3 相同的文件，不动它。",
   "guide.troubleshooting.library-load.signing.note": "签名还在计划阶段，尚未完成，也没有确定的时间表。SignPath Foundation 会审核项目资格（开源许可证、公开仓库、仍在维护等）；有进展会更新这里。",
   "guide.troubleshooting.library-load.libs.h2": "两个库：gamepadjni.dll 与 SDL3.dll",
   "guide.troubleshooting.library-load.libs.p1": "Control Flex 从 JAR 里解压两个原生库。SAC 是按文件逐个判断的，所以被拦的可能是其中任意一个，不一定总是我们自己的那个。",

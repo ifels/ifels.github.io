@@ -245,7 +245,7 @@
 
   <h3><span>下一步计划：代码签名</span></h3>
   <p>
-    <span>我们准备通过 <a href="https://signpath.org/" target="_blank" rel="noopener">SignPath Foundation</a> 申请免费的开源代码签名证书，用它对 <code>gamepadjni.dll</code> 签名。签名之后，这个 DLL 有可验证的发布者（证书签发给 SignPath Foundation），SAC 不再把它当成未签名文件，JNI 路径就能正常加载，JNA 回退只留作兜底。只签我们自己的 DLL；<code>SDL3.dll</code> 继续保持与 Minecraft 26.3 相同的文件，不动它。</span>
+    <span>我准备通过 <a href="https://signpath.org/" target="_blank" rel="noopener">SignPath Foundation</a> 申请免费的开源代码签名证书，用它对 <code>gamepadjni.dll</code> 签名。签名之后，这个 DLL 有可验证的发布者（证书签发给 SignPath Foundation），SAC 不再把它当成未签名文件，JNI 路径就能正常加载，JNA 回退只留作兜底。只签 <code>gamepadjni.dll</code> 本身；<code>SDL3.dll</code> 继续保持与 Minecraft 26.3 相同的文件，不动它。</span>
   </p>
   <p class="small muted">
     <span>签名还在计划阶段，尚未完成，也没有确定的时间表。SignPath Foundation 会审核项目资格（开源许可证、公开仓库、仍在维护等）；有进展会更新这里。</span>

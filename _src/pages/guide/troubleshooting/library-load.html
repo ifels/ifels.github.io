@@ -146,7 +146,7 @@
 
   <h3><span data-i18n="guide.troubleshooting.library-load.signing.h3">Next Step: Code Signing</span></h3>
   <p>
-    <span data-i18n="guide.troubleshooting.library-load.signing.p">We plan to apply for a free open-source code-signing certificate through <a href="https://signpath.org/" target="_blank" rel="noopener">SignPath Foundation</a> and sign <code>gamepadjni.dll</code> with it. Once signed, the DLL has a verifiable publisher (the certificate is issued to SignPath Foundation), so SAC no longer treats it as unsigned: the JNI path can load normally, and the JNA fallback stays as a safety net. Only our own DLL is signed; <code>SDL3.dll</code> keeps the same file Minecraft 26.3 ships and is left as is.</span>
+    <span data-i18n="guide.troubleshooting.library-load.signing.p">I plan to apply for a free open-source code-signing certificate through <a href="https://signpath.org/" target="_blank" rel="noopener">SignPath Foundation</a> and sign <code>gamepadjni.dll</code> with it. Once signed, the DLL has a verifiable publisher (the certificate is issued to SignPath Foundation), so SAC no longer treats it as unsigned: the JNI path can load normally, and the JNA fallback stays as a safety net. Only <code>gamepadjni.dll</code> is signed; <code>SDL3.dll</code> keeps the same file Minecraft 26.3 ships and is left as is.</span>
   </p>
   <p class="small muted">
     <span data-i18n="guide.troubleshooting.library-load.signing.note">Signing is still a plan — it is not done yet, and there is no timeline. SignPath Foundation reviews eligibility (OSI-approved licence, public repository, active maintenance); this page will be updated when there is progress.</span>
