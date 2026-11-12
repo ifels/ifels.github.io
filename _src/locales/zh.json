@@ -832,7 +832,7 @@
   "guide.troubleshooting.57": "更新后还是失败呢",
   "guide.troubleshooting.58": "如果更新后还是没有手柄，先看日志里被拦的是不是 SDL3。这种情况不会出现上面的双后端失败块，而是只有一行 <code>Failed to load native library: ...SDL3.dll: An Application Control policy has blocked this file</code>。SDL3 是两套后端共同的前置，JNA 回退也帮不上。",
   "guide.troubleshooting.59": "这种情况客户端已经没有绕法了。把日志和能捞到的 CodeIntegrity 事件一并附上：它会写明被拦的是哪个文件；长期解法是给原生库做代码签名，这不是你这边能做的。报障清单在<a href=\"../troubleshooting.html#report\">概览页</a>。",
-  "guide.troubleshooting.60": "这是设备级的选择，不是给某个游戏开的开关。实测在部分 Windows 11 设备上，把 SAC 设为「关闭」后，其他选项会变灰，无法再改回「打开」或「评估」——只能重置或重装 Windows 才能恢复。即使你的系统允许重新打开，手动切换后也回不到「评估」模式。它不会关闭 Defender，但确实少了一层防护。请为整台电脑做这个决定，不要为一个模组关掉它。",
+  "guide.troubleshooting.60": "这是设备级的选择，不是给某个游戏开的开关。在部分 Windows 11 设备上，把 SAC 设为「关闭」后，其他选项会变灰，无法再改回「打开」或「评估」——只能重置或重装 Windows 才能恢复。即使你的系统允许重新打开，手动切换后也回不到「评估」模式。它不会关闭 Defender，但确实少了一层防护。请为整台电脑做这个决定，不要为一个模组关掉它。",
   "guide.troubleshooting.62": "症状",
   "guide.troubleshooting.63": "可能原因",
   "guide.troubleshooting.65": "手柄列表是空的，日志里也没有 <code>gamepad-jni</code> 报错",
