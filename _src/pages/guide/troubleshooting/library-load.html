@@ -139,7 +139,17 @@
 
   <h3><span data-i18n="guide.troubleshooting.47">What to do</span></h3>
   <ol>
-    <li><span data-i18n="guide.troubleshooting.48"><b>Once 0.9 is released, update to Control Flex 0.9 or newer.</b> 0.8.9 and older have a single backend, so a SAC block means no controller at all, and on some versions a crash. Until then, turning SAC off is the only workaround — see <a href="https://support.microsoft.com/en-us/windows/security/windows-security/app-browser-control-in-the-windows-security-app#bkmk_smart-app-control" target="_blank" rel="noopener">Microsoft: turn off Smart App Control</a>.</span></li>
+    <li><span data-i18n="guide.troubleshooting.48"><b>Once 0.9 is released, update to Control Flex 0.9 or newer.</b> 0.8.9 and older have a single backend, so a SAC block means no controller at all, and on some versions a crash. Until then, turning SAC off is the only workaround — see <a href="https://support.microsoft.com/en-us/windows/security/windows-security/app-browser-control-in-the-windows-security-app#bkmk_smart-app-control" target="_blank" rel="noopener">Microsoft: turn off Smart App Control</a>.</span>
+
+      <div class="callout danger">
+        <p>
+          <b data-i18n="guide.troubleshooting.library-load.sac-warning.title">Turning SAC off can be permanent — read this first.</b>
+        </p>
+        <p>
+          <span data-i18n="guide.troubleshooting.60">It is a device-wide setting, not a per-game switch. On some Windows 11 devices, once SAC is set to Off the other options are greyed out — you cannot switch it back to On or Evaluation without resetting or reinstalling Windows. Even where re-enabling is allowed, a manual switch means you cannot return to Evaluation mode. It does not disable Defender, but it removes one protection layer. Make this decision for the whole PC, not for a single mod.</span>
+        </p>
+      </div>
+    </li>
     <li><span data-i18n="guide.troubleshooting.49"><b>On 1.7.10, do one extra step:</b> that Minecraft version ships no JNA, so the fallback has nothing to bind to — see the next section.</span></li>
     <li><span data-i18n="guide.troubleshooting.50"><b>To confirm which backend ran,</b> use the diagnostic switch at the end of this page and compare the two log lines.</span></li>
   </ol>
@@ -232,12 +242,6 @@
   <p>
     <span data-i18n="guide.troubleshooting.59">In that case there is no client-side workaround left. Attach the log and, if you can, the CodeIntegrity event: it will show which file was blocked, and the long-term fix is signing the natives — not something you can do on your side. The report checklist is on the <a href="../troubleshooting.html#report">overview page</a>.</span>
   </p>
-
-  <div class="callout danger">
-    <p>
-      <span data-i18n="guide.troubleshooting.60"><b>About turning SAC off:</b> it is a device-wide decision, not a per-game switch. On current Windows 11 builds you can usually switch between On and Off; but once you switch it manually, you cannot return to Evaluation mode without resetting or reinstalling Windows. It does not disable Defender, but it removes one protection layer — decide that for yourself, not for a single mod.</span>
-    </p>
-  </div>
 
   <h2 id="switch"><span data-i18n="guide.troubleshooting.84">Diagnostic Switch</span></h2>
   <p>

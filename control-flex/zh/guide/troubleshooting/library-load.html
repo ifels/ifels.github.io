@@ -238,7 +238,17 @@
 
   <h3><span>你该做什么</span></h3>
   <ol>
-    <li><span><b>0.9 发布后，更新到 Control Flex 0.9 或更新版本。</b>0.8.9 及更早只有一条后端，被 SAC 拦下就等于完全没有手柄，部分版本还会崩溃。在 0.9 发布之前，关闭 SAC 是唯一的临时办法 —— 具体步骤见<a href="https://support.microsoft.com/zh-cn/windows/security/windows-security/app-browser-control-in-the-windows-security-app#bkmk_smart-app-control" target="_blank" rel="noopener">微软官方：关闭智能应用控制</a>。</span></li>
+    <li><span><b>0.9 发布后，更新到 Control Flex 0.9 或更新版本。</b>0.8.9 及更早只有一条后端，被 SAC 拦下就等于完全没有手柄，部分版本还会崩溃。在 0.9 发布之前，关闭 SAC 是唯一的临时办法 —— 具体步骤见<a href="https://support.microsoft.com/zh-cn/windows/security/windows-security/app-browser-control-in-the-windows-security-app#bkmk_smart-app-control" target="_blank" rel="noopener">微软官方：关闭智能应用控制</a>。</span>
+
+      <div class="callout danger">
+        <p>
+          <b>关闭 SAC 可能是不可逆的 —— 请先读完这一段。</b>
+        </p>
+        <p>
+          <span>这是设备级的选择，不是给某个游戏开的开关。实测在部分 Windows 11 设备上，把 SAC 设为「关闭」后，其他选项会变灰，无法再改回「打开」或「评估」——只能重置或重装 Windows 才能恢复。即使你的系统允许重新打开，手动切换后也回不到「评估」模式。它不会关闭 Defender，但确实少了一层防护。请为整台电脑做这个决定，不要为一个模组关掉它。</span>
+        </p>
+      </div>
+    </li>
     <li><span><b>1.7.10 要多做一步：</b>这一版 Minecraft 不带 JNA，回退没有东西可绑 —— 见下面的 1.7.10 小节。</span></li>
     <li><span><b>想确认实际走的是哪条后端，</b>用本页末尾的诊断开关，对比两行日志。</span></li>
   </ol>
@@ -331,12 +341,6 @@
   <p>
     <span>这种情况客户端已经没有绕法了。把日志和能捞到的 CodeIntegrity 事件一并附上：它会写明被拦的是哪个文件；长期解法是给原生库做代码签名，这不是你这边能做的。报障清单在<a href="../troubleshooting.html#report">概览页</a>。</span>
   </p>
-
-  <div class="callout danger">
-    <p>
-      <span><b>关于关闭 SAC：</b>这是设备级的选择，不是给某个游戏开的开关。在较新的 Windows 11 上，On/Off 之间通常可以来回切换；但一旦手动切换过，就回不到「评估」模式，除非重置或重装 Windows。它不会关闭 Defender，但确实少了一层防护 —— 这个决定该为整台电脑做，不是为一个模组做。</span>
-    </p>
-  </div>
 
   <h2 id="switch"><span>诊断开关</span></h2>
   <p>
