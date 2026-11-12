@@ -12,19 +12,43 @@
       padding: 0 20px;
       line-height: 1.6;
     }
-    #lang-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 6px 12px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      background: #f6f8fa;
+
+    /* 与 control-flex 站点一致的语言切换样式 */
+    .page-top {
+      display: flex;
+      justify-content: flex-end;
+      margin: -26px 0 4px;
     }
-    #lang-toggle:hover {
-      background: #e1e4e8;
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid #ccd3de;
+      border-radius: 7px;
+      background: #eef1f5;
+      font-size: 13px;
+      white-space: nowrap;
     }
+    .lang-switch a,
+    .lang-switch .lang-current {
+      padding: 2px 8px;
+      border-radius: 5px;
+      line-height: 1.5;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+    .lang-switch a { color: #5f6b7d; }
+    .lang-switch a:hover {
+      background: #e3e7ee;
+      color: #171c26;
+    }
+    .lang-switch .lang-current {
+      background: #fff;
+      color: #171c26;
+      box-shadow: 0 1px 2px rgba(16, 24, 40, .06);
+    }
+
     .section-title {
       margin-top: 40px;
       font-size: 20px;
@@ -56,11 +80,13 @@
   </style>
 </head>
 <body>
-  <!-- 语言切换按钮 -->
-  <button id="lang-toggle">中文</button>
+  <!-- 语言切换：结构与 control-flex 站点一致，当前语言为不可点的 span，另一项为链接 -->
+  <div class="page-top">
+    <div class="lang-switch" id="lang-switch" role="group" aria-label="Language"></div>
+  </div>
 
   <!-- 带有 data-i18n 属性的元素，用于被 JS 替换文字 -->
-  <h1 data-i18n="greeting">Hello, ifels!</h1>
+  <h1 data-i18n="greeting">Hello!</h1>
   <p data-i18n="description">This is the GitHub Pages site for ifels.</p>
 
   <!-- 项目入口 -->
@@ -71,61 +97,73 @@
   </a>
 
   <script>
-    // 1. 定义中英文翻译词典
-    const translations = {
+    var LANG_KEY = 'preferredLang';
+    var LANGS = ['en', 'zh'];
+    var LABELS = { en: 'English', zh: '中文' };
+
+    var translations = {
       en: {
-        greeting: "Hello, ifels!",
+        greeting: "Hello!",
         description: "This is the GitHub Pages site for ifels.",
         projectsTitle: "Projects",
         wikiTitle: "Control Flex Wiki",
-        wikiDesc: "Documentation for the Control Flex controller mod: player guide, modpack compatibility, and developer API.",
-        buttonText: "中文"
+        wikiDesc: "Documentation for the Control Flex controller mod: player guide, modpack compatibility, and developer API."
       },
       zh: {
-        greeting: "你好，ifels！",
+        greeting: "你好！",
         description: "这是 ifels 的 GitHub Pages 站点。",
         projectsTitle: "项目",
         wikiTitle: "Control Flex 文档站",
-        wikiDesc: "Control Flex 手柄模组的文档：玩家指南、整合包与兼容、开发者 API，支持中英文切换。",
-        buttonText: "English"
+        wikiDesc: "Control Flex 手柄模组的文档：玩家指南、整合包与兼容、开发者 API，支持中英文切换。"
       }
     };
 
-    // 2. 获取当前语言（优先读取 localStorage，其次看浏览器语言）
-    let currentLang = localStorage.getItem('preferredLang');
-    if (!currentLang) {
-      currentLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
+    // 读取顺序与站点一致：?lang= → localStorage → 浏览器语言
+    function resolveLang() {
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q && LANGS.indexOf(q) >= 0) {
+        try { localStorage.setItem(LANG_KEY, q); } catch (e) {}
+        return q;
+      }
+      var saved = null;
+      try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+      if (saved && LANGS.indexOf(saved) >= 0) return saved;
+      var nav = (navigator.languages && navigator.languages[0]) || navigator.language || 'en';
+      return String(nav).toLowerCase().split('-')[0] === 'zh' ? 'zh' : 'en';
     }
 
-    // 3. 渲染页面的函数
-    function setLanguage(lang) {
-      // 切换 HTML 的 lang 属性，利于 SEO 和屏幕阅读器
-      document.documentElement.lang = lang;
-      
-      // 找到所有带有 data-i18n 属性的元素并替换文字
-      document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          element.textContent = translations[lang][key];
+    // 当前语言渲染为 span，另一语言渲染为链接（无 JS 时也能通过 ?lang= 切换）
+    function renderSwitch(lang) {
+      document.getElementById('lang-switch').innerHTML = LANGS.map(function (code) {
+        if (code === lang) {
+          return '<span class="lang-current" aria-current="true" lang="' + code + '">' + LABELS[code] + '</span>';
         }
+        return '<a href="?lang=' + code + '" hreflang="' + code + '" lang="' + code +
+               '" data-set-lang="' + code + '">' + LABELS[code] + '</a>';
+      }).join('');
+    }
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
       });
 
-      // 更新按钮上的文字
-      document.getElementById('lang-toggle').textContent = translations[lang].buttonText;
-      
-      // 保存用户的选择
-      localStorage.setItem('preferredLang', lang);
-      currentLang = lang;
+      renderSwitch(lang);
+
+      try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
     }
 
-    // 4. 页面加载时立即执行一次渲染
-    setLanguage(currentLang);
-
-    // 5. 给按钮绑定点击事件，切换语言
-    document.getElementById('lang-toggle').addEventListener('click', () => {
-      const nextLang = currentLang === 'en' ? 'zh' : 'en';
-      setLanguage(nextLang);
+    document.getElementById('lang-switch').addEventListener('click', function (event) {
+      var link = event.target.closest('a[data-set-lang]');
+      if (!link) return;
+      event.preventDefault();
+      setLanguage(link.getAttribute('data-set-lang'));
     });
+
+    setLanguage(resolveLang());
   </script>
 </body>
 </html>
