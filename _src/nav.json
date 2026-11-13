@@ -111,26 +111,26 @@
         "key": "nav.compat-json"
       },
       {
-        "href": "mod-compat/bridge/index.html",
+        "href": "mod-compat/api/index.html",
         "key": "nav.compat-bridge"
       },
       {
         "type": "sub",
         "items": [
           {
-            "href": "mod-compat/bridge/integration.html",
+            "href": "mod-compat/api/integration.html",
             "key": "nav.bridge-setup"
           },
           {
-            "href": "mod-compat/bridge/api.html",
+            "href": "mod-compat/api/interfaces.html",
             "key": "nav.bridge-api"
           },
           {
-            "href": "mod-compat/bridge/implementations.html",
+            "href": "mod-compat/api/implementations.html",
             "key": "nav.bridge-impl"
           },
           {
-            "href": "mod-compat/bridge/ecosystem.html",
+            "href": "mod-compat/api/ecosystem.html",
             "key": "nav.bridge-eco"
           }
         ]
