@@ -88,10 +88,10 @@
 
   <h3><span data-i18n="guide.troubleshooting.37">Why it happens</span></h3>
   <p>
-    <span data-i18n="guide.troubleshooting.38">Smart App Control (SAC) is a Windows 11 feature, introduced with 22H2. Before a program or a DLL is allowed to run, Windows asks Microsoft's cloud service whether it recognises the file. If the verdict is “safe”, it runs. If the file is unknown and unsigned, it is treated as untrusted and blocked. It is not an antivirus scan and it is not Defender: nothing is quarantined, and no virus is involved.</span>
+    <span data-i18n="guide.troubleshooting.38">Smart App Control (SAC) is a Windows 11 feature, introduced with 22H2. Before a program or a DLL is allowed to run, Windows asks Microsoft's cloud service whether the file can be trusted. If the verdict is “safe”, it runs. If the file is unknown and unsigned, it is treated as untrusted and blocked. It is not an antivirus scan and it is not Defender: nothing is quarantined, and no virus is involved.</span>
   </p>
   <p>
-    <span data-i18n="guide.troubleshooting.39"><code>gamepadjni.dll</code> is unpacked from the mod JAR into <code>%TEMP%\gamepadjni-*</code> at launch. It is a build compiled by this project, it carries no code-signing certificate, and Microsoft's cloud has never seen that exact hash — so SAC cannot make a positive prediction and refuses to load it.</span>
+    <span data-i18n="guide.troubleshooting.39"><code>gamepadjni.dll</code> is unpacked from the mod JAR into <code>%TEMP%\gamepadjni-*</code> at launch. It is a build compiled by this project, it carries no code-signing certificate, and Microsoft's cloud has no reputation data for that hash — so SAC cannot make a positive prediction and refuses to load it.</span>
   </p>
   <p>
     <span data-i18n="guide.troubleshooting.40">Nothing was deleted or moved to quarantine — the file is still in <code>%TEMP%</code>, and the antivirus history is clean. Unsigned does not mean malicious: almost every Minecraft mod is unsigned. It only means Windows has no way to vouch for this one file.</span>
@@ -99,7 +99,7 @@
 
   <div class="callout tip">
     <p>
-      <span data-i18n="guide.troubleshooting.library-load.open-source"><b><code>cfx-gamepadjni</code> is open source.</b> The source is at <a href="https://github.com/ControlFlexMC/cfx-gamepad-jni" target="_blank" rel="noopener">github.com/ControlFlexMC/cfx-gamepad-jni</a>, and the DLL is built from it in CI. You can audit the code, or follow the README and build the same DLL yourself.</span>
+      <span data-i18n="guide.troubleshooting.library-load.open-source"><b><code>cfx-gamepadjni</code> is open source.</b> The source is at <a href="https://github.com/ControlFlexMC/cfx-gamepad-jni" target="_blank" rel="noopener">github.com/ControlFlexMC/cfx-gamepad-jni</a>, and the DLL is built from it in CI. You can audit the code, or follow the README and build the same DLL yourself. It contains no malicious code, and as more players use it this hash may eventually earn enough cloud reputation for SAC to trust it — that is only a possibility, though; signing remains the reliable route.</span>
     </p>
   </div>
 
@@ -121,7 +121,7 @@
     <span data-i18n="guide.troubleshooting.43">Starting with Control Flex 0.9, the bundled <code>cfx-gamepadjni</code> carries two independent backends for the same SDL3 gamepad API: the JNI bridge (<code>gamepadjni.dll</code>, built by this project) and a JNA backend that calls SDL3 directly by symbol name. One JAR, one public API, no setting to change.</span>
   </p>
   <p>
-    <span data-i18n="guide.troubleshooting.44">The order is fixed: JNI first; if <code>System.load</code> is refused, the library switches to JNA inside the same <code>initialize()</code> call. JNA's own native library, <code>jnidispatch</code>, has been on Minecraft's classpath since 1.8.9 and is used by thousands of programs, so Microsoft's cloud recognises it; <code>gamepadjni.dll</code> is never loaded, and SAC has nothing left to block.</span>
+    <span data-i18n="guide.troubleshooting.44">The order is fixed: JNI first; if <code>System.load</code> is refused, the library switches to JNA inside the same <code>initialize()</code> call. JNA's own native library, <code>jnidispatch</code>, has been on Minecraft's classpath since 1.8.9 and is used by thousands of programs, so Microsoft's cloud recognises it.</span>
   </p>
   <p>
     <span data-i18n="guide.troubleshooting.library-load.why-jni-first"><b>Why not the other way round?</b> Because JNI is faster. Gamepad state is read every tick, on the hot path: JNI is a compiled native bridge, so a Java call lands directly in the C function, while JNA — even with direct mapping — still goes through JNA's dispatch layer on every call. Trying JNI first keeps the default path exactly as cheap as before; JNA only steps in when JNI cannot load.</span>

@@ -187,10 +187,10 @@
 
   <h3><span>为什么会这样</span></h3>
   <p>
-    <span>智能应用控制（SAC）是 Windows 11 22H2 引入的功能。程序或 DLL 运行之前，Windows 会先问微软的云服务认不认识这个文件：判定安全就放行；文件没名气、又没有签名，就按「不受信任」拦下。它不是杀毒扫描，也不是 Defender —— 没有文件被隔离，更不代表有病毒。</span>
+    <span>智能应用控制（SAC）是 Windows 11 22H2 引入的功能。程序或 DLL 运行之前，Windows 会先问微软的云服务是否信任这个文件：判定安全就放行；文件没名气、又没有签名，就按「不受信任」拦下。它不是杀毒扫描，也不是 Defender —— 没有文件被隔离，更不代表有病毒。</span>
   </p>
   <p>
-    <span><code>gamepadjni.dll</code> 是启动时从模组 JAR 解压到 <code>%TEMP%&#92;gamepadjni-*</code> 的。它由 Control Flex 自己编译，没有代码签名证书，微软云端也没见过这个哈希 —— SAC 无法给出正面判断，于是拒绝加载。</span>
+    <span><code>gamepadjni.dll</code> 是启动时从模组 JAR 解压到 <code>%TEMP%&#92;gamepadjni-*</code> 的。它由 Control Flex 自己编译，没有代码签名证书，微软云端也没有这个哈希的信誉记录 —— SAC 无法给出正面判断，于是拒绝加载。</span>
   </p>
   <p>
     <span>文件没有被删除，也没有进隔离区 —— 它还在 <code>%TEMP%</code> 里，杀软历史是干净的。未签名不等于有毒：绝大多数 Minecraft 模组都没有签名。它只说明 Windows 没法为这一个文件背书。</span>
@@ -198,7 +198,7 @@
 
   <div class="callout tip">
     <p>
-      <span><b><code>cfx-gamepadjni</code> 是开源的。</b>源码在 <a href="https://github.com/ControlFlexMC/cfx-gamepad-jni" target="_blank" rel="noopener">github.com/ControlFlexMC/cfx-gamepad-jni</a>，DLL 由 CI 从这份源码构建。你可以直接审计代码，也可以按 README 在本地编译出同一个 DLL 来比对。</span>
+      <span><b><code>cfx-gamepadjni</code> 是开源的。</b>源码在 <a href="https://github.com/ControlFlexMC/cfx-gamepad-jni" target="_blank" rel="noopener">github.com/ControlFlexMC/cfx-gamepad-jni</a>，DLL 由 CI 从这份源码构建。你可以直接审计代码，也可以按 README 在本地编译出同一个 DLL 来比对。这个库不含任何恶意代码；随着用户量增长、这个哈希在微软云端的信誉逐渐累积，后续也有机会被 SAC 判为可信 —— 但这只是一种可能，代码签名仍是更确定的解法。</span>
     </p>
   </div>
 
@@ -220,7 +220,7 @@
     <span>从 Control Flex 0.9 起，随包的 <code>cfx-gamepadjni</code> 在同一个 JAR 里带了两套独立后端：JNI（<code>gamepadjni.dll</code>，由 Control Flex 自己编译）和按符号名直接调用 SDL3 的 JNA。一个 JAR、一套公开 API，不需要改任何设置。</span>
   </p>
   <p>
-    <span>顺序是固定的：先试 JNI，如果 <code>System.load</code> 被拒绝，就在同一次 <code>initialize()</code> 里改用 JNA。JNA 自己的原生库 <code>jnidispatch</code> 从 1.8.9 起就在 Minecraft 的 classpath 上，被成千上万的程序用过，微软云端有它的信誉记录；<code>gamepadjni.dll</code> 根本不会被加载，SAC 也就没有可拦的东西。</span>
+    <span>顺序是固定的：先试 JNI，如果 <code>System.load</code> 被拒绝，就在同一次 <code>initialize()</code> 里改用 JNA。JNA 自己的原生库 <code>jnidispatch</code> 从 1.8.9 起就在 Minecraft 的 classpath 上，被成千上万的程序用过，微软云端有它的信誉记录。</span>
   </p>
   <p>
     <span><b>为什么不是反过来？</b>因为 JNI 的性能更好。手柄状态每 tick 都要读，属于热路径：JNI 是编译好的原生桥，Java 调用直接落到 C 函数；JNA 即使走 direct mapping，每次调用仍要经过 JNA 的分发层。让 JNI 先上，默认路径的开销就和以前完全一致；JNA 只在 JNI 加载不了时兜底。</span>
