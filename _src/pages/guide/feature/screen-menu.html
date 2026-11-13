@@ -42,7 +42,7 @@
 
   <h2><span data-i18n="guide.feature.screen-menu.47">Where Menu Actions Come From</span></h2>
   <ul>
-    <li><span data-i18n="guide.feature.screen-menu.48"><b>Slots hold key-binding actions only</b>: a slot's <code>actionId</code> points at a rebindable key action, written as <code>modId:key</code> — for example <code>jei:key.jei.showUses</code>. Hover-dependent actions (quick move, take half) cannot be used, because opening the menu clears the item hover.</span></li>
+    <li><span data-i18n="guide.feature.screen-menu.48"><b>Slots hold key-binding actions only</b>: a slot's <code>actionId</code> points at a rebindable key action, written as <code>modId:key</code> — for example <code>jei:key.jei.showUses</code>.</span></li>
     <li><span data-i18n="guide.feature.screen-menu.49"><b>The key must apply to that screen</b>: a mod key is only offered and usable on screens where it actually fires — the mod's own screens plus <code>addToScreens</code>, minus <code>removeFromScreens</code>. This is exactly the editor's candidate list; there are no built-in menu actions right now.</span></li>
     <li><span data-i18n="guide.feature.screen-menu.50"><b>Load-time filtering</b>: blank ids, <code>gui_press</code> / <code>inv_select</code> (meaningless with the cursor hidden), <code>screen_menu_open_*</code> (no menus inside menus), non-GUI-layer actions, and actions that fail to resolve are all dropped at load, with the original order preserved.</span></li>
     <li><span data-i18n="guide.feature.screen-menu.51"><b>Cross-mod keys are fine</b>: a menu may reference another mod's keys (JEI actions inside a vanilla-inventory menu, say); the menu itself just lives in the compat config of the mod that owns the screen.</span></li>

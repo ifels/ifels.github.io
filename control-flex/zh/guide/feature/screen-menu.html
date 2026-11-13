@@ -141,7 +141,7 @@
 
   <h2><span>菜单动作从哪来</span></h2>
   <ul>
-    <li><span><b>槽位只能放按键绑定动作</b>：槽位的 <code>actionId</code> 指向一个可重绑的按键动作，写成 <code>modId:key</code> 形式 —— 例如 <code>jei:key.jei.showUses</code>。依赖鼠标悬停的动作（快速移动、取一半）放不进来，因为打开菜单会清空悬停。</span></li>
+    <li><span><b>槽位只能放按键绑定动作</b>：槽位的 <code>actionId</code> 指向一个可重绑的按键动作，写成 <code>modId:key</code> 形式 —— 例如 <code>jei:key.jei.showUses</code>。</span></li>
     <li><span><b>键必须在该界面上生效</b>：一个模组键只有在其真正生效的界面上才会被列出、可用 —— 即本模组自己声明的界面加上 <code>addToScreens</code>、减去 <code>removeFromScreens</code>。这也正是编辑器的候选列表；目前没有内建动作可放。</span></li>
     <li><span><b>加载期过滤</b>：空白动作、<code>gui_press</code> / <code>inv_select</code>（光标隐藏时无意义）、<code>screen_menu_open_*</code>（菜单里不能套菜单）、非 GUI 层动作、解析不到键位的动作，全部在加载时丢弃，保留原顺序。</span></li>
     <li><span><b>可以跨模组引用</b>：菜单里可以引用别的模组的键（比如在原版物品栏菜单里放 JEI 动作）；菜单本身只存在于「拥有这个界面」的模组的 compat 配置里。</span></li>
