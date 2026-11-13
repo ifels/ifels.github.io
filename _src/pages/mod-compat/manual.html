@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="compat.manual.h1">手动修改兼容配置</span></h1>
+  <p class="lead">
+    <span data-i18n="compat.manual.lead">游戏内能调的都在界面里，但总有需要动手的时候：批量改、从别人的配置里抄一段、修一份已经失效的旧配置。这一页讲清改哪一层、怎么改、改坏了怎么退回去。</span>
+  </p>
+
+  <h2 id="which"><span data-i18n="compat.manual.which.h2">一、先确认你改的是哪一层</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.manual.which.col.layer">目录</span></th>
+          <th><span data-i18n="compat.manual.which.col.who">谁写的</span></th>
+          <th><span data-i18n="compat.manual.which.col.fate">你改了会怎样</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>compat/default/</code></td>
+          <td><span data-i18n="compat.manual.which.default.who">从 JAR 释放</span></td>
+          <td><span data-i18n="compat.manual.which.default.fate">升级模组时被覆盖 —— <b>不要改这里</b></span></td>
+        </tr>
+        <tr>
+          <td><code>compat/mods/</code></td>
+          <td><span data-i18n="compat.manual.which.mods.who">桥接模组安装</span></td>
+          <td><span data-i18n="compat.manual.which.mods.fate">桥接升级时被覆盖，同样只读</span></td>
+        </tr>
+        <tr>
+          <td><code>compat/user/</code></td>
+          <td><span data-i18n="compat.manual.which.user.who">游戏内编辑、Apply、你自己</span></td>
+          <td><span data-i18n="compat.manual.which.user.fate">优先级最高，不会被覆盖（Apply 会先备份再覆盖）</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <p>
+      <span data-i18n="compat.manual.which.callout">覆盖是<b>整份替换</b>，不是字段合并：同一个 <code>mod_id</code>，只要 user 层有文件，就整份压过 <code>mods/</code> 与 <code>default/</code>。所以从别人那里抄一段，要连 <code>mod_versions</code> 一起抄全，别只抄半截。</span>
+    </p>
+  </div>
+
+  <h2 id="ui"><span data-i18n="compat.manual.ui.h2">二、方式一：游戏内编辑（推荐）</span></h2>
+  <ol>
+    <li><span data-i18n="compat.manual.ui.1">进 <b>设置 → 模组适配</b>，选中模组，切到「按键绑定」/「界面适配」/「叠层适配」。</span></li>
+    <li><span data-i18n="compat.manual.ui.2">改完保存，改动直接写进 <code>compat/user/&lt;mod_id&gt;.json</code>，并立即热重载该模组 —— 不用重启。</span></li>
+    <li><span data-i18n="compat.manual.ui.3">改错了点<b>重置配置</b>，该模组回到内置或已应用的社区默认（等价于删掉 user 层的这份文件）。</span></li>
+  </ol>
+  <p class="small muted">
+    <span data-i18n="compat.manual.ui.note">规则编辑始终是写时复制：内置与社区文件保持只读，UI 只往 user 层写。这也是为什么你永远不会「改坏」内置配置。</span>
+  </p>
+
+  <h2 id="file"><span data-i18n="compat.manual.file.h2">三、方式二：直接编辑 user/&lt;mod_id&gt;.json</span></h2>
+  <ol>
+    <li><span data-i18n="compat.manual.file.1">从 <code>compat/default/&lt;mod_id&gt;.json</code> 或已应用的社区文件复制一份 —— 别从零写，字段容易漏。</span></li>
+    <li><span data-i18n="compat.manual.file.2">改名成 <code>&lt;mod_id&gt;.json</code> 放进 <code>config/controlflex/compat/user/</code>。文件名必须对得上，界面与热重载都按这个名字找。</span></li>
+    <li><span data-i18n="compat.manual.file.3">只改你要改的字段；不需要的按键直接删掉整条。这份文件会整份生效，不是增量。</span></li>
+    <li><span data-i18n="compat.manual.file.4">以 UTF-8 保存，注意别留尾逗号。</span></li>
+    <li><span data-i18n="compat.manual.file.5"><b>重启游戏生效。</b>磁盘文件没有 watcher；只有 Apply 与游戏内编辑会走热重载。</span></li>
+  </ol>
+  <div class="callout">
+    <p>
+      <span data-i18n="compat.manual.file.callout">JSON 坏掉不会崩游戏：整份文件被跳过，日志里留一条解析错误。所以改完先看日志，别先怀疑手柄。</span>
+    </p>
+  </div>
+
+  <h2 id="copy"><span data-i18n="compat.manual.copy.h2">四、方式三：从配置源手动取一份</span></h2>
+  <p>
+    <span data-i18n="compat.manual.copy.p">不想在游戏里点同步也行：在 <a href="https://github.com/ControlFlexMC/cfx-compat-configs" target="_blank" rel="noopener">cfx-compat-configs</a> 里找到 <code>&lt;mc-version&gt;/&lt;loader&gt;/mods/&lt;mod_id&gt;.json</code>，下载后直接放进 <code>compat/user/</code> 并重启。适合给整合包预置，或给不方便联网的机器用。</span>
+  </p>
+  <p class="small muted">
+    <span data-i18n="compat.manual.copy.note">这种方式不会写入 <code>.applied.json</code>，游戏内变体列表不会显示「已应用」，但配置本身照常生效。</span>
+  </p>
+
+  <h2 id="pitfalls"><span data-i18n="compat.manual.pitfalls.h2">五、手改时最容易踩的坑</span></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.manual.pitfalls.col.item">坑</span></th>
+          <th><span data-i18n="compat.manual.pitfalls.col.fix">说明</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span data-i18n="compat.manual.pitfalls.1.k"><code>mod_versions</code> 顺序</span></td>
+          <td><span data-i18n="compat.manual.pitfalls.1">首个匹配生效；宽区间写在前面会吞掉后面所有版本，通配 <code>""</code> 一定放最后。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.manual.pitfalls.2.k">版本区间语法</span></td>
+          <td><span data-i18n="compat.manual.pitfalls.2">写坏（缺括号 / 逗号、下界大于上界）→ 整条 entry 被丢弃，不只是这一个字段。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.manual.pitfalls.3.k">三个分区必须是对象</span></td>
+          <td><span data-i18n="compat.manual.pitfalls.3">旧的数组写法会被整段丢弃并警告。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.manual.pitfalls.4.k">分区里的 <code>channels</code></span></td>
+          <td><span data-i18n="compat.manual.pitfalls.4">它是<b>保留键</b>，表示该分区的默认通道，不会被当成按键名。</span></td>
+        </tr>
+        <tr>
+          <td><code>channels: []</code></td>
+          <td><span data-i18n="compat.manual.pitfalls.5">显式的空数组有含义：这个键<b>什么都不派发</b>，跟省略字段完全不同。</span></td>
+        </tr>
+        <tr>
+          <td><code>phasePersistentKeys</code></td>
+          <td><span data-i18n="compat.manual.pitfalls.6">必须同时在两个分区里声明该键，只写配对会被忽略（会警告）。</span></td>
+        </tr>
+        <tr>
+          <td><code>mod_id</code></td>
+          <td><span data-i18n="compat.manual.pitfalls.7">必须是<b>已安装模组</b>的 ID；装的是 <code>epicfight</code>，写成 <code>epic_fight</code> 就永远不激活。</span></td>
+        </tr>
+        <tr>
+          <td><span data-i18n="compat.manual.pitfalls.8.k">编码</span></td>
+          <td><span data-i18n="compat.manual.pitfalls.8">UTF-8、无尾逗号；Windows 记事本注意别存成 UTF-16，提示文案会直接变乱码。</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="revert"><span data-i18n="compat.manual.revert.h2">六、改坏了怎么退回去</span></h2>
+  <ul>
+    <li><span data-i18n="compat.manual.revert.1">游戏内<b>重置配置</b> → 回到内置或已应用的社区默认。</span></li>
+    <li><span data-i18n="compat.manual.revert.2">直接删掉 <code>compat/user/&lt;mod_id&gt;.json</code> → 自动回落到 <code>mods/</code> 或 <code>default/</code>。</span></li>
+    <li><span data-i18n="compat.manual.revert.3">Apply 覆盖前的旧文件在 <code>compat/backup/&lt;mod_id&gt;-&lt;yyyyMMdd-HHmmss&gt;.json</code>（同一秒内多次备份会加 <code>-1</code>、<code>-2</code>）。</span></li>
+    <li><span data-i18n="compat.manual.revert.4">已应用的记录在 <code>compat/user/.applied.json</code>，以点开头，不会被当成配置解析。</span></li>
+  </ul>
+  <p class="small muted">
+    <span data-i18n="compat.manual.revert.note">回退之后建议看一眼日志，确认现在生效的是哪一份文件 —— 尤其是你把同一份配置放过好几个层的时候。</span>
+  </p>
+
+  <h2 id="pack"><span data-i18n="compat.manual.pack.h2">七、把改动带进整合包</span></h2>
+  <p>
+    <span data-i18n="compat.manual.pack.p">把 <code>compat/user/*.json</code> 连同 <code>profiles/</code> 一起放进整合包的 overrides（CurseForge / Modrinth 的 <code>overrides/config/controlflex/</code>）。玩家自己的改动仍然写在 user 层，优先于你预置的文件；但记住整份覆盖语义 —— 玩家一旦编辑同一个 <code>mod_id</code>，你预置的那份就不再参与。</span>
+  </p>
+  <p class="small muted">
+    <span data-i18n="compat.manual.pack.note">模组升级后 <code>mod_versions</code> 可能不再匹配，配置会静默失效。发版前用新版本模组跑一遍，并在日志里确认配置真的加载了。</span>
+  </p>
+
+  <h2 id="related"><span data-i18n="compat.manual.related.h2">相关</span></h2>
+  <div class="cards">
+    <a class="card" href="../index.html">
+      <h3><span data-i18n="compat.manual.related.pack.title">整合包配置</span></h3>
+      <p><span data-i18n="compat.manual.related.pack.desc">模板、profiles、按键 token 与随包分发默认配置。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.manual.related.pack.arrow">看整合包配置 →</span></p>
+    </a>
+    <a class="card" href="json.html">
+      <h3><span data-i18n="compat.manual.related.json.title">字段说明</span></h3>
+      <p><span data-i18n="compat.manual.related.json.desc">手改之前先确认字段含义与取值范围。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.manual.related.json.arrow">查字段 →</span></p>
+    </a>
+    <a class="card" href="../guide/feature/mod-adaptation.html">
+      <h3><span data-i18n="compat.manual.related.ui.title">游戏内模组适配</span></h3>
+      <p><span data-i18n="compat.manual.related.ui.desc">界面上的分层、界面 / 叠层规则与社区配置应用。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.manual.related.ui.arrow">看界面操作 →</span></p>
+    </a>
+  </div>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

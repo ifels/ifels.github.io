@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f9d55'/%3E%3Ctext x='16' y='21' font-size='11' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3ECFX%3C/text%3E%3C/svg%3E">
+{{HEAD_META}}
+<link rel="stylesheet" href="{{ROOT}}assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <a class="brand" href="../index.html"><span class="brand-mark">CFX</span><span class="brand-text">Control Flex&nbsp;Wiki</span></a>
+  <nav class="topnav">
+    <a href="https://www.curseforge.com/minecraft/mc-mods/control-flex" target="_blank" rel="noopener">CurseForge ↗</a>
+    <a href="https://github.com/ControlFlexMC/control-flex" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="en-only" href="https://discord.gg/Vcn95GSqdD" target="_blank" rel="noopener">Discord ↗</a>
+    <a class="zh-only" href="https://kook.vip/19sLvS" target="_blank" rel="noopener">Kook ↗</a>
+  </nav>
+  {{LANGSWITCH}}
+</header>
+
+<div class="layout">
+{{SIDEBAR}}
+
+<main class="content">
+
+  <h1><span data-i18n="compat.overview.h1">模组兼容</span></h1>
+  <p class="lead">
+    <span data-i18n="compat.overview.lead">Control Flex 是为中大型整合包设计的：默认零配置，只有当某个模组的输入不按常理出牌时才逐级加码。这一页讲清五种手段各自能做什么、什么时候该升级到下一层，以及产物最终落在哪。</span>
+  </p>
+
+  <h2 id="ladder"><span data-i18n="compat.overview.ladder.h2">一、适配阶梯：五种手段的关系</span></h2>
+  <p>
+    <span data-i18n="compat.overview.ladder.p">从零成本到写代码，这是一个「能用就不往上走」的阶梯：越往下越精确，维护成本也越高。</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.overview.ladder.col.tool">手段</span></th>
+          <th><span data-i18n="compat.overview.ladder.col.need">需要什么</span></th>
+          <th><span data-i18n="compat.overview.ladder.col.covers">能覆盖什么</span></th>
+          <th><span data-i18n="compat.overview.ladder.col.where">产物在哪</span></th>
+          <th><span data-i18n="compat.overview.ladder.col.cost">成本</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b><span data-i18n="compat.overview.ladder.r1.tool">自动发现</span></b></td>
+          <td><span data-i18n="compat.overview.ladder.r1.need">什么都不用</span></td>
+          <td><span data-i18n="compat.overview.ladder.r1.covers">用 KeyMapping 正常注册键位的模组</span></td>
+          <td><span data-i18n="compat.overview.ladder.r1.where">无（运行时注册）</span></td>
+          <td><span data-i18n="compat.overview.ladder.r1.cost">零</span></td>
+        </tr>
+        <tr>
+          <td><b><span data-i18n="compat.overview.ladder.r2.tool">游戏内模组适配</span></b></td>
+          <td><span data-i18n="compat.overview.ladder.r2.need">一个手柄，几分钟</span></td>
+          <td><span data-i18n="compat.overview.ladder.r2.covers">按键分层、界面 / 叠层的摇杆与光标行为</span></td>
+          <td><code>compat/user/&lt;mod_id&gt;.json</code></td>
+          <td><span data-i18n="compat.overview.ladder.r2.cost">低</span></td>
+        </tr>
+        <tr>
+          <td><b><span data-i18n="compat.overview.ladder.r3.tool">兼容配置</span></b></td>
+          <td><span data-i18n="compat.overview.ladder.r3.need">联网，或一个现成文件</span></td>
+          <td><span data-i18n="compat.overview.ladder.r3.covers">上面两层的可分享版本，外加派发通道、按键抑制、提示文案</span></td>
+          <td><code>compat/{default,mods,pack,user}/</code></td>
+          <td><span data-i18n="compat.overview.ladder.r3.cost">低</span></td>
+        </tr>
+        <tr>
+          <td><b><span data-i18n="compat.overview.ladder.r4.tool">手写 compat JSON</span></b></td>
+          <td><span data-i18n="compat.overview.ladder.r4.need">文本编辑器 + 字段表</span></td>
+          <td><span data-i18n="compat.overview.ladder.r4.covers">精细规则：每键派发通道、按物品抑制、相位保持、每页摇杆参数</span></td>
+          <td><code>compat/user/&lt;mod_id&gt;.json</code></td>
+          <td><span data-i18n="compat.overview.ladder.r4.cost">中</span></td>
+        </tr>
+        <tr>
+          <td><b><span data-i18n="compat.overview.ladder.r5.tool">桥接模组</span></b></td>
+          <td><span data-i18n="compat.overview.ladder.r5.need">Java + Gradle</span></td>
+          <td><span data-i18n="compat.overview.ladder.r5.covers">绕开 KeyMapping 的自绘输入、运行时状态、自绘 UI</span></td>
+          <td><span data-i18n="compat.overview.ladder.r5.where">独立 JAR + <code>compat/mods/*.json</code></span></td>
+          <td><span data-i18n="compat.overview.ladder.r5.cost">高</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">
+    <span data-i18n="compat.overview.ladder.note">大多数整合包停在 1–3 层就够了。真正需要桥接的模组不多，通常是「自带一套输入系统」的那几个：EMI、Create 的列车控制台、沉浸车辆、Epic Fight。</span>
+  </p>
+
+  <h2 id="escalate"><span data-i18n="compat.overview.escalate.h2">二、什么时候该升级到下一层</span></h2>
+  <ol>
+    <li><span data-i18n="compat.overview.escalate.1">先看「按键映射」里有没有它 —— 有 key，说明是标准的 KeyMapping 模组，第 2 / 3 层就能解决。</span></li>
+    <li><span data-i18n="compat.overview.escalate.2">有 key，但界面里没反应 —— 多半是「在哪里生效」或「怎么派发」不对：先用第 2 层加界面 / 叠层规则，再用第 3 层换派发通道。</span></li>
+    <li><span data-i18n="compat.overview.escalate.3">按了没反应，或按一下触发两次 —— 派发通道选错了（eventBus / keyMapping 重复触发），用第 4 层精确指定。</span></li>
+    <li><span data-i18n="compat.overview.escalate.4">连 key 都不出现 —— 模组把键位存在自己的配置里、直接读原始键态、或直接读手柄，只有第 5 层桥接能接。</span></li>
+    <li><span data-i18n="compat.overview.escalate.5">模组有「战斗模式」这类运行时状态 —— 桥接推状态（<code>IPlayerStateRegistry</code>），JSON 用 <code>itemSuppressKeys</code> 的 <code>playerState</code> 条件去消费它。</span></li>
+  </ol>
+
+  <h2 id="model"><span data-i18n="compat.overview.model.h2">三、五种手段共用一套数据模型</span></h2>
+  <p>
+    <span data-i18n="compat.overview.model.p">不管用哪一层，落到磁盘上都是同一份 compat JSON，核心只有三个按键分区，加上一个「派发」概念：</span>
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th><span data-i18n="compat.overview.model.col.section">分区</span></th>
+          <th><span data-i18n="compat.overview.model.col.when">什么时候生效</span></th>
+          <th><span data-i18n="compat.overview.model.col.use">典型用法</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>inGameKeys</code></td>
+          <td><span data-i18n="compat.overview.model.inGame.when">没有界面、也没有叠层时</span></td>
+          <td><span data-i18n="compat.overview.model.inGame.use">战斗键、技能键、变身键</span></td>
+        </tr>
+        <tr>
+          <td><code>screenKeys</code></td>
+          <td><span data-i18n="compat.overview.model.screen.when">有界面（Screen / GUI）打开时</span></td>
+          <td><span data-i18n="compat.overview.model.screen.use">背包、合成、查看配方</span></td>
+        </tr>
+        <tr>
+          <td><code>overlayKeys</code></td>
+          <td><span data-i18n="compat.overview.model.overlay.when">有叠层打开时（画在 HUD 之上的轮盘、法阵等）</span></td>
+          <td><span data-i18n="compat.overview.model.overlay.use">法术轮盘、径向菜单、拍照 HUD</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    <span data-i18n="compat.overview.model.channels">按键最终怎么送进模组，由派发通道决定：<code>keyMapping</code>、<code>eventBus</code>、<code>glfwPoll</code>、<code>screenInput</code>、<code>virtualKbm</code>。同一份 JSON 可以给不同按键配不同通道，这也是「同一个键按一下触发两次」这类问题的解法。</span>
+  </p>
+
+  <h2 id="layers"><span data-i18n="compat.overview.layers.h2">四、产物落在哪：三层目录</span></h2>
+  <p>
+    <span data-i18n="compat.overview.layers.p">compat 配置按四层加载，优先级 <code>user</code> &gt; <code>pack</code> &gt; <code>mods</code> &gt; <code>default</code>，同一个 <code>mod_id</code> 整份覆盖、不做字段合并。0.9 起新增的 <code>pack</code> 层由整合包作者手工放置、Control Flex 对其只读。改哪一层、会不会被后续操作覆盖，在<a href="manual.html">手动修改配置</a>里讲清楚。</span>
+  </p>
+
+  <h2 id="read"><span data-i18n="compat.overview.read.h2">五、按你的身份继续读</span></h2>
+  <div class="cards">
+    <a class="card" href="json.html">
+      <h3><span data-i18n="compat.overview.read.json.title">兼容配置（compat JSON）</span></h3>
+      <p><span data-i18n="compat.overview.read.json.desc">文件放哪、字段全解、怎么贡献一份配置、怎么自建一个配置源。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.overview.read.json.arrow">读字段说明 →</span></p>
+    </a>
+    <a class="card" href="bridge/index.html">
+      <h3><span data-i18n="compat.overview.read.bridge.title">Control Flex API</span></h3>
+      <p><span data-i18n="compat.overview.read.bridge.desc">JSON 兜不住的模组怎么写 Java 侧适配，官方兼容实现与源码在哪。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.overview.read.bridge.arrow">看桥接方案 →</span></p>
+    </a>
+    <a class="card" href="manual.html">
+      <h3><span data-i18n="compat.overview.read.manual.title">手动修改配置</span></h3>
+      <p><span data-i18n="compat.overview.read.manual.desc">直接改文件、写时复制、常见坑，以及改坏了怎么退回去。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.overview.read.manual.arrow">动手改配置 →</span></p>
+    </a>
+    <a class="card" href="../guide/feature/mod-adaptation.html">
+      <h3><span data-i18n="compat.overview.read.ui.title">游戏内模组适配</span></h3>
+      <p><span data-i18n="compat.overview.read.ui.desc">适配中心的界面操作：按键分层、界面 / 叠层规则、社区配置应用。</span></p>
+      <p class="card-arrow"><span data-i18n="compat.overview.read.ui.arrow">看界面操作 →</span></p>
+    </a>
+  </div>
+
+  <h2 id="troubleshoot"><span data-i18n="compat.overview.troubleshoot.h2">还是不正常？按这个顺序查</span></h2>
+  <ol>
+    <li><span data-i18n="compat.overview.troubleshoot.1">看「按键映射」—— 这个动作绑到正确的层了吗（Main / Screen / Overlay）？</span></li>
+    <li><span data-i18n="compat.overview.troubleshoot.2">打开该模组的模组适配 —— 加一条界面 / 叠层规则，或应用一份社区配置。</span></li>
+    <li><span data-i18n="compat.overview.troubleshoot.3">如果模组只监听物理键，用虚拟键鼠绑定。</span></li>
+    <li><span data-i18n="compat.overview.troubleshoot.4">日志里搜 <code>[ModCompat]</code>，看这份配置到底加载了没有、被什么门槛拦住了。</span></li>
+  </ol>
+
+</main>
+</div>
+
+{{FOOTER}}
+
+<script src="{{ROOT}}assets/app.js" defer></script>
+</body>
+</html>

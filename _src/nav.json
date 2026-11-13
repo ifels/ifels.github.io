@@ -103,40 +103,40 @@
     "label": "nav.mod-compatibility",
     "items": [
       {
-        "href": "modpack/compat/index.html",
+        "href": "mod-compat/index.html",
         "key": "nav.compat-overview"
       },
       {
-        "href": "modpack/compat/json.html",
+        "href": "mod-compat/json.html",
         "key": "nav.compat-json"
       },
       {
-        "href": "modpack/compat/bridge/index.html",
+        "href": "mod-compat/bridge/index.html",
         "key": "nav.compat-bridge"
       },
       {
         "type": "sub",
         "items": [
           {
-            "href": "modpack/compat/bridge/integration.html",
+            "href": "mod-compat/bridge/integration.html",
             "key": "nav.bridge-setup"
           },
           {
-            "href": "modpack/compat/bridge/api.html",
+            "href": "mod-compat/bridge/api.html",
             "key": "nav.bridge-api"
           },
           {
-            "href": "modpack/compat/bridge/implementations.html",
+            "href": "mod-compat/bridge/implementations.html",
             "key": "nav.bridge-impl"
           },
           {
-            "href": "modpack/compat/bridge/ecosystem.html",
+            "href": "mod-compat/bridge/ecosystem.html",
             "key": "nav.bridge-eco"
           }
         ]
       },
       {
-        "href": "modpack/compat/manual.html",
+        "href": "mod-compat/manual.html",
         "key": "nav.compat-manual"
       }
     ]
